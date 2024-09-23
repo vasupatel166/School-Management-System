@@ -67,43 +67,67 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\AdminDashboard.aspx" />
     <Content Include="Css\Style.css" />
     <Content Include="Global.asax" />
-    <Content Include="schoolmaster.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="Scripts\Admin.js" />
+    <Content Include="SuperAdmin\Dashboard.aspx" />
+    <Content Include="SuperAdmin\RegisterAdmin.aspx" />
+    <Content Include="SuperAdmin\RegisterSchool.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\Admin.Master.cs">
-      <DependentUpon>Admin.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Admin.Master.designer.cs">
-      <DependentUpon>Admin.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\AdminDashboard.aspx.cs">
-      <DependentUpon>AdminDashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\AdminDashboard.aspx.designer.cs">
-      <DependentUpon>AdminDashboard.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="schoolmaster.aspx.cs">
-      <DependentUpon>schoolmaster.aspx</DependentUpon>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="schoolmaster.aspx.designer.cs">
-      <DependentUpon>schoolmaster.aspx</DependentUpon>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\RegisterAdmin.aspx.cs">
+      <DependentUpon>RegisterAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\RegisterAdmin.aspx.designer.cs">
+      <DependentUpon>RegisterAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\RegisterSchool.aspx.cs">
+      <DependentUpon>RegisterSchool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\RegisterSchool.aspx.designer.cs">
+      <DependentUpon>RegisterSchool.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\Admin.Master" />
     <None Include="packages.config" />
+    <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -112,6 +136,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admin\" />
     <Folder Include="images\" />
     <Folder Include="Student\" />
     <Folder Include="Teacher\" />
