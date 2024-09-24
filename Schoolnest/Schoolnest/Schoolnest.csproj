@@ -67,11 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\Style.css" />
+    <Content Include="Assets\Css\Style.css" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
-    <Content Include="Scripts\Admin.js" />
     <Content Include="SuperAdmin\Dashboard.aspx" />
     <Content Include="SuperAdmin\RegisterAdmin.aspx" />
     <Content Include="SuperAdmin\RegisterSchool.aspx" />
