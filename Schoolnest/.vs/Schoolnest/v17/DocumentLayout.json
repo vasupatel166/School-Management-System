@@ -1,12 +1,71 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\vashi\\Desktop\\Capstone\\code\\School-Management-System\\Schoolnest\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\vashi\\Desktop\\Capstone\\code\\School-Management-System\\Schoolnest\\schoolnest\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\vashi\\Desktop\\Capstone\\code\\School-Management-System\\Schoolnest\\schoolnest\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|c:\\users\\vashi\\desktop\\capstone\\code\\school-management-system\\schoolnest\\schoolnest\\scripts\\admin.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\scripts\\admin.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Admin.js",
+              "DocumentMoniker": "C:\\Users\\vashi\\Desktop\\Capstone\\code\\School-Management-System\\Schoolnest\\Schoolnest\\Scripts\\Admin.js",
+              "RelativeDocumentMoniker": "Schoolnest\\Scripts\\Admin.js",
+              "ToolTip": "C:\\Users\\vashi\\Desktop\\Capstone\\code\\School-Management-System\\Schoolnest\\Schoolnest\\Scripts\\Admin.js",
+              "RelativeToolTip": "Schoolnest\\Scripts\\Admin.js",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-25T22:18:54.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Login.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\vashi\\Desktop\\Capstone\\code\\School-Management-System\\Schoolnest\\Schoolnest\\Login.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\Login.aspx.cs",
+              "ToolTip": "C:\\Users\\vashi\\Desktop\\Capstone\\code\\School-Management-System\\Schoolnest\\Schoolnest\\Login.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\Login.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGoAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T22:26:30.087Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.aspx",
+              "DocumentMoniker": "C:\\Users\\vashi\\Desktop\\Capstone\\code\\School-Management-System\\Schoolnest\\Schoolnest\\Login.aspx",
+              "RelativeDocumentMoniker": "Schoolnest\\Login.aspx",
+              "ToolTip": "C:\\Users\\vashi\\Desktop\\Capstone\\code\\School-Management-System\\Schoolnest\\Schoolnest\\Login.aspx",
+              "RelativeToolTip": "Schoolnest\\Login.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-24T22:16:20.222Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
