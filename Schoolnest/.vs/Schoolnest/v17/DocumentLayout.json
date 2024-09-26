@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\schoolnest\\site.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\site.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\site.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\site.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,20 +26,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Site.Master.cs",
               "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Site.Master.cs",
               "RelativeDocumentMoniker": "Schoolnest\\Site.Master.cs",
               "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Site.Master.cs",
               "RelativeToolTip": "Schoolnest\\Site.Master.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABkAAABHAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-26T03:20:36.877Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Site.Master",
               "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Site.Master",
               "RelativeDocumentMoniker": "Schoolnest\\Site.Master",

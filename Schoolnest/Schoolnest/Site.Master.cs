@@ -14,7 +14,7 @@ namespace Schoolnest
             if (!IsPostBack)
             {
 
-                Session["UserRole"] = "student";
+                Session["UserRole"] = "admin";
 
                 // Assuming the logged-in user's role is stored in Session
                 string role = Session["UserRole"]?.ToString() ?? "student";
