@@ -157,3 +157,14 @@ D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnes
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\roslyn\System.Memory.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\roslyn\System.Numerics.Vectors.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\DotNetEnv.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Configuration.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Primitives.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Sprache.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Configuration.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Configuration.Abstractions.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Primitives.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Sprache.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Runtime.CompilerServices.Unsafe.xml
