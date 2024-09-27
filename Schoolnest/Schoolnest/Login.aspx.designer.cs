@@ -33,24 +33,6 @@ namespace Schoolnest
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// txtSchoolId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSchoolId;
-
-        /// <summary>
-        /// rfvSchoolId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSchoolId;
-
-        /// <summary>
         /// ddlUserType control.
         /// </summary>
         /// <remarks>
@@ -67,6 +49,24 @@ namespace Schoolnest
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvUserType;
+
+        /// <summary>
+        /// txtSchoolId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSchoolId;
+
+        /// <summary>
+        /// rfvSchoolId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSchoolId;
 
         /// <summary>
         /// txtUsername control.
@@ -105,6 +105,15 @@ namespace Schoolnest
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
 
         /// <summary>
+        /// login_error_message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label login_error_message;
+
+        /// <summary>
         /// btnLogin control.
         /// </summary>
         /// <remarks>
@@ -123,12 +132,12 @@ namespace Schoolnest
         protected global::System.Web.UI.WebControls.Button btnCancel;
 
         /// <summary>
-        /// btnReg control.
+        /// btn_register_link control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnReg;
+        protected global::System.Web.UI.WebControls.HyperLink btn_register_link;
     }
 }

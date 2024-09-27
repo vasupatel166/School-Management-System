@@ -2,6 +2,8 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Web.UI;
+using System.Security.Cryptography;
 
 namespace Schoolnest
 {
@@ -11,78 +13,114 @@ namespace Schoolnest
         {
             if (!IsPostBack)
             {
-                btnReg.Visible = false;  // Initially, the register button is hidden
+                if (Session["UserRole"] != null)
+                {
+                    Response.Redirect("~/Logout.aspx");
+                }
             }
-        }
-
-        protected void ddlUserType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Show the register button only if Admin is selected
-            btnReg.Visible = (ddlUserType.SelectedValue == "A");
         }
 
         // Event handler for the login button
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            // Get the input from the form fields
-            string schoolId = txtSchoolId.Text.Trim();
-            string userType = ddlUserType.SelectedValue;
-            string username = txtUsername.Text.Trim();
-            string password = txtPassword.Text.Trim();
+            try
+            {
+                // Get the input from the form fields
+                string schoolId = txtSchoolId.Text.Trim();
+                string userType = ddlUserType.SelectedValue;
+                string username = txtUsername.Text.Trim();
+                string password = txtPassword.Text.Trim();
 
-            // Check if the fields are filled before validating
-            if (string.IsNullOrEmpty(schoolId) || string.IsNullOrEmpty(userType) ||
-                string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+
+                // Validate the login credentials
+                if (ValidateLogin(schoolId, userType, username, password))
+                {
+                    // Create session variables for logged-in user details
+                    Session["SchoolID"] = schoolId;
+                    Session["UserRole"] = userType;
+                    Session["Username"] = username;
+
+                    // If valid, redirect to the Dashboard according to user type
+                    if (userType == "SA") // superadmin
+                    {
+                        Response.Redirect("~/SuperAdmin/Dashboard.aspx");
+                    }
+                    else if (userType == "A") // admin
+                    {
+                        Response.Redirect("~/Admin/Dashboard.aspx");
+                    }
+                    else if (userType == "T") // teacher
+                    {
+                        Response.Redirect("~/Teacher/Dashboard.aspx");
+                    }
+                    else // Student
+                    {
+                        Response.Redirect("~/Student/Dashboard.aspx");
+                    }
+                }
+                else
+                {
+                    login_error_message.Text = "Invalid Login Credentials";
+                }
+            }
+            catch (Exception ex)
             {
-                ShowAlert("Please fill all the required fields.");
-                return; 
+                Console.WriteLine("Error while login: " + ex.Message);
             }
 
-            // Validate the login credentials
-            if (ValidateLogin(schoolId, userType, username, password))
-            {
-                // If valid, redirect to the Dashboard
-                Response.Redirect("~/SuperAdmin/Dashboard.aspx");
-            }
-            else
-            {
-                // If invalid, show an error message
-                ShowAlert("Invalid credentials. Please try again.");
-            }
         }
 
-        // Method to display an alert message in a Bootstrap modal
-        private void ShowAlert(string message)
-        {
-            string script = $"document.getElementById('alertMessage').innerText = '{message.Replace("'", "\\'")}'; " +
-                            "$('#alertModal').modal('show');";
-            ClientScript.RegisterStartupScript(this.GetType(), "alertModalScript", script, true);
-        }
-
-        // Function to validate the login credentials by checking the database
         private bool ValidateLogin(string schoolId, string userType, string username, string password)
         {
             // Connection string from web.config
             string connectionString = ConfigurationManager.ConnectionStrings["schoolnestConnectionString"].ConnectionString;
 
+            string databaseProcedure = "";
+
+            if (userType == "SA") // superadmin
+            {
+                databaseProcedure = "GetSuperAdminByUsername";
+            }
+            else 
+            {
+                databaseProcedure = "GetUserDataForLogin";
+            }
+            
+
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("GetUserDataForLogin", con))
+                using (SqlCommand cmd = new SqlCommand(databaseProcedure, con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    // Add the parameters for the stored procedure
-                    cmd.Parameters.AddWithValue("@SchoolID", schoolId);
-                    cmd.Parameters.AddWithValue("@RoleID", userType);
-                    cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", password); 
+                    if(userType == "SA")
+                    {
+                        cmd.Parameters.AddWithValue("@SuperAdminUsername", username);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@SchoolID", schoolId);
+                        cmd.Parameters.AddWithValue("@RoleID", userType);
+                        cmd.Parameters.AddWithValue("@Username", username);
+                    }
 
                     try
                     {
                         con.Open();
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            return reader.HasRows; 
+                            if (reader.Read())
+                            {
+                                // Fetch the hashed password from the database
+                                string storedHashedPassword = reader["Password"].ToString();
+
+                                // Verify the password using PBKDF2 (Rfc2898DeriveBytes)
+                                return VerifyPassword(password, storedHashedPassword);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -94,19 +132,49 @@ namespace Schoolnest
             }
         }
 
-        // Event handler for the cancel button
+        private bool VerifyPassword(string enteredPassword, string storedHash)
+        {
+            // Extract bytes from the stored hash
+            byte[] hashBytes = Convert.FromBase64String(storedHash);
+
+            byte[] salt = new byte[16];
+            Array.Copy(hashBytes, 0, salt, 0, 16);
+
+            // Hash the entered password using the same salt and 10000 iterations
+            var pbkdf2 = new Rfc2898DeriveBytes(enteredPassword, salt, 10000);
+            byte[] enteredHash = pbkdf2.GetBytes(20); // Get the 20-byte hash
+
+            for (int i = 0; i < 20; i++)
+                if (hashBytes[i + 16] != enteredHash[i])
+                    return false; // Mismatch
+
+            return true; // Password matches
+        }
+
+
         protected void btnCancel_Click(object sender, EventArgs e)
         {           
             ClearFields();
         }
 
-        // Method to clear input fields
         private void ClearFields()
         {
             txtSchoolId.Text = string.Empty;
             ddlUserType.SelectedIndex = 0; 
             txtUsername.Text = string.Empty;
             txtPassword.Text = string.Empty;
+        }
+
+        protected void ddlUserType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ddlUserType.SelectedValue == "SA")
+            {
+                txtSchoolId.Text = "superadmin";
+            }
+            else
+            {
+                txtSchoolId.Text = "";
+            }
         }
     }
 }

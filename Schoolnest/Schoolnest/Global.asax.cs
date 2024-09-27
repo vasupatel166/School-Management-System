@@ -5,25 +5,25 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
-using System.Web.UI;
+using DotNetEnv;
 
 namespace Schoolnest
 {
     public class Global : System.Web.HttpApplication
     {
         public static string ConnectionString = ConfigurationManager.ConnectionStrings["schoolnestConnectionString"].ConnectionString;
+
+        //public static string ConnectionString;
         protected void Application_Start(object sender, EventArgs e)
         {
-            ScriptManager.ScriptResourceMapping.AddDefinition("jquery",
-            new ScriptResourceDefinition
-            {
-                Path = "~/Scripts/jquery-3.6.0.min.js", // Ensure this matches the location of your jQuery file
-                DebugPath = "~/Scripts/jquery-3.6.0.js",
-                CdnPath = "https://code.jquery.com/jquery-3.6.0.min.js",
-                CdnDebugPath = "https://code.jquery.com/jquery-3.6.0.js",
-                CdnSupportsSecureConnection = true,
-                LoadSuccessExpression = "jQuery"
-            });
+            // Load the .env file
+            //Env.Load();
+
+            // Retrieve the connection string from the environment variables
+            //ConnectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+
+
+
         }
 
         protected void Session_Start(object sender, EventArgs e)
