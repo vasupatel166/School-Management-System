@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SchoolDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Department" Type="varchar" MaxLength="45" />
+    <Property Name="Position" Type="varchar" MaxLength="45" />
+    <Property Name="UserMaster_UserID" Type="int" />
+    <Property Name="SchoolMaster_SchoolID" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="AttendanceMaster">
+    <Key>
+      <PropertyRef Name="AttendanceID" />
+    </Key>
+    <Property Name="AttendanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="45" />
+    <Property Name="TeacherMaster_TeacherID" Type="varchar" MaxLength="25" />
+    <Property Name="StudentMaster_StudentID" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="BookIssue">
+    <Key>
+      <PropertyRef Name="IssueID" />
+    </Key>
+    <Property Name="IssueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IssueDate" Type="datetime" />
+    <Property Name="ReturnDate" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="45" />
+    <Property Name="BookIssue_StudentID" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="ClassMaster">
+    <Key>
+      <PropertyRef Name="ClassID" />
+    </Key>
+    <Property Name="ClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClassName" Type="varchar" MaxLength="45" />
+    <Property Name="SchoolMaster_SchoolID" Type="varchar" MaxLength="25" />
+    <Property Name="TeacherMaster_TeacherID" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="EventMaster">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventName" Type="varchar" MaxLength="45" />
+    <Property Name="EventDate" Type="datetime" />
+    <Property Name="EventOrganizedBy" Type="varchar" MaxLength="45" />
+    <Property Name="TeacherMaster_TeacherID" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="ExamMaster">
+    <Key>
+      <PropertyRef Name="ExamID" />
+    </Key>
+    <Property Name="ExamID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExamName" Type="varchar" MaxLength="45" />
+    <Property Name="ExamDate" Type="datetime" />
+    <Property Name="ClassMaster_ClassID" Type="int" />
+  </EntityType>
+  <EntityType Name="ExamResult">
+    <Key>
+      <PropertyRef Name="ResultID" />
+    </Key>
+    <Property Name="ResultID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TotalMarks" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MarksObtained" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ExamMaster_ExamID" Type="int" />
+    <Property Name="StudentMaster_StudentID" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="FeeMaster">
+    <Key>
+      <PropertyRef Name="FeeID" />
+    </Key>
+    <Property Name="FeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="45" />
+    <Property Name="ClassMaster_ClassID" Type="int" />
+    <Property Name="TeacherMaster_TeacherID" Type="varchar" MaxLength="25" />
+    <Property Name="SchoolMaster_SchoolID" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="HolidayMaster">
+    <Key>
+      <PropertyRef Name="HolidayID" />
+    </Key>
+    <Property Name="HolidayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HolidayName" Type="varchar" MaxLength="45" />
+    <Property Name="HolidayDate" Type="datetime" />
+    <Property Name="SchoolMaster_SchoolID" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="LibraryMaster">
+    <Key>
+      <PropertyRef Name="BookID" />
+    </Key>
+    <Property Name="BookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="45" />
+    <Property Name="Author" Type="varchar" MaxLength="45" />
+    <Property Name="ISBN" Type="varchar" MaxLength="45" />
+    <Property Name="Copies" Type="int" />
+    <Property Name="SchoolMaster_SchoolID" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="RoleMaster">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="45" />
+    <Property Name="SchoolMaster_SchoolID" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="SchoolMaster">
+    <Key>
+      <PropertyRef Name="SchoolID" />
+    </Key>
+    <Property Name="SchoolID" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="School_Name" Type="varchar" MaxLength="220" />
+    <Property Name="School_Add1" Type="varchar" MaxLength="45" />
+    <Property Name="School_Add2" Type="varchar" MaxLength="45" />
+    <Property Name="School_Add3" Type="varchar" MaxLength="45" />
+    <Property Name="Phone_No" Type="varchar" MaxLength="45" />
+    <Property Name="School_Email" Type="varchar" MaxLength="45" />
+    <Property Name="School_Website" Type="varchar" MaxLength="100" />
+    <Property Name="School_Type" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="StudentMaster">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Student_FirstName" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Student_MiddleName" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Student_LastName" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Student_EmailID" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Student_Standard" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Student_Division" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Student_Section" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Student_FullName" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Student_Gender" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Student_GRNumber" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Student_Status" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Student_DateOfAdmission" Type="datetime" Nullable="false" />
+    <Property Name="Student_DateOfBirth" Type="datetime" Nullable="false" />
+    <Property Name="Student_PlaceOfBirth" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Student_Religion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Student_Caste" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Student_FatherName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Student_MotherName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Student_MobileNumber" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Student_Address1" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Student_Address2" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Student_Address3" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastSchoolAttended" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Student_MotherTongue" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Student_BloodGroup" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="SchoolMaster_SchoolID" Type="varchar" MaxLength="25" />
+    <Property Name="ClassMaster_ClassID" Type="int" Nullable="false" />
+    <Property Name="TransportAssignment_AssignmentID" Type="int" Nullable="false" />
+    <Property Name="UserMaster_UserID" Type="int" />
+  </EntityType>
+  <EntityType Name="SubjectMaster">
+    <Key>
+      <PropertyRef Name="SubjectID" />
+    </Key>
+    <Property Name="SubjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubjectName" Type="varchar" MaxLength="45" />
+    <Property Name="ClassMaster_ClassID" Type="int" />
+    <Property Name="TeacherMaster_TeacherID" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="TeacherMaster">
+    <Key>
+      <PropertyRef Name="TeacherID" />
+    </Key>
+    <Property Name="TeacherID" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="TeacherName" Type="varchar" MaxLength="150" />
+    <Property Name="Gender" Type="char" MaxLength="1" />
+    <Property Name="Teacher_DOB" Type="datetime" />
+    <Property Name="Teacher_Type" Type="varchar" MaxLength="20" />
+    <Property Name="Teacher_MaritalStatus" Type="varchar" MaxLength="45" />
+    <Property Name="Teacher_JoiningDate" Type="datetime" />
+    <Property Name="Teacher_Qualification" Type="varchar" MaxLength="45" />
+    <Property Name="Teacher_TypeOfAppointment" Type="varchar" MaxLength="45" />
+    <Property Name="Teacher_Experience" Type="varchar" MaxLength="45" />
+    <Property Name="Teacher_Email" Type="varchar" MaxLength="45" />
+    <Property Name="Teacher_MobileNumber" Type="varchar" MaxLength="45" />
+    <Property Name="Teacher_Address1" Type="varchar" MaxLength="100" />
+    <Property Name="Teacher_Address2" Type="varchar" MaxLength="100" />
+    <Property Name="Teacher_Address3" Type="varchar" MaxLength="100" />
+    <Property Name="SchoolMaster_SchoolID" Type="varchar" MaxLength="25" />
+    <Property Name="UserMaster_UserID" Type="int" />
+  </EntityType>
+  <EntityType Name="TimeTableMaster">
+    <Key>
+      <PropertyRef Name="TimeTableID" />
+    </Key>
+    <Property Name="TimeTableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DayOfWeek" Type="varchar" MaxLength="45" />
+    <Property Name="StartTime" Type="varchar" MaxLength="45" />
+    <Property Name="EndTime" Type="varchar" MaxLength="45" />
+    <Property Name="ClassMaster_ClassID" Type="int" />
+  </EntityType>
+  <EntityType Name="TransportAssignment">
+    <Key>
+      <PropertyRef Name="AssignmentID" />
+    </Key>
+    <Property Name="AssignmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AssigneeDate" Type="datetime" />
+    <Property Name="TransportMaster_TransportID" Type="int" />
+    <Property Name="StudentMaster_StudentID" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="TransportMaster">
+    <Key>
+      <PropertyRef Name="TransportID" />
+    </Key>
+    <Property Name="TransportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusNumber" Type="varchar" MaxLength="45" />
+    <Property Name="Route" Type="varchar" MaxLength="45" />
+    <Property Name="DriverName" Type="varchar" MaxLength="200" />
+    <Property Name="Capacity" Type="int" />
+  </EntityType>
+  <EntityType Name="UserMaster">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="45" />
+    <Property Name="Password" Type="varchar" MaxLength="45" />
+    <Property Name="SchoolMaster_SchoolID" Type="varchar" MaxLength="25" />
+    <Property Name="RoleMaster_RoleID" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK__Admin__SchoolMas__5812160E">
+    <End Role="SchoolMaster" Type="Self.SchoolMaster" Multiplicity="0..1" />
+    <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolMaster">
+        <PropertyRef Name="SchoolID" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="SchoolMaster_SchoolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Admin__UserMaste__571DF1D5">
+    <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="0..1" />
+    <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserMaster">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="UserMaster_UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Attendanc__Stude__66603565">
+    <End Role="StudentMaster" Type="Self.StudentMaster" Multiplicity="0..1" />
+    <End Role="AttendanceMaster" Type="Self.AttendanceMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentMaster">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="AttendanceMaster">
+        <PropertyRef Name="StudentMaster_StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Attendanc__Teach__656C112C">
+    <End Role="TeacherMaster" Type="Self.TeacherMaster" Multiplicity="0..1" />
+    <End Role="AttendanceMaster" Type="Self.AttendanceMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeacherMaster">
+        <PropertyRef Name="TeacherID" />
+      </Principal>
+      <Dependent Role="AttendanceMaster">
+        <PropertyRef Name="TeacherMaster_TeacherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookIssue__BookI__7B5B524B">
+    <End Role="StudentMaster" Type="Self.StudentMaster" Multiplicity="0..1" />
+    <End Role="BookIssue" Type="Self.BookIssue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentMaster">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="BookIssue">
+        <PropertyRef Name="BookIssue_StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClassMast__Schoo__5DCAEF64">
+    <End Role="SchoolMaster" Type="Self.SchoolMaster" Multiplicity="0..1" />
+    <End Role="ClassMaster" Type="Self.ClassMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolMaster">
+        <PropertyRef Name="SchoolID" />
+      </Principal>
+      <Dependent Role="ClassMaster">
+        <PropertyRef Name="SchoolMaster_SchoolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClassMast__Teach__5EBF139D">
+    <End Role="TeacherMaster" Type="Self.TeacherMaster" Multiplicity="0..1" />
+    <End Role="ClassMaster" Type="Self.ClassMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeacherMaster">
+        <PropertyRef Name="TeacherID" />
+      </Principal>
+      <Dependent Role="ClassMaster">
+        <PropertyRef Name="TeacherMaster_TeacherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EventMast__Teach__03F0984C">
+    <End Role="TeacherMaster" Type="Self.TeacherMaster" Multiplicity="0..1" />
+    <End Role="EventMaster" Type="Self.EventMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeacherMaster">
+        <PropertyRef Name="TeacherID" />
+      </Principal>
+      <Dependent Role="EventMaster">
+        <PropertyRef Name="TeacherMaster_TeacherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ExamMaste__Class__6D0D32F4">
+    <End Role="ClassMaster" Type="Self.ClassMaster" Multiplicity="0..1" />
+    <End Role="ExamMaster" Type="Self.ExamMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassMaster">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="ExamMaster">
+        <PropertyRef Name="ClassMaster_ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ExamResul__ExamM__6FE99F9F">
+    <End Role="ExamMaster" Type="Self.ExamMaster" Multiplicity="0..1" />
+    <End Role="ExamResult" Type="Self.ExamResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExamMaster">
+        <PropertyRef Name="ExamID" />
+      </Principal>
+      <Dependent Role="ExamResult">
+        <PropertyRef Name="ExamMaster_ExamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ExamResul__Stude__70DDC3D8">
+    <End Role="StudentMaster" Type="Self.StudentMaster" Multiplicity="0..1" />
+    <End Role="ExamResult" Type="Self.ExamResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentMaster">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="ExamResult">
+        <PropertyRef Name="StudentMaster_StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FeeMaster__Class__73BA3083">
+    <End Role="ClassMaster" Type="Self.ClassMaster" Multiplicity="0..1" />
+    <End Role="FeeMaster" Type="Self.FeeMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassMaster">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="FeeMaster">
+        <PropertyRef Name="ClassMaster_ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FeeMaster__Schoo__75A278F5">
+    <End Role="SchoolMaster" Type="Self.SchoolMaster" Multiplicity="0..1" />
+    <End Role="FeeMaster" Type="Self.FeeMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolMaster">
+        <PropertyRef Name="SchoolID" />
+      </Principal>
+      <Dependent Role="FeeMaster">
+        <PropertyRef Name="SchoolMaster_SchoolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FeeMaster__Teach__74AE54BC">
+    <End Role="TeacherMaster" Type="Self.TeacherMaster" Multiplicity="0..1" />
+    <End Role="FeeMaster" Type="Self.FeeMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeacherMaster">
+        <PropertyRef Name="TeacherID" />
+      </Principal>
+      <Dependent Role="FeeMaster">
+        <PropertyRef Name="TeacherMaster_TeacherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HolidayMa__Schoo__06CD04F7">
+    <End Role="SchoolMaster" Type="Self.SchoolMaster" Multiplicity="0..1" />
+    <End Role="HolidayMaster" Type="Self.HolidayMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolMaster">
+        <PropertyRef Name="SchoolID" />
+      </Principal>
+      <Dependent Role="HolidayMaster">
+        <PropertyRef Name="SchoolMaster_SchoolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LibraryMa__Schoo__787EE5A0">
+    <End Role="SchoolMaster" Type="Self.SchoolMaster" Multiplicity="0..1" />
+    <End Role="LibraryMaster" Type="Self.LibraryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolMaster">
+        <PropertyRef Name="SchoolID" />
+      </Principal>
+      <Dependent Role="LibraryMaster">
+        <PropertyRef Name="SchoolMaster_SchoolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RoleMaste__Schoo__0F624AF8">
+    <End Role="SchoolMaster" Type="Self.SchoolMaster" Multiplicity="0..1" />
+    <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolMaster">
+        <PropertyRef Name="SchoolID" />
+      </Principal>
+      <Dependent Role="RoleMaster">
+        <PropertyRef Name="SchoolMaster_SchoolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentMa__Class__628FA481">
+    <End Role="ClassMaster" Type="Self.ClassMaster" Multiplicity="1" />
+    <End Role="StudentMaster" Type="Self.StudentMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassMaster">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="StudentMaster">
+        <PropertyRef Name="ClassMaster_ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentMa__Schoo__619B8048">
+    <End Role="SchoolMaster" Type="Self.SchoolMaster" Multiplicity="0..1" />
+    <End Role="StudentMaster" Type="Self.StudentMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolMaster">
+        <PropertyRef Name="SchoolID" />
+      </Principal>
+      <Dependent Role="StudentMaster">
+        <PropertyRef Name="SchoolMaster_SchoolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SubjectMa__Class__693CA210">
+    <End Role="ClassMaster" Type="Self.ClassMaster" Multiplicity="0..1" />
+    <End Role="SubjectMaster" Type="Self.SubjectMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassMaster">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="SubjectMaster">
+        <PropertyRef Name="ClassMaster_ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SubjectMa__Teach__6A30C649">
+    <End Role="TeacherMaster" Type="Self.TeacherMaster" Multiplicity="0..1" />
+    <End Role="SubjectMaster" Type="Self.SubjectMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeacherMaster">
+        <PropertyRef Name="TeacherID" />
+      </Principal>
+      <Dependent Role="SubjectMaster">
+        <PropertyRef Name="TeacherMaster_TeacherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TeacherMa__Schoo__5AEE82B9">
+    <End Role="SchoolMaster" Type="Self.SchoolMaster" Multiplicity="0..1" />
+    <End Role="TeacherMaster" Type="Self.TeacherMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolMaster">
+        <PropertyRef Name="SchoolID" />
+      </Principal>
+      <Dependent Role="TeacherMaster">
+        <PropertyRef Name="SchoolMaster_SchoolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TimeTable__Class__09A971A2">
+    <End Role="ClassMaster" Type="Self.ClassMaster" Multiplicity="0..1" />
+    <End Role="TimeTableMaster" Type="Self.TimeTableMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassMaster">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="TimeTableMaster">
+        <PropertyRef Name="ClassMaster_ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transport__Stude__01142BA1">
+    <End Role="StudentMaster" Type="Self.StudentMaster" Multiplicity="0..1" />
+    <End Role="TransportAssignment" Type="Self.TransportAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentMaster">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="TransportAssignment">
+        <PropertyRef Name="StudentMaster_StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transport__Trans__00200768">
+    <End Role="TransportMaster" Type="Self.TransportMaster" Multiplicity="0..1" />
+    <End Role="TransportAssignment" Type="Self.TransportAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportMaster">
+        <PropertyRef Name="TransportID" />
+      </Principal>
+      <Dependent Role="TransportAssignment">
+        <PropertyRef Name="TransportMaster_TransportID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserMaste__Schoo__5441852A">
+    <End Role="SchoolMaster" Type="Self.SchoolMaster" Multiplicity="0..1" />
+    <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolMaster">
+        <PropertyRef Name="SchoolID" />
+      </Principal>
+      <Dependent Role="UserMaster">
+        <PropertyRef Name="SchoolMaster_SchoolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserMaster_RoleMaster">
+    <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="0..1" />
+    <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleMaster">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="UserMaster">
+        <PropertyRef Name="RoleMaster_RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetDashboardData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+    <Parameter Name="TotalStudents" Type="int" Mode="InOut" />
+    <Parameter Name="TotalTeachers" Type="int" Mode="InOut" />
+    <Parameter Name="ActiveClasses" Type="int" Mode="InOut" />
+    <Parameter Name="PendingFees" Type="decimal" Mode="InOut" />
+  </Function>
+  <Function Name="GetSchoolName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetUserDataForLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="RoleID" Type="varchar" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="InsertUpdateSchoolMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="varchar" Mode="In" />
+    <Parameter Name="School_Name" Type="varchar" Mode="In" />
+    <Parameter Name="School_Add1" Type="varchar" Mode="In" />
+    <Parameter Name="School_Add2" Type="varchar" Mode="In" />
+    <Parameter Name="School_Add3" Type="varchar" Mode="In" />
+    <Parameter Name="Phone_No" Type="varchar" Mode="In" />
+    <Parameter Name="School_Email" Type="varchar" Mode="In" />
+    <Parameter Name="School_Website" Type="varchar" Mode="In" />
+    <Parameter Name="School_Type" Type="varchar" Mode="In" />
+    <Parameter Name="Year" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="SchoolDBModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AttendanceMaster" EntityType="Self.AttendanceMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookIssue" EntityType="Self.BookIssue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClassMaster" EntityType="Self.ClassMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventMaster" EntityType="Self.EventMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExamMaster" EntityType="Self.ExamMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExamResult" EntityType="Self.ExamResult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeeMaster" EntityType="Self.FeeMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HolidayMaster" EntityType="Self.HolidayMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LibraryMaster" EntityType="Self.LibraryMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleMaster" EntityType="Self.RoleMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SchoolMaster" EntityType="Self.SchoolMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentMaster" EntityType="Self.StudentMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubjectMaster" EntityType="Self.SubjectMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TeacherMaster" EntityType="Self.TeacherMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TimeTableMaster" EntityType="Self.TimeTableMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransportAssignment" EntityType="Self.TransportAssignment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransportMaster" EntityType="Self.TransportMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Admin__SchoolMas__5812160E" Association="Self.FK__Admin__SchoolMas__5812160E">
+      <End Role="SchoolMaster" EntitySet="SchoolMaster" />
+      <End Role="Admin" EntitySet="Admin" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Admin__UserMaste__571DF1D5" Association="Self.FK__Admin__UserMaste__571DF1D5">
+      <End Role="UserMaster" EntitySet="UserMaster" />
+      <End Role="Admin" EntitySet="Admin" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Attendanc__Stude__66603565" Association="Self.FK__Attendanc__Stude__66603565">
+      <End Role="StudentMaster" EntitySet="StudentMaster" />
+      <End Role="AttendanceMaster" EntitySet="AttendanceMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Attendanc__Teach__656C112C" Association="Self.FK__Attendanc__Teach__656C112C">
+      <End Role="TeacherMaster" EntitySet="TeacherMaster" />
+      <End Role="AttendanceMaster" EntitySet="AttendanceMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookIssue__BookI__7B5B524B" Association="Self.FK__BookIssue__BookI__7B5B524B">
+      <End Role="StudentMaster" EntitySet="StudentMaster" />
+      <End Role="BookIssue" EntitySet="BookIssue" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClassMast__Schoo__5DCAEF64" Association="Self.FK__ClassMast__Schoo__5DCAEF64">
+      <End Role="SchoolMaster" EntitySet="SchoolMaster" />
+      <End Role="ClassMaster" EntitySet="ClassMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClassMast__Teach__5EBF139D" Association="Self.FK__ClassMast__Teach__5EBF139D">
+      <End Role="TeacherMaster" EntitySet="TeacherMaster" />
+      <End Role="ClassMaster" EntitySet="ClassMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EventMast__Teach__03F0984C" Association="Self.FK__EventMast__Teach__03F0984C">
+      <End Role="TeacherMaster" EntitySet="TeacherMaster" />
+      <End Role="EventMaster" EntitySet="EventMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ExamMaste__Class__6D0D32F4" Association="Self.FK__ExamMaste__Class__6D0D32F4">
+      <End Role="ClassMaster" EntitySet="ClassMaster" />
+      <End Role="ExamMaster" EntitySet="ExamMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ExamResul__ExamM__6FE99F9F" Association="Self.FK__ExamResul__ExamM__6FE99F9F">
+      <End Role="ExamMaster" EntitySet="ExamMaster" />
+      <End Role="ExamResult" EntitySet="ExamResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ExamResul__Stude__70DDC3D8" Association="Self.FK__ExamResul__Stude__70DDC3D8">
+      <End Role="StudentMaster" EntitySet="StudentMaster" />
+      <End Role="ExamResult" EntitySet="ExamResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FeeMaster__Class__73BA3083" Association="Self.FK__FeeMaster__Class__73BA3083">
+      <End Role="ClassMaster" EntitySet="ClassMaster" />
+      <End Role="FeeMaster" EntitySet="FeeMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FeeMaster__Schoo__75A278F5" Association="Self.FK__FeeMaster__Schoo__75A278F5">
+      <End Role="SchoolMaster" EntitySet="SchoolMaster" />
+      <End Role="FeeMaster" EntitySet="FeeMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FeeMaster__Teach__74AE54BC" Association="Self.FK__FeeMaster__Teach__74AE54BC">
+      <End Role="TeacherMaster" EntitySet="TeacherMaster" />
+      <End Role="FeeMaster" EntitySet="FeeMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HolidayMa__Schoo__06CD04F7" Association="Self.FK__HolidayMa__Schoo__06CD04F7">
+      <End Role="SchoolMaster" EntitySet="SchoolMaster" />
+      <End Role="HolidayMaster" EntitySet="HolidayMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LibraryMa__Schoo__787EE5A0" Association="Self.FK__LibraryMa__Schoo__787EE5A0">
+      <End Role="SchoolMaster" EntitySet="SchoolMaster" />
+      <End Role="LibraryMaster" EntitySet="LibraryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RoleMaste__Schoo__0F624AF8" Association="Self.FK__RoleMaste__Schoo__0F624AF8">
+      <End Role="SchoolMaster" EntitySet="SchoolMaster" />
+      <End Role="RoleMaster" EntitySet="RoleMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentMa__Class__628FA481" Association="Self.FK__StudentMa__Class__628FA481">
+      <End Role="ClassMaster" EntitySet="ClassMaster" />
+      <End Role="StudentMaster" EntitySet="StudentMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentMa__Schoo__619B8048" Association="Self.FK__StudentMa__Schoo__619B8048">
+      <End Role="SchoolMaster" EntitySet="SchoolMaster" />
+      <End Role="StudentMaster" EntitySet="StudentMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SubjectMa__Class__693CA210" Association="Self.FK__SubjectMa__Class__693CA210">
+      <End Role="ClassMaster" EntitySet="ClassMaster" />
+      <End Role="SubjectMaster" EntitySet="SubjectMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SubjectMa__Teach__6A30C649" Association="Self.FK__SubjectMa__Teach__6A30C649">
+      <End Role="TeacherMaster" EntitySet="TeacherMaster" />
+      <End Role="SubjectMaster" EntitySet="SubjectMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TeacherMa__Schoo__5AEE82B9" Association="Self.FK__TeacherMa__Schoo__5AEE82B9">
+      <End Role="SchoolMaster" EntitySet="SchoolMaster" />
+      <End Role="TeacherMaster" EntitySet="TeacherMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TimeTable__Class__09A971A2" Association="Self.FK__TimeTable__Class__09A971A2">
+      <End Role="ClassMaster" EntitySet="ClassMaster" />
+      <End Role="TimeTableMaster" EntitySet="TimeTableMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transport__Stude__01142BA1" Association="Self.FK__Transport__Stude__01142BA1">
+      <End Role="StudentMaster" EntitySet="StudentMaster" />
+      <End Role="TransportAssignment" EntitySet="TransportAssignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transport__Trans__00200768" Association="Self.FK__Transport__Trans__00200768">
+      <End Role="TransportMaster" EntitySet="TransportMaster" />
+      <End Role="TransportAssignment" EntitySet="TransportAssignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserMaste__Schoo__5441852A" Association="Self.FK__UserMaste__Schoo__5441852A">
+      <End Role="SchoolMaster" EntitySet="SchoolMaster" />
+      <End Role="UserMaster" EntitySet="UserMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserMaster_RoleMaster" Association="Self.FK_UserMaster_RoleMaster">
+      <End Role="RoleMaster" EntitySet="RoleMaster" />
+      <End Role="UserMaster" EntitySet="UserMaster" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
