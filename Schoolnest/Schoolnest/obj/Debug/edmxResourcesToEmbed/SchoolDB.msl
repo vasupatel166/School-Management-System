@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SchoolDBModelStoreContainer" CdmEntityContainer="SchoolDBEntities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="SchoolDBModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="UserMaster_UserID" ColumnName="UserMaster_UserID" />
+          <ScalarProperty Name="SchoolMaster_SchoolID" ColumnName="SchoolMaster_SchoolID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AttendanceMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.AttendanceMaster">
+        <MappingFragment StoreEntitySet="AttendanceMaster">
+          <ScalarProperty Name="AttendanceID" ColumnName="AttendanceID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="TeacherMaster_TeacherID" ColumnName="TeacherMaster_TeacherID" />
+          <ScalarProperty Name="StudentMaster_StudentID" ColumnName="StudentMaster_StudentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookIssues">
+      <EntityTypeMapping TypeName="SchoolDBModel.BookIssue">
+        <MappingFragment StoreEntitySet="BookIssue">
+          <ScalarProperty Name="IssueID" ColumnName="IssueID" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="BookIssue_StudentID" ColumnName="BookIssue_StudentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClassMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.ClassMaster">
+        <MappingFragment StoreEntitySet="ClassMaster">
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="SchoolMaster_SchoolID" ColumnName="SchoolMaster_SchoolID" />
+          <ScalarProperty Name="TeacherMaster_TeacherID" ColumnName="TeacherMaster_TeacherID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.EventMaster">
+        <MappingFragment StoreEntitySet="EventMaster">
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+          <ScalarProperty Name="EventOrganizedBy" ColumnName="EventOrganizedBy" />
+          <ScalarProperty Name="TeacherMaster_TeacherID" ColumnName="TeacherMaster_TeacherID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExamMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.ExamMaster">
+        <MappingFragment StoreEntitySet="ExamMaster">
+          <ScalarProperty Name="ExamID" ColumnName="ExamID" />
+          <ScalarProperty Name="ExamName" ColumnName="ExamName" />
+          <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+          <ScalarProperty Name="ClassMaster_ClassID" ColumnName="ClassMaster_ClassID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExamResults">
+      <EntityTypeMapping TypeName="SchoolDBModel.ExamResult">
+        <MappingFragment StoreEntitySet="ExamResult">
+          <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+          <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
+          <ScalarProperty Name="MarksObtained" ColumnName="MarksObtained" />
+          <ScalarProperty Name="ExamMaster_ExamID" ColumnName="ExamMaster_ExamID" />
+          <ScalarProperty Name="StudentMaster_StudentID" ColumnName="StudentMaster_StudentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeeMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.FeeMaster">
+        <MappingFragment StoreEntitySet="FeeMaster">
+          <ScalarProperty Name="FeeID" ColumnName="FeeID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ClassMaster_ClassID" ColumnName="ClassMaster_ClassID" />
+          <ScalarProperty Name="TeacherMaster_TeacherID" ColumnName="TeacherMaster_TeacherID" />
+          <ScalarProperty Name="SchoolMaster_SchoolID" ColumnName="SchoolMaster_SchoolID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HolidayMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.HolidayMaster">
+        <MappingFragment StoreEntitySet="HolidayMaster">
+          <ScalarProperty Name="HolidayID" ColumnName="HolidayID" />
+          <ScalarProperty Name="HolidayName" ColumnName="HolidayName" />
+          <ScalarProperty Name="HolidayDate" ColumnName="HolidayDate" />
+          <ScalarProperty Name="SchoolMaster_SchoolID" ColumnName="SchoolMaster_SchoolID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LibraryMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.LibraryMaster">
+        <MappingFragment StoreEntitySet="LibraryMaster">
+          <ScalarProperty Name="BookID" ColumnName="BookID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="Copies" ColumnName="Copies" />
+          <ScalarProperty Name="SchoolMaster_SchoolID" ColumnName="SchoolMaster_SchoolID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.RoleMaster">
+        <MappingFragment StoreEntitySet="RoleMaster">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="SchoolMaster_SchoolID" ColumnName="SchoolMaster_SchoolID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SchoolMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.SchoolMaster">
+        <MappingFragment StoreEntitySet="SchoolMaster">
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+          <ScalarProperty Name="School_Name" ColumnName="School_Name" />
+          <ScalarProperty Name="School_Add1" ColumnName="School_Add1" />
+          <ScalarProperty Name="School_Add2" ColumnName="School_Add2" />
+          <ScalarProperty Name="School_Add3" ColumnName="School_Add3" />
+          <ScalarProperty Name="Phone_No" ColumnName="Phone_No" />
+          <ScalarProperty Name="School_Email" ColumnName="School_Email" />
+          <ScalarProperty Name="School_Website" ColumnName="School_Website" />
+          <ScalarProperty Name="School_Type" ColumnName="School_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.StudentMaster">
+        <MappingFragment StoreEntitySet="StudentMaster">
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="Student_FirstName" ColumnName="Student_FirstName" />
+          <ScalarProperty Name="Student_MiddleName" ColumnName="Student_MiddleName" />
+          <ScalarProperty Name="Student_LastName" ColumnName="Student_LastName" />
+          <ScalarProperty Name="Student_EmailID" ColumnName="Student_EmailID" />
+          <ScalarProperty Name="Student_Standard" ColumnName="Student_Standard" />
+          <ScalarProperty Name="Student_Division" ColumnName="Student_Division" />
+          <ScalarProperty Name="Student_Section" ColumnName="Student_Section" />
+          <ScalarProperty Name="Student_FullName" ColumnName="Student_FullName" />
+          <ScalarProperty Name="Student_Gender" ColumnName="Student_Gender" />
+          <ScalarProperty Name="Student_GRNumber" ColumnName="Student_GRNumber" />
+          <ScalarProperty Name="Student_Status" ColumnName="Student_Status" />
+          <ScalarProperty Name="Student_DateOfAdmission" ColumnName="Student_DateOfAdmission" />
+          <ScalarProperty Name="Student_DateOfBirth" ColumnName="Student_DateOfBirth" />
+          <ScalarProperty Name="Student_PlaceOfBirth" ColumnName="Student_PlaceOfBirth" />
+          <ScalarProperty Name="Student_Religion" ColumnName="Student_Religion" />
+          <ScalarProperty Name="Student_Caste" ColumnName="Student_Caste" />
+          <ScalarProperty Name="Student_FatherName" ColumnName="Student_FatherName" />
+          <ScalarProperty Name="Student_MotherName" ColumnName="Student_MotherName" />
+          <ScalarProperty Name="Student_MobileNumber" ColumnName="Student_MobileNumber" />
+          <ScalarProperty Name="Student_Address1" ColumnName="Student_Address1" />
+          <ScalarProperty Name="Student_Address2" ColumnName="Student_Address2" />
+          <ScalarProperty Name="Student_Address3" ColumnName="Student_Address3" />
+          <ScalarProperty Name="LastSchoolAttended" ColumnName="LastSchoolAttended" />
+          <ScalarProperty Name="Student_MotherTongue" ColumnName="Student_MotherTongue" />
+          <ScalarProperty Name="Student_BloodGroup" ColumnName="Student_BloodGroup" />
+          <ScalarProperty Name="SchoolMaster_SchoolID" ColumnName="SchoolMaster_SchoolID" />
+          <ScalarProperty Name="ClassMaster_ClassID" ColumnName="ClassMaster_ClassID" />
+          <ScalarProperty Name="TransportAssignment_AssignmentID" ColumnName="TransportAssignment_AssignmentID" />
+          <ScalarProperty Name="UserMaster_UserID" ColumnName="UserMaster_UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.SubjectMaster">
+        <MappingFragment StoreEntitySet="SubjectMaster">
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+          <ScalarProperty Name="ClassMaster_ClassID" ColumnName="ClassMaster_ClassID" />
+          <ScalarProperty Name="TeacherMaster_TeacherID" ColumnName="TeacherMaster_TeacherID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeacherMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.TeacherMaster">
+        <MappingFragment StoreEntitySet="TeacherMaster">
+          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Teacher_DOB" ColumnName="Teacher_DOB" />
+          <ScalarProperty Name="Teacher_Type" ColumnName="Teacher_Type" />
+          <ScalarProperty Name="Teacher_MaritalStatus" ColumnName="Teacher_MaritalStatus" />
+          <ScalarProperty Name="Teacher_JoiningDate" ColumnName="Teacher_JoiningDate" />
+          <ScalarProperty Name="Teacher_Qualification" ColumnName="Teacher_Qualification" />
+          <ScalarProperty Name="Teacher_TypeOfAppointment" ColumnName="Teacher_TypeOfAppointment" />
+          <ScalarProperty Name="Teacher_Experience" ColumnName="Teacher_Experience" />
+          <ScalarProperty Name="Teacher_Email" ColumnName="Teacher_Email" />
+          <ScalarProperty Name="Teacher_MobileNumber" ColumnName="Teacher_MobileNumber" />
+          <ScalarProperty Name="Teacher_Address1" ColumnName="Teacher_Address1" />
+          <ScalarProperty Name="Teacher_Address2" ColumnName="Teacher_Address2" />
+          <ScalarProperty Name="Teacher_Address3" ColumnName="Teacher_Address3" />
+          <ScalarProperty Name="SchoolMaster_SchoolID" ColumnName="SchoolMaster_SchoolID" />
+          <ScalarProperty Name="UserMaster_UserID" ColumnName="UserMaster_UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimeTableMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.TimeTableMaster">
+        <MappingFragment StoreEntitySet="TimeTableMaster">
+          <ScalarProperty Name="TimeTableID" ColumnName="TimeTableID" />
+          <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="ClassMaster_ClassID" ColumnName="ClassMaster_ClassID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportAssignments">
+      <EntityTypeMapping TypeName="SchoolDBModel.TransportAssignment">
+        <MappingFragment StoreEntitySet="TransportAssignment">
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="AssigneeDate" ColumnName="AssigneeDate" />
+          <ScalarProperty Name="TransportMaster_TransportID" ColumnName="TransportMaster_TransportID" />
+          <ScalarProperty Name="StudentMaster_StudentID" ColumnName="StudentMaster_StudentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.TransportMaster">
+        <MappingFragment StoreEntitySet="TransportMaster">
+          <ScalarProperty Name="TransportID" ColumnName="TransportID" />
+          <ScalarProperty Name="BusNumber" ColumnName="BusNumber" />
+          <ScalarProperty Name="Route" ColumnName="Route" />
+          <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserMasters">
+      <EntityTypeMapping TypeName="SchoolDBModel.UserMaster">
+        <MappingFragment StoreEntitySet="UserMaster">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="SchoolMaster_SchoolID" ColumnName="SchoolMaster_SchoolID" />
+          <ScalarProperty Name="RoleMaster_RoleID" ColumnName="RoleMaster_RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetDashboardData" FunctionName="SchoolDBModel.Store.GetDashboardData" />
+    <FunctionImportMapping FunctionImportName="GetSchoolName" FunctionName="SchoolDBModel.Store.GetSchoolName" />
+    <FunctionImportMapping FunctionImportName="GetUserDataForLogin" FunctionName="SchoolDBModel.Store.GetUserDataForLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolDBModel.GetUserDataForLogin_Result">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="RoleMaster_RoleID" ColumnName="RoleMaster_RoleID" />
+          <ScalarProperty Name="SchoolMaster_SchoolID" ColumnName="SchoolMaster_SchoolID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertUpdateSchoolMaster" FunctionName="SchoolDBModel.Store.InsertUpdateSchoolMaster" />
+  </EntityContainerMapping>
+</Mapping>

@@ -14,14 +14,30 @@ namespace Schoolnest
             if (!IsPostBack)
             {
 
-                Session["UserRole"] = "admin";
-
                 // Assuming the logged-in user's role is stored in Session
-                string role = Session["UserRole"]?.ToString() ?? "student";
+                string role = Session["UserRole"]?.ToString();
 
-                user_heading_section.Text = role;
+                string roleName = "";
 
-                var menuItems = GetMenuForRole(role);
+                if (role == "SA")
+                {
+                    roleName = "superadmin";
+                } 
+                else if (role == "A")
+                {
+                    roleName = "admin";
+                }
+                else if (role == "T") {
+                    roleName = "teacher";
+                }
+                else
+                {
+                    roleName = "student";
+                }
+
+                user_heading_section.Text = roleName;
+
+                var menuItems = GetMenuForRole(roleName);
 
                 // Bind the menu to a Repeater control or any other way
                 SidebarMenuRepeater.DataSource = menuItems;
@@ -53,17 +69,16 @@ namespace Schoolnest
 
             switch (role.ToLower())
             {
-                case "superadmin":
+                case "superadmin": // super admin
                     menuItems.Add(new MenuItem("Dashboard", "fas fa-home", ResolveUrl("SuperAdmin/Dashboard.aspx")));
-                    menuItems.Add(new MenuItem("Users", "fas fa-users", "", new List<MenuItem> {
-                        new MenuItem("Admins", "fas fa-user-tie", ResolveUrl("SuperAdmin/Schools.aspx")),
-                        new MenuItem("Teachers", "fas fa-chalkboard-teacher", ResolveUrl("SuperAdmin/Teachers.aspx")),
-                        new MenuItem("Students", "fas fa-user-graduate", ResolveUrl("SuperAdmin/Students.aspx"))
+                    menuItems.Add(new MenuItem("Registeration", "fas fa-users", "", new List<MenuItem> {
+                        new MenuItem("School", "fas fa-user-tie", ResolveUrl("SuperAdmin/RegisterSchool.aspx")),
+                        new MenuItem("Admin", "fas fa-chalkboard-teacher", ResolveUrl("SuperAdmin/RegisterAdmin.aspx"))
                     }));
                     menuItems.Add(new MenuItem("Reports", "fas fa-home", ResolveUrl("SuperAdmin/Reports.aspx")));
                     break;
 
-                case "admin":
+                case "admin": // Admin
                     menuItems.Add(new MenuItem("Dashboard", "fas fa-home", ResolveUrl("Admin/Dashboard.aspx")));
                     menuItems.Add(new MenuItem("User Management", "fas fa-users", "", new List<MenuItem> {
                         new MenuItem("Admin List", "fas fa-user-tie", ResolveUrl("Admin/AdminList.aspx")),
@@ -108,7 +123,7 @@ namespace Schoolnest
 
                     break;
 
-                case "teacher":
+                case "teacher": // teacher
                     menuItems.Add(new MenuItem("Dashboard", "fas fa-home", ResolveUrl("Teacher/Dashboard.aspx")));
                     menuItems.Add(new MenuItem("Attendance", "fas fa-calendar-check", "", new List<MenuItem> {
                         new MenuItem("Mark Attendance", "fas fa-check", ResolveUrl("Teacher/MarkAttendance.aspx")),
@@ -135,13 +150,15 @@ namespace Schoolnest
 
                     break;
 
-                case "student":
+                case "student": // student
                     menuItems.Add(new MenuItem("Dashboard", "fas fa-home", ResolveUrl("Student/Dashboard.aspx")));
                     menuItems.Add(new MenuItem("Profile", "fas fa-user", ResolveUrl("Student/ViewEditProfile.aspx")));
+
                     menuItems.Add(new MenuItem("Attendance", "fas fa-calendar-check", "", new List<MenuItem> {
                         new MenuItem("View Attendance Report", "fas fa-chart-line", ResolveUrl("Student/ViewAttendanceReport.aspx")),
                     }));
-                            menuItems.Add(new MenuItem("Exams & Results", "fas fa-file-alt", "", new List<MenuItem> {
+
+                    menuItems.Add(new MenuItem("Exams & Results", "fas fa-file-alt", "", new List<MenuItem> {
                         new MenuItem("View Exam Schedule", "fas fa-calendar-alt", ResolveUrl("Student/ViewExamSchedule.aspx")),
                         new MenuItem("View Grades/Report Cards", "fas fa-graduation-cap", ResolveUrl("Student/ViewGrades.aspx")),
                         new MenuItem("Download Report Cards", "fas fa-file-download", ResolveUrl("Student/DownloadReportCard.aspx")),
