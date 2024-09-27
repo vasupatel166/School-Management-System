@@ -172,3 +172,11 @@ D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnes
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.Up2Date
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.pdb
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Buffers.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Memory.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Numerics.Vectors.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.ValueTuple.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Buffers.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Memory.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Numerics.Vectors.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.ValueTuple.xml
