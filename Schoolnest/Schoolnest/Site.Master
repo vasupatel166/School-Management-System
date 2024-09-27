@@ -258,7 +258,6 @@
                                             <a class="dropdown-item" href="#">My Profile</a>
                                             <div class="dropdown-divider"></div>
                                             <asp:HyperLink NavigateUrl="~/Logout.aspx" CssClass="dropdown-item" ID="logout_link" runat="server">Logout</asp:HyperLink>
-                                            <%--<a class="dropdown-item" href="#">Logout</a>--%>
                                         </li>
                                     </div>
                                 </ul>
