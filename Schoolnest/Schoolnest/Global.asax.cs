@@ -14,7 +14,6 @@ namespace Schoolnest
         public static string ConnectionString = ConfigurationManager.ConnectionStrings["schoolnestConnectionString"].ConnectionString;
 
         //public static string ConnectionString;
-
         protected void Application_Start(object sender, EventArgs e)
         {
             // Load the .env file
@@ -22,6 +21,8 @@ namespace Schoolnest
 
             // Retrieve the connection string from the environment variables
             //ConnectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+
+
 
         }
 
