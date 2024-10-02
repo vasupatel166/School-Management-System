@@ -72,10 +72,10 @@ namespace Schoolnest
                 case "superadmin": // super admin
                     menuItems.Add(new MenuItem("Dashboard", "fas fa-home", ResolveUrl("SuperAdmin/Dashboard.aspx")));
                     menuItems.Add(new MenuItem("Registeration", "fas fa-users", "", new List<MenuItem> {
-                        new MenuItem("School", "fas fa-user-tie", ResolveUrl("SuperAdmin/RegisterSchool.aspx")),
-                        new MenuItem("Admin", "fas fa-chalkboard-teacher", ResolveUrl("SuperAdmin/RegisterAdmin.aspx"))
+                        new MenuItem("School", "fas fa-school", ResolveUrl("SuperAdmin/RegisterSchool.aspx")),
+                        new MenuItem("Admin", "fas fa-user-plus", ResolveUrl("SuperAdmin/RegisterAdmin.aspx"))
                     }));
-                    menuItems.Add(new MenuItem("Reports", "fas fa-home", ResolveUrl("SuperAdmin/Reports.aspx")));
+                    menuItems.Add(new MenuItem("Reports", "fas fa-file-invoice", ResolveUrl("SuperAdmin/Reports.aspx")));
                     break;
 
                 case "admin": // Admin
