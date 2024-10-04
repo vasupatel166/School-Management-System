@@ -13,6 +13,7 @@ namespace Schoolnest.SuperAdmin
     {
 
         private string connectionString = Global.ConnectionString;
+        private string SelectedSchoolID = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,12 +44,12 @@ namespace Schoolnest.SuperAdmin
         protected void ddlSearchSchool_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Get the selected SchoolID from the dropdown
-            string selectedSchoolID = ddlSearchSchool.SelectedValue;
+            SelectedSchoolID = ddlSearchSchool.SelectedValue;
 
-            if (!string.IsNullOrEmpty(selectedSchoolID))
+            if (!string.IsNullOrEmpty(SelectedSchoolID))
             {
                 // Load the school details and fill the form fields
-                LoadSchoolDetails(selectedSchoolID);
+                LoadSchoolDetails(SelectedSchoolID);
             }
             else
             {
@@ -137,8 +138,6 @@ namespace Schoolnest.SuperAdmin
                 }
             }
         }
-
-
 
         private void LoadStates()
         {
@@ -244,6 +243,7 @@ namespace Schoolnest.SuperAdmin
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             // Gather all form data
+            SelectedSchoolID = ddlSearchSchool.SelectedValue;
             string schoolName = txtSchoolName.Text.Trim();
             string principalName = txtPrincipalName.Text.Trim();
             string address1 = txtSchoolAdd1.Text.Trim();
@@ -259,26 +259,30 @@ namespace Schoolnest.SuperAdmin
             string schoolCategory = ddlSchoolCategory.SelectedValue;
             bool isActive = chkIsActive.Checked;
 
+            System.Diagnostics.Debug.WriteLine("On Submit",SelectedSchoolID);
+
             // Define the procedure parameters
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@SchoolID", DBNull.Value), // Pass NULL for new records, existing records can have a value
-                new SqlParameter("@SchoolName", schoolName),
-                new SqlParameter("@SchoolAddress1", address1),
-                new SqlParameter("@SchoolAddress2", string.IsNullOrEmpty(address2) ? (object)DBNull.Value : address2),
-                new SqlParameter("@School_LocationID", locationID),
-                new SqlParameter("@SchoolPhone", phoneNo),
-                new SqlParameter("@SchoolAlternatePhone", string.IsNullOrEmpty(alternatePhoneNo) ? (object)DBNull.Value : alternatePhoneNo),
-                new SqlParameter("@SchoolEmail", email),
-                new SqlParameter("@SchoolWebsite", string.IsNullOrEmpty(website) ? (object)DBNull.Value : website),
-                new SqlParameter("@SchoolType", schoolType),
-                new SqlParameter("@BoardAffiliation", string.IsNullOrEmpty(boardAffiliation) ? (object)DBNull.Value : boardAffiliation),
-                new SqlParameter("@SchoolEstablishedYear", establishedYear == 0 ? (object)DBNull.Value : establishedYear),
-                new SqlParameter("@PrincipalName", principalName),
-                new SqlParameter("@SchoolCategory", string.IsNullOrEmpty(schoolCategory) ? (object)DBNull.Value : schoolCategory),
-                new SqlParameter("@IsActive", isActive ? 1 : 0),
-                new SqlParameter("@Year", DateTime.Now.Year.ToString()) // Use current year or provide a specific value
+            new SqlParameter("@SchoolID", string.IsNullOrEmpty(SelectedSchoolID) ? (object)DBNull.Value : SelectedSchoolID), // Pass NULL for new records
+            new SqlParameter("@SchoolName", schoolName),
+            new SqlParameter("@SchoolAddress1", address1),
+            new SqlParameter("@SchoolAddress2", string.IsNullOrEmpty(address2) ? (object)DBNull.Value : address2),
+            new SqlParameter("@School_LocationID", locationID),
+            new SqlParameter("@SchoolPhone", phoneNo),
+            new SqlParameter("@SchoolAlternatePhone", string.IsNullOrEmpty(alternatePhoneNo) ? (object)DBNull.Value : alternatePhoneNo),
+            new SqlParameter("@SchoolEmail", email),
+            new SqlParameter("@SchoolWebsite", string.IsNullOrEmpty(website) ? (object)DBNull.Value : website),
+            new SqlParameter("@SchoolType", schoolType),
+            new SqlParameter("@BoardAffiliation", string.IsNullOrEmpty(boardAffiliation) ? (object)DBNull.Value : boardAffiliation),
+            new SqlParameter("@SchoolEstablishedYear", establishedYear == 0 ? (object)DBNull.Value : establishedYear),
+            new SqlParameter("@PrincipalName", principalName),
+            new SqlParameter("@SchoolCategory", string.IsNullOrEmpty(schoolCategory) ? (object)DBNull.Value : schoolCategory),
+            new SqlParameter("@IsActive", isActive ? 1 : 0)
             };
+
+            // Log or display the parameters
+            LogParameters(parameters);
 
             // Execute the stored procedure
             ExecuteInsertOrUpdate("InsertUpdateSchoolMaster", parameters);
@@ -287,6 +291,17 @@ namespace Schoolnest.SuperAdmin
             ResetForm();
         }
 
+        // Method to log/display parameter values
+        private void LogParameters(SqlParameter[] parameters)
+        {
+            System.Diagnostics.Debug.WriteLine("Procedure Parameters:");
+
+            foreach (SqlParameter parameter in parameters)
+            {
+                string parameterInfo = $"Name: {parameter.ParameterName}, Value: {parameter.Value}, Type: {parameter.SqlDbType}";
+                System.Diagnostics.Debug.WriteLine(parameterInfo);
+            }
+        }
         // Function to execute the insert or update stored procedure
         private void ExecuteInsertOrUpdate(string procedureName, SqlParameter[] parameters)
         {
@@ -322,6 +337,7 @@ namespace Schoolnest.SuperAdmin
         private void ResetForm()
         {
             // Reset all input fields
+            ddlSearchSchool.SelectedIndex = 0;
             txtSchoolName.Text = string.Empty;
             txtPrincipalName.Text = string.Empty;
             txtSchoolAdd1.Text = string.Empty;
@@ -347,6 +363,7 @@ namespace Schoolnest.SuperAdmin
 
             // Reset any validation messages or error labels (if applicable)
             Page.Validators.OfType<BaseValidator>().ToList().ForEach(validator => validator.IsValid = true);
+
         }
 
         

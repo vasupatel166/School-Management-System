@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,40 +11,127 @@ namespace Schoolnest
 {
     public partial class Site : System.Web.UI.MasterPage
     {
+        protected string userName;
+        protected string userEmail;
+        protected string profileImage;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-
-                // Assuming the logged-in user's role is stored in Session
+                // Assuming the logged-in user's role and username are stored in Session
                 string role = Session["UserRole"]?.ToString();
-
                 string roleName = "";
+                string username = Session["Username"]?.ToString();
 
-                if (role == "SA")
+                if (string.IsNullOrEmpty(role) || string.IsNullOrEmpty(username))
                 {
-                    roleName = "superadmin";
-                } 
-                else if (role == "A")
-                {
-                    roleName = "admin";
-                }
-                else if (role == "T") {
-                    roleName = "teacher";
-                }
-                else
-                {
-                    roleName = "student";
+                    Response.Redirect("~/Login.aspx");
                 }
 
-                user_heading_section.Text = roleName;
+                // Retrieve user details from the database using the stored procedure
+                var userDetails = GetUserDetailsByRole(username, role);
 
-                var menuItems = GetMenuForRole(roleName);
+                if (userDetails != null)
+                {
+                    // Store the values in class-level variables based on the retrieved data
+                    switch (role.ToUpper())
+                    {
+                        case "SA":
+                            userName = userDetails["Name"].ToString(); // SuperAdmin table has "Name"
+                            userEmail = userDetails["Email"].ToString();
+                            profileImage = userDetails["ProfileImage"].ToString();
+                            roleName = "superadmin";
+                            break;
 
-                // Bind the menu to a Repeater control or any other way
-                SidebarMenuRepeater.DataSource = menuItems;
-                SidebarMenuRepeater.DataBind();
+                        case "A":
+                            userName = $"{userDetails["First_Name"]} {userDetails["Last_Name"]}"; // Admin table has "First_Name" and "Last_Name"
+                            userEmail = userDetails["Email"].ToString();
+                            profileImage = userDetails["ProfileImage"].ToString();
+                            roleName = "admin";
+                            break;
+
+                        case "T":
+                            userName = userDetails["TeacherName"].ToString(); // TeacherMaster table has "TeacherName"
+                            userEmail = userDetails["Teacher_Email"].ToString();
+                            profileImage = ""; // If there's no ProfileImage column in TeacherMaster, leave it empty or provide a default
+                            roleName = "teacher";
+                            break;
+
+                        case "S":
+                            userName = $"{userDetails["Student_FirstName"]} {userDetails["Student_LastName"]}"; // StudentMaster has "Student_FirstName" and "Student_LastName"
+                            userEmail = userDetails["Student_EmailID"].ToString();
+                            profileImage = userDetails["Student_ProfileImage"].ToString();
+                            roleName = "student";
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    if (string.IsNullOrEmpty(profileImage))
+                    {
+                        // If profile image is empty, set a default image
+                        profileImage = "default_user_logo.png";
+                    }
+
+                    user_heading_section.Text = $"{userName} ({roleName})";
+
+                    var menuItems = GetMenuForRole(roleName);
+
+                    // Bind the menu to a Repeater control or any other way
+                    SidebarMenuRepeater.DataSource = menuItems;
+                    SidebarMenuRepeater.DataBind();
+
+                    // Display the information on the page
+                    NavUserName.Text = userName;
+                    NavUserName2.Text = userName;
+                    NavUserImage.ImageUrl = ResolveUrl($"~/assets/img/user-profile-img/{profileImage}");
+                    NavUserImage2.ImageUrl = ResolveUrl($"~/assets/img/user-profile-img/{profileImage}");
+                    NavUserEmail.Text = userEmail;
+
+                }
             }
+        }
+
+        // Method to call the stored procedure and retrieve user details based on username and role
+        private DataRow GetUserDetailsByRole(string username, string role)
+        {
+            // Create a DataTable to store the result
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Global.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("GetUserDetailsByRole", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Add input parameters
+                        cmd.Parameters.AddWithValue("@Username", username);
+                        cmd.Parameters.AddWithValue("@RoleID", role);
+
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                        con.Open();
+                        da.Fill(dt);
+                        con.Close();
+                    }
+                }
+
+                // Return the first row if data exists
+                if (dt.Rows.Count > 0)
+                {
+                    return dt.Rows[0];
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error retrieving user details: {ex.Message}");
+            }
+
+            return null;
         }
 
         // Menu model

@@ -43,10 +43,11 @@
         <div class="sidebar" data-background-color="dark">
             <div class="sidebar-logo">
                 <!-- Sidebar Header -->
-                <div class="logo-header" data-background-color="dark">
-                    <a href="<%= ResolveUrl("SuperAdmin/Dashboard.aspx") %>" class="logo text-white">
-                        School Nest
-                    </a>
+                <div class="logo-header" data-background-color="white">
+                    <asp:HyperLink ID="DashboardLink" runat="server" CssClass="logo text-white">
+                        <asp:Image ID="Logo" ImageUrl="~/assets/img/Logo.png" CssClass="navbar-brand" runat="server" AlternateText="School Nest Logo" />
+                    </asp:HyperLink>
+
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
                             <i class="gg-menu-right"></i>
@@ -112,7 +113,7 @@
             <div class="main-header">
                  <div class="main-header-logo">
                     <!-- Logo Header -->
-                    <div class="logo-header" data-background-color="dark">
+                    <div class="logo-header" data-background-color="white">
                       <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
                           <i class="gg-menu-right"></i>
@@ -127,7 +128,7 @@
                     </div>
                     <!-- End Logo Header -->
                   </div>
-                <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
+                    <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
                     <div class="container-fluid">
                         <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
                             <div class="input-group">
@@ -152,16 +153,18 @@
                                     <i class="fa fa-search"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-search animated fadeIn">
-                                    <form class="navbar-left navbar-form nav-search">
+                                    <div class="navbar-left navbar-form nav-search">
                                         <div class="input-group">
                                             <input
                                                 type="text"
                                                 placeholder="Search ..."
                                                 class="form-control" />
                                         </div>
-                                    </form>
+                                    </div>
                                 </ul>
                             </li>
+
+                            <%--Notifications--%>
                             <li class="nav-item topbar-icon dropdown hidden-caret">
                                 <a
                                     class="nav-link dropdown-toggle"
@@ -234,6 +237,8 @@
                                     </li>
                                 </ul>
                             </li>
+                            <%--Notifications--%>
+
                             <li class="nav-item topbar-user dropdown hidden-caret">
                                 <a
                                     class="dropdown-toggle profile-pic"
@@ -241,11 +246,11 @@
                                     href="#"
                                     aria-expanded="false">
                                     <div class="avatar-sm">
-                                         <asp:Image ID="Image2" ImageUrl="~/assets/img/user-profile-img/default_user_logo.png" CssClass="avatar-img rounded" runat="server" AlternateText="User Image" />
+                                         <asp:Image ID="NavUserImage" CssClass="avatar-img rounded" runat="server" AlternateText="User Image" />
                                     </div>
                                     <span class="profile-username">
                                         <span class="op-7">Hi,</span>
-                                        <span class="fw-bold">Varshil</span>
+                                        <asp:Label ID="NavUserName" CssClass="fw-bold" runat="server" Text=""></asp:Label>
                                     </span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -253,11 +258,11 @@
                                         <li>
                                             <div class="user-box">
                                                 <div class="avatar-lg">
-                                                    <asp:Image ID="Image1" ImageUrl="~/assets/img/user-profile-img/default_user_logo.png" CssClass="avatar-img rounded" runat="server" AlternateText="User Image" />
+                                                    <asp:Image ID="NavUserImage2" CssClass="avatar-img rounded" runat="server" AlternateText="User Image" />
                                                 </div>
                                                 <div class="u-text">
-                                                    <h4>Varshil</h4>
-                                                    <p class="text-muted">vasupatel166@gmail.com</p>
+                                                    <asp:Label ID="NavUserName2" CssClass="fw-semibold fw-bold" runat="server" Text=""></asp:Label>
+                                                    <asp:Label ID="NavUserEmail" CssClass="fs-6 text-muted" runat="server" Text=""></asp:Label>
                                                 </div>
                                             </div>
                                         </li>

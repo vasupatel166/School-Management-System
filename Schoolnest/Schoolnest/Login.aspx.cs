@@ -28,7 +28,6 @@ namespace Schoolnest
         {
             try
             {
-
                 // Get the input from the form fields
                 string schoolId = txtSchoolId.Text.Trim();
                 string userType = ddlUserType.SelectedValue;
