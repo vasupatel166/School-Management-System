@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/kaiadmin.min.css") %>" />
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="loginform" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="container mt-5">
             <div class="row justify-content-center">
@@ -67,10 +67,9 @@
                                 <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Enter Password"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
-                            <asp:Label ID="login_error_message" CssClass="text-md text-danger" runat="server" Text=""></asp:Label>
                             <div class="form-group text-center">
                                 <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-primary" OnClick="btnLogin_Click" />
-                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-secondary ml-2" OnClick="btnCancel_Click" />
+                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-secondary ml-2" CausesValidation="false" OnClick="btnCancel_Click" />
                             </div>
                             <div class="form-group text-center" id="register_link">
                                 <asp:HyperLink ID="btn_register_link" NavigateUrl="~/Register.aspx" runat="server" CssClass="btn-link">Registere here</asp:HyperLink>

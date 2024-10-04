@@ -8,6 +8,8 @@
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="<%= ResolveUrl("~/assets/img/favicon.ico") %>" type="image/x-icon" />
 
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+
     <!-- Fonts and icons -->
     <script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js"></script>
     <script>
@@ -28,7 +30,12 @@
     <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/plugins.min.css") %>" />
     <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/kaiadmin.min.css") %>" />
 
-    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <style>
+        .sidebar_submenu_li a .sub-item::before {
+            content:none;
+        }
+    </style>
+
 </head>
 <body>
     <div class="wrapper">
@@ -67,7 +74,7 @@
                             <ItemTemplate>
                                 <li class="nav-item">
                                     <a
-                                        class="px-4"
+                                        class="px-4 mb-3"
                                         <%# ((List<MenuItem>)Eval("SubMenus")).Count > 0 ? "data-bs-toggle='collapse'" : "" %>
                                         href="<%# ((List<MenuItem>)Eval("SubMenus")).Count > 0 ? "#submenu" + Container.ItemIndex : Eval("Url") %>">
                                         <i class="<%# Eval("Icon") %>"></i>
@@ -80,9 +87,10 @@
                                         <ul class="nav nav-collapse">
                                             <asp:Repeater ID="SubMenuRepeater" runat="server" DataSource='<%# Eval("SubMenus") %>'>
                                                 <ItemTemplate>
-                                                    <li>
+                                                    <li class="sidebar_submenu_li">
                                                         <a href="<%# Eval("Url") %>"  class="px-4">
-                                                            <span class="sub-item"><%# Eval("Title") %></span>
+                                                            <i class="mx-0 <%# Eval("Icon") %> lh-base"></i>
+                                                            <span class="sub-item ms-2"><%# Eval("Title") %></span>
                                                         </a>
                                                     </li>
                                                 </ItemTemplate>
@@ -282,7 +290,7 @@
             <footer class="footer p-2 text-black">
                 <div class="container-fluid d-flex align-items-center justify-content-center">
                     <div class="copyright">
-                        <p class="mb-0">Copyright &copy; <span id="currentYear"></span> School Nest. All rights reserved</p>
+                        <p class="mb-0 text-md-base">Copyright &copy; <span id="currentYear"></span> School Nest. All rights reserved</p>
                     </div>
                 </div>
             </footer>
