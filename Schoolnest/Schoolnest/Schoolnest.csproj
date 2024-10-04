@@ -287,7 +287,9 @@
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="Register.aspx" />
-    <Content Include=".env" />
+    <None Include=".env">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="assets\css\demo.css.map" />
     <Content Include="assets\css\kaiadmin.css.map" />
     <Content Include="assets\css\plugins.css.map" />

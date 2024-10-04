@@ -17,6 +17,9 @@ namespace Schoolnest
                 {
                     Response.Redirect("~/Logout.aspx");
                 }
+
+                rfvUsername.IsValid = true;
+                rfvPassword.IsValid = true;
             }
         }
 
@@ -25,12 +28,12 @@ namespace Schoolnest
         {
             try
             {
+
                 // Get the input from the form fields
                 string schoolId = txtSchoolId.Text.Trim();
                 string userType = ddlUserType.SelectedValue;
                 string username = txtUsername.Text.Trim();
                 string password = txtPassword.Text.Trim();
-
 
                 // Validate the login credentials
                 if (ValidateLogin(schoolId, userType, username, password))
@@ -60,7 +63,8 @@ namespace Schoolnest
                 }
                 else
                 {
-                    login_error_message.Text = "Invalid Login Credentials";
+                    rfvPassword.IsValid = false;
+                    rfvPassword.Text = "Password Incorrect";
                 }
             }
             catch (Exception ex)
@@ -73,7 +77,7 @@ namespace Schoolnest
         private bool ValidateLogin(string schoolId, string userType, string username, string password)
         {
             // Connection string from web.config
-            string connectionString = ConfigurationManager.ConnectionStrings["schoolnestConnectionString"].ConnectionString;
+            string connectionString = Global.ConnectionString;
 
             string databaseProcedure = "";
 
@@ -86,7 +90,6 @@ namespace Schoolnest
                 databaseProcedure = "GetUserDataForLogin";
             }
             
-
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(databaseProcedure, con))
@@ -119,6 +122,8 @@ namespace Schoolnest
                             }
                             else
                             {
+                                rfvUsername.IsValid = false;
+                                rfvUsername.Text = "Username is incorrect";
                                 return false;
                             }
                         }
@@ -153,7 +158,7 @@ namespace Schoolnest
 
 
         protected void btnCancel_Click(object sender, EventArgs e)
-        {           
+        {
             ClearFields();
         }
 
