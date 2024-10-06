@@ -120,7 +120,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlSchoolType" Text="School Type"></asp:Label>
-                                    <asp:DropDownList ID="ddlSchoolType" runat="server" AutoPostBack="true" CssClass="form-control">
+                                    <asp:DropDownList ID="ddlSchoolType" runat="server" CssClass="form-control">
                                         <asp:ListItem Value="">Select Type</asp:ListItem>
                                         <asp:ListItem Value="Aided">Aided</asp:ListItem>
                                         <asp:ListItem Value="Un-Aided">Un-Aided</asp:ListItem>
@@ -132,7 +132,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlBoardAffiliation" Text="Board Affiliation (optional)"></asp:Label>
-                                    <asp:DropDownList ID="ddlBoardAffiliation" runat="server" AutoPostBack="true" CssClass="form-control">
+                                    <asp:DropDownList ID="ddlBoardAffiliation" runat="server" CssClass="form-control">
                                         <asp:ListItem Value="">Select Board</asp:ListItem>
                                         <asp:ListItem Value="ICSE">ICSE</asp:ListItem>
                                         <asp:ListItem Value="CBSE">CBSE</asp:ListItem>
@@ -147,7 +147,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlSchoolCategory" Text="School Category"></asp:Label>
-                                    <asp:DropDownList ID="ddlSchoolCategory" runat="server" AutoPostBack="true" CssClass="form-control">
+                                    <asp:DropDownList ID="ddlSchoolCategory" runat="server" CssClass="form-control">
                                         <asp:ListItem Value="">Select Category</asp:ListItem>
                                         <asp:ListItem Value="Pre-Primary">Pre-Primary</asp:ListItem>
                                         <asp:ListItem Value="Primary">Primary</asp:ListItem>

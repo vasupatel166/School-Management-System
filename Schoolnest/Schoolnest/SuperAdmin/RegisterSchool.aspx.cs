@@ -121,17 +121,18 @@ namespace Schoolnest.SuperAdmin
 
                             // Check if the pincode exists in the ddlPincode dropdown list before setting the SelectedValue
                             string pincode = reader["Pincode"].ToString();
+                            string location_id = reader["LocationID"].ToString();
 
                             // Ensure that the pincode is available in the dropdown
-                            if (ddlPincode.Items.FindByValue(pincode) != null)
+                            if (ddlPincode.Items.FindByValue(location_id) != null)
                             {
-                                ddlPincode.SelectedValue = pincode;
+                                ddlPincode.SelectedValue = location_id;
                             }
                             else
                             {
                                 // If the pincode is not available in the dropdown, add it dynamically or log the issue
-                                ddlPincode.Items.Insert(0, new ListItem(pincode, pincode));
-                                ddlPincode.SelectedValue = pincode;
+                                ddlPincode.Items.Insert(0, new ListItem(location_id, pincode));
+                                ddlPincode.SelectedValue = location_id;
                             }
                         }
                     }
@@ -281,27 +282,15 @@ namespace Schoolnest.SuperAdmin
             new SqlParameter("@IsActive", isActive ? 1 : 0)
             };
 
-            // Log or display the parameters
-            LogParameters(parameters);
-
             // Execute the stored procedure
             ExecuteInsertOrUpdate("InsertUpdateSchoolMaster", parameters);
+            
+            Response.Redirect("~/SuperAdmin/RegisterSchool.aspx");
 
             // Reset the form after successful insertion
             ResetForm();
         }
-
-        // Method to log/display parameter values
-        private void LogParameters(SqlParameter[] parameters)
-        {
-            System.Diagnostics.Debug.WriteLine("Procedure Parameters:");
-
-            foreach (SqlParameter parameter in parameters)
-            {
-                string parameterInfo = $"Name: {parameter.ParameterName}, Value: {parameter.Value}, Type: {parameter.SqlDbType}";
-                System.Diagnostics.Debug.WriteLine(parameterInfo);
-            }
-        }
+        
         // Function to execute the insert or update stored procedure
         private void ExecuteInsertOrUpdate(string procedureName, SqlParameter[] parameters)
         {
@@ -320,10 +309,10 @@ namespace Schoolnest.SuperAdmin
                         cmd.ExecuteNonQuery(); // Execute the stored procedure
                         ClientScript.RegisterStartupScript(this.GetType(), "Success", "alert('School details have been saved successfully.');", true);
                     }
-                    catch (Exception ex)
+                    catch (SqlException ex)
                     {
-                        // Log the error (you can use other logging mechanisms like Serilog, log4net, etc.)
-                        ClientScript.RegisterStartupScript(this.GetType(), "Error", $"alert('Error: {ex.Message}');", true);
+                        string errorDetails = $"SQL Error: {ex.Number} - {ex.Message} at Line {ex.LineNumber}";
+                        System.Diagnostics.Debug.WriteLine(errorDetails);
                     }
                 }
             }

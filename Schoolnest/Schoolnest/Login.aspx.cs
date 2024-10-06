@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.UI;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace Schoolnest
 {
@@ -84,18 +85,18 @@ namespace Schoolnest
             {
                 databaseProcedure = "GetSuperAdminByUsername";
             }
-            else 
+            else
             {
                 databaseProcedure = "GetUserDataForLogin";
             }
-            
+
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(databaseProcedure, con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    if(userType == "SA")
+                    if (userType == "SA")
                     {
                         cmd.Parameters.AddWithValue("@SuperAdminUsername", username);
                     }
@@ -105,6 +106,7 @@ namespace Schoolnest
                         cmd.Parameters.AddWithValue("@RoleID", userType);
                         cmd.Parameters.AddWithValue("@Username", username);
                     }
+                        cmd.Parameters.AddWithValue("@UserPassword", password);
 
                     try
                     {
@@ -116,8 +118,19 @@ namespace Schoolnest
                                 // Fetch the hashed password from the database
                                 string storedHashedPassword = reader["Password"].ToString();
 
-                                // Verify the password using PBKDF2 (Rfc2898DeriveBytes)
-                                return VerifyPassword(password, storedHashedPassword);
+                                string DBHashedPassword = reader["DBHashedPassword"].ToString();
+
+                                if (storedHashedPassword != DBHashedPassword)
+                                {
+                                    return false;
+                                }
+                                else
+                                {
+                                    return true;
+                                }
+
+                                // Verify the password using SHA-256
+                                //return VerifyPassword(password, storedHashedPassword);
                             }
                             else
                             {
@@ -128,33 +141,91 @@ namespace Schoolnest
                         }
                     }
                     catch (Exception ex)
-                    {                       
+                    {
                         Console.WriteLine("Error during login: " + ex.Message);
-                        return false; 
+                        return false;
                     }
                 }
             }
         }
 
-        private bool VerifyPassword(string enteredPassword, string storedHash)
+        // Method to verify the entered password against the stored SQL Server hash
+        public static bool VerifyPassword(string enteredPassword, string storedHash)
         {
-            // Extract bytes from the stored hash
-            byte[] hashBytes = Convert.FromBase64String(storedHash);
+            try
+            {
+                // Remove the '0x' prefix from the stored hash if present
+                if (storedHash.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+                {
+                    storedHash = storedHash.Substring(2);
+                }
 
-            byte[] salt = new byte[16];
-            Array.Copy(hashBytes, 0, salt, 0, 16);
+                // Hash the entered password
+                using (SHA256 sha256 = SHA256.Create())
+                {
+                    // Convert the password string to bytes
+                    byte[] passwordBytes = Encoding.UTF8.GetBytes(enteredPassword);
 
-            // Hash the entered password using the same salt and 10000 iterations
-            var pbkdf2 = new Rfc2898DeriveBytes(enteredPassword, salt, 10000);
-            byte[] enteredHash = pbkdf2.GetBytes(20); // Get the 20-byte hash
+                    // Compute the hash
+                    byte[] hashedBytes = sha256.ComputeHash(passwordBytes);
 
-            for (int i = 0; i < 20; i++)
-                if (hashBytes[i + 16] != enteredHash[i])
-                    return false; // Mismatch
+                    // Convert the hashed bytes to a string for comparison
+                    string hashedPassword = BitConverter.ToString(hashedBytes).Replace("-", "");
 
-            return true; // Password matches
+                    // Compare the computed hash with the stored hash (case-insensitive)
+                    return string.Equals(hashedPassword, storedHash, StringComparison.OrdinalIgnoreCase);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in VerifyPassword: {ex.Message}");
+                return false;
+            }
         }
 
+        //// Method to hash the password using SHA-256 and return the byte array
+        //public static byte[] HashPasswordSHA256(string password)
+        //{
+        //    using (SHA256 sha256 = SHA256.Create())
+        //    {
+        //        // Convert the input string to a byte array
+        //        byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+
+        //        // Compute the hash of the input byte array
+        //        return sha256.ComputeHash(passwordBytes);
+        //    }
+        //}
+
+        //// Helper method to convert a hexadecimal string to a byte array
+        //public static byte[] HexStringToByteArray(string hex)
+        //{
+        //    int length = hex.Length;
+        //    byte[] bytes = new byte[length / 2];
+        //    for (int i = 0; i < length; i += 2)
+        //    {
+        //        bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+        //    }
+        //    return bytes;
+        //}
+
+        //// Helper method to compare two byte arrays for equality
+        //public static bool CompareByteArrays(byte[] array1, byte[] array2)
+        //{
+        //    if (array1.Length != array2.Length)
+        //    {
+        //        return false;
+        //    }
+
+        //    for (int i = 0; i < array1.Length; i++)
+        //    {
+        //        if (array1[i] != array2[i])
+        //        {
+        //            return false;
+        //        }
+        //    }
+
+        //    return true;
+        //}
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
@@ -164,14 +235,14 @@ namespace Schoolnest
         private void ClearFields()
         {
             txtSchoolId.Text = string.Empty;
-            ddlUserType.SelectedIndex = 0; 
+            ddlUserType.SelectedIndex = 0;
             txtUsername.Text = string.Empty;
             txtPassword.Text = string.Empty;
         }
 
         protected void ddlUserType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ddlUserType.SelectedValue == "SA")
+            if (ddlUserType.SelectedValue == "SA")
             {
                 txtSchoolId.Text = "superadmin";
             }
