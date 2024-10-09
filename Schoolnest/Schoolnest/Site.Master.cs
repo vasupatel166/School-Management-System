@@ -116,7 +116,11 @@ namespace Schoolnest
                         new MenuItem("Issue/Return Books", "fas fa-book-reader", ResolveUrl("Admin/IssueReturnBooks.aspx")),
                         new MenuItem("Overdue Books/Fine Management", "fas fa-exclamation-circle", ResolveUrl("Admin/OverdueBooks.aspx")),
                     }));
-                            menuItems.Add(new MenuItem("Notifications", "fas fa-bullhorn", "", new List<MenuItem> {
+                    menuItems.Add(new MenuItem("Event Management", "fas fa-calendar-alt", "", new List<MenuItem> {
+                        new MenuItem("Event Master", "fas fa-list", ResolveUrl("Admin/EventMaster.aspx")),
+                    }));
+
+                    menuItems.Add(new MenuItem("Notifications", "fas fa-bullhorn", "", new List<MenuItem> {
                         new MenuItem("Announcements Board", "fas fa-bullhorn", ResolveUrl("Admin/Announcements.aspx")),
                         new MenuItem("Send Email/SMS Notifications", "fas fa-envelope", ResolveUrl("Admin/SendNotifications.aspx")),
                     }));
