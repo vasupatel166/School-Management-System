@@ -281,6 +281,7 @@
   <ItemGroup>
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Admin\StudentList.aspx" />
+    <Content Include="Admin\TeacherList.aspx" />
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\demo.css" />
     <Content Include="assets\css\fonts.css" />
@@ -382,6 +383,13 @@
     </Compile>
     <Compile Include="Admin\StudentList.aspx.designer.cs">
       <DependentUpon>StudentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TeacherList.aspx.cs">
+      <DependentUpon>TeacherList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TeacherList.aspx.designer.cs">
+      <DependentUpon>TeacherList.aspx</DependentUpon>
     </Compile>
     <Compile Include="BudgetCategory.cs" />
     <Compile Include="ForgetPassword.aspx.cs">

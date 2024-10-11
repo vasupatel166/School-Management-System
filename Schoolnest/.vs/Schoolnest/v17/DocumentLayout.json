@@ -3,15 +3,35 @@
   "WorkspaceRootPath": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\admin\\studentlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\admin\\teacherlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\teacherlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\admin\\studentlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\studentlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\admin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|c:\\users\\juned shaikh\\desktop\\juned\\semester 4\\capstone\\02102024\\schoolnest\\schoolnest\\admin\\studentlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\studentlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\admin\\teacherlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\teacherlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\superadmin\\registerschool.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\superadmin\\registerschool.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|c:\\users\\juned shaikh\\desktop\\juned\\semester 4\\capstone\\02102024\\schoolnest\\schoolnest\\webform1.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\webform1.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\webform1.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -19,16 +39,8 @@
       "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\webform1.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\admin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\admin\\dashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\dashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\admin\\studentlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\studentlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\admin\\studentlist.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -53,10 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\site.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\site.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\superadmin\\registerschool.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\superadmin\\registerschool.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\schoolnest\\budgetcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -90,15 +98,160 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TeacherList.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\TeacherList.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\Admin\\TeacherList.aspx.cs",
+              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\TeacherList.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\Admin\\TeacherList.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-10T15:04:52.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TeacherList.aspx",
+              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\TeacherList.aspx",
+              "RelativeDocumentMoniker": "Schoolnest\\Admin\\TeacherList.aspx",
+              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\TeacherList.aspx",
+              "RelativeToolTip": "Schoolnest\\Admin\\TeacherList.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-10-10T00:10:13.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Login.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Login.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\Login.aspx.cs",
+              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Login.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\Login.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T14:25:19.31Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "WebForm1.aspx",
+              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\WebForm1.aspx",
+              "RelativeDocumentMoniker": "Schoolnest\\WebForm1.aspx",
+              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\WebForm1.aspx",
+              "RelativeToolTip": "Schoolnest\\WebForm1.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-10-05T23:52:30.184Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "WebForm1.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\WebForm1.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\WebForm1.aspx.cs",
+              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\WebForm1.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\WebForm1.aspx.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAADwvxMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T17:19:02.89Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StudentList.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\Admin\\StudentList.aspx.cs",
+              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\Admin\\StudentList.aspx.cs",
+              "ViewState": "AgIAAKkBAAAAAAAAAAAqwOYBAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:34:08.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dashboard.aspx",
+              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\Dashboard.aspx",
+              "RelativeDocumentMoniker": "Schoolnest\\Admin\\Dashboard.aspx",
+              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\Dashboard.aspx",
+              "RelativeToolTip": "Schoolnest\\Admin\\Dashboard.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-10-02T14:28:52.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Site.Master.cs",
+              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Site.Master.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\Site.Master.cs",
+              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Site.Master.cs",
+              "RelativeToolTip": "Schoolnest\\Site.Master.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T19:57:41.348Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "StudentList.aspx",
+              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx",
+              "RelativeDocumentMoniker": "Schoolnest\\Admin\\StudentList.aspx",
+              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx",
+              "RelativeToolTip": "Schoolnest\\Admin\\StudentList.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-10-02T17:38:42.396Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "RegisterSchool.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterSchool.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\SuperAdmin\\RegisterSchool.aspx.cs",
+              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterSchool.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\SuperAdmin\\RegisterSchool.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T15:16:41.935Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RegisterSchool.aspx",
+              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterSchool.aspx",
+              "RelativeDocumentMoniker": "Schoolnest\\SuperAdmin\\RegisterSchool.aspx",
+              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterSchool.aspx",
+              "RelativeToolTip": "Schoolnest\\SuperAdmin\\RegisterSchool.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-26T23:12:15.771Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "StudentList.aspx.designer.cs",
+              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx.designer.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\Admin\\StudentList.aspx.designer.cs",
+              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx.designer.cs",
+              "RelativeToolTip": "Schoolnest\\Admin\\StudentList.aspx.designer.cs",
+              "ViewState": "AgIAAHYBAAAAAAAAAAAowIgBAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T15:41:34.826Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Web.config",
               "RelativeDocumentMoniker": "Schoolnest\\Web.config",
@@ -111,117 +264,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "StudentList.aspx.designer.cs",
-              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx.designer.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Admin\\StudentList.aspx.designer.cs",
-              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx.designer.cs",
-              "RelativeToolTip": "Schoolnest\\Admin\\StudentList.aspx.designer.cs",
-              "ViewState": "AgIAAHYBAAAAAAAAAAAowIgBAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T15:41:34.826Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "RegisterSchool.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterSchool.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\SuperAdmin\\RegisterSchool.aspx.cs",
-              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterSchool.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\SuperAdmin\\RegisterSchool.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T15:16:41.935Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Login.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Login.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Login.aspx.cs",
-              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Login.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\Login.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T14:25:19.31Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "WebForm1.aspx",
-              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\WebForm1.aspx",
-              "RelativeDocumentMoniker": "Schoolnest\\WebForm1.aspx",
-              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\WebForm1.aspx",
-              "RelativeToolTip": "Schoolnest\\WebForm1.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-10-05T23:52:30.184Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "WebForm1.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\WebForm1.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\WebForm1.aspx.cs",
-              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\WebForm1.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\WebForm1.aspx.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAADwvxMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T17:19:02.89Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "StudentList.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Admin\\StudentList.aspx.cs",
-              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\Admin\\StudentList.aspx.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAA7wFYAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T18:34:08.407Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Dashboard.aspx",
-              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\Dashboard.aspx",
-              "RelativeDocumentMoniker": "Schoolnest\\Admin\\Dashboard.aspx",
-              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\Dashboard.aspx",
-              "RelativeToolTip": "Schoolnest\\Admin\\Dashboard.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-10-02T14:28:52.924Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Site.Master.cs",
-              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Site.Master.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Site.Master.cs",
-              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Site.Master.cs",
-              "RelativeToolTip": "Schoolnest\\Site.Master.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-26T19:57:41.348Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "StudentList.aspx",
-              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx",
-              "RelativeDocumentMoniker": "Schoolnest\\Admin\\StudentList.aspx",
-              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx",
-              "RelativeToolTip": "Schoolnest\\Admin\\StudentList.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-10-02T17:38:42.396Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "Global.asax.cs",
               "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Global.asax.cs",
               "RelativeDocumentMoniker": "Schoolnest\\Global.asax.cs",
@@ -233,7 +276,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "Dashboard.aspx.cs",
               "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Admin\\Dashboard.aspx.cs",
               "RelativeDocumentMoniker": "Schoolnest\\Admin\\Dashboard.aspx.cs",
@@ -245,7 +288,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "BudgetCategory.cs",
               "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\BudgetCategory.cs",
               "RelativeDocumentMoniker": "Schoolnest\\BudgetCategory.cs",
@@ -257,7 +300,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "Login.aspx",
               "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Login.aspx",
               "RelativeDocumentMoniker": "Schoolnest\\Login.aspx",
@@ -269,7 +312,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "RegisterAdmin.aspx",
               "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterAdmin.aspx",
               "RelativeDocumentMoniker": "Schoolnest\\SuperAdmin\\RegisterAdmin.aspx",
@@ -281,19 +324,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "RegisterSchool.aspx",
-              "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterSchool.aspx",
-              "RelativeDocumentMoniker": "Schoolnest\\SuperAdmin\\RegisterSchool.aspx",
-              "ToolTip": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterSchool.aspx",
-              "RelativeToolTip": "Schoolnest\\SuperAdmin\\RegisterSchool.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-26T23:12:15.771Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "Logout.aspx.cs",
               "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Logout.aspx.cs",
               "RelativeDocumentMoniker": "Schoolnest\\Logout.aspx.cs",
@@ -305,7 +336,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "Register.aspx",
               "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Register.aspx",
               "RelativeDocumentMoniker": "Schoolnest\\Register.aspx",
@@ -317,7 +348,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "Logout.aspx",
               "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\Logout.aspx",
               "RelativeDocumentMoniker": "Schoolnest\\Logout.aspx",
@@ -329,7 +360,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "ForgetPassword.aspx",
               "DocumentMoniker": "C:\\Users\\Juned Shaikh\\Desktop\\Juned\\Semester 4\\Capstone\\02102024\\Schoolnest\\Schoolnest\\ForgetPassword.aspx",
               "RelativeDocumentMoniker": "Schoolnest\\ForgetPassword.aspx",
