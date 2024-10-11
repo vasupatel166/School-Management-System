@@ -268,7 +268,7 @@
                                         </li>
                                         <li>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">My Profile</a>
+                                             <asp:HyperLink NavigateUrl="~/Profile.aspx" CssClass="dropdown-item" ID="ProfileLink" runat="server">My Profile</asp:HyperLink>
                                             <div class="dropdown-divider"></div>
                                             <asp:HyperLink NavigateUrl="~/Logout.aspx" CssClass="dropdown-item" ID="logout_link" runat="server">Logout</asp:HyperLink>
                                         </li>
@@ -338,25 +338,46 @@
     <!-- Kaiadmin JS -->
     <script src="<%= ResolveUrl("~/assets/js/kaiadmin.min.js") %>"></script>
 
-    <script>
-        $(document).ready(function () {
+<script>
+    $(document).ready(function () {
+        /****************************************SIDEBAR****************************************/
 
-            $('.sidebar-content > ul > li.nav-item').on('click', function () {
-
-                // Remove the 'active' class from all nav-items
-                $('.sidebar-content > ul > li.nav-item').removeClass('active submenu');
-
-                // Add 'active' class to the clicked nav-item
-                $(this).parent('.sidebar-content > ul > li.nav-item').addClass('active submenu');
-
-            });
-
-            const year = new Date().getFullYear();
-
-            $("#currentYear").html(year);
-
+        $('.sidebar-content > ul > li.nav-item').on('click', function () {
+            // Remove the 'active' class from all nav-items
+            $('.sidebar-content > ul > li.nav-item').removeClass('active submenu');
+            // Add 'active' class to the clicked nav-item
+            $(this).parent('.sidebar-content > ul > li.nav-item').addClass('active submenu');
         });
-    </script>
+
+        /****************************************SIDEBAR****************************************/
+
+        /**************************************** REGISTER ADMIN ****************************************/
+
+        // Use the registered variable ddlSearchAdminClientId
+        //const ddlSearchAdmin = "#" + ddlSearchAdminClientId;
+        //const btnDelete = "#btnDelete";
+
+        //$(btnDelete).hide();
+
+        // Show delete button when admin is selected from dropdown
+        //$(ddlSearchAdmin).change(function () {
+        //    if ($(this).val()) {
+        //        $(btnDelete).show(); // Show delete button when a value is selected
+        //    } else {
+        //        $(btnDelete).hide(); // Hide delete button when no value is selected
+        //    }
+        //});
+
+
+        /**************************************** REGISTER ADMIN ****************************************/
+
+        /****************************************FOOTER****************************************/
+        const year = new Date().getFullYear();
+        $("#currentYear").html(year);
+        /****************************************FOOTER****************************************/
+    });
+</script>
+
 
 </body>
 </html>

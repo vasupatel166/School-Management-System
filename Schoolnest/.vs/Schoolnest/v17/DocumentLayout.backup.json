@@ -3,24 +3,36 @@
   "WorkspaceRootPath": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\forgetpassword.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\forgetpassword.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\superadmin\\registeradmin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\superadmin\\registeradmin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\profile.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\profile.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\profile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\profile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\forgetpassword.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\forgetpassword.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\superadmin\\registeradmin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\superadmin\\registeradmin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\schoolnest\\superadmin\\registerschool.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\superadmin\\registerschool.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\superadmin\\registerschool.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\superadmin\\registerschool.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\superadmin\\registeradmin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\superadmin\\registeradmin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,32 +51,97 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Login.aspx.cs",
-              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Login.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Login.aspx.cs",
-              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Login.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\Login.aspx.cs",
-              "ViewState": "AgIAAFQAAAAA+/////8twGwAAABAAAAAAAAAAA==",
+              "Title": "ForgetPassword.aspx.cs",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\ForgetPassword.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\ForgetPassword.aspx.cs",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\ForgetPassword.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\ForgetPassword.aspx.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAxwD4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T05:01:28.398Z",
+              "WhenOpened": "2024-10-11T05:40:26.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ForgetPassword.aspx",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\ForgetPassword.aspx",
+              "RelativeDocumentMoniker": "Schoolnest\\ForgetPassword.aspx",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\ForgetPassword.aspx",
+              "RelativeToolTip": "Schoolnest\\ForgetPassword.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-10-11T05:34:16.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Site.Master",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Site.Master",
+              "RelativeDocumentMoniker": "Schoolnest\\Site.Master",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Site.Master",
+              "RelativeToolTip": "Schoolnest\\Site.Master",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-10-11T05:27:09.564Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "RegisterAdmin.aspx.cs",
-              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterAdmin.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\SuperAdmin\\RegisterAdmin.aspx.cs",
-              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterAdmin.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\SuperAdmin\\RegisterAdmin.aspx.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAiwIMAAAA7AAAAAAAAAA==",
+              "Title": "Profile.aspx.cs",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Profile.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\Profile.aspx.cs",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Profile.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\Profile.aspx.cs",
+              "ViewState": "AgIAAAQAAAAAMzMzMzMLwA0AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T04:32:29.339Z",
+              "WhenOpened": "2024-10-11T05:23:14.63Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.aspx",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Login.aspx",
+              "RelativeDocumentMoniker": "Schoolnest\\Login.aspx",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Login.aspx",
+              "RelativeToolTip": "Schoolnest\\Login.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-10-10T17:18:54.385Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Profile.aspx",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Profile.aspx",
+              "RelativeDocumentMoniker": "Schoolnest\\Profile.aspx",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Profile.aspx",
+              "RelativeToolTip": "Schoolnest\\Profile.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-10-11T05:05:30.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RegisterAdmin.aspx.cs",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterAdmin.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\SuperAdmin\\RegisterAdmin.aspx.cs",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterAdmin.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\SuperAdmin\\RegisterAdmin.aspx.cs",
+              "ViewState": "AgIAAAkAAAAAYmZmZmYkwEMBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-10T20:28:16.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "RegisterAdmin.aspx",
               "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterAdmin.aspx",
               "RelativeDocumentMoniker": "Schoolnest\\SuperAdmin\\RegisterAdmin.aspx",
@@ -72,33 +149,7 @@
               "RelativeToolTip": "Schoolnest\\SuperAdmin\\RegisterAdmin.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-10-05T20:28:07.58Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RegisterSchool.aspx.cs",
-              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterSchool.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\SuperAdmin\\RegisterSchool.aspx.cs",
-              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterSchool.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\SuperAdmin\\RegisterSchool.aspx.cs",
-              "ViewState": "AgIAABwBAAAAAAAAAAAAACwBAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T04:56:31.92Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RegisterSchool.aspx",
-              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterSchool.aspx",
-              "RelativeDocumentMoniker": "Schoolnest\\SuperAdmin\\RegisterSchool.aspx",
-              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\SuperAdmin\\RegisterSchool.aspx",
-              "RelativeToolTip": "Schoolnest\\SuperAdmin\\RegisterSchool.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-10-04T04:41:40.695Z",
+              "WhenOpened": "2024-10-10T20:28:25.824Z",
               "EditorCaption": ""
             }
           ]

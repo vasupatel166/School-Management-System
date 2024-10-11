@@ -8,6 +8,8 @@ namespace Schoolnest
     {
         public static string ConnectionString { get; private set; }
 
+        public static string EncryptionPassphrase { get; private set; }
+
         protected void Application_Start(object sender, EventArgs e)
         {
             try
@@ -26,6 +28,8 @@ namespace Schoolnest
 
                 // Retrieve the connection string from the environment variables
                 ConnectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+
+                EncryptionPassphrase = Environment.GetEnvironmentVariable("EncryptionPassphrase");
 
                 if (string.IsNullOrEmpty(ConnectionString))
                 {

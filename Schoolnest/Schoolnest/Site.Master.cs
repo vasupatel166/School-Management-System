@@ -45,7 +45,7 @@ namespace Schoolnest
                             break;
 
                         case "A":
-                            userName = $"{userDetails["First_Name"]} {userDetails["Last_Name"]}"; // Admin table has "First_Name" and "Last_Name"
+                            userName = $"{userDetails["Firstname"]} {userDetails["Lastname"]}"; // Admin table has "First_Name" and "Last_Name"
                             userEmail = userDetails["Email"].ToString();
                             profileImage = userDetails["ProfileImage"].ToString();
                             roleName = "admin";
@@ -170,44 +170,44 @@ namespace Schoolnest
                 case "admin": // Admin
                     menuItems.Add(new MenuItem("Dashboard", "fas fa-home", ResolveUrl("Admin/Dashboard.aspx")));
                     menuItems.Add(new MenuItem("User Management", "fas fa-users", "", new List<MenuItem> {
-                        new MenuItem("Admin List", "fas fa-user-tie", ResolveUrl("Admin/AdminList.aspx")),
                         new MenuItem("Teacher List", "fas fa-chalkboard-teacher", ResolveUrl("Admin/TeacherList.aspx")),
                         new MenuItem("Student List", "fas fa-user-graduate", ResolveUrl("Admin/StudentList.aspx")),
-                        new MenuItem("Parent List", "fas fa-users", ResolveUrl("Admin/ParentList.aspx")),
-                        new MenuItem("User Role Management", "fas fa-user-cog", ResolveUrl("Admin/UserRoleManagement.aspx"))
+                        new MenuItem("Parent List", "fas fa-users", ResolveUrl("Admin/ParentList.aspx"))
                     }));
                             menuItems.Add(new MenuItem("Class Management", "fas fa-school", "", new List<MenuItem> {
-                        new MenuItem("Class List", "fas fa-list", ResolveUrl("Admin/ClassList.aspx")),
-                        new MenuItem("Assign Class Teacher", "fas fa-chalkboard", ResolveUrl("Admin/AssignClassTeacher.aspx")),
-                        new MenuItem("Class Timetable", "fas fa-calendar-alt", ResolveUrl("Admin/ClassTimetable.aspx")),
+                        new MenuItem("Standard Master", "fas fa-list", ResolveUrl("Admin/StandardMaster.aspx")),
+                        new MenuItem("Divison Master", "fas fa-chalkboard", ResolveUrl("Admin/DivisonMaster.aspx")),
+                        new MenuItem("Section Master", "fas fa-calendar-alt", ResolveUrl("Admin/SectionMaster.aspx")),
+                        new MenuItem("Assign Teacher", "fas fa-calendar-alt", ResolveUrl("Admin/AssignTeacher.aspx")),
                     }));
                             menuItems.Add(new MenuItem("Subject Management", "fas fa-book", "", new List<MenuItem> {
-                        new MenuItem("Subject List", "fas fa-list", ResolveUrl("Admin/SubjectList.aspx")),
+                        new MenuItem("Subject Master", "fas fa-list", ResolveUrl("Admin/SubjectMaster.aspx")),
                         new MenuItem("Assign Subject to Class", "fas fa-chalkboard", ResolveUrl("Admin/AssignSubjectToClass.aspx")),
-                        new MenuItem("Assign Teacher to Subject", "fas fa-chalkboard-teacher", ResolveUrl("Admin/AssignTeacherToSubject.aspx")),
+                        new MenuItem("Assign Teacher to Subject", "fas fa-chalkboard-teacher", ResolveUrl("Admin/AssignTeacherToSubject.aspx"))
                     }));
                             menuItems.Add(new MenuItem("Attendance Management", "fas fa-calendar-check", "", new List<MenuItem> {
                         new MenuItem("Mark Attendance", "fas fa-check", ResolveUrl("Admin/MarkAttendance.aspx")),
-                        new MenuItem("View Attendance Reports", "fas fa-chart-line", ResolveUrl("Admin/AttendanceReports.aspx")),
+                        new MenuItem("View Attendance Reports", "fas fa-chart-line", ResolveUrl("Admin/AttendanceReports.aspx"))
                     }));
                             menuItems.Add(new MenuItem("Exam Management", "fas fa-file-alt", "", new List<MenuItem> {
                         new MenuItem("Exam Schedule", "fas fa-calendar-alt", ResolveUrl("Admin/ExamSchedule.aspx")),
                         new MenuItem("Grade Management", "fas fa-graduation-cap", ResolveUrl("Admin/GradeManagement.aspx")),
-                        new MenuItem("Generate Report Cards", "fas fa-file-signature", ResolveUrl("Admin/GenerateReportCards.aspx")),
+                        new MenuItem("Generate Report Cards", "fas fa-file-signature", ResolveUrl("Admin/GenerateReportCards.aspx"))
                     }));
                             menuItems.Add(new MenuItem("Fee Management", "fas fa-dollar-sign", "", new List<MenuItem> {
-                        new MenuItem("Fee Structure", "fas fa-money-check-alt", ResolveUrl("Admin/FeeStructure.aspx")),
-                        new MenuItem("Payment Management", "fas fa-credit-card", ResolveUrl("Admin/PaymentManagement.aspx")),
-                        new MenuItem("Payment Report", "fas fa-file-invoice", ResolveUrl("Admin/PaymentReport.aspx")),
+                        new MenuItem("Fee Master", "fas fa-money-check-alt", ResolveUrl("Admin/FeeMaster.aspx")),
+                        new MenuItem("Set Class Wise Fees", "fas fa-money-check-alt", ResolveUrl("Admin/ClassWiseFees.aspx")),
+                        new MenuItem("Payment Report", "fas fa-file-invoice", ResolveUrl("Admin/PaymentReport.aspx"))
                     }));
-                            menuItems.Add(new MenuItem("Library Management", "fas fa-book-open", "", new List<MenuItem> {
-                        new MenuItem("Book List", "fas fa-list", ResolveUrl("Admin/BookList.aspx")),
-                        new MenuItem("Issue/Return Books", "fas fa-book-reader", ResolveUrl("Admin/IssueReturnBooks.aspx")),
-                        new MenuItem("Overdue Books/Fine Management", "fas fa-exclamation-circle", ResolveUrl("Admin/OverdueBooks.aspx")),
+
+                    menuItems.Add(new MenuItem("Miscellaneous", "fas fa-dollar-sign", "", new List<MenuItem> {
+                        new MenuItem("Event Master", "fas fa-money-check-alt", ResolveUrl("Admin/EventMaster.aspx")),
+                        new MenuItem("Budget Master", "fas fa-money-check-alt", ResolveUrl("Admin/BudgetMaster.aspx"))
                     }));
-                            menuItems.Add(new MenuItem("Notifications", "fas fa-bullhorn", "", new List<MenuItem> {
+
+                    menuItems.Add(new MenuItem("Notifications", "fas fa-bullhorn", "", new List<MenuItem> {
                         new MenuItem("Announcements Board", "fas fa-bullhorn", ResolveUrl("Admin/Announcements.aspx")),
-                        new MenuItem("Send Email/SMS Notifications", "fas fa-envelope", ResolveUrl("Admin/SendNotifications.aspx")),
+                        new MenuItem("Send Email/SMS Notifications", "fas fa-envelope", ResolveUrl("Admin/SendNotifications.aspx"))
                     }));
 
                     break;
@@ -227,11 +227,7 @@ namespace Schoolnest
                         new MenuItem("View Class Timetable", "fas fa-table", ResolveUrl("Teacher/ViewClassTimetable.aspx")),
                         new MenuItem("View Personal Schedule", "fas fa-calendar-day", ResolveUrl("Teacher/ViewPersonalSchedule.aspx")),
                     }));
-                            menuItems.Add(new MenuItem("Assignments", "fas fa-tasks", "", new List<MenuItem> {
-                        new MenuItem("Create Assignment", "fas fa-plus", ResolveUrl("Teacher/CreateAssignment.aspx")),
-                        new MenuItem("Grade Assignment", "fas fa-check-circle", ResolveUrl("Teacher/GradeAssignment.aspx")),
-                        new MenuItem("View Assignment Submissions", "fas fa-list", ResolveUrl("Teacher/ViewAssignmentSubmissions.aspx")),
-                    }));
+                            
                             menuItems.Add(new MenuItem("Notifications", "fas fa-bullhorn", "", new List<MenuItem> {
                         new MenuItem("View Announcements", "fas fa-bullhorn", ResolveUrl("Teacher/ViewAnnouncements.aspx")),
                         new MenuItem("Send Notifications", "fas fa-envelope", ResolveUrl("Teacher/SendNotifications.aspx")),
@@ -241,7 +237,6 @@ namespace Schoolnest
 
                 case "student": // student
                     menuItems.Add(new MenuItem("Dashboard", "fas fa-home", ResolveUrl("Student/Dashboard.aspx")));
-                    menuItems.Add(new MenuItem("Profile", "fas fa-user", ResolveUrl("Student/ViewEditProfile.aspx")));
 
                     menuItems.Add(new MenuItem("Attendance", "fas fa-calendar-check", "", new List<MenuItem> {
                         new MenuItem("View Attendance Report", "fas fa-chart-line", ResolveUrl("Student/ViewAttendanceReport.aspx")),
@@ -249,22 +244,14 @@ namespace Schoolnest
 
                     menuItems.Add(new MenuItem("Exams & Results", "fas fa-file-alt", "", new List<MenuItem> {
                         new MenuItem("View Exam Schedule", "fas fa-calendar-alt", ResolveUrl("Student/ViewExamSchedule.aspx")),
-                        new MenuItem("View Grades/Report Cards", "fas fa-graduation-cap", ResolveUrl("Student/ViewGrades.aspx")),
-                        new MenuItem("Download Report Cards", "fas fa-file-download", ResolveUrl("Student/DownloadReportCard.aspx")),
+                        new MenuItem("View Grades/Report Cards", "fas fa-graduation-cap", ResolveUrl("Student/ViewGrades.aspx"))
                     }));
-                            menuItems.Add(new MenuItem("Assignments", "fas fa-tasks", "", new List<MenuItem> {
-                        new MenuItem("View Assigned Work", "fas fa-list", ResolveUrl("Student/ViewAssignedWork.aspx")),
-                        new MenuItem("Submit Assignment", "fas fa-upload", ResolveUrl("Student/SubmitAssignment.aspx")),
-                    }));
-                            menuItems.Add(new MenuItem("Fee Management", "fas fa-dollar-sign", "", new List<MenuItem> {
-                        new MenuItem("View Fee Structure", "fas fa-money-check-alt", ResolveUrl("Student/ViewFeeStructure.aspx")),
+                           
+                    menuItems.Add(new MenuItem("Fee Management", "fas fa-dollar-sign", "", new List<MenuItem> {
                         new MenuItem("Pay Fees", "fas fa-credit-card", ResolveUrl("Student/PayFees.aspx")),
                         new MenuItem("View Payment History", "fas fa-file-invoice-dollar", ResolveUrl("Student/ViewPaymentHistory.aspx")),
                     }));
-                            menuItems.Add(new MenuItem("Library", "fas fa-book-open", "", new List<MenuItem> {
-                        new MenuItem("View Issued Books", "fas fa-book", ResolveUrl("Student/ViewIssuedBooks.aspx")),
-                        new MenuItem("Return Books", "fas fa-undo", ResolveUrl("Student/ReturnBooks.aspx")),
-                    }));
+                           
                             menuItems.Add(new MenuItem("Notifications", "fas fa-bullhorn", "", new List<MenuItem> {
                         new MenuItem("View Announcements", "fas fa-bullhorn", ResolveUrl("Student/ViewAnnouncements.aspx")),
                     }));

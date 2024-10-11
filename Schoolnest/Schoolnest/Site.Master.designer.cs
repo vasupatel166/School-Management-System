@@ -105,6 +105,15 @@ namespace Schoolnest
         protected global::System.Web.UI.WebControls.Label NavUserEmail;
 
         /// <summary>
+        /// ProfileLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink ProfileLink;
+
+        /// <summary>
         /// logout_link control.
         /// </summary>
         /// <remarks>

@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegisterAdmin.aspx.cs" Inherits="Schoolnest.SuperAdmin.RegisterAdmin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -12,9 +13,9 @@
                         <div class="card-title">Register Admin</div>
                         <!-- Search Dropdown -->
                         <div class="form-group mb-0">
-                            <asp:DropDownList ID="ddlSearchAdmin" runat="server" AutoPostBack="true" CssClass="form-control">
-                                <asp:ListItem Text="Select Admin" Value=""></asp:ListItem>
+                            <asp:DropDownList ID="ddlSearchAdmin" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSearchAdmin_SelectedIndexChanged">
                             </asp:DropDownList>
+
                         </div>
                     </div>
 
@@ -69,34 +70,82 @@
 
                         <!-- Select School for the Admin -->
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlSchool" Text="Select School"></asp:Label>
                                     <asp:DropDownList ID="ddlSchool" runat="server" CssClass="form-control">
-                                        
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="rfvSchool" runat="server" ControlToValidate="ddlSchool" Display="Dynamic" ErrorMessage="School selection is required" CssClass="text-danger"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Optional Profile Image Upload -->
-                        <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="fileProfileImage" Text="Profile Image (optional)"></asp:Label>
                                     <asp:FileUpload ID="fileProfileImage" runat="server" CssClass="form-control" />
                                 </div>
                             </div>
+                             <div class="col-md-4">
+                                 <div class="form-check mt-2">
+                                     <asp:CheckBox
+                                             ID="chkIsActive"
+                                             runat="server"
+                                             CssClass="form-check-input border-0"
+                                             Checked="true"
+                                         />
+                                     <label class="form-check-label" for="flexCheckDefault">
+                                     Active
+                                     </label>
+                                 </div>
+                             </div>
                         </div>
 
                         <div class="card-footer text-center mt-4 pt-4">
                             <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-success" OnClick="btnSubmit_Click" />
                             <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-danger" CausesValidation="false" OnClick="btnCancel_Click" />
+                            <!-- Hidden Delete Button to trigger postback -->
+                            <%--<asp:Button ID="btnConfirmDelete" runat="server" Text="Yes, Delete" CssClass="btn btn-danger" OnClick="btnConfirmDelete_Click" Style="display:none;" />
+                            <!-- Delete Button that triggers SweetAlert -->
+                            <button type="button" id="btnDelete" class="btn btn-warning ml-2">Delete Admin</button>--%>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+
+   </form>
+
+<%--    <script type="text/javascript">
+        // Trigger SweetAlert for delete confirmation
+        document.getElementById("btnDelete").onclick = function () {
+            // Show SweetAlert
+            swal({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                buttons: {
+                    cancel: {
+                        text: "No, cancel!",
+                        value: null,
+                        visible: true,
+                        className: "btn btn-danger",
+                        closeModal: true,
+                    },
+                    confirm: {
+                        text: "Yes, delete it!",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-success",
+                        closeModal: false
+                    }
+                }
+            }).then(function (isConfirm) {
+                if (isConfirm) {
+                    // If user confirms, trigger the server-side event
+                    document.getElementById("<%= btnConfirmDelete.ClientID %>").click();
+                } else {
+                    swal("Cancelled", "Your admin data is safe!", "info");
+                }
+            });
+        }
+    </script>--%>
 </asp:Content>

@@ -6,14 +6,15 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 namespace Schoolnest.SuperAdmin
 {
     public partial class RegisterAdmin : System.Web.UI.Page
     {
-
-        // Connection string (You can get it from Global.ConnectionString or Web.config)
-        private string connectionString = Global.ConnectionString;
+        private string connectionString = Global.ConnectionString; // Connection string
+        private string SelectedAdminID = "";
+        public string profileImagePath = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,6 +22,10 @@ namespace Schoolnest.SuperAdmin
             {
                 LoadSchools();
                 LoadAdminSearchDropdown();
+
+                // Register the ddlSearchAdmin's ClientID in the JavaScript of the master page
+                //string ddlSearchAdminClientIdScript = $"var ddlSearchAdminClientId = '{ddlSearchAdmin.ClientID}';";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "ddlSearchAdminClientId", ddlSearchAdminClientIdScript, true);
             }
         }
 
@@ -29,38 +34,49 @@ namespace Schoolnest.SuperAdmin
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT AdminID, First_Name, Last_Name, SchoolMaster_SchoolID FROM Admin", conn))
+                using (SqlCommand cmd = new SqlCommand("SELECT AdminID, Firstname, Lastname, SchoolMaster_SchoolID, IsActive FROM Admin", conn))
                 {
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
-                    ddlSearchAdmin.DataSource = reader;
-                    ddlSearchAdmin.DataTextField = "First_Name";
-                    ddlSearchAdmin.DataValueField = "AdminID";
-                    ddlSearchAdmin.DataBind();
 
                     while (reader.Read())
                     {
-                        string displayName = $"{reader["First_Name"]} {reader["Last_Name"]} ({reader["SchoolMaster_SchoolID"]})";
-                        ddlSearchAdmin.Items.Add(new ListItem(displayName, reader["AdminID"].ToString()));
+                        string displayName = $"{reader["Firstname"]} {reader["Lastname"]} ({reader["SchoolMaster_SchoolID"]})";
+                        ListItem listItem = new ListItem(displayName, reader["AdminID"].ToString());
+
+                        ddlSearchAdmin.Items.Add(listItem);
                     }
                 }
             }
+
+            // Insert a default option at the beginning of the dropdown list
             ddlSearchAdmin.Items.Insert(0, new ListItem("Select Admin", ""));
         }
+
 
         // Load schools into dropdown
         private void LoadSchools()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT SchoolID, SchoolName FROM SchoolMaster", conn))
+                using (SqlCommand cmd = new SqlCommand("SELECT SchoolID, SchoolName, IsActive FROM SchoolMaster", conn))
                 {
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
-                    ddlSchool.DataSource = reader;
-                    ddlSchool.DataTextField = "SchoolName";
-                    ddlSchool.DataValueField = "SchoolID";
-                    ddlSchool.DataBind();
+
+                    while (reader.Read())
+                    {
+                        string displayName = $"{reader["SchoolName"]} ({reader["SchoolID"]})";
+                        ListItem listItem = new ListItem(displayName, reader["SchoolID"].ToString());
+
+                        // Disable the ListItem if IsActive is 0
+                        if (Convert.ToInt32(reader["IsActive"]) == 0)
+                        {
+                            listItem.Attributes.Add("disabled", "disabled");
+                        }
+
+                        ddlSchool.Items.Add(listItem);
+                    }
                 }
             }
             ddlSchool.Items.Insert(0, new ListItem("Select School", ""));
@@ -76,36 +92,87 @@ namespace Schoolnest.SuperAdmin
             string email = txtEmail.Text.Trim();
             string mobileNumber = txtMobileNumber.Text.Trim();
             string schoolID = ddlSchool.SelectedValue;
+            bool isActive = chkIsActive.Checked;
             int adminID = string.IsNullOrEmpty(ddlSearchAdmin.SelectedValue) ? 0 : int.Parse(ddlSearchAdmin.SelectedValue);
 
-            // Get the profile image file path if uploaded
-            string profileImagePath = null;
+            // Check if the profile image file is uploaded
             if (fileProfileImage.HasFile)
             {
-                string filePath = "~/assets/img/user-profile-img/admin/" + fileProfileImage.FileName;
-                fileProfileImage.SaveAs(Server.MapPath(filePath));
-                profileImagePath = "admin/" + fileProfileImage.FileName;
+                string extension = Path.GetExtension(fileProfileImage.FileName).ToLower();
+
+                if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                {
+                    try
+                    {
+                        // Generate a unique 3-digit number prefix for the image file name
+                        Random random = new Random();
+                        string uniquePrefix = random.Next(100, 1000).ToString(); // Generate a random 3-digit number
+                        string fileName = uniquePrefix + "_" + fileProfileImage.FileName; // Add the prefix to the file name
+                        string filePath = "~/assets/img/user-profile-img/admin/" + fileName;
+
+                        // Ensure the directory exists before saving the file
+                        string directoryPath = Server.MapPath("~/assets/img/user-profile-img/admin/");
+                        if (!Directory.Exists(directoryPath))
+                        {
+                            Directory.CreateDirectory(directoryPath);
+                        }
+
+                        // Save the file
+                        fileProfileImage.SaveAs(Server.MapPath(filePath));
+                        profileImagePath = "admin/" + fileName;
+                    }
+                    catch (Exception ex)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "Error", $"alert('File upload failed: {ex.Message}');", true);
+                        return;
+                    }
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "Error", "alert('Only image files (jpg, jpeg, png, gif) are allowed.');", true);
+                    return;
+                }
             }
 
             try
             {
-                // Execute the InsertUserMaster stored procedure to get UserID
-                int userID = ExecuteInsertUserMaster(firstName, lastName, "A", schoolID);
+                int userID = 0;
 
-                if (userID > 0)
+                if (adminID == 0)
                 {
-                    // Insert or update Admin data using InsertUpdateAdminMaster procedure
-                    ExecuteInsertUpdateAdminMaster(adminID, firstName, lastName, email, mobileNumber, gender, profileImagePath, userID, schoolID);
-                    ClientScript.RegisterStartupScript(this.GetType(), "Success", "alert('Admin details saved successfully!');", true);
+                    // Execute the InsertUserMaster stored procedure to get UserID
+                    userID = ExecuteInsertUserMaster(firstName, lastName, "A", schoolID);
                 }
-                else
+
+                // When updating an admin, keep the existing image if a new one is not uploaded
+                if (adminID != 0 && string.IsNullOrEmpty(profileImagePath))
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "Error", "alert('Failed to create or find UserID. Please try again.');", true);
+                    profileImagePath = GetExistingProfileImagePath(adminID);
                 }
+
+                // Insert or update Admin data using InsertUpdateAdminMaster procedure
+                ExecuteInsertUpdateAdminMaster(adminID, firstName, lastName, email, mobileNumber, gender, profileImagePath, userID, schoolID,isActive);
+                ClientScript.RegisterStartupScript(this.GetType(), "Success", "alert('Admin details saved successfully!');", true);
+                ResetForm();
             }
             catch (Exception ex)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "Error", $"alert('Error: {ex.Message}');", true);
+            }
+        }
+
+        // Retrieve the existing profile image path for an admin
+        private string GetExistingProfileImagePath(int adminID)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT ProfileImage FROM Admin WHERE AdminID = @AdminID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@AdminID", adminID);
+                    conn.Open();
+
+                    return cmd.ExecuteScalar()?.ToString(); // Return the existing image path
+                }
             }
         }
 
@@ -130,7 +197,7 @@ namespace Schoolnest.SuperAdmin
         }
 
         // Execute InsertUpdateAdminMaster stored procedure
-        private void ExecuteInsertUpdateAdminMaster(int adminID, string firstName, string lastName, string email, string mobileNumber, string gender, string profileImage, int userID, string schoolID)
+        private void ExecuteInsertUpdateAdminMaster(int adminID, string firstName, string lastName, string email, string mobileNumber, string gender, string profileImage, int userID, string schoolID,bool isActive)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -146,19 +213,86 @@ namespace Schoolnest.SuperAdmin
                     cmd.Parameters.AddWithValue("@ProfileImage", string.IsNullOrEmpty(profileImage) ? DBNull.Value : (object)profileImage);
                     cmd.Parameters.AddWithValue("@UserMaster_UserID", userID);
                     cmd.Parameters.AddWithValue("@SchoolMaster_SchoolID", schoolID);
+                    cmd.Parameters.AddWithValue("@IsActive", isActive ? 1 :0);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
                 }
             }
         }
-        // Clear all form fields
+
+        // Confirm deletion
+        //protected void btnConfirmDelete_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        // Get the selected admin ID to delete
+        //        int adminID = int.Parse(ddlSearchAdmin.SelectedValue);
+
+        //        if (adminID != 0)
+        //        {
+        //            DeleteAdmin(adminID);
+        //            ResetForm();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"swal('Error!', '{ex.Message}', 'error');", true);
+        //    }
+        //}
+
+        //private void DeleteAdmin(int adminID)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(connectionString))
+        //    {
+        //        conn.Open();
+        //        using (SqlTransaction transaction = conn.BeginTransaction())
+        //        {
+        //            try
+        //            {
+        //                // Get the corresponding UserID for the Admin
+        //                int userID = GetUserIDForAdmin(adminID, conn, transaction);
+
+        //                // Delete from Admin table
+        //                using (SqlCommand cmd = new SqlCommand("UPDATE Admin SET IsActive = 0 WHERE AdminID = @AdminID", conn, transaction))
+        //                {
+        //                    cmd.Parameters.AddWithValue("@AdminID", adminID);
+        //                    cmd.ExecuteNonQuery();
+        //                }
+
+        //                // Delete from UserMaster table using the UserID
+        //                //using (SqlCommand cmd = new SqlCommand("DELETE FROM UserMaster WHERE UserID = @UserID", conn, transaction))
+        //                //{
+        //                //    cmd.Parameters.AddWithValue("@UserID", userID);
+        //                //    cmd.ExecuteNonQuery();
+        //                //}
+
+        //                transaction.Commit();
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                transaction.Rollback();
+        //                ClientScript.RegisterStartupScript(this.GetType(), "Error", $"alert('Error during deletion: {ex.Message}');", true);
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private int GetUserIDForAdmin(int adminID, SqlConnection conn, SqlTransaction transaction)
+        //{
+        //    using (SqlCommand cmd = new SqlCommand("SELECT UserMaster_UserID FROM Admin WHERE AdminID = @AdminID", conn, transaction))
+        //    {
+        //        cmd.Parameters.AddWithValue("@AdminID", adminID);
+        //        return Convert.ToInt32(cmd.ExecuteScalar());
+        //    }
+        //}
+
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            ClearForm();
+            ResetForm();
         }
 
-        private void ClearForm()
+        private void ResetForm()
         {
             txtFirstName.Text = "";
             txtLastName.Text = "";
@@ -167,6 +301,53 @@ namespace Schoolnest.SuperAdmin
             txtMobileNumber.Text = "";
             ddlSchool.SelectedIndex = 0;
             ddlSearchAdmin.SelectedIndex = 0;
+            profileImagePath = null; // Reset the image path variable
+
+            Response.Redirect("~/SuperAdmin/RegisterAdmin.aspx");
+        }
+
+        protected void ddlSearchAdmin_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedAdminID = ddlSearchAdmin.SelectedValue;
+
+            if (!string.IsNullOrEmpty(SelectedAdminID) && SelectedAdminID != "Select Admin")
+            {
+                // Load the selected admin details into the form fields
+                LoadAdminDetails(SelectedAdminID);
+            }
+            else
+            {
+                // Reset the form if no admin is selected
+                ResetForm();
+            }
+        }
+
+        private void LoadAdminDetails(string AdminID)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Admin WHERE AdminID = @AdminID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@AdminID", AdminID);
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Populate form fields with data
+                            txtFirstName.Text = reader["Firstname"].ToString();
+                            txtLastName.Text = reader["Lastname"].ToString();
+                            txtEmail.Text = reader["Email"].ToString();
+                            txtMobileNumber.Text = reader["Mobile_Number"].ToString();
+                            ddlGender.SelectedValue = reader["Gender"].ToString();
+                            ddlSchool.SelectedValue = reader["SchoolMaster_SchoolID"].ToString();
+                            profileImagePath = reader["ProfileImage"].ToString();
+                            chkIsActive.Checked = Convert.ToBoolean(reader["IsActive"]);
+                        }
+                    }
+                }
+            }
         }
     }
 }
