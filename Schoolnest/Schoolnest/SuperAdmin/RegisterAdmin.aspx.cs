@@ -22,10 +22,6 @@ namespace Schoolnest.SuperAdmin
             {
                 LoadSchools();
                 LoadAdminSearchDropdown();
-
-                // Register the ddlSearchAdmin's ClientID in the JavaScript of the master page
-                //string ddlSearchAdminClientIdScript = $"var ddlSearchAdminClientId = '{ddlSearchAdmin.ClientID}';";
-                //ScriptManager.RegisterStartupScript(this, GetType(), "ddlSearchAdminClientId", ddlSearchAdminClientIdScript, true);
             }
         }
 
@@ -52,7 +48,6 @@ namespace Schoolnest.SuperAdmin
             // Insert a default option at the beginning of the dropdown list
             ddlSearchAdmin.Items.Insert(0, new ListItem("Select Admin", ""));
         }
-
 
         // Load schools into dropdown
         private void LoadSchools()
@@ -106,8 +101,8 @@ namespace Schoolnest.SuperAdmin
                     {
                         // Generate a unique 3-digit number prefix for the image file name
                         Random random = new Random();
-                        string uniquePrefix = random.Next(100, 1000).ToString(); // Generate a random 3-digit number
-                        string fileName = uniquePrefix + "_" + fileProfileImage.FileName; // Add the prefix to the file name
+                        string uniquePrefix = random.Next(100, 1000).ToString();
+                        string fileName = uniquePrefix + "_" + fileProfileImage.FileName;
                         string filePath = "~/assets/img/user-profile-img/admin/" + fileName;
 
                         // Ensure the directory exists before saving the file
@@ -220,73 +215,7 @@ namespace Schoolnest.SuperAdmin
                 }
             }
         }
-
-        // Confirm deletion
-        //protected void btnConfirmDelete_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        // Get the selected admin ID to delete
-        //        int adminID = int.Parse(ddlSearchAdmin.SelectedValue);
-
-        //        if (adminID != 0)
-        //        {
-        //            DeleteAdmin(adminID);
-        //            ResetForm();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"swal('Error!', '{ex.Message}', 'error');", true);
-        //    }
-        //}
-
-        //private void DeleteAdmin(int adminID)
-        //{
-        //    using (SqlConnection conn = new SqlConnection(connectionString))
-        //    {
-        //        conn.Open();
-        //        using (SqlTransaction transaction = conn.BeginTransaction())
-        //        {
-        //            try
-        //            {
-        //                // Get the corresponding UserID for the Admin
-        //                int userID = GetUserIDForAdmin(adminID, conn, transaction);
-
-        //                // Delete from Admin table
-        //                using (SqlCommand cmd = new SqlCommand("UPDATE Admin SET IsActive = 0 WHERE AdminID = @AdminID", conn, transaction))
-        //                {
-        //                    cmd.Parameters.AddWithValue("@AdminID", adminID);
-        //                    cmd.ExecuteNonQuery();
-        //                }
-
-        //                // Delete from UserMaster table using the UserID
-        //                //using (SqlCommand cmd = new SqlCommand("DELETE FROM UserMaster WHERE UserID = @UserID", conn, transaction))
-        //                //{
-        //                //    cmd.Parameters.AddWithValue("@UserID", userID);
-        //                //    cmd.ExecuteNonQuery();
-        //                //}
-
-        //                transaction.Commit();
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                transaction.Rollback();
-        //                ClientScript.RegisterStartupScript(this.GetType(), "Error", $"alert('Error during deletion: {ex.Message}');", true);
-        //            }
-        //        }
-        //    }
-        //}
-
-        //private int GetUserIDForAdmin(int adminID, SqlConnection conn, SqlTransaction transaction)
-        //{
-        //    using (SqlCommand cmd = new SqlCommand("SELECT UserMaster_UserID FROM Admin WHERE AdminID = @AdminID", conn, transaction))
-        //    {
-        //        cmd.Parameters.AddWithValue("@AdminID", adminID);
-        //        return Convert.ToInt32(cmd.ExecuteScalar());
-        //    }
-        //}
-
+        
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             ResetForm();

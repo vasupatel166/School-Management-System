@@ -258,7 +258,7 @@
                                         <li>
                                             <div class="user-box">
                                                 <div class="avatar-lg">
-                                                    <asp:Image ID="NavUserImage2" CssClass="avatar-img rounded" runat="server" AlternateText="User Image" />
+                                                    <asp:Image ID="NavUserImage2" CssClass="avatar-img rounded w-auto" runat="server" AlternateText="User Image" />
                                                 </div>
                                                 <div class="u-text">
                                                     <asp:Label ID="NavUserName2" CssClass="fw-semibold fw-bold" runat="server" Text=""></asp:Label>
@@ -284,7 +284,7 @@
             <!-- Dynamic Content -->
             <div class="container">
                 <div class="page-inner">
-                    <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+                    <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2">
                         <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
                     </div>
                 </div>
@@ -351,25 +351,9 @@
 
         /****************************************SIDEBAR****************************************/
 
-        /**************************************** REGISTER ADMIN ****************************************/
+        /**************************************** ADMIN  ****************************************/
 
-        // Use the registered variable ddlSearchAdminClientId
-        //const ddlSearchAdmin = "#" + ddlSearchAdminClientId;
-        //const btnDelete = "#btnDelete";
-
-        //$(btnDelete).hide();
-
-        // Show delete button when admin is selected from dropdown
-        //$(ddlSearchAdmin).change(function () {
-        //    if ($(this).val()) {
-        //        $(btnDelete).show(); // Show delete button when a value is selected
-        //    } else {
-        //        $(btnDelete).hide(); // Hide delete button when no value is selected
-        //    }
-        //});
-
-
-        /**************************************** REGISTER ADMIN ****************************************/
+        /**************************************** ADMIN ****************************************/
 
         /****************************************FOOTER****************************************/
         const year = new Date().getFullYear();

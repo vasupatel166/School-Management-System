@@ -1,255 +1,98 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Schoolnest.Profile" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        .profile-header {
-            background: #2C3E50;
-            color: white;
-            padding: 20px;
-            border-radius: 10px 10px 0 0;
-        }
-
         .profile-card {
-            border: none;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        .profile-body {
-            padding: 30px;
-        }
-
-        .form-control:read-only {
-            background-color: #f9f9f9;
-        }
-
-        .edit-section {
-            border: 2px dashed #3498db;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #f0f9ff;
-        }
-
-        .edit-section h4 {
-            color: #3498db;
-        }
-
-        .readonly-section {
-            margin-bottom: 30px;
-        }
-
-        .readonly-section h4 {
-            color: #4b6584;
-        }
-
-        .edit-btn {
-            color: #3498db;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-
-        .edit-btn:hover {
-            text-decoration: underline;
+            border-top-left-radius: 10px !important;
+            border-top-right-radius: 10px !important;
         }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server" class="w-100">
-    <div class="container mt-5">
-        <!-- Profile Header -->
-        <div class="profile-header d-flex justify-content-between align-items-center">
-            <h2 id="profile-title">User Profile</h2>
-            <div>
-                <asp:Button ID="btnEditProfile" runat="server" CssClass="btn btn-primary" Text="Edit Profile" OnClientClick="return false;" OnClick="btnEditProfile_Click" />
-                <asp:Button ID="btnSaveProfile" runat="server" CssClass="btn btn-success" Text="Save Changes" OnClick="btnSaveProfile_Click" Style="display: none;" />
-                <asp:Label ID="lblChangePasswordMessage" runat="server" CssClass="text-success ml-3" Text="" />
+        <div class="container">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header profile-card bg-dark">
+                        <h4 class="card-title text-white">Profile</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="nav nav-tabs nav-line nav-color-success" id="line-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="line-details-tab" data-bs-toggle="pill" href="#line-details" role="tab" aria-controls="pills-home" aria-selected="true">Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="line-change-password-tab" data-bs-toggle="pill" href="#line-change-password" role="tab" aria-controls="pills-profile" aria-selected="false">Change Password</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content mt-3 mb-3" id="line-tabContent">
+                            <!-- Details Tab -->
+                            <div class="tab-pane fade show active" id="line-details" role="tabpanel" aria-labelledby="line-details-tab">
+                                <div class="row" id="Image">
+                                    <div class="col-md-4">
+                                        <div class="avatar avatar-xxl">
+                                            <asp:Image ID="ProfileImage" runat="server" CssClass="avatar-img rounded-circle" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="profileFields" runat="server">
+                                    <!-- Dynamically Loaded Fields -->
+                                </div>
+                                <div class="row" id="LocationFields" runat="server">
+                                     <div class="col-md-4">
+                                         <div class="form-group">
+                                             <asp:Label runat="server" AssociatedControlID="ddlState" Text="State"></asp:Label>
+                                             <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlState_SelectedIndexChanged">
+                                             </asp:DropDownList>
+                                             <asp:RequiredFieldValidator ID="rfvState" runat="server" ControlToValidate="ddlState" Display="Dynamic" ErrorMessage="State is required" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                         </div>
+                                     </div>
+                                     <div class="col-md-4">
+                                         <div class="form-group">
+                                             <asp:Label runat="server" AssociatedControlID="ddlCity" Text="City"></asp:Label>
+                                             <asp:DropDownList ID="ddlCity" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCity_SelectedIndexChanged" Enabled="false">
+                                             </asp:DropDownList>
+                                             <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="ddlCity" Display="Dynamic" ErrorMessage="City is required" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                         </div>
+                                     </div>
+                                     <div class="col-md-4">
+                                         <div class="form-group">
+                                             <asp:Label runat="server" AssociatedControlID="ddlPincode" Text="Pincode"></asp:Label>
+                                             <asp:DropDownList ID="ddlPincode" runat="server" CssClass="form-control" Enabled="false">
+                                             </asp:DropDownList>
+                                             <asp:RequiredFieldValidator ID="rfvPincode" runat="server" ControlToValidate="ddlPincode" Display="Dynamic" ErrorMessage="Pincode is required" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                         </div>
+                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <asp:Button ID="btnEditProfile" runat="server" CssClass="btn btn-primary" CausesValidation="false" Text="Edit Profile" OnClick="btnEditProfile_Click" />
+                                    <asp:Button ID="btnSaveProfile" runat="server" CssClass="btn btn-success" Text="Save Changes" OnClick="btnSaveProfile_Click" Visible="false" />
+                                    <asp:Button ID="btnCancelUpdate" runat="server" CssClass="btn btn-danger" CausesValidation="false" Text="Cancel" OnClick="btnCancelUpdate_Click" Visible="false" />
+                                </div>
+                            </div>
+
+                            <!-- Change Password Tab -->
+                            <div class="tab-pane fade" id="line-change-password" role="tabpanel" aria-labelledby="line-change-password-tab">
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <asp:TextBox ID="txtNewPassword" runat="server" CssClass="form-control" TextMode="Password" />
+                                    <asp:RequiredFieldValidator ID="rfvChangePassword" runat="server" ControlToValidate="txtNewPassword" ValidationGroup="PasswordValidation" Display="Dynamic" CssClass="text-danger" ErrorMessage="Please enter new password"></asp:RequiredFieldValidator>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Confirm New Password</label>
+                                    <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control" TextMode="Password" />
+                                    <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server" ControlToValidate="txtConfirmPassword" ValidationGroup="PasswordValidation" Display="Dynamic" CssClass="text-danger" ErrorMessage="Please confirm your password"></asp:RequiredFieldValidator>
+                                    <asp:CompareValidator ID="cvConfirmPassword" runat="server" Display="Dynamic" ControlToCompare="txtNewPassword" ValidationGroup="PasswordValidation" ControlToValidate="txtConfirmPassword" CssClass="text-danger" ErrorMessage="Password doesn't match"></asp:CompareValidator>
+                                </div>
+                                <div class="form-group">
+                                    <asp:Button ID="btnChangePassword" runat="server" CssClass="btn btn-primary" Text="Change Password" OnClick="btnChangePassword_Click" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- Profile Card -->
-        <div class="card profile-card mt-4">
-            <div class="card-body profile-body">
-                <!-- SuperAdmin Profile Panel -->
-                <asp:Panel ID="pnlSuperAdminProfile" runat="server" Visible="false">
-                    <div class="readonly-section">
-                        <h4>SuperAdmin Profile</h4>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <asp:TextBox ID="txtSuperAdminName" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <asp:Image ID="imgSuperAdminProfile" runat="server" CssClass="profile-image img-fluid rounded-circle" Width="150px" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Editable Section -->
-                    <div class="edit-section">
-                        <h4>Edit SuperAdmin Details</h4>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <asp:TextBox ID="txtSuperAdminEmail" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Mobile Number</label>
-                                    <asp:TextBox ID="txtSuperAdminMobile" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <asp:TextBox ID="txtSuperAdminAddress" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </asp:Panel>
-
-                <!-- Admin Profile Panel -->
-                <asp:Panel ID="pnlAdminProfile" runat="server" Visible="false">
-                    <div class="readonly-section">
-                        <h4>Admin Profile</h4>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <asp:TextBox ID="txtAdminName" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <asp:Image ID="imgAdminProfile" runat="server" CssClass="profile-image img-fluid rounded-circle" Width="150px" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Editable Section -->
-                    <div class="edit-section">
-                        <h4>Edit Admin Details</h4>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <asp:TextBox ID="txtAdminEmail" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Mobile Number</label>
-                                    <asp:TextBox ID="txtAdminMobile" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <asp:TextBox ID="txtAdminAddress" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </asp:Panel>
-
-                <!-- Teacher Profile Panel -->
-                <asp:Panel ID="pnlTeacherProfile" runat="server" Visible="false">
-                    <div class="readonly-section">
-                        <h4>Teacher Profile</h4>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <asp:TextBox ID="txtTeacherName" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Gender</label>
-                                    <asp:TextBox ID="txtTeacherGender" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Date of Birth</label>
-                                    <asp:TextBox ID="txtTeacherDOB" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <asp:Image ID="imgTeacherProfile" runat="server" CssClass="profile-image img-fluid rounded-circle" Width="150px" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Editable Section -->
-                    <div class="edit-section">
-                        <h4>Edit Teacher Details</h4>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <asp:TextBox ID="txtTeacherEmail" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Mobile Number</label>
-                                    <asp:TextBox ID="txtTeacherMobile" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <asp:TextBox ID="txtTeacherAddress" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </asp:Panel>
-
-                <!-- Student Profile Panel -->
-                <asp:Panel ID="pnlStudentProfile" runat="server" Visible="false">
-                    <div class="readonly-section">
-                        <h4>Student Profile</h4>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <asp:TextBox ID="txtStudentName" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Gender</label>
-                                    <asp:TextBox ID="txtStudentGender" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Date of Birth</label>
-                                    <asp:TextBox ID="txtStudentDOB" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <asp:Image ID="imgStudentProfile" runat="server" CssClass="profile-image img-fluid rounded-circle" Width="150px" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Editable Section -->
-                    <div class="edit-section">
-                        <h4>Edit Student Details</h4>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <asp:TextBox ID="txtStudentEmail" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Mobile Number</label>
-                                    <asp:TextBox ID="txtStudentMobile" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <asp:TextBox ID="txtStudentAddress" runat="server" CssClass="form-control" ReadOnly="true" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </asp:Panel>
-            </div>
-        </div>
-    </div>
-        </form>
+    </form>
 </asp:Content>

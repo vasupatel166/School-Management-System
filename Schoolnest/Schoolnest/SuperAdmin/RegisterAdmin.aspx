@@ -15,7 +15,6 @@
                         <div class="form-group mb-0">
                             <asp:DropDownList ID="ddlSearchAdmin" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSearchAdmin_SelectedIndexChanged">
                             </asp:DropDownList>
-
                         </div>
                     </div>
 
@@ -102,10 +101,6 @@
                         <div class="card-footer text-center mt-4 pt-4">
                             <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-success" OnClick="btnSubmit_Click" />
                             <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-danger" CausesValidation="false" OnClick="btnCancel_Click" />
-                            <!-- Hidden Delete Button to trigger postback -->
-                            <%--<asp:Button ID="btnConfirmDelete" runat="server" Text="Yes, Delete" CssClass="btn btn-danger" OnClick="btnConfirmDelete_Click" Style="display:none;" />
-                            <!-- Delete Button that triggers SweetAlert -->
-                            <button type="button" id="btnDelete" class="btn btn-warning ml-2">Delete Admin</button>--%>
                         </div>
                     </div>
                 </div>
@@ -114,38 +109,4 @@
 
    </form>
 
-<%--    <script type="text/javascript">
-        // Trigger SweetAlert for delete confirmation
-        document.getElementById("btnDelete").onclick = function () {
-            // Show SweetAlert
-            swal({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                buttons: {
-                    cancel: {
-                        text: "No, cancel!",
-                        value: null,
-                        visible: true,
-                        className: "btn btn-danger",
-                        closeModal: true,
-                    },
-                    confirm: {
-                        text: "Yes, delete it!",
-                        value: true,
-                        visible: true,
-                        className: "btn btn-success",
-                        closeModal: false
-                    }
-                }
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    // If user confirms, trigger the server-side event
-                    document.getElementById("<%= btnConfirmDelete.ClientID %>").click();
-                } else {
-                    swal("Cancelled", "Your admin data is safe!", "info");
-                }
-            });
-        }
-    </script>--%>
 </asp:Content>

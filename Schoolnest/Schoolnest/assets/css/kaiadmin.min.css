@@ -6181,11 +6181,11 @@ label.error {
 }
 
 .nav.nav-simple.nav-color-success .nav-link:focus, .nav.nav-simple.nav-color-success .nav-link:hover {
-    color: #31ce36
+    color: #1A2035
 }
 
 .nav.nav-simple.nav-color-success .nav-link.active {
-    color: #31ce36
+    color: #1A2035
 }
 
 .nav.nav-simple.nav-color-danger .nav-link:focus, .nav.nav-simple.nav-color-danger .nav-link:hover {
@@ -6269,15 +6269,15 @@ label.error {
 }
 
 .nav.nav-line.nav-color-success .nav-link:focus, .nav.nav-line.nav-color-success .nav-link:hover {
-    color: #31ce36
+    color: #1A2035
 }
 
 .nav.nav-line.nav-color-success .nav-link.active {
-    color: #31ce36
+    color: #1A2035
 }
 
 .nav.nav-line.nav-color-success .nav-link.active {
-    border-color: #31ce36
+    border-color: #1A2035
 }
 
 .nav.nav-line.nav-color-danger .nav-link:focus, .nav.nav-line.nav-color-danger .nav-link:hover {

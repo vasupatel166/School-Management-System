@@ -100,13 +100,14 @@ namespace Schoolnest
                             cmd.Parameters.AddWithValue("@Username", username);
                         }
 
-                        cmd.Parameters.AddWithValue("@Password", password);
-
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                if(password == reader["DecryptedPassword"].ToString())
+
+                                System.Diagnostics.Debug.WriteLine($"Pass : {password}, Decrypted Password : {reader["DecryptedPassword"]}");
+
+                                if (password == reader["DecryptedPassword"].ToString())
                                 {
                                     return true;
                                 }
