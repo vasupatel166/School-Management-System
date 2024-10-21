@@ -22,7 +22,7 @@ namespace Schoolnest.Admin
         {
             if (!IsPostBack)
             {
-                schoolId = Session["SchoolId"].ToString();
+                schoolId = Session["SchoolID"].ToString();
                 LoadStates();
                 BindStandardDropdown();
                 BindDivisionDropdown();
@@ -45,8 +45,11 @@ namespace Schoolnest.Admin
                     if (SelectedStudentID == "")
                     {
                         // Execute the InsertUserMaster stored procedure to get UserID
-                        userID = ExecuteInsertUserMaster(firstName, lastName, "S", schoolId);
+                        //userID = ExecuteInsertUserMaster(firstName, lastName, "S", schoolId);
+                        ClientScript.RegisterStartupScript(this.GetType(), "Insert",$"alert('Inserted');", true);
                     }
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "Update", $"alert('Updated');", true);
 
                     if (fileProfileImage.HasFile)
                     {
@@ -63,15 +66,16 @@ namespace Schoolnest.Admin
                                 string filePath = "~/assets/img/user-profile-img/student/" + fileName;
 
                                 // Ensure the directory exists before saving the file
-                                string directoryPath = Server.MapPath("~/assets/img/user-profile-img/student/");
-                                if (!Directory.Exists(directoryPath))
-                                {
-                                    Directory.CreateDirectory(directoryPath);
-                                }
+                                //string directoryPath = Server.MapPath("~/assets/img/user-profile-img/student/");
+                                //if (!Directory.Exists(directoryPath))
+                                //{
+                                //     Directory.CreateDirectory(directoryPath);
+                                // }
 
                                 // Save the file
-                                fileProfileImage.SaveAs(Server.MapPath(filePath));
+                                //fileProfileImage.SaveAs(Server.MapPath(filePath));
                                 profileImagePath = "student/" + fileName;
+                                ClientScript.RegisterStartupScript(this.GetType(), "Insert", $"alert(${profileImagePath});", true);
                             }
                             catch (Exception ex)
                             {
@@ -86,7 +90,7 @@ namespace Schoolnest.Admin
                         }
                     }
 
-                    SaveStudent(userID, schoolId);
+                    //SaveStudent(userID, schoolId);
                 }
                 catch (Exception ex)
                 {
@@ -190,7 +194,6 @@ namespace Schoolnest.Admin
                     }
                 }
             }
-
         }
 
         //private void sendEmailtoStudent(string generatedStudentID, string emailid, string schoolID)
