@@ -45,7 +45,7 @@ namespace Schoolnest.Admin
                     if (SelectedStudentID == "")
                     {
                         // Execute the InsertUserMaster stored procedure to get UserID
-                        //userID = ExecuteInsertUserMaster(firstName, lastName, "S", schoolId);
+                        userID = ExecuteInsertUserMaster(firstName, lastName, "S", schoolId);
                         ClientScript.RegisterStartupScript(this.GetType(), "Insert",$"alert('Inserted');", true);
                     }
 
