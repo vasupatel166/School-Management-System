@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -27,9 +28,7 @@ namespace Schoolnest
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-
-
-                    string query = "SELECT * FROM RoleMaster ";
+                    string query = "SELECT * FROM RoleMaster";
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     conn.Open();
@@ -137,8 +136,9 @@ namespace Schoolnest
             txtPasscode.ReadOnly = false;
             // Get the email from your existing logic
             string userEmail = Session["OtpEmail"]?.ToString();
+            string selectedRole = Session["RoleID"]?.ToString();
 
-            bool emailSent = SendOTPMailToUser(userEmail);
+            bool emailSent = SendOTPMailToUser(userEmail, selectedRole);
 
             if (emailSent)
             {
@@ -305,33 +305,156 @@ namespace Schoolnest
                 string userEmail = Session["OtpEmail"]?.ToString();
                 string RoleID = Session["RoleID"]?.ToString();
 
-                // Generate new Password
-                string password = GeneratePassword();
+                // Generate new password
+                string newPassword = GeneratePassword();
 
-                // Update the password in database
+                // Get the Username and SchoolID
+                var (username, schoolId) = GetUsernameWithSchoolId(userEmail, RoleID);
 
-                bool emailSent = SendPasswordUpdateMailToUser(userEmail, password);
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlTransaction transaction = null;
 
-                // Session["OtpEmail"] = null;
-                // Session["RoleID"] = null;
+                    try
+                    {
+                        conn.Open();
 
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowOTPPanel", $"setTimeout(function() {{ showOTPPanel('{pnlPasscode.ClientID}', '{pnlSuccess.ClientID}'); }}, 100);", true);
+                        // Begin the transaction
+                        transaction = conn.BeginTransaction();
 
-                // Redirect to login after a short delay
-                Timer1.Enabled = true;
+                        // Update the user's password using the stored procedure
+                        using (SqlCommand cmd = new SqlCommand("UpdateUserPassword", conn, transaction))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            // Add parameters to the stored procedure
+                            cmd.Parameters.AddWithValue("@Username", username);
+                            cmd.Parameters.AddWithValue("@RoleID", RoleID);
+                            cmd.Parameters.AddWithValue("@NewPassword", newPassword);
+
+                            if (RoleID != "SA" && !string.IsNullOrEmpty(schoolId))
+                            {
+                                cmd.Parameters.AddWithValue("@SchoolID", schoolId);
+                            }
+
+                            // Execute the stored procedure
+                            int rowsAffected = cmd.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+                                // Attempt to send the email with the new password
+
+                                bool emailSent = SendPasswordUpdateMailToUser(userEmail, newPassword);
+
+                                if (emailSent)
+                                {
+                                    // If email is sent successfully, commit the transaction
+                                    transaction.Commit();
+
+                                    // Reset session variables if needed
+                                    Session["OtpEmail"] = null;
+                                    Session["RoleID"] = null;
+
+                                    // Show the success panel
+                                    ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowOTPPanel", $"setTimeout(function() {{ showOTPPanel('{pnlPasscode.ClientID}', '{pnlSuccess.ClientID}'); }}, 100);", true);
+
+                                    // Optionally, redirect to login after a short delay
+                                    Timer1.Enabled = true;
+                                }
+                                else
+                                {
+                                    // If email sending fails, rollback the transaction
+                                    transaction.Rollback();
+                                    System.Diagnostics.Debug.WriteLine("Email failed to send, rolling back password update.");
+                                }
+                            }
+                            else
+                            {
+                                System.Diagnostics.Debug.WriteLine("Password didn't update, no rows affected.");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // If there's any error, rollback the transaction
+                        transaction?.Rollback();
+                        System.Diagnostics.Debug.WriteLine("Error updating password or sending email: " + ex.Message);
+                    }
+                }
             }
             else
             {
                 rfvPasscode.IsValid = false;
                 rfvPasscode.Text = "Invalid OTP. Please try again.";
-                // Continue the timer with the remaining time
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ContinueTimer", $"setTimeout(function() {{ updateTimer(); }}, 100);", true);
 
                 pnlEmail.CssClass = "panel-hidden";
                 pnlPasscode.CssClass = "panel-slide-in";
-
-
             }
+        }
+
+
+        private (string Username, string SchoolID) GetUsernameWithSchoolId(string email, string roleId)
+        {
+            string username = null;
+            string schoolId = null;
+            string emailField = null;
+            string tableName = null;
+            string query = null;
+
+            // Assuming you are retrieving data from a database or another source
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+
+                switch (roleId)
+                {
+                    case "SA":
+                        emailField = "Email";
+                        tableName = "SuperAdmin";
+                        break;
+                    case "A":
+                        emailField = "Email";
+                        tableName = "Admin";
+                        break;
+                    case "T":
+                        emailField = "Teacher_Email";
+                        tableName = "TeacherMaster";
+                        break;
+                    case "S":
+                        emailField = "Student_EmailID";
+                        tableName = "StudentMaster";
+                        break;
+                }
+
+                if (roleId == "SA")
+                {
+                    query = $"SELECT Username FROM SuperAdmin WHERE {emailField} = @Email AND RoleMaster_RoleID = @RoleID";
+                }
+                else
+                {
+                    query = $"SELECT u.UserMaster_UserID, u.SchoolMaster_SchoolID, um.Username FROM {tableName} AS u JOIN UserMaster AS um ON u.UserMaster_USerID = um.UserID WHERE u.{emailField} = @Email AND um.RoleMaster_RoleID = @RoleID";
+                }
+                
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@RoleID", roleId);
+
+                conn.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        username = reader["Username"].ToString();
+                        if (roleId != "SA")
+                        {
+                            schoolId = reader["SchoolMaster_SchoolID"].ToString();
+                        }
+                    }
+                }
+            }
+
+            // Return both UserID and SchoolID as a tuple
+            return (username, schoolId);
         }
 
         private bool SendPasswordUpdateMailToUser(string userEmail, string password)
@@ -373,7 +496,6 @@ namespace Schoolnest
             }
             return new string(password.OrderBy(x => random.Next()).ToArray());
         }
-
 
         // Event triggered when the timer ticks (after 3 seconds)
         protected void Timer1_Tick(object sender, EventArgs e)
