@@ -207,7 +207,7 @@ namespace Schoolnest
 
                     menuItems.Add(new MenuItem("Notifications", "fas fa-bullhorn", "", new List<MenuItem> {
                         new MenuItem("Announcements Board", "fas fa-bullhorn", ResolveUrl("Admin/Announcements.aspx")),
-                        new MenuItem("Send Email/SMS Notifications", "fas fa-envelope", ResolveUrl("Admin/SendNotifications.aspx"))
+                        new MenuItem("Send Email Notifications", "fas fa-envelope", ResolveUrl("Admin/SendNotifications.aspx"))
                     }));
 
                     break;
