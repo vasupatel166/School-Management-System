@@ -68,8 +68,11 @@
                                 <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                             <div class="form-group text-center">
-                                <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-primary" OnClick="btnLogin_Click" />
+                                <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-success" OnClick="btnLogin_Click" />
                                 <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-secondary ml-2" CausesValidation="false" OnClick="btnCancel_Click" />
+                            </div>
+                            <div class="form-group text-center" id="forget_password_link">
+                                <asp:HyperLink ID="HyperLink1" NavigateUrl="~/ForgetPassword.aspx" runat="server" CssClass="btn-link">Forget Password</asp:HyperLink>
                             </div>
                             <div class="form-group text-center" id="register_link">
                                 <asp:HyperLink ID="btn_register_link" NavigateUrl="~/Register.aspx" runat="server" CssClass="btn-link">Registere here</asp:HyperLink>
@@ -79,7 +82,6 @@
                 </div>
             </div>
         </div>
-
     </form>
 
     <!-- Core JS Files -->

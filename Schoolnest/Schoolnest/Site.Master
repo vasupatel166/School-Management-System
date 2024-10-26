@@ -8,6 +8,8 @@
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="<%= ResolveUrl("~/assets/img/favicon.ico") %>" type="image/x-icon" />
 
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+
     <!-- Fonts and icons -->
     <script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js"></script>
     <script>
@@ -28,7 +30,12 @@
     <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/plugins.min.css") %>" />
     <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/kaiadmin.min.css") %>" />
 
-    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <style>
+        .sidebar_submenu_li a .sub-item::before {
+            content:none;
+        }
+    </style>
+
 </head>
 <body>
     <div class="wrapper">
@@ -36,10 +43,11 @@
         <div class="sidebar" data-background-color="dark">
             <div class="sidebar-logo">
                 <!-- Sidebar Header -->
-                <div class="logo-header" data-background-color="dark">
-                    <a href="<%= ResolveUrl("SuperAdmin/Dashboard.aspx") %>" class="logo text-white">
-                        School Nest
-                    </a>
+                <div class="logo-header" data-background-color="white">
+                    <asp:HyperLink ID="DashboardLink" runat="server" CssClass="logo text-white">
+                        <asp:Image ID="Logo" ImageUrl="~/assets/img/Logo.png" CssClass="navbar-brand" runat="server" AlternateText="School Nest Logo" />
+                    </asp:HyperLink>
+
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
                             <i class="gg-menu-right"></i>
@@ -67,7 +75,7 @@
                             <ItemTemplate>
                                 <li class="nav-item">
                                     <a
-                                        class="px-4"
+                                        class="px-4 mb-3"
                                         <%# ((List<MenuItem>)Eval("SubMenus")).Count > 0 ? "data-bs-toggle='collapse'" : "" %>
                                         href="<%# ((List<MenuItem>)Eval("SubMenus")).Count > 0 ? "#submenu" + Container.ItemIndex : Eval("Url") %>">
                                         <i class="<%# Eval("Icon") %>"></i>
@@ -80,9 +88,10 @@
                                         <ul class="nav nav-collapse">
                                             <asp:Repeater ID="SubMenuRepeater" runat="server" DataSource='<%# Eval("SubMenus") %>'>
                                                 <ItemTemplate>
-                                                    <li>
+                                                    <li class="sidebar_submenu_li">
                                                         <a href="<%# Eval("Url") %>"  class="px-4">
-                                                            <span class="sub-item"><%# Eval("Title") %></span>
+                                                            <i class="mx-0 <%# Eval("Icon") %> lh-base"></i>
+                                                            <span class="sub-item ms-2"><%# Eval("Title") %></span>
                                                         </a>
                                                     </li>
                                                 </ItemTemplate>
@@ -104,7 +113,7 @@
             <div class="main-header">
                  <div class="main-header-logo">
                     <!-- Logo Header -->
-                    <div class="logo-header" data-background-color="dark">
+                    <div class="logo-header" data-background-color="white">
                       <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
                           <i class="gg-menu-right"></i>
@@ -119,7 +128,7 @@
                     </div>
                     <!-- End Logo Header -->
                   </div>
-                <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
+                    <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
                     <div class="container-fluid">
                         <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
                             <div class="input-group">
@@ -144,16 +153,18 @@
                                     <i class="fa fa-search"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-search animated fadeIn">
-                                    <form class="navbar-left navbar-form nav-search">
+                                    <div class="navbar-left navbar-form nav-search">
                                         <div class="input-group">
                                             <input
                                                 type="text"
                                                 placeholder="Search ..."
                                                 class="form-control" />
                                         </div>
-                                    </form>
+                                    </div>
                                 </ul>
                             </li>
+
+                            <%--Notifications--%>
                             <li class="nav-item topbar-icon dropdown hidden-caret">
                                 <a
                                     class="nav-link dropdown-toggle"
@@ -226,6 +237,8 @@
                                     </li>
                                 </ul>
                             </li>
+                            <%--Notifications--%>
+
                             <li class="nav-item topbar-user dropdown hidden-caret">
                                 <a
                                     class="dropdown-toggle profile-pic"
@@ -233,11 +246,11 @@
                                     href="#"
                                     aria-expanded="false">
                                     <div class="avatar-sm">
-                                         <asp:Image ID="Image2" ImageUrl="~/assets/img/user-profile-img/default_user_logo.png" CssClass="avatar-img rounded" runat="server" AlternateText="User Image" />
+                                         <asp:Image ID="NavUserImage" CssClass="avatar-img rounded" runat="server" AlternateText="User Image" />
                                     </div>
                                     <span class="profile-username">
                                         <span class="op-7">Hi,</span>
-                                        <span class="fw-bold">Varshil</span>
+                                        <asp:Label ID="NavUserName" CssClass="fw-bold" runat="server" Text=""></asp:Label>
                                     </span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -245,17 +258,17 @@
                                         <li>
                                             <div class="user-box">
                                                 <div class="avatar-lg">
-                                                    <asp:Image ID="Image1" ImageUrl="~/assets/img/user-profile-img/default_user_logo.png" CssClass="avatar-img rounded" runat="server" AlternateText="User Image" />
+                                                    <asp:Image ID="NavUserImage2" CssClass="avatar-img rounded w-auto" runat="server" AlternateText="User Image" />
                                                 </div>
                                                 <div class="u-text">
-                                                    <h4>Varshil</h4>
-                                                    <p class="text-muted">vasupatel166@gmail.com</p>
+                                                    <asp:Label ID="NavUserName2" CssClass="fw-semibold fw-bold" runat="server" Text=""></asp:Label>
+                                                    <asp:Label ID="NavUserEmail" CssClass="fs-6 text-muted" runat="server" Text=""></asp:Label>
                                                 </div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">My Profile</a>
+                                             <asp:HyperLink NavigateUrl="~/Profile.aspx" CssClass="dropdown-item" ID="ProfileLink" runat="server">My Profile</asp:HyperLink>
                                             <div class="dropdown-divider"></div>
                                             <asp:HyperLink NavigateUrl="~/Logout.aspx" CssClass="dropdown-item" ID="logout_link" runat="server">Logout</asp:HyperLink>
                                         </li>
@@ -271,7 +284,7 @@
             <!-- Dynamic Content -->
             <div class="container">
                 <div class="page-inner">
-                    <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+                    <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2">
                         <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
                     </div>
                 </div>
@@ -282,7 +295,7 @@
             <footer class="footer p-2 text-black">
                 <div class="container-fluid d-flex align-items-center justify-content-center">
                     <div class="copyright">
-                        <p class="mb-0">Copyright &copy; <span id="currentYear"></span> School Nest. All rights reserved</p>
+                        <p class="mb-0 text-md-base">Copyright &copy; <span id="currentYear"></span> School Nest. All rights reserved</p>
                     </div>
                 </div>
             </footer>
@@ -325,25 +338,30 @@
     <!-- Kaiadmin JS -->
     <script src="<%= ResolveUrl("~/assets/js/kaiadmin.min.js") %>"></script>
 
-    <script>
-        $(document).ready(function () {
+<script>
+    $(document).ready(function () {
+        /****************************************SIDEBAR****************************************/
 
-            $('.sidebar-content > ul > li.nav-item').on('click', function () {
-
-                // Remove the 'active' class from all nav-items
-                $('.sidebar-content > ul > li.nav-item').removeClass('active submenu');
-
-                // Add 'active' class to the clicked nav-item
-                $(this).parent('.sidebar-content > ul > li.nav-item').addClass('active submenu');
-
-            });
-
-            const year = new Date().getFullYear();
-
-            $("#currentYear").html(year);
-
+        $('.sidebar-content > ul > li.nav-item').on('click', function () {
+            // Remove the 'active' class from all nav-items
+            $('.sidebar-content > ul > li.nav-item').removeClass('active submenu');
+            // Add 'active' class to the clicked nav-item
+            $(this).parent('.sidebar-content > ul > li.nav-item').addClass('active submenu');
         });
-    </script>
+
+        /****************************************SIDEBAR****************************************/
+
+        /**************************************** ADMIN  ****************************************/
+
+        /**************************************** ADMIN ****************************************/
+
+        /****************************************FOOTER****************************************/
+        const year = new Date().getFullYear();
+        $("#currentYear").html(year);
+        /****************************************FOOTER****************************************/
+    });
+</script>
+
 
 </body>
 </html>

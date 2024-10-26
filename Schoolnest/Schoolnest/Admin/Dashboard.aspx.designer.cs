@@ -24,75 +24,66 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// schoolNameLabel control.
+        /// SchoolNameHeading control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label schoolNameLabel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SchoolNameHeading;
 
         /// <summary>
-        /// totalStudentsLabel control.
+        /// TotalStudentsCard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totalStudentsLabel;
+        protected global::System.Web.UI.WebControls.Label TotalStudentsCard;
 
         /// <summary>
-        /// totalTeachersLabel control.
+        /// TotalTeachersCard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totalTeachersLabel;
+        protected global::System.Web.UI.WebControls.Label TotalTeachersCard;
 
         /// <summary>
-        /// activeClassesLabel control.
+        /// TotalActiveClassesCard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label activeClassesLabel;
+        protected global::System.Web.UI.WebControls.Label TotalActiveClassesCard;
 
         /// <summary>
-        /// pendingFeesLabel control.
+        /// TotalPendingFeesCard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label pendingFeesLabel;
+        protected global::System.Web.UI.WebControls.Label TotalPendingFeesCard;
 
         /// <summary>
-        /// UpcomingEventsRepeater control.
+        /// AllEventsLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater UpcomingEventsRepeater;
+        protected global::System.Web.UI.WebControls.HyperLink AllEventsLink;
 
         /// <summary>
-        /// NoEventsLabel control.
+        /// UpcomingEvents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NoEventsLabel;
-
-        /// <summary>
-        /// RepeaterDefaulters control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RepeaterDefaulters;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpcomingEvents;
     }
 }

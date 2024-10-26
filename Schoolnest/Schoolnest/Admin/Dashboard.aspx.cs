@@ -1,209 +1,131 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Configuration;
-using System.Web.Services;
-using Newtonsoft.Json;
-using System.Web.Script.Serialization;
 
 namespace Schoolnest.Admin
 {
     public partial class Dashboard : System.Web.UI.Page
     {
+        private static string connectionString = Global.ConnectionString;
+
+        // Properties to hold the data to pass to the front-end
+        public string Labels { get; set; }
+        public string StudentData { get; set; }
+        public string TeacherData { get; set; }
+        public string StudentTooltips { get; set; }
+        public string TeacherTooltips { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                //if (Session["SchoolId"] != null)
-                //{
-                //string schoolId = Session["SchoolId"].ToString();
-                string schoolId = "Guru0012024".ToString();
-                string schoolName = GetSchoolName(schoolId);
-                // Assuming you want to set the school name in a label or directly in the HTML
-                schoolNameLabel.Text = schoolName; // Update a label on the page
-                                                   //}
-
-                GetDashboardData(schoolId, out int totalStudents, out int totalTeachers, out int activeClasses, out decimal pendingFees);
-                GetDefaulters(schoolId);
-
-                totalStudentsLabel.Text = totalStudents.ToString();
-                totalTeachersLabel.Text = totalTeachers.ToString();
-                activeClassesLabel.Text = activeClasses.ToString();
-                pendingFeesLabel.Text = pendingFees.ToString("C"); // Formats as currency
-
-                LoadUpcomingEvents("2024-2025", schoolId);
-                
+                string schoolId = "Guru0012024";
+                GetAdminDashboardData(schoolId);
             }
         }
 
-        private void GetDefaulters(string schoolId)
+        private void GetAdminDashboardData(string schoolId)
         {
-            var context = HttpContext.Current;
-            string schoolID = context.Session["SchoolID"]?.ToString();
-                    
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["schoolnestConnectionString"].ConnectionString;
-
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("spG_tDefaulters", con))
+                using (SqlCommand cmd = new SqlCommand("GetAdminDashboardData", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@SchoolID", schoolId);
+                    cmd.Parameters.AddWithValue("@AcademicYear", "2024-2025");
 
-                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-                    {
-                        DataTable dt = new DataTable();
-                        sda.Fill(dt);
-                        RepeaterDefaulters.DataSource = dt;
-                        RepeaterDefaulters.DataBind();
-                    }
-                }
-            }
-                }
+                    // OUTPUT parameters
+                    SqlParameter totalStudentsParam = new SqlParameter("@TotalStudents", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    SqlParameter totalTeachersParam = new SqlParameter("@TotalTeachers", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    SqlParameter activeClassesParam = new SqlParameter("@ActiveClasses", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    SqlParameter pendingFeesParam = new SqlParameter("@PendingFees", SqlDbType.Int) { Direction = ParameterDirection.Output };
 
-        [WebMethod]
-        public static string GetAttendanceData()
-        {
-            // Retrieve SchoolID from session
-            var context = HttpContext.Current;
-            string schoolID = context.Session["SchoolID"]?.ToString();
+                    cmd.Parameters.Add(totalStudentsParam);
+                    cmd.Parameters.Add(totalTeachersParam);
+                    cmd.Parameters.Add(activeClassesParam);
+                    cmd.Parameters.Add(pendingFeesParam);
 
-            string jsonData = string.Empty;
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["schoolnestConnectionString"].ConnectionString;
-
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand("GetWeeklyAttendanceSummary", con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@SchoolID", schoolID);
                     con.Open();
-
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-                    jsonData = JsonConvert.SerializeObject(dt);
-                }
-            }
-            return jsonData;
-        }
-
-        [WebMethod]
-        public static string GetBudgetData()
-        {
-            var context = HttpContext.Current;
-            string schoolID = context.Session["SchoolID"]?.ToString();
-            List<BudgetCategory> budgetDataList = new List<BudgetCategory>();
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["schoolnestConnectionString"].ConnectionString;
-
-            using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetBudgetDataBySchoolID", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@SchoolID", schoolID);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    BudgetCategory budgetData = new BudgetCategory
-                    {
-                        CategoryName = reader["CategoryName"].ToString(),
-                        Amount = Convert.ToDecimal(reader["Amount"]),
-                        ActualExpenditure = Convert.ToDecimal(reader["ActualExpenditure"])
-                    };
-                    budgetDataList.Add(budgetData);
-                }
-            }
-
-            return JsonConvert.SerializeObject(budgetDataList);
-        }
-
-        private void LoadUpcomingEvents(string academicYear,string schoolId)
-        {
-            string connString = ConfigurationManager.ConnectionStrings["schoolnestConnectionString"].ConnectionString;
-
-            using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("GetUpcomingEventsForCurrentYear", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@AcademicYear", academicYear);
-                    cmd.Parameters.AddWithValue("@SchoolID", schoolId);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
+                    // Handle Upcoming Events
                     if (reader.HasRows)
                     {
-                        UpcomingEventsRepeater.DataSource = reader;
-                        UpcomingEventsRepeater.DataBind();
+                        while (reader.Read())
+                        {
+                            string eventTitle = reader["EventTitle"].ToString();
+                            DateTime eventDate = (DateTime)reader["EventDate"];
+                            AddUpcomingEvent(eventTitle, eventDate);
+                        }
                     }
-                    else
-                    {
-                        NoEventsLabel.Text = "No upcoming events for the current academic year.";
-                    }
+
+                    // Move to the next result set (attendance records)
+                    //if (reader.NextResult())
+                    //{
+                    //    List<string> labels = new List<string>(); // This will store Mon, Tue, etc.
+                    //    List<double> studentAttendance = new List<double>();
+                    //    List<double> teacherAttendance = new List<double>();
+                    //    List<string> studentTooltips = new List<string>(); // To store actual values for tooltips
+                    //    List<string> teacherTooltips = new List<string>();
+
+                    //    while (reader.Read())
+                    //    {
+                    //        DateTime attendanceDate = (DateTime)reader["AttendanceDate"];
+                    //        labels.Add(attendanceDate.ToString("ddd"));  // Example: "Mon", "Tue"
+
+                    //        // Calculate student and teacher attendance percentages
+                    //        int totalStudentsPresent = Convert.ToInt32(reader["TotalStudentsPresent"]);
+                    //        int totalTeachersPresent = Convert.ToInt32(reader["TotalTeachersPresent"]);
+
+                    //        double studentPercentage = (int)totalStudentsParam.Value > 0 ? ((double)totalStudentsPresent / (int)totalStudentsParam.Value) * 100 : 0;
+                    //        double teacherPercentage = (int)totalTeachersParam.Value > 0 ? ((double)totalTeachersPresent / (int)totalTeachersParam.Value) * 100 : 0;
+
+                    //        studentAttendance.Add(studentPercentage);
+                    //        teacherAttendance.Add(teacherPercentage);
+
+                    //        // Tooltips to show the actual values
+                    //        studentTooltips.Add($"{totalStudentsPresent} / {(int)totalStudentsParam.Value}");
+                    //        teacherTooltips.Add($"{totalTeachersPresent} / {(int)totalTeachersParam.Value}");
+                    //    }
+
+                    //    // Convert data into JSON format for use in the front-end
+                    //    Labels = "'" + string.Join("','", labels) + "'";
+                    //    StudentData = string.Join(",", studentAttendance);
+                    //    TeacherData = string.Join(",", teacherAttendance);
+                    //    StudentTooltips = "'" + string.Join("','", studentTooltips) + "'";
+                    //    TeacherTooltips = "'" + string.Join("','", teacherTooltips) + "'";
+                    //}
+
+                    reader.Close(); // Close the reader to access output parameters.
+
+                    // Now access the OUTPUT parameters after closing the reader
+                    TotalStudentsCard.Text = totalStudentsParam.Value != DBNull.Value ? totalStudentsParam.Value.ToString() : "0";
+                    TotalTeachersCard.Text = totalTeachersParam.Value != DBNull.Value ? totalTeachersParam.Value.ToString() : "0";
+                    TotalActiveClassesCard.Text = activeClassesParam.Value != DBNull.Value ? activeClassesParam.Value.ToString() : "0";
+                    TotalPendingFeesCard.Text = pendingFeesParam.Value != DBNull.Value ? pendingFeesParam.Value.ToString() : "0";
                 }
             }
         }
 
-        private string GetSchoolName(string schoolId)
+        private void AddUpcomingEvent(string title, DateTime date)
         {
-            string schoolName = string.Empty;
-            string connString = ConfigurationManager.ConnectionStrings["schoolnestConnectionString"].ConnectionString;
+            // Create a div for each event
+            string eventHtml = $@"
+                <div class='item-list'>
+                    <div class='info-user ms-3'>
+                        <div class='username'>{title}</div>
+                        <div class='status'>{date.ToString("dd MMM, yyyy")}</div>
+                    </div>
+                    <button type='button' class='btn btn-icon btn-link op-8 me-1'>
+                        <a href='~/Admin/EventMaster.aspx'><i class='fas fa-edit'></i></a>
+                    </button>
+                </div>";
 
-            using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("GetSchoolName", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@SchoolId", schoolId);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        schoolName = reader["SchoolName"].ToString();
-                    }
-                }
-            }
-
-            return schoolName;
-        }
-
-        private void GetDashboardData(string schoolId, out int totalStudents, out int totalTeachers, out int activeClasses, out decimal pendingFees)
-        {
-            totalStudents = totalTeachers = activeClasses = 0;
-            pendingFees = 0;
-
-            using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("GetDashboardData", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@SchoolId", schoolId);
-                    cmd.Parameters.Add(new SqlParameter("@TotalStudents", SqlDbType.Int) { Direction = ParameterDirection.Output });
-                    cmd.Parameters.Add(new SqlParameter("@TotalTeachers", SqlDbType.Int) { Direction = ParameterDirection.Output });
-                    cmd.Parameters.Add(new SqlParameter("@ActiveClasses", SqlDbType.Int) { Direction = ParameterDirection.Output });
-                    cmd.Parameters.Add(new SqlParameter("@PendingFees", SqlDbType.Decimal) { Direction = ParameterDirection.Output });
-
-                    cmd.ExecuteNonQuery();
-
-                    totalStudents = (int)cmd.Parameters["@TotalStudents"].Value;
-                    totalTeachers = (int)cmd.Parameters["@TotalTeachers"].Value;
-                    activeClasses = (int)cmd.Parameters["@ActiveClasses"].Value;
-                    object pendingFeesValue = cmd.Parameters["@PendingFees"].Value;
-                    pendingFees = pendingFeesValue != DBNull.Value ? (decimal)pendingFeesValue : 0; // Default to 0 if NULL
-                }
-            }
+            // Registering the event list as a control on the server-side
+            UpcomingEvents.InnerHtml += eventHtml;
         }
 
     }

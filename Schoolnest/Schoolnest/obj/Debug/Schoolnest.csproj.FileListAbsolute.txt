@@ -180,103 +180,24 @@ D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnes
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Memory.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Numerics.Vectors.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.ValueTuple.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Schoolnest.dll.config
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Schoolnest.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Schoolnest.pdb
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\csc.exe
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\csc.exe.config
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\csc.rsp
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\csi.exe
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\csi.exe.config
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\csi.rsp
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\Microsoft.Managed.Core.targets
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\System.Buffers.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\System.Memory.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\System.Numerics.Vectors.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\System.Threading.Tasks.Extensions.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\vbc.exe
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\vbc.exe.config
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\vbc.rsp
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\VBCSCompiler.exe
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\BouncyCastle.Cryptography.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\DotNetEnv.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\EntityFramework.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\EntityFramework.SqlServer.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\MailKit.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Configuration.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Primitives.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\MimeKit.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Newtonsoft.Json.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Sprache.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Buffers.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Formats.Asn1.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Memory.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Numerics.Vectors.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Threading.Tasks.Extensions.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.ValueTuple.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\BouncyCastle.Cryptography.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\EntityFramework.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\EntityFramework.SqlServer.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\MailKit.pdb
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\MailKit.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\MailKit.dll.config
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Configuration.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Configuration.Abstractions.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Primitives.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\MimeKit.pdb
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\MimeKit.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\MimeKit.dll.config
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Newtonsoft.Json.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Sprache.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Buffers.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Formats.Asn1.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Memory.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Numerics.Vectors.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Threading.Tasks.Extensions.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.ValueTuple.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.AssemblyReference.cache
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.CoreCompileInputs.cache
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.Up2Date
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\obj\Debug\Schoolnest.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\obj\Debug\Schoolnest.pdb
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Bcl.HashCode.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Npgsql.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Collections.Immutable.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Diagnostics.DiagnosticSource.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Text.Encodings.Web.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Text.Json.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Threading.Channels.dll
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Bcl.AsyncInterfaces.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Bcl.HashCode.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Logging.Abstractions.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\Npgsql.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Collections.Immutable.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Diagnostics.DiagnosticSource.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Text.Encodings.Web.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Text.Json.xml
-C:\Users\Juned Shaikh\Desktop\Juned\Semester 4\Capstone\02102024\Schoolnest\Schoolnest\bin\System.Threading.Channels.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\.env
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Bcl.HashCode.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Collections.Immutable.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Diagnostics.DiagnosticSource.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Text.Encodings.Web.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Threading.Channels.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Threading.Tasks.Extensions.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Bcl.HashCode.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Logging.Abstractions.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Collections.Immutable.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Diagnostics.DiagnosticSource.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Text.Encodings.Web.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Threading.Channels.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Threading.Tasks.Extensions.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Newtonsoft.Json.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Newtonsoft.Json.xml

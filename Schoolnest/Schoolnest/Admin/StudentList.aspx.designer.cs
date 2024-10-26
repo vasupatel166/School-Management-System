@@ -33,14 +33,32 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddlStudents;
 
         /// <summary>
-        /// txtStudentID control.
+        /// pills-academic-tab control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStudentID;
-
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor pills-academic-tab;
+        
+        /// <summary>
+        /// pills-contact-tab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor pills-contact-tab;
+        
+        /// <summary>
+        /// pills-additional-tab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor pills-additional-tab;
+        
         /// <summary>
         /// txtFirstName control.
         /// </summary>
@@ -96,15 +114,6 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.WebControls.TextBox txtFullName;
 
         /// <summary>
-        /// ddlGender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGender;
-
-        /// <summary>
         /// txtDateOfBirth control.
         /// </summary>
         /// <remarks>
@@ -132,6 +141,15 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.WebControls.TextBox txtPlaceOfBirth;
 
         /// <summary>
+        /// ddlGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlGender;
+
+        /// <summary>
         /// ddlReligion control.
         /// </summary>
         /// <remarks>
@@ -148,6 +166,15 @@ namespace Schoolnest.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCaste;
+
+        /// <summary>
+        /// txtMotherTongue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMotherTongue;
 
         /// <summary>
         /// ddlBloodGroup control.
@@ -168,49 +195,22 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddlBusRoute;
 
         /// <summary>
-        /// fileUploadStudentImage control.
+        /// fileProfileImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileUploadStudentImage;
+        protected global::System.Web.UI.WebControls.FileUpload fileProfileImage;
 
         /// <summary>
-        /// btnUploadImage control.
+        /// chkIsActive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUploadImage;
-
-        /// <summary>
-        /// btnDeleteImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeleteImage;
-
-        /// <summary>
-        /// hfFilePath control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfFilePath;
-
-        /// <summary>
-        /// imgStudent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgStudent;
+        protected global::System.Web.UI.WebControls.CheckBox chkIsActive;
 
         /// <summary>
         /// ddlStandard control.
@@ -312,33 +312,6 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAdmissionDate;
 
         /// <summary>
-        /// ddlStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
-
-        /// <summary>
-        /// txtLastSchoolAttended control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLastSchoolAttended;
-
-        /// <summary>
-        /// txtMotherTongue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMotherTongue;
-
-        /// <summary>
         /// txtEmailID control.
         /// </summary>
         /// <remarks>
@@ -411,13 +384,58 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.WebControls.TextBox txtAddress2;
 
         /// <summary>
-        /// txtAddress3 control.
+        /// ddlState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAddress3;
+        protected global::System.Web.UI.WebControls.DropDownList ddlState;
+
+        /// <summary>
+        /// rfvState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvState;
+
+        /// <summary>
+        /// ddlCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCity;
+
+        /// <summary>
+        /// rfvCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCity;
+
+        /// <summary>
+        /// ddlPincode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPincode;
+
+        /// <summary>
+        /// rfvPincode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPincode;
 
         /// <summary>
         /// txtFatherName control.
@@ -519,6 +537,15 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.WebControls.Button btnSubmit;
 
         /// <summary>
+        /// btnNext control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNext;
+
+        /// <summary>
         /// btnCancel control.
         /// </summary>
         /// <remarks>
@@ -526,23 +553,5 @@ namespace Schoolnest.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
-
-        /// <summary>
-        /// btnReset control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReset;
-
-        /// <summary>
-        /// btnSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
     }
 }

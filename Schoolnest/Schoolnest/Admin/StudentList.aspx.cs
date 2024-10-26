@@ -1,48 +1,420 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Security.Cryptography;
-using System.Text;
-using System.Net.Mail;
-using System.Net;
-using System.Web.Services;
-
 
 namespace Schoolnest.Admin
 {
     public partial class StudentList : System.Web.UI.Page
     {
-        string connString = ConfigurationManager.ConnectionStrings["schoolnestConnectionString"].ConnectionString;
-        string fileName = string.Empty;
-        string filePath = string.Empty;
-        string schoolId = string.Empty;
+
+        private string connectionString = Global.ConnectionString;
+        private string SelectedStudentID = "";
+        public string profileImagePath = null;
+        public string schoolId = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                schoolId = Session["SchoolId"].ToString();
+                schoolId = Session["SchoolID"].ToString();
+                LoadStates();
                 BindStandardDropdown();
                 BindDivisionDropdown();
                 BindSectionDropdown();
                 BindBusRoute(schoolId);
                 PopulateStudentDropdown(schoolId);
-                ddlStudents.Visible = false;
             }
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                try
+                {
+                    string firstName = txtFirstName.Text;
+                    string lastName = txtLastName.Text;
+                    int userID = 0;
+
+                    if (SelectedStudentID == "")
+                    {
+                        // Execute the InsertUserMaster stored procedure to get UserID
+                        userID = ExecuteInsertUserMaster(firstName, lastName, "S", schoolId);
+                        ClientScript.RegisterStartupScript(this.GetType(), "Insert",$"alert('Inserted');", true);
+                    }
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "Update", $"alert('Updated');", true);
+
+                    if (fileProfileImage.HasFile)
+                    {
+                        string extension = Path.GetExtension(fileProfileImage.FileName).ToLower();
+
+                        if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                        {
+                            try
+                            {
+                                // Generate a unique 3-digit number prefix for the image file name
+                                Random random = new Random();
+                                string uniquePrefix = random.Next(100, 1000).ToString();
+                                string fileName = uniquePrefix + "_" + fileProfileImage.FileName;
+                                string filePath = "~/assets/img/user-profile-img/student/" + fileName;
+
+                                // Ensure the directory exists before saving the file
+                                //string directoryPath = Server.MapPath("~/assets/img/user-profile-img/student/");
+                                //if (!Directory.Exists(directoryPath))
+                                //{
+                                //     Directory.CreateDirectory(directoryPath);
+                                // }
+
+                                // Save the file
+                                //fileProfileImage.SaveAs(Server.MapPath(filePath));
+                                profileImagePath = "student/" + fileName;
+                                ClientScript.RegisterStartupScript(this.GetType(), "Insert", $"alert(${profileImagePath});", true);
+                            }
+                            catch (Exception ex)
+                            {
+                                ClientScript.RegisterStartupScript(this.GetType(), "Error", $"alert('File upload failed: {ex.Message}');", true);
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            ClientScript.RegisterStartupScript(this.GetType(), "Error", "alert('Only image files (jpg, jpeg, png, gif) are allowed.');", true);
+                            return;
+                        }
+                    }
+
+                    //SaveStudent(userID, schoolId);
+                }
+                catch (Exception ex)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "Error", $"alert('Error: {ex.Message}');", true);
+                }
+            }
+        }
+        private int ExecuteInsertUserMaster(string firstName, string lastName, string roleID, string schoolID)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("InsertUserMaster", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@FirstName", firstName);
+                    cmd.Parameters.AddWithValue("@LastName", lastName);
+                    cmd.Parameters.AddWithValue("@RoleMaster_RoleID", roleID);
+                    cmd.Parameters.AddWithValue("@SchoolMaster_SchoolID", schoolID);
+
+                    conn.Open();
+                    object result = cmd.ExecuteScalar(); // Use ExecuteScalar to get the UserID directly
+                    return result != null ? Convert.ToInt32(result) : 0;
+                }
+            }
+        }
+
+        private void SaveStudent(int userID, string schoolId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_InsertUpdateStudentMaster", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    if (string.IsNullOrEmpty(ddlStudents.SelectedValue))
+                    {
+                        // Pass NULL for insert, and let SQL generate the StudentID
+                        cmd.Parameters.Add(new SqlParameter("@StudentID", SqlDbType.VarChar, 25) { Direction = ParameterDirection.Output });
+                    }
+                    else
+                    {
+                        // Pass existing StudentID for update
+                        cmd.Parameters.Add(new SqlParameter("@StudentID", SelectedStudentID));
+                    }
+                    cmd.Parameters.AddWithValue("@Student_FirstName", txtFirstName.Text);
+                    cmd.Parameters.AddWithValue("@Student_MiddleName", txtMiddleName.Text);
+                    cmd.Parameters.AddWithValue("@Student_LastName", txtLastName.Text);
+                    cmd.Parameters.AddWithValue("@Student_FullName", txtFullName.Text);
+                    cmd.Parameters.AddWithValue("@Student_Gender", ddlGender.SelectedValue);
+                    cmd.Parameters.AddWithValue("@Student_DateOfBirth", Convert.ToDateTime(txtDateOfBirth.Text));
+                    cmd.Parameters.AddWithValue("@Student_PlaceOfBirth", txtPlaceOfBirth.Text);
+                    cmd.Parameters.AddWithValue("@Student_Religion", ddlReligion.SelectedValue);
+                    cmd.Parameters.AddWithValue("@Student_Caste", ddlCaste.SelectedValue);
+                    cmd.Parameters.AddWithValue("@Student_BloodGroup", ddlBloodGroup.SelectedValue);
+                    cmd.Parameters.AddWithValue("@Student_ProfileImage", profileImagePath);
+                    cmd.Parameters.AddWithValue("@Student_Standard", Convert.ToInt32(ddlStandard.SelectedValue));
+                    cmd.Parameters.AddWithValue("@Student_Division", Convert.ToInt32(ddlDivision.SelectedValue));
+                    cmd.Parameters.AddWithValue("@Student_Section", Convert.ToInt32(ddlSection.SelectedValue));
+                    cmd.Parameters.AddWithValue("@Student_GRNumber", txtGRNumber.Text);
+                    cmd.Parameters.AddWithValue("@Student_DateOfAdmission", Convert.ToDateTime(txtDateOfAdmission.Text));
+                    cmd.Parameters.AddWithValue("@Student_MotherTongue", txtMotherTongue.Text);
+                    cmd.Parameters.AddWithValue("@Student_EmailID", txtEmailID.Text);
+                    cmd.Parameters.AddWithValue("@Student_MobileNumber", txtMobileNumber.Text);
+                    cmd.Parameters.AddWithValue("@Student_Address1", txtAddress1.Text);
+                    cmd.Parameters.AddWithValue("@Student_Address2", txtAddress2.Text);
+                    cmd.Parameters.AddWithValue("@Student_LocationID", ddlPincode.SelectedValue);
+                    cmd.Parameters.AddWithValue("@Student_FatherName", txtFatherName.Text);
+                    cmd.Parameters.AddWithValue("@Student_MotherName", txtMotherName.Text);
+                    cmd.Parameters.AddWithValue("@Student_LastSchoolAttended", chkLastSchoolAttended.Checked);
+                    cmd.Parameters.AddWithValue("@Student_LastSchoolName", txtLastSchoolName.Text);
+                    cmd.Parameters.AddWithValue("@Student_LastSchoolAddress", txtLastSchoolAddress.Text);
+                    cmd.Parameters.AddWithValue("@Student_LastSchoolRemarks", txtLastSchoolRemarks.Text);
+                    cmd.Parameters.AddWithValue("@Student_LastYearPercentage", string.IsNullOrEmpty(txtLastYearPercentage.Text) ? (object)DBNull.Value : Convert.ToDecimal(txtLastYearPercentage.Text));
+                    cmd.Parameters.AddWithValue("@Student_Grade", txtGrade.Text);
+                    cmd.Parameters.AddWithValue("@Student_Remarks", txtRemarks.Text);
+                    cmd.Parameters.AddWithValue("@SchoolMaster_SchoolID", schoolId);
+                    cmd.Parameters.AddWithValue("@TransportAssignment_AssignmentID", Convert.ToInt32(ddlBusRoute.SelectedValue));
+                    cmd.Parameters.AddWithValue("@UserMaster_UserID", userID);
+                    cmd.Parameters.AddWithValue("@IsActive", chkIsActive.Checked ? 1 : 0);
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        string generatedStudentID = cmd.Parameters["@StudentID"].Value.ToString();
+                        string emailid = txtEmailID.Text;
+                        if (string.IsNullOrEmpty(SelectedStudentID))
+                        {
+                            // sendEmailtoStudent(generatedStudentID, emailid, schoolID);
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Student Created Successfully');", true);
+                            ResetForm();
+
+                        }
+                        else
+                        {
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Student Updated Successfully');", true);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the exception and show an error message
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", $"alert('An error occurred: {ex.Message}');", true);
+                    }
+                }
+            }
+        }
+
+        //private void sendEmailtoStudent(string generatedStudentID, string emailid, string schoolID)
+        //{
+        //    try
+        //    {
+        //        // Retrieve the school name based on schoolID from the database
+        //        string schoolName = GetSchoolNameByID(schoolID);
+
+        //        string smtpServer = "smtp.gmail.com";
+        //        int smtpPort = 587; // Use port 587 for TLS, or 465 for SSL
+        //        string senderEmail = "schoolnestcapstone@gmail.com"; // Your Gmail email address
+        //        string senderPassword = "nxij uksy myur bmny"; // Your Gmail App Password (if 2FA enabled) or Gmail password
+
+        //        MailMessage mailMessage = new MailMessage
+        //        {
+        //            From = new MailAddress(senderEmail),
+        //            Subject = "Registration Successful!",
+        //            Body = $"Dear Student, \n\nWelcome to {schoolName}. Your registration has been successfully completed. " +
+        //                           $"Your Student ID is: {generatedStudentID}\n" +
+        //                           $"Your Password is: {"Student@123"}\n\n" +
+        //                           "Please keep this information secure.\n\nBest regards,\n" + schoolName,
+        //            IsBodyHtml = true // Set to true if sending HTML content
+        //        };
+
+        //        mailMessage.To.Add(emailid);
+
+        //        // Create and configure the SmtpClient
+        //        using (SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort))
+        //        {
+        //            smtpClient.EnableSsl = true; // Enable SSL/TLS for secure communication
+        //            smtpClient.Credentials = new NetworkCredential(senderEmail, senderPassword);
+        //            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+        //            // Send the email
+        //            smtpClient.Send(mailMessage);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log or handle any errors that occur while sending the email
+        //        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Error sending email: " + ex.Message + "');", true);
+        //    }
+        //}
+
+        // Method to get the school name from the database using the schoolID
+        //private string GetSchoolNameByID(string schoolID)
+        //{
+        //    string schoolName = "Your School";
+        //    using (SqlConnection conn = new SqlConnection(connectionString))
+        //    {
+        //        string query = "SELECT SchoolName FROM SchoolMaster WHERE SchoolID = @SchoolID";
+        //        SqlCommand cmd = new SqlCommand(query, conn);
+        //        cmd.Parameters.AddWithValue("@SchoolID", schoolID);
+
+        //        try
+        //        {
+        //            conn.Open();
+        //            object result = cmd.ExecuteScalar();
+        //            if (result != null)
+        //            {
+        //                schoolName = result.ToString();
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            // Handle database connection errors here (log it, etc.)
+        //            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Error fetching school name: " + ex.Message + "');", true);
+        //        }
+        //    }
+        //    return schoolName;
+        //}
+
+        private void LoadLocationDetails(int locationID)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM LocationMaster WHERE LocationID = @LocationID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@LocationID", locationID);
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Populate location dropdowns
+                            ddlCity.Enabled = true;
+                            ddlPincode.Enabled = true;
+                            ddlState.SelectedValue = reader["State"].ToString();
+                            LoadCities(reader["State"].ToString());
+                            ddlCity.SelectedValue = reader["City"].ToString();
+                            LoadPincodes(reader["State"].ToString(), reader["City"].ToString());
+
+                            // Check if the pincode exists in the ddlPincode dropdown list before setting the SelectedValue
+                            string pincode = reader["Pincode"].ToString();
+                            string location_id = reader["LocationID"].ToString();
+
+                            // Ensure that the pincode is available in the dropdown
+                            if (ddlPincode.Items.FindByValue(location_id) != null)
+                            {
+                                ddlPincode.SelectedValue = location_id;
+                            }
+                            else
+                            {
+                                // If the pincode is not available in the dropdown, add it dynamically or log the issue
+                                ddlPincode.Items.Insert(0, new ListItem(location_id, pincode));
+                                ddlPincode.SelectedValue = location_id;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void LoadStates()
+        {
+            // Fetch all distinct states
+            DataTable dtStates = GetLocationData(null, null);
+            ddlState.DataSource = dtStates;
+            ddlState.DataTextField = "State";
+            ddlState.DataValueField = "State";
+            ddlState.DataBind();
+            ddlState.Items.Insert(0, new ListItem("Select State", ""));
+        }
+
+        private void LoadCities(string state)
+        {
+            // Fetch all cities for the selected state
+            DataTable dtCities = GetLocationData(state, null);
+            ddlCity.DataSource = dtCities;
+            ddlCity.DataTextField = "City";
+            ddlCity.DataValueField = "City";
+            ddlCity.DataBind();
+            ddlCity.Items.Insert(0, new ListItem("Select City", ""));
+        }
+
+        private void LoadPincodes(string state, string city)
+        {
+            // Fetch all pincodes for the selected state and city
+            DataTable dtPincodes = GetLocationData(state, city);
+            ddlPincode.DataSource = dtPincodes;
+            ddlPincode.DataTextField = "Pincode";
+            ddlPincode.DataValueField = "LocationID";
+            ddlPincode.DataBind();
+            ddlPincode.Items.Insert(0, new ListItem("Select Pincode", ""));
+        }
+
+        protected void ddlState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedState = ddlState.SelectedValue;
+
+            if (!string.IsNullOrEmpty(selectedState))
+            {
+                // Load cities for the selected state and enable city dropdown
+                LoadCities(selectedState);
+                ddlCity.Enabled = true;
+
+                // Reset and disable pincode dropdown
+                ddlPincode.Items.Clear();
+                ddlPincode.Items.Insert(0, new ListItem("Select Pincode", ""));
+                ddlPincode.Enabled = false;
+            }
+            else
+            {
+                // If no state is selected, disable both city and pincode dropdowns
+                ddlCity.Enabled = false;
+                ddlCity.Items.Clear();
+                ddlCity.Items.Insert(0, new ListItem("Select City", ""));
+
+                ddlPincode.Enabled = false;
+                ddlPincode.Items.Clear();
+                ddlPincode.Items.Insert(0, new ListItem("Select Pincode", ""));
+            }
+        }
+
+        protected void ddlCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedState = ddlState.SelectedValue;
+            string selectedCity = ddlCity.SelectedValue;
+
+            if (!string.IsNullOrEmpty(selectedCity))
+            {
+                // Load pincodes for the selected city and enable pincode dropdown
+                LoadPincodes(selectedState, selectedCity);
+                ddlPincode.Enabled = true;
+            }
+            else
+            {
+                // If no city is selected, disable pincode dropdown
+                ddlPincode.Enabled = false;
+                ddlPincode.Items.Clear();
+                ddlPincode.Items.Insert(0, new ListItem("Select Pincode", ""));
+            }
+        }
+
+        private DataTable GetLocationData(string state, string city)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetLocationDetails", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@State", (object)state ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@City", (object)city ?? DBNull.Value);
+
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(dt);
+                    }
+                }
+            }
+            return dt;
         }
 
         private void PopulateStudentDropdown(string schoolId)
         {
-            // Example: Retrieve student data from the database based on a search criteria (e.g., Student Name or ID)
-            string query = "SELECT StudentID, student_FullName FROM StudentMaster where SchoolMaster_SchoolID='"+schoolId+"'";
+            string query = "SELECT StudentID, Student_FullName FROM StudentMaster where SchoolMaster_SchoolID='" + schoolId + "'";
 
-            using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -50,10 +422,10 @@ namespace Schoolnest.Admin
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     ddlStudents.Items.Clear();
-                    ddlStudents.Items.Add(new ListItem("-- Select Student --", ""));
+                    ddlStudents.Items.Add(new ListItem("Select Student", ""));
                     while (reader.Read())
                     {
-                        ListItem item = new ListItem(reader["student_FullName"].ToString(), reader["StudentID"].ToString());
+                        ListItem item = new ListItem(reader["Student_FullName"].ToString(), reader["StudentID"].ToString());
                         ddlStudents.Items.Add(item);
                     }
                 }
@@ -64,35 +436,31 @@ namespace Schoolnest.Admin
         {
             if (!string.IsNullOrEmpty(ddlStudents.SelectedValue))
             {
-                LoadStudentDetails(ddlStudents.SelectedValue);
-                //studentDetails.Visible = true; // Show student details when a student is selected
+                SelectedStudentID = ddlStudents.SelectedValue;
+                LoadStudentDetails(SelectedStudentID);
             }
             else
             {
-                //studentDetails.Visible = false; // Hide details if no student is selected
+                ResetForm();
             }
         }
 
         private void LoadStudentDetails(string studentId)
         {
-            var context = HttpContext.Current;
-            string schoolID = context.Session["SchoolID"]?.ToString();
-
             // Call the stored procedure
-            using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("sp_GetStudentDetails", conn))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure; // Specify that this is a stored procedure
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@StudentID", studentId);
-                    cmd.Parameters.AddWithValue("@SchoolID", schoolID);
+                    cmd.Parameters.AddWithValue("@SchoolID", schoolId);
 
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
-                        txtStudentID.Text = reader["StudentID"].ToString();
                         txtFirstName.Text = reader["Student_FirstName"].ToString();
                         txtMiddleName.Text = reader["Student_MiddleName"].ToString();
                         txtLastName.Text = reader["Student_LastName"].ToString();
@@ -105,20 +473,14 @@ namespace Schoolnest.Admin
                         }
                         else
                         {
-                            txtDateOfBirth.Text = ""; // Handle cases where the date is null in the database
+                            txtDateOfBirth.Text = "";
                         }
-                        
                         txtPlaceOfBirth.Text = reader["Student_PlaceOfBirth"].ToString();
                         ddlReligion.SelectedValue = reader["Student_Religion"].ToString();
                         ddlCaste.SelectedValue = reader["Student_Caste"].ToString();
                         ddlBloodGroup.SelectedValue = reader["Student_BloodGroup"].ToString();
-                        string imgPath= reader["Student_ProfileImage"].ToString();
-                        if (!string.IsNullOrEmpty(imgPath))
-                        {
-                            imgStudent.ImageUrl = imgPath;  // Set the image path to the asp:Image control
-                        }
-                       
-                        ddlStandard.SelectedValue = reader["Student_Standard"].ToString() ;
+                        profileImagePath = reader["Student_ProfileImage"].ToString();
+                        ddlStandard.SelectedValue = reader["Student_Standard"].ToString();
                         ddlDivision.SelectedValue = reader["Student_Division"].ToString();
                         ddlSection.SelectedValue = reader["Student_Section"].ToString();
                         txtGRNumber.Text = reader["Student_GRNumber"].ToString();
@@ -131,14 +493,18 @@ namespace Schoolnest.Admin
                         {
                             txtDateOfAdmission.Text = ""; // Handle cases where the date is null in the database
                         }
-                        ddlStatus.SelectedValue = reader["Student_Status"].ToString();
-                        txtLastSchoolAttended.Text = reader["LastSchoolAttended"].ToString();
+
                         txtMotherTongue.Text = reader["Student_MotherTongue"].ToString();
-                        txtEmailID.Text = reader["Student_EmailID"].ToString();  
+                        txtEmailID.Text = reader["Student_EmailID"].ToString();
                         txtMobileNumber.Text = reader["Student_MobileNumber"].ToString();
                         txtAddress1.Text = reader["Student_Address1"].ToString();
                         txtAddress2.Text = reader["Student_Address2"].ToString();
-                        txtAddress3.Text = reader["Student_LocationID"].ToString();
+                        // Load location details (State, City, Pincode)
+                        if (!reader.IsDBNull(reader.GetOrdinal("Student_LocationID")))
+                        {
+                            int locationID = reader.GetInt32(reader.GetOrdinal("Student_LocationID"));
+                            LoadLocationDetails(locationID);
+                        }
                         txtFatherName.Text = reader["Student_FatherName"].ToString();
                         txtMotherName.Text = reader["Student_MotherName"].ToString();
                         chkLastSchoolAttended.Checked = Convert.ToBoolean(reader["Student_LastSchoolAttended"]);
@@ -150,22 +516,15 @@ namespace Schoolnest.Admin
                         txtGrade.Text = reader["Student_Grade"].ToString();
                         txtRemarks.Text = reader["Student_Remarks"].ToString();
                         ddlBusRoute.SelectedValue = reader["TransportAssignment_AssignmentID"].ToString();
-                        // Populate other fields as needed
+                        chkIsActive.Checked = Convert.ToBoolean(reader["IsActive"]);
                     }
                 }
             }
-        
-    
-}
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            form1.Attributes.Add("enctype", "multipart/form-data");
         }
 
         private void BindBusRoute(string schoolId)
         {
-            using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("GetBusRoutes", conn))
                 {
@@ -183,7 +542,7 @@ namespace Schoolnest.Admin
 
         private void BindSectionDropdown()
         {
-            using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("GetSections", conn))
                 {
@@ -200,7 +559,7 @@ namespace Schoolnest.Admin
 
         private void BindDivisionDropdown()
         {
-            using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("GetDivisions", conn))
                 {
@@ -217,7 +576,7 @@ namespace Schoolnest.Admin
 
         private void BindStandardDropdown()
         {
-            using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("GetStandards", conn))
                 {
@@ -234,324 +593,23 @@ namespace Schoolnest.Admin
 
         protected void chkLastSchoolAttended_CheckedChanged(object sender, EventArgs e)
         {
-
             ShowHideLastSchoolDetails();
         }
 
         private void ShowHideLastSchoolDetails()
         {
-            lastSchoolDetails.Style["display"] = chkLastSchoolAttended.Checked ? "block" : "none";
+            lastSchoolDetails.Visible = chkLastSchoolAttended.Checked ? true : false;
         }
-
-        protected void btnUploadImage_Click(object sender, EventArgs e)
-        {
-            if (fileUploadStudentImage.HasFile)
-            {
-                try
-                {
-                    // Define the path to save the image
-                    fileName = Path.GetFileName(fileUploadStudentImage.FileName);
-                    filePath = Server.MapPath("~/studentimages/") + fileName;
-
-                    // Save the uploaded file to the server
-                    fileUploadStudentImage.SaveAs(filePath);
-
-                    // Display the uploaded image
-                    imgStudent.ImageUrl = "~/studentimages/" + fileName; // Set the image URL to display
-                    imgStudent.Visible = true; // Make the image visible
-
-                    // Show the delete button
-                    btnDeleteImage.Visible = true;
-
-                    hfFilePath.Value = imgStudent.ImageUrl;
-                }
-                catch (Exception ex)
-                {
-                    // Handle the error (e.g., show a message)
-                    // You can log the error or display a message to the user
-                }
-            }
-        }
-
-        protected void btnDeleteImage_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Clear the image URL
-                imgStudent.ImageUrl = "";
-                imgStudent.Visible = false; // Hide the image
-
-                // Optionally, delete the image file from the server
-                string filePath = Server.MapPath(imgStudent.ImageUrl);
-                if (File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                }
-
-                // Hide the delete button
-                btnDeleteImage.Visible = false;
-            }
-            catch (Exception ex)
-            {
-                // Handle the error (e.g., show a message)
-                // You can log the error or display a message to the user
-            }
-        }
-
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            if(Page.IsValid)
-            {
-                SaveStudent();
-            }
-            
-        }
-
-        private void SaveStudent()
-        {
-            var context = HttpContext.Current;
-            string schoolID = context.Session["SchoolID"]?.ToString();
-            using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand("sp_InsertUpdateStudentMaster", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    if (string.IsNullOrEmpty(txtStudentID.Text))
-                    {
-                        // Pass NULL for insert, and let SQL generate the StudentID
-                        cmd.Parameters.Add(new SqlParameter("@StudentID", SqlDbType.VarChar, 25) { Direction = ParameterDirection.Output });
-                    }
-                    else
-                    {
-                        // Pass existing StudentID for update
-                        cmd.Parameters.Add(new SqlParameter("@StudentID", txtStudentID.Text));
-                    }
-                    cmd.Parameters.AddWithValue("@Student_FirstName", txtFirstName.Text);
-                    cmd.Parameters.AddWithValue("@Student_MiddleName", txtMiddleName.Text);
-                    cmd.Parameters.AddWithValue("@Student_LastName", txtLastName.Text);
-                    cmd.Parameters.AddWithValue("@Student_FullName", txtFullName.Text);
-                    cmd.Parameters.AddWithValue("@Student_Gender", ddlGender.SelectedValue);
-                    cmd.Parameters.AddWithValue("@Student_DateOfBirth", Convert.ToDateTime(txtDateOfBirth.Text));
-                    cmd.Parameters.AddWithValue("@Student_PlaceOfBirth", txtPlaceOfBirth.Text);
-                    cmd.Parameters.AddWithValue("@Student_Religion", ddlReligion.SelectedValue);
-                    cmd.Parameters.AddWithValue("@Student_Caste", ddlCaste.SelectedValue);
-                    cmd.Parameters.AddWithValue("@Student_BloodGroup", ddlBloodGroup.SelectedValue);
-                    cmd.Parameters.AddWithValue("@Student_ProfileImage", hfFilePath.Value); // Assuming you have this field
-                    cmd.Parameters.AddWithValue("@Student_Standard", Convert.ToInt32(ddlStandard.SelectedValue));
-                    cmd.Parameters.AddWithValue("@Student_Division", Convert.ToInt32(ddlDivision.SelectedValue));
-                    cmd.Parameters.AddWithValue("@Student_Section", Convert.ToInt32(ddlSection.SelectedValue));
-                    cmd.Parameters.AddWithValue("@Student_GRNumber", txtGRNumber.Text);
-                    cmd.Parameters.AddWithValue("@Student_DateOfAdmission", Convert.ToDateTime(txtDateOfAdmission.Text));
-                    cmd.Parameters.AddWithValue("@Student_Status", ddlStatus.SelectedValue);
-                    cmd.Parameters.AddWithValue("@LastSchoolAttended", txtLastSchoolAttended.Text);
-                    cmd.Parameters.AddWithValue("@Student_MotherTongue", txtMotherTongue.Text);
-                    cmd.Parameters.AddWithValue("@Student_EmailID", txtEmailID.Text);
-                    cmd.Parameters.AddWithValue("@Student_MobileNumber", txtMobileNumber.Text);
-                    cmd.Parameters.AddWithValue("@Student_Address1", txtAddress1.Text);
-                    cmd.Parameters.AddWithValue("@Student_Address2", txtAddress2.Text);
-                    cmd.Parameters.AddWithValue("@Student_LocationID", txtAddress3.Text); // Assuming you have this dropdown
-                    cmd.Parameters.AddWithValue("@Student_FatherName", txtFatherName.Text);
-                    cmd.Parameters.AddWithValue("@Student_MotherName", txtMotherName.Text);
-                    cmd.Parameters.AddWithValue("@Student_LastSchoolAttended", chkLastSchoolAttended.Checked);
-                    cmd.Parameters.AddWithValue("@Student_LastSchoolName", txtLastSchoolName.Text);
-                    cmd.Parameters.AddWithValue("@Student_LastSchoolAddress", txtLastSchoolAddress.Text);
-                    cmd.Parameters.AddWithValue("@Student_LastSchoolRemarks", txtLastSchoolRemarks.Text);
-                    cmd.Parameters.AddWithValue("@Student_LastYearPercentage", string.IsNullOrEmpty(txtLastYearPercentage.Text) ? (object)DBNull.Value : Convert.ToDecimal(txtLastYearPercentage.Text));
-                    cmd.Parameters.AddWithValue("@Student_Grade", txtGrade.Text);
-                    cmd.Parameters.AddWithValue("@Student_Remarks", txtRemarks.Text);
-                    cmd.Parameters.AddWithValue("@SchoolMaster_SchoolID", schoolID); // Assuming you have this dropdown
-                    cmd.Parameters.AddWithValue("@TransportAssignment_AssignmentID", Convert.ToInt32(ddlBusRoute.SelectedValue));// Assuming you have this dropdown
-                    try
-                    {
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        string generatedStudentID = cmd.Parameters["@StudentID"].Value.ToString();
-                        string hashedPassword = HashPassword("Student@123");
-                        string emailid = txtEmailID.Text;
-                        if (string.IsNullOrEmpty(txtStudentID.Text))
-                        {
-                            saveUser(generatedStudentID, hashedPassword, schoolID);
-                            sendEmailtoStudent(generatedStudentID, emailid, schoolID);
-                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Student Created Successfully');", true);
-                            ClearForm();
-
-                        }
-                        else
-                        {
-                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Student Updated Successfully');", true);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Log the exception and show an error message
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", $"alert('An error occurred: {ex.Message}');", true);
-                    }
-                }
-            }
-
-        }
-
-        private void sendEmailtoStudent(string generatedStudentID, string emailid, string schoolID)
-        {
-            try
-            {
-                // Retrieve the school name based on schoolID from the database
-                string schoolName = GetSchoolNameByID(schoolID);
-
-                string smtpServer = "smtp.gmail.com";
-                int smtpPort = 587; // Use port 587 for TLS, or 465 for SSL
-                string senderEmail = "schoolnestcapstone@gmail.com"; // Your Gmail email address
-                string senderPassword = "nxij uksy myur bmny"; // Your Gmail App Password (if 2FA enabled) or Gmail password
-
-                MailMessage mailMessage = new MailMessage
-                {
-                    From = new MailAddress(senderEmail),
-                    Subject = "Registration Successful!",
-                    Body = $"Dear Student, \n\nWelcome to {schoolName}. Your registration has been successfully completed. " +
-                                   $"Your Student ID is: {generatedStudentID}\n" +
-                                   $"Your Password is: {"Student@123"}\n\n" +
-                                   "Please keep this information secure.\n\nBest regards,\n" + schoolName,
-                    IsBodyHtml = true // Set to true if sending HTML content
-                };
-
-                mailMessage.To.Add(emailid);
-
-                // Create and configure the SmtpClient
-                using (SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort))
-                {
-                    smtpClient.EnableSsl = true; // Enable SSL/TLS for secure communication
-                    smtpClient.Credentials = new NetworkCredential(senderEmail, senderPassword);
-                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-
-                    // Send the email
-                    smtpClient.Send(mailMessage);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log or handle any errors that occur while sending the email
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Error sending email: " + ex.Message + "');", true);
-            }
-        }
-
-        // Method to get the school name from the database using the schoolID
-        private string GetSchoolNameByID(string schoolID)
-        {
-            string schoolName = "Your School"; // Default value if school not found
-            using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
-            {
-                string query = "SELECT SchoolName FROM SchoolMaster WHERE SchoolID = @SchoolID";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@SchoolID", schoolID);
-
-                try
-                {
-                    conn.Open();
-                    object result = cmd.ExecuteScalar();
-                    if (result != null)
-                    {
-                        schoolName = result.ToString();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Handle database connection errors here (log it, etc.)
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Error fetching school name: " + ex.Message + "');", true);
-                }
-            }
-
-            return schoolName;
-        }
-
-
-
-        private void saveUser(string generatedStudentID, string hashedPassword, string schoolID)
-        {
-            using (SqlConnection conn = new SqlConnection(Global.ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand("sp_InsertUserfromStudentMaster", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Username", generatedStudentID);
-                    cmd.Parameters.AddWithValue("@PasswordHash", hashedPassword);
-                    cmd.Parameters.AddWithValue("@schoolID", schoolID);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-        private string HashPassword(string password)
-        {
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
-
-        private void ClearForm()
-        {
-            // Clear all form fields
-            txtStudentID.Text = string.Empty;
-            txtFirstName.Text = string.Empty;
-            txtMiddleName.Text = string.Empty;
-            txtLastName.Text = string.Empty;
-            txtFullName.Text = string.Empty;
-            ddlGender.SelectedIndex = 0;
-            ddlBusRoute.SelectedIndex = 0;
-            txtDateOfBirth.Text = string.Empty;
-            txtPlaceOfBirth.Text = string.Empty;
-            ddlReligion.SelectedIndex = 0;
-            ddlCaste.SelectedIndex = 0;
-            ddlBloodGroup.SelectedIndex = 0;
-            ddlStandard.SelectedIndex = 0;
-            ddlDivision.SelectedIndex = 0;
-            ddlSection.SelectedIndex = 0;
-            txtGRNumber.Text = string.Empty;
-            txtDateOfAdmission.Text = string.Empty;
-            ddlStatus.SelectedIndex = 0;
-            txtLastSchoolAttended.Text = string.Empty;
-            txtMotherTongue.Text = string.Empty;
-            txtEmailID.Text = string.Empty;
-            txtMobileNumber.Text = string.Empty;
-            txtAddress1.Text = string.Empty;
-            txtAddress2.Text = string.Empty;
-            txtAddress3.Text = string.Empty;
-            txtFatherName.Text = string.Empty;
-            txtMotherName.Text = string.Empty;
-            txtLastSchoolName.Text = string.Empty;
-            txtLastSchoolAddress.Text = string.Empty;
-            txtLastSchoolRemarks.Text = string.Empty;
-            txtLastYearPercentage.Text = string.Empty;
-            txtGrade.Text = string.Empty;
-            txtRemarks.Text = string.Empty;
-            chkLastSchoolAttended.Checked= false;
-        }
-    
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Admin/Dashboard.aspx");
+            ResetForm();
         }
 
-        protected void btnReset_Click(object sender, EventArgs e)
+        protected void ResetForm()
         {
-            ClearForm();
+            Response.Redirect("~/Admin/StudentList.aspx");
         }
-
-        
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            ddlStudents.Visible = true;
-        }
-
-        
 
         protected void txtName_TextChanged(object sender, EventArgs e)
         {
@@ -567,6 +625,9 @@ namespace Schoolnest.Admin
             txtFullName.Text = fullName;
         }
 
-      
+        protected void btnNext_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

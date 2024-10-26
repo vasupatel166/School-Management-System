@@ -1,292 +1,191 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="Schoolnest.Admin.Dashboard" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="Schoolnest.Admin.Dashboard" Async="true" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <form id="form1" runat="server">
-                    <div class="content col-md-9 col-lg-10">
-                    <div class="header d-flex justify-content-between align-items-center">
-                        <h2><asp:Label ID="schoolNameLabel" runat="server" CssClass="text-black"><%= schoolNameLabel.Text %></asp:Label></h2>
-                     </div>
-
-                    <div class="row">
-                        <!-- KPIs Section -->
-                       <div class="col-md-6 mb-4">
-                    <div class="card dashboard-card p-3 text-center bg-light">
-                        <i class="icon fas fa-user-graduate text-primary"></i>
-                        <h5>Total Students</h5>
-                        <asp:Label ID="totalStudentsLabel" runat="server"></asp:Label>
+    <form id="form1" runat="server" class="w-100">
+        <div>
+            <h3 class="fw-bold mb-3" id="SchoolNameHeading" runat="server">St. Thomas English Medium Higher Secondary School</h3>
+        </div>
+        <%--4 Cards (Students,Teachers,Active Classes,Pending Fees)--%>
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+            <div class="card card-stats card-round">
+                <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-icon">
+                    <div
+                        class="icon-big text-center icon-primary bubble-shadow-small"
+                    >
+                        <i class="fas fa-users"></i>
+                    </div>
+                    </div>
+                    <div class="col col-stats ms-3 ms-sm-0">
+                    <div class="numbers">
+                        <p class="card-category">Total Students</p>
+                        <asp:Label CssClass="card-title" ID="TotalStudentsCard" runat="server"></asp:Label>
+                    </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
-                    <div class="card dashboard-card p-3 text-center bg-light">
-                        <i class="icon fas fa-chalkboard-teacher text-success"></i>
-                        <h5>Total Teachers</h5>
-                        <asp:Label ID="totalTeachersLabel" runat="server"></asp:Label>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+            <div class="card card-stats card-round">
+                <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-icon">
+                    <div
+                        class="icon-big text-center icon-info bubble-shadow-small"
+                    >
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    </div>
+                    <div class="col col-stats ms-3 ms-sm-0">
+                    <div class="numbers">
+                        <p class="card-category">Total Teachers</p>
+                        <asp:Label CssClass="card-title" ID="TotalTeachersCard" runat="server"></asp:Label>
+                    </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
-                    <div class="card dashboard-card p-3 text-center bg-light">
-                        <i class="icon fas fa-school text-warning"></i>
-                        <h5>Active Classes</h5>
-                        <asp:Label ID="activeClassesLabel" runat="server"></asp:Label>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+            <div class="card card-stats card-round">
+                <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-icon">
+                    <div
+                        class="icon-big text-center icon-success bubble-shadow-small"
+                    >
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    </div>
+                    <div class="col col-stats ms-3 ms-sm-0">
+                    <div class="numbers">
+                        <p class="card-category">Total Active Classes</p>
+                        <asp:Label CssClass="card-title" ID="TotalActiveClassesCard" runat="server"></asp:Label>
+                    </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
-                    <div class="card dashboard-card p-3 text-center bg-light">
-                        <i class="icon fas fa-dollar-sign text-danger"></i>
-                        <h5>Pending Fees</h5>
-                        <asp:Label ID="pendingFeesLabel" runat="server"></asp:Label>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+            <div class="card card-stats card-round">
+                <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-icon">
+                    <div
+                        class="icon-big text-center icon-secondary bubble-shadow-small"
+                    >
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    </div>
+                    <div class="col col-stats ms-3 ms-sm-0">
+                    <div class="numbers">
+                        <p class="card-category">Total Pending Fees</p>
+                        <asp:Label CssClass="card-title" ID="TotalPendingFeesCard" runat="server"></asp:Label>
+                    </div>
                     </div>
                 </div>
-                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
 
-                        <div class="row">
-                            <!-- Upcoming Events Calendar -->
-                            <div class="col-md-6 mb-4">
-                                <div class="card dashboard-card p-3 bg-light">
-                                    <h5>Upcoming Events</h5>
-                                    <ul class="list-group">
-                                        <asp:Repeater ID="UpcomingEventsRepeater" runat="server">
-                                            <ItemTemplate>
-                                                <li class="list-group-item"><%# Eval("EventTitle") %> - <%# Eval("EventDate", "{0:MMM dd}") %></li>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                    </ul>
-                                    <asp:Label ID="NoEventsLabel" runat="server" Text="" ForeColor="Red" />
-                                </div>
-                                
+        <%--Upcoming Events & Weekly Attendace Overview of Teachers and Students--%>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-round">
+                    <div class="card-body">
+                        <div class="card-head-row card-tools-still-right">
+                            <div class="card-title">Upcoming Events</div>
+                                <div class="card-tools">
+                                    <div class="dropdown">
+                                        <button class="btn btn-icon btn-clean me-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <asp:HyperLink ID="AllEventsLink" NavigateUrl="~/Admin/EventMaster.aspx" runat="server" CssClass="dropdown-item">All Events</asp:HyperLink>
+                                        </div>
+                                   </div>
                             </div>
-
-                            
-
-
-                        <!-- Attendance Overview -->
-                        <div class="col-md-6 mb-4">
-                            <div class="card dashboard-card p-3 bg-light">
-                                <h5>Attendance Overview</h5>
-                                <canvas id="attendanceChart"></canvas>
-                            </div>
+                        </div>
+                        <div class="card-list py-0" id="UpcomingEvents" runat="server">
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                        <div class="card dashboard-card p-3 bg-light">
-                            <h5>Budget Utilization</h5>
-                            <p id="budgetUtilizationText"></p>
-                            <canvas id="budgetChart"></canvas>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 mb-4">
-                            <div class="card dashboard-card p-3 bg-light">
-                                <h5>Settings</h5>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <a href="ProfileSettings.aspx">Edit Profile</a>
-                                    </li>
-                                    
-                                    <li class="list-group-item">
-                                        <a href="SchoolSettings.aspx">School Information</a>
-                                    </li>
-                                   
-                                    <li class="list-group-item">
-                                        <a href="BackupRestore.aspx">Backup & Restore</a>
-                                    </li>
-
-                                     <li class="list-group-item">
-                                        <a href="SecuritySettings.aspx">Security Settings</a>
-                                     </li>
-                                     <li class="list-group-item">
-                                        <a href="AnalyticsDashboard.aspx">Analytics Dashboard</a>
-                                     </li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-
-                        <!-- Chart Section (Existing Fees Chart) -->
-                        <div class="row">
-                        <div class="col-md-12 mb-4">
-    <div class="card dashboard-card bg-light">
-        <h5>Defaulter Student List</h5>
-        <table class="table table-bordered">
-            <asp:Repeater ID="RepeaterDefaulters" runat="server">
-                <HeaderTemplate>
-                    <thead>
-                        <tr>
-                            <th>Student Name</th>
-                            <th>Standard</th>
-                            <th>Division</th>
-                            <th>Fee Type</th>
-                            <th>Total Fees Pending</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <tr>
-                        <td><%# Eval("StudentName") %></td>
-                        <td><%# Eval("Standard") %></td>
-                        <td><%# Eval("Division") %></td>
-                        <td><%# Eval("FeeDesc") %></td>
-                        <td><%# Eval("Pending_Fees") %></td>
-                    </tr>
-                </ItemTemplate>
-                <FooterTemplate>
-                    </tbody>
-                </FooterTemplate>
-            </asp:Repeater>
-        </table>
-    </div>
-</div>
-                        </div>
-
-                        
-
-
+                </div>
+                </div>   
+            <div class="col-md-8">
+                <div class="card card-round">
+                  <div class="card-header">
+                    <div class="card-head-row card-tools-still-right">
+                      <div class="card-title">Weekly Attendance Overview</div>
                     </div>
+                  </div>
+                  <div class="card-body p-0">
+                    <canvas id="attendanceChart"></canvas>
+                  </div>
+                </div>
+              </div>
+        </div>       
+    </form>
 
-                    <!-- Include Chart.js Script -->
-                    <!-- Include Chart.js Library -->
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Chart JS -->
+<script src="<%= ResolveUrl("~/assets/js/plugin/chart.js/chart.min.js") %>"></script>
 
-<!-- Your Custom JavaScript Code -->
-<script>
-    
-    // Fetch attendance data from the server
-    function fetchAttendanceData() {
-        $.ajax({
-            type: "POST",
-            url: "Dashboard.aspx/GetAttendanceData", // Adjust the URL to match your page
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (response) {
-                var data = JSON.parse(response.d);
-                var labels = data.map(function (item) {
-                    var date = new Date(item.AttendanceDate);
-                    var weekday = date.toLocaleDateString('en-US', { weekday: 'short' }); // Get short day name (e.g., 'Mon', 'Tue')
-                    var day = date.toLocaleDateString('en-US', { day: 'numeric', month: 'short' }); // Get day and month (e.g., 'Oct 01')
-                    return `${weekday} (${day})`; // Combine weekday and date
-                });
-                var studentAttendance = data.map(function (item) {
-                    return item.TotalStudentsPresent;
-                });
-                var teacherAttendance = data.map(function (item) {
-                    return item.TotalTeachersPresent;
-                });
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
 
-                // Create the chart with fetched data
-                createAttendanceChart(labels, studentAttendance, teacherAttendance);
-            },
-            error: function (error) {
-                console.error("Error fetching attendance data:", error);
-            }
-        });
-    }
+            // Log the values being injected from C#
+            console.log("Labels: ", [<%= Labels %>]);
+            console.log("Student Data: ", [<%= StudentData %>]);
+            console.log("Teacher Data: ", [<%= TeacherData %>]);
 
-    // Function to create the chart
-    function createAttendanceChart(labels, studentData, teacherData) {
-        var attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
-        var attendanceChart = new Chart(attendanceCtx, {
-            type: 'line',
-            data: {
-                labels: labels,
+            var ctx = document.getElementById('attendanceChart').getContext('2d');
+            var attendanceChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [<%= Labels %>], // Injected from C#
                 datasets: [{
                     label: 'Student Attendance',
-                    data: studentData,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    data: [<%= StudentData %>], // Injected from C#
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
                     borderColor: 'rgba(54, 162, 235, 1)',
-                    fill: true,
                     borderWidth: 1
                 }, {
                     label: 'Teacher Attendance',
-                    data: teacherData,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    fill: true,
-                    borderWidth: 1
-                }]
+                    data: [<%= TeacherData %>], // Injected from C#
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
             },
             options: {
                 responsive: true,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        max: 100, // Set max value to 100% for percentage representation
+                        ticks: {
+                            callback: function (value) {
+                                return value + "%"; // Add '%' to Y-axis values
+                            }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            maxRotation: 0, // Prevent rotation of X-axis labels
+                            minRotation: 0,
+                        }
                     }
                 }
             }
-        });
-    }
+            });
 
-    // Fetch budget Data from server
-
-    function fetchBudgetData() {
-        $.ajax({
-            type: "POST",
-            url: "Dashboard.aspx/GetBudgetData", // Adjust the URL to match your page
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (response) {
-                var data = JSON.parse(response.d);
-                var labels = data.map(function (item) {
-                    return item.CategoryName;
-                });
-                var actualExpenditures = data.map(function (item) {
-                    return item.ActualExpenditure;
-                });
-                var totalBudget = data.reduce((acc, b) => acc + b.Amount, 0);
-                var totalExpenditure = data.reduce((acc, b) => acc + b.ActualExpenditure, 0);
-                var utilizationPercentage = (totalBudget > 0) ? (totalExpenditure / totalBudget) * 100 : 0;
-
-                document.getElementById('budgetUtilizationText').innerText =
-                    `Budget Utilized: ${utilizationPercentage.toFixed(2)}%`;
-
-                createBudgetChart(labels, actualExpenditures);
-            },
-            error: function (error) {
-                console.error("Error fetching budget data:", error);
-            }
-        });
-    }
-
-    function createBudgetChart(labels, data) {
-        var budgetCtx = document.getElementById('budgetChart').getContext('2d');
-        var budgetChart = new Chart(budgetCtx, {
-            type: 'pie',
-            data: {
-                labels: labels,
-                datasets: [{
-                    data: data,
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                    },
-                }
-            }
-        });
-    }
-
-    // Call the fetch function to load data when the page is ready
-    $(document).ready(function () {
-        fetchAttendanceData();
-        fetchBudgetData();
-        
     });
+    </script>
 
-
-    
-</script>
-
-                   
-                </div>
-        </form>
 </asp:Content>
