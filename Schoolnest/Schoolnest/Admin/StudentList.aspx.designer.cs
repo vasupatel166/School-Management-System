@@ -33,6 +33,33 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddlStudents;
 
         /// <summary>
+        /// pills-academic-tab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor pills-academic-tab;
+        
+        /// <summary>
+        /// pills-contact-tab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor pills-contact-tab;
+        
+        /// <summary>
+        /// pills-additional-tab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor pills-additional-tab;
+        
+        /// <summary>
         /// txtFirstName control.
         /// </summary>
         /// <remarks>
@@ -508,6 +535,15 @@ namespace Schoolnest.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
+
+        /// <summary>
+        /// btnNext control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNext;
 
         /// <summary>
         /// btnCancel control.

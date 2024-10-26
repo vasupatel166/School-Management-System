@@ -13,7 +13,7 @@ namespace Schoolnest.Admin
     public partial class StudentList : System.Web.UI.Page
     {
 
-        private string connectionString = Global.ConnectionString; // Connection string
+        private string connectionString = Global.ConnectionString;
         private string SelectedStudentID = "";
         public string profileImagePath = null;
         public string schoolId = "";
@@ -623,6 +623,11 @@ namespace Schoolnest.Admin
 
             // Set the Full Name textbox value
             txtFullName.Text = fullName;
+        }
+
+        protected void btnNext_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

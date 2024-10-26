@@ -19,13 +19,13 @@
 							<a class="nav-link active" id="pills-personal-tab" data-bs-toggle="pill" href="#pills-personal" role="tab" aria-controls="pills-personal" aria-selected="true">Personal Information</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="pills-academic-tab" data-bs-toggle="pill" href="#pills-academic" role="tab" aria-controls="pills-academic" aria-selected="false">Academic Information</a>
+							<a class="nav-link" id="pills-academic-tab" runat="server" data-bs-toggle="pill" href="#pills-academic" role="tab" aria-controls="pills-academic" aria-selected="false">Academic Information</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact Information</a>
+							<a class="nav-link" id="pills-contact-tab" runat="server" data-bs-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact Information</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="pills-additional-tab" data-bs-toggle="pill" href="#pills-additional" role="tab" aria-controls="pills-additional" aria-selected="false">Additional Information</a>
+							<a class="nav-link" id="pills-additional-tab" runat="server" data-bs-toggle="pill" href="#pills-additional" role="tab" aria-controls="pills-additional" aria-selected="false">Additional Information</a>
 						</li>
 					</ul>
 					<div class="tab-content mt-2 mb-3 p-2" id="pills-tabContent">
@@ -242,7 +242,7 @@
 								</div>
 								<div class="col-md-4 form-group">
 									<div class="form-check mt-2">
-										 <asp:CheckBox ID="chkLastSchoolAttended" runat="server" CssClass="form-check-input border-0" Checked="false" AutoPostBack="true"/>
+										 <asp:CheckBox ID="chkLastSchoolAttended" runat="server" CssClass="form-check-input border-0" OnCheckedChanged="chkLastSchoolAttended_CheckedChanged" Checked="false" AutoPostBack="true"/>
 										 <label class="form-check-label" for="chkLastSchoolAttended">
 											Last School Attended
 										 </label>
@@ -286,6 +286,7 @@
 
 					<div class="card-footer text-center mt-4 pt-4">
 						<asp:Button ID="btnSubmit" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btnSubmit_Click" />
+						<asp:Button ID="btnNext" runat="server" Text="Next" CssClass="btn btn-success" OnClick="btnNext_Click" />
 						<asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-danger" CausesValidation="false" OnClick="btnCancel_Click" />
 					</div>
 				</div>

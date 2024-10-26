@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\forgetpassword.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\forgetpassword.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\schoolnest\\forgetpassword.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\forgetpassword.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\schoolnest\\admin\\studentlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\studentlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\schoolnest\\admin\\studentlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\studentlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +27,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ForgetPassword.aspx.cs",
-              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\ForgetPassword.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\ForgetPassword.aspx.cs",
-              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\ForgetPassword.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\ForgetPassword.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAA+AAAAAAAAAA==",
+              "Title": "Login.aspx.cs",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Login.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\Login.aspx.cs",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Login.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\Login.aspx.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAIwEsAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T20:42:36.121Z",
+              "WhenOpened": "2024-10-25T18:16:41.215Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StudentList.aspx.cs",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\Admin\\StudentList.aspx.cs",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\Admin\\StudentList.aspx.cs",
+              "ViewState": "AgIAAAECAAAAAAAAAAAawFECAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-25T17:02:50.78Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ForgetPassword.aspx",
-              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\ForgetPassword.aspx",
-              "RelativeDocumentMoniker": "Schoolnest\\ForgetPassword.aspx",
-              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\ForgetPassword.aspx",
-              "RelativeToolTip": "Schoolnest\\ForgetPassword.aspx",
+              "Title": "StudentList.aspx",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx",
+              "RelativeDocumentMoniker": "Schoolnest\\Admin\\StudentList.aspx",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx",
+              "RelativeToolTip": "Schoolnest\\Admin\\StudentList.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-10-22T18:03:16.425Z"
+              "WhenOpened": "2024-10-25T17:02:47.614Z"
             }
           ]
         }

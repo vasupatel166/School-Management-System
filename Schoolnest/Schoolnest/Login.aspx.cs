@@ -104,21 +104,17 @@ namespace Schoolnest
                         {
                             if (reader.Read())
                             {
-
-                                System.Diagnostics.Debug.WriteLine($"Pass : {password}, Decrypted Password : {reader["DecryptedPassword"]}");
-
                                 if (password == reader["DecryptedPassword"].ToString())
                                 {
                                     return true;
                                 }
 
                                 return false;
-
                             }
                             else
                             {
                                 rfvUsername.IsValid = false;
-                                rfvUsername.Text = "Username is incorrect";
+                                rfvUsername.Text = "No matching user found, SchoolID / Username is incorrect.";
                                 System.Diagnostics.Debug.WriteLine("No matching user found in the database.");
                                 return false;
                             }
