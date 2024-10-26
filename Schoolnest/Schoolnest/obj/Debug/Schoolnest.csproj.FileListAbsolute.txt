@@ -201,3 +201,7 @@ D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnes
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Threading.Tasks.Extensions.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Newtonsoft.Json.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Newtonsoft.Json.xml
+D:\Web development conestoga\sem-4\Capstone\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.AssemblyReference.cache
+D:\Web development conestoga\sem-4\Capstone\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.CoreCompileInputs.cache
+D:\Web development conestoga\sem-4\Capstone\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.dll
+D:\Web development conestoga\sem-4\Capstone\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.pdb
