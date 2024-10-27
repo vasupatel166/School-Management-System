@@ -8,8 +8,7 @@
 				<div class="card-header d-flex justify-content-between align-items-center">
 					<div class="card-title">Student Entry Form</div>
 					<div class="form-group mb-0">
-						<asp:DropDownList ID="ddlStudents" runat="server" AutoPostBack="true" CssClass="form-control">
-
+						<asp:DropDownList ID="ddlStudents" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlStudents_SelectedIndexChanged">
 						</asp:DropDownList>
 					</div>
 				</div>
@@ -19,13 +18,13 @@
 							<a class="nav-link active" id="pills-personal-tab" data-bs-toggle="pill" href="#pills-personal" role="tab" aria-controls="pills-personal" aria-selected="true">Personal Information</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="pills-academic-tab" runat="server" data-bs-toggle="pill" href="#pills-academic" role="tab" aria-controls="pills-academic" aria-selected="false">Academic Information</a>
+							<a class="nav-link" id="pills-academic-tab" data-bs-toggle="pill" href="#pills-academic" role="tab" aria-controls="pills-academic" aria-selected="false">Academic Information</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="pills-contact-tab" runat="server" data-bs-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact Information</a>
+							<a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact Information</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="pills-additional-tab" runat="server" data-bs-toggle="pill" href="#pills-additional" role="tab" aria-controls="pills-additional" aria-selected="false">Additional Information</a>
+							<a class="nav-link" id="pills-additional-tab" data-bs-toggle="pill" href="#pills-additional" role="tab" aria-controls="pills-additional" aria-selected="false">Additional Information</a>
 						</li>
 					</ul>
 					<div class="tab-content mt-2 mb-3 p-2" id="pills-tabContent">
@@ -129,6 +128,8 @@
 								<div class="col-md-4 form-group">
 									<asp:Label runat="server" AssociatedControlID="fileProfileImage" Text="Profile Image (optional)"></asp:Label>
 									<asp:FileUpload ID="fileProfileImage" runat="server" CssClass="form-control" />
+									<asp:CustomValidator ID="cvImage" runat="server" ErrorMessage="" ForeColor="Red" Display="Dynamic"></asp:CustomValidator>
+									<asp:Button ID="btnImageUpload" runat="server" CssClass="btn btn-info" Text="Upload" CausesValidation="false" OnClick="btnImageUpload_Click" />
 								</div>
 								<div class="col-md-4">
 									<div class="form-check mt-2">
@@ -169,7 +170,7 @@
 							<div class="row">
 								<div class="col-md-4 form-group">
 									<asp:Label runat="server" AssociatedControlID="txtGRNumber" Text="GR Number"></asp:Label>
-									<asp:TextBox ID="txtGRNumber" runat="server" CssClass="form-control"></asp:TextBox>
+									<asp:TextBox ID="txtGRNumber" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
 									<asp:RequiredFieldValidator ID="rfvGrNumber" runat="server" ControlToValidate="txtGrNumber" ErrorMessage="GR Number is required." ForeColor="Red"></asp:RequiredFieldValidator>
 									<asp:RegularExpressionValidator ID="revGrNumber" runat="server" ControlToValidate="txtGrNumber" ErrorMessage="GR Number must be numeric and max length 10 digits." ValidationExpression="^\d{1,10}$" ForeColor="Red"></asp:RegularExpressionValidator>
 								</div>
@@ -241,7 +242,7 @@
 									<asp:TextBox ID="txtMotherName" runat="server" CssClass="form-control"></asp:TextBox>
 								</div>
 								<div class="col-md-4 form-group">
-									<div class="form-check mt-2">
+									<div class="form-check mt-2 ps-0">
 										 <asp:CheckBox ID="chkLastSchoolAttended" runat="server" CssClass="form-check-input border-0" OnCheckedChanged="chkLastSchoolAttended_CheckedChanged" Checked="false" AutoPostBack="true"/>
 										 <label class="form-check-label" for="chkLastSchoolAttended">
 											Last School Attended
@@ -286,11 +287,134 @@
 
 					<div class="card-footer text-center mt-4 pt-4">
 						<asp:Button ID="btnSubmit" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btnSubmit_Click" />
-						<asp:Button ID="btnNext" runat="server" Text="Next" CssClass="btn btn-success" OnClick="btnNext_Click" />
+						<input type="button" runat="server" id="btnNext" class="btn btn-success" value="Next" />
 						<asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-danger" CausesValidation="false" OnClick="btnCancel_Click" />
 					</div>
 				</div>
 			</div>
 		</div>
     </form>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function () {
+			const btnSubmit = document.getElementById('<%= btnSubmit.ClientID %>');
+			const btnNext = document.getElementById('<%= btnNext.ClientID %>');
+			const ddlState = document.getElementById('<%= ddlState.ClientID %>');
+			const ddlCity = document.getElementById('<%= ddlCity.ClientID %>');
+			const checkLastSchool = document.getElementById('<%= chkLastSchoolAttended.ClientID %>');
+
+            // Function to activate the Contact Information tab
+            function activateContactTab() {
+                const pillsContactTab = document.querySelector('#pills-contact-tab');
+                if (pillsContactTab) {
+                    const tab = new bootstrap.Tab(pillsContactTab);
+                    tab.show();
+                }
+			}
+
+            // Function to activate the Additional Information tab
+            function activateAdditionalTab() {
+                const pillsAdditionalTab = document.querySelector('#pills-additional-tab');
+                if (pillsAdditionalTab) {
+                    const tab = new bootstrap.Tab(pillsAdditionalTab);
+                    tab.show();
+                }
+            }
+
+            // Add event listeners for postback triggers
+            if (ddlState) {
+                ddlState.addEventListener('change', function () {
+                    localStorage.setItem('activeTab', 'contact');
+                });
+            }
+
+            if (ddlCity) {
+                ddlCity.addEventListener('change', function () {
+                    localStorage.setItem('activeTab', 'contact');
+                });
+			}
+
+			if (checkLastSchool) {
+				checkLastSchool.addEventListener('change', function () {
+                    localStorage.setItem('activeTab', 'additional');
+				});
+			}
+
+            if (localStorage.getItem('activeTab') === 'contact') {
+                activateContactTab();
+                localStorage.removeItem('activeTab');
+			}
+
+            if (localStorage.getItem('activeTab') === 'additional') {
+                activateAdditionalTab();
+                localStorage.removeItem('activeTab');
+            }
+
+            if (btnSubmit && btnNext) {
+                btnSubmit.style.display = 'none';
+                btnNext.style.display = 'inline-block';
+
+                function checkButtonVisibility() {
+                    const additionalTab = document.getElementById('pills-additional-tab');
+                    const isAdditionalTabActive = additionalTab.classList.contains('active');
+
+                    if (isAdditionalTabActive) {
+                        btnSubmit.style.display = 'inline-block';
+                        btnNext.style.display = 'none';
+                    } else {
+                        btnSubmit.style.display = 'none';
+                        btnNext.style.display = 'inline-block';
+                    }
+                }
+
+				// Focus on the first tab containing any validation error
+				function focusOnFirstErrorTab() {
+					// Select all elements with visible error messages or invalid fields
+					const errorElements = document.querySelectorAll('.is-invalid, .text-danger, .invalid-feedback');
+
+					if (errorElements.length > 0) {
+						// Find the first element with an error and determine its closest tab pane
+						for (let errorElement of errorElements) {
+							const errorTabPane = errorElement.closest('.tab-pane');
+
+							if (errorTabPane) {
+								const errorTabId = errorTabPane.id;
+								const errorTabLink = document.querySelector(`a[href="#${errorTabId}"]`);
+
+								if (errorTabLink) {
+									// Activate the tab containing the first found error
+									new bootstrap.Tab(errorTabLink).show();
+									break; // Exit the loop once the first error tab is found and activated
+								}
+							}
+						}
+					}
+				}
+
+                // Add event listeners for tab clicks
+                const tabLinks = document.querySelectorAll('#pills-tab .nav-link');
+                tabLinks.forEach(tab => {
+                    tab.addEventListener('shown.bs.tab', checkButtonVisibility);
+				});
+
+                // Handle Next button click
+                btnNext.addEventListener('click', function () {
+                    const activeTab = document.querySelector('.nav-link.active');
+                    const nextTab = activeTab.closest('li').nextElementSibling?.querySelector('.nav-link');
+
+                    if (nextTab) {
+                        new bootstrap.Tab(nextTab).show();
+                    }
+
+                    checkButtonVisibility();
+                });
+
+				
+				const form = document.getElementById('form1');
+				form.addEventListener('submit', function (event) {
+					focusOnFirstErrorTab();
+				});
+			}
+		});
+
+    </script>
 </asp:Content>

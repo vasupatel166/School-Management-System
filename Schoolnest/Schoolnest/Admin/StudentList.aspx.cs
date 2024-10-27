@@ -12,7 +12,6 @@ namespace Schoolnest.Admin
 {
     public partial class StudentList : System.Web.UI.Page
     {
-
         private string connectionString = Global.ConnectionString;
         private string SelectedStudentID = "";
         public string profileImagePath = null;
@@ -20,17 +19,30 @@ namespace Schoolnest.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            schoolId = Session["SchoolID"]?.ToString();
+            SelectedStudentID = ddlStudents.SelectedValue;
+
+            // Only reset the session image path when resetting the form or successfully saving the student.
             if (!IsPostBack)
             {
-                schoolId = Session["SchoolID"].ToString();
                 LoadStates();
                 BindStandardDropdown();
                 BindDivisionDropdown();
                 BindSectionDropdown();
-                BindBusRoute(schoolId);
+                BindBusRoute();
                 PopulateStudentDropdown(schoolId);
+
+                // Generate GR Number if a new student is being created
+                if (string.IsNullOrEmpty(SelectedStudentID))
+                {
+                    txtGRNumber.Text = GenerateGRNumber();
+                }
             }
+
+            // Check for image upload on every postback if a file has been uploaded
+            CheckUserProfileImage();
         }
+
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -45,60 +57,50 @@ namespace Schoolnest.Admin
                     if (SelectedStudentID == "")
                     {
                         // Execute the InsertUserMaster stored procedure to get UserID
-                        userID = ExecuteInsertUserMaster(firstName, lastName, "S", schoolId);
-                        ClientScript.RegisterStartupScript(this.GetType(), "Insert",$"alert('Inserted');", true);
+                        userID = ExecuteInsertUserMaster(firstName, lastName, "S");
                     }
-
-                    ClientScript.RegisterStartupScript(this.GetType(), "Update", $"alert('Updated');", true);
-
-                    if (fileProfileImage.HasFile)
+                    else
                     {
-                        string extension = Path.GetExtension(fileProfileImage.FileName).ToLower();
-
-                        if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                        using (SqlConnection conn = new SqlConnection(connectionString))
                         {
-                            try
+                            using (SqlCommand cmd = new SqlCommand("SELECT UserMaster_UserID FROM StudentMaster WHERE StudentID = @StudentID", conn))
                             {
-                                // Generate a unique 3-digit number prefix for the image file name
-                                Random random = new Random();
-                                string uniquePrefix = random.Next(100, 1000).ToString();
-                                string fileName = uniquePrefix + "_" + fileProfileImage.FileName;
-                                string filePath = "~/assets/img/user-profile-img/student/" + fileName;
+                                cmd.Parameters.AddWithValue("@StudentID", SelectedStudentID);
+                                conn.Open();
 
-                                // Ensure the directory exists before saving the file
-                                //string directoryPath = Server.MapPath("~/assets/img/user-profile-img/student/");
-                                //if (!Directory.Exists(directoryPath))
-                                //{
-                                //     Directory.CreateDirectory(directoryPath);
-                                // }
-
-                                // Save the file
-                                //fileProfileImage.SaveAs(Server.MapPath(filePath));
-                                profileImagePath = "student/" + fileName;
-                                ClientScript.RegisterStartupScript(this.GetType(), "Insert", $"alert(${profileImagePath});", true);
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        userID = (int)reader["UserMaster_UserID"];
+                                    }
+                                }
                             }
-                            catch (Exception ex)
-                            {
-                                ClientScript.RegisterStartupScript(this.GetType(), "Error", $"alert('File upload failed: {ex.Message}');", true);
-                                return;
-                            }
-                        }
-                        else
-                        {
-                            ClientScript.RegisterStartupScript(this.GetType(), "Error", "alert('Only image files (jpg, jpeg, png, gif) are allowed.');", true);
-                            return;
                         }
                     }
 
-                    //SaveStudent(userID, schoolId);
+                    // Use the session-stored image path for saving
+                    profileImagePath = Session["ImagePath"]?.ToString();
+
+                    // Ensure an image path exists before proceeding
+                    if (string.IsNullOrEmpty(profileImagePath))
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "Error", "alert('Profile image is required.');", true);
+                        return;
+                    }
+
+                    SaveStudent(userID);
                 }
                 catch (Exception ex)
                 {
+                    // If there's an error during submission, delete the uploaded image to avoid orphaned files
+                    string imagePath = Session["ImagePath"]?.ToString();
+                    DeleteUploadedProfileImage(imagePath);
                     ClientScript.RegisterStartupScript(this.GetType(), "Error", $"alert('Error: {ex.Message}');", true);
                 }
             }
         }
-        private int ExecuteInsertUserMaster(string firstName, string lastName, string roleID, string schoolID)
+        private int ExecuteInsertUserMaster(string firstName, string lastName, string roleID)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -108,7 +110,7 @@ namespace Schoolnest.Admin
                     cmd.Parameters.AddWithValue("@FirstName", firstName);
                     cmd.Parameters.AddWithValue("@LastName", lastName);
                     cmd.Parameters.AddWithValue("@RoleMaster_RoleID", roleID);
-                    cmd.Parameters.AddWithValue("@SchoolMaster_SchoolID", schoolID);
+                    cmd.Parameters.AddWithValue("@SchoolMaster_SchoolID", schoolId);
 
                     conn.Open();
                     object result = cmd.ExecuteScalar(); // Use ExecuteScalar to get the UserID directly
@@ -117,7 +119,71 @@ namespace Schoolnest.Admin
             }
         }
 
-        private void SaveStudent(int userID, string schoolId)
+        private void CheckUserProfileImage()
+        {
+            // Ensure that the profile image is only processed when there is a file uploaded
+            if (fileProfileImage.HasFile)
+            {
+                // If a previous image exists, delete it
+                string previousImagePath = Session["ImagePath"]?.ToString();
+                if (!string.IsNullOrEmpty(previousImagePath))
+                {
+                    DeleteUploadedProfileImage(previousImagePath);
+                }
+
+                string extension = Path.GetExtension(fileProfileImage.FileName).ToLower();
+                if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                {
+                    try
+                    {
+                        // Generate a unique prefix and construct the file path
+                        string uniquePrefix = new Random().Next(100, 1000).ToString();
+                        string fileName = uniquePrefix + "_" + fileProfileImage.FileName;
+                        string filePath = "~/assets/img/user-profile-img/student/" + fileName;
+
+                        // Ensure the directory exists before saving the file
+                        string directoryPath = Server.MapPath("~/assets/img/user-profile-img/student/");
+                        if (!Directory.Exists(directoryPath))
+                        {
+                            Directory.CreateDirectory(directoryPath);
+                        }
+
+                        // Save the file and store the path in the session
+                        fileProfileImage.SaveAs(Server.MapPath(filePath));
+                        profileImagePath = "student/" + fileName;
+                        Session["ImagePath"] = profileImagePath;
+                    }
+                    catch (Exception ex)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "Error", $"alert('File upload failed: {ex.Message}');", true);
+                    }
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "Error", "alert('Only image files (jpg, jpeg, png, gif) are allowed.');", true);
+                }
+            }
+            else
+            {
+
+            }
+        }
+
+
+        private void DeleteUploadedProfileImage(string imagePath)
+        {
+            if (!string.IsNullOrEmpty(imagePath))
+            {
+                string serverPath = Server.MapPath("~/assets/img/user-profile-img/" + imagePath);
+                if (File.Exists(serverPath))
+                {
+                    File.Delete(serverPath);
+                }
+            }
+        }
+
+
+        private void SaveStudent(int userID)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -173,6 +239,7 @@ namespace Schoolnest.Admin
                     {
                         conn.Open();
                         cmd.ExecuteNonQuery();
+                        Session["ImagePath"] = "";
                         string generatedStudentID = cmd.Parameters["@StudentID"].Value.ToString();
                         string emailid = txtEmailID.Text;
                         if (string.IsNullOrEmpty(SelectedStudentID))
@@ -347,7 +414,7 @@ namespace Schoolnest.Admin
             string selectedState = ddlState.SelectedValue;
 
             if (!string.IsNullOrEmpty(selectedState))
-            {
+            {  
                 // Load cities for the selected state and enable city dropdown
                 LoadCities(selectedState);
                 ddlCity.Enabled = true;
@@ -479,7 +546,7 @@ namespace Schoolnest.Admin
                         ddlReligion.SelectedValue = reader["Student_Religion"].ToString();
                         ddlCaste.SelectedValue = reader["Student_Caste"].ToString();
                         ddlBloodGroup.SelectedValue = reader["Student_BloodGroup"].ToString();
-                        profileImagePath = reader["Student_ProfileImage"].ToString();
+                        Session["ImagePath"] = reader["Student_ProfileImage"].ToString();
                         ddlStandard.SelectedValue = reader["Student_Standard"].ToString();
                         ddlDivision.SelectedValue = reader["Student_Division"].ToString();
                         ddlSection.SelectedValue = reader["Student_Section"].ToString();
@@ -522,7 +589,49 @@ namespace Schoolnest.Admin
             }
         }
 
-        private void BindBusRoute(string schoolId)
+        private string GenerateGRNumber()
+        {
+            // The starting number for the sequence.
+            int startingNumber = 99999;
+
+            string currentYear = DateTime.Now.Year.ToString();
+            int totalStudents = GetTotalStudents();
+            int nextSequenceNumber = startingNumber + totalStudents + 1;
+
+            // Combine the next sequence number and the current year to form the GR number.
+            string grNumber = $"{nextSequenceNumber}{currentYear}";
+
+            return grNumber;
+        }
+
+        // Method to get the total number of students for a particular school.
+        private int GetTotalStudents()
+        {
+            int totalStudents = 0;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT COUNT(*) FROM StudentMaster WHERE SchoolMaster_SchoolID = @SchoolID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SchoolID", schoolId);
+                    conn.Open();
+
+                    // Execute the query and get the total number of students.
+                    object result = cmd.ExecuteScalar();
+
+                    // If the result is not null, convert it to an integer.
+                    if (result != null && result != DBNull.Value)
+                    {
+                        totalStudents = Convert.ToInt32(result);
+                    }
+                }
+            }
+
+            return totalStudents;
+        }
+
+        private void BindBusRoute()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -625,9 +734,22 @@ namespace Schoolnest.Admin
             txtFullName.Text = fullName;
         }
 
-        protected void btnNext_Click(object sender, EventArgs e)
+        protected void btnImageUpload_Click(object sender, EventArgs e)
         {
+            if (!fileProfileImage.HasFile)
+            {
+                cvImage.IsValid = false;
+                cvImage.ErrorMessage = "Image is required.";
+            }
 
+            profileImagePath = Session["ImagePath"].ToString();
+
+            if (Session["ImagePath"].ToString() != "")
+            {
+                DeleteUploadedProfileImage(profileImagePath);
+            }
+
+            CheckUserProfileImage();
         }
     }
 }
