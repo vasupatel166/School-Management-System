@@ -261,8 +261,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AssignSubjectToClass.aspx" />
+    <Content Include="Admin\AssignTeacherToSubject.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Admin\StudentList.aspx" />
+    <Content Include="Admin\SubjectMaster.aspx" />
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\demo.css" />
     <Content Include="assets\css\fonts.css" />
@@ -355,6 +358,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AssignSubjectToClass.aspx.cs">
+      <DependentUpon>AssignSubjectToClass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AssignSubjectToClass.aspx.designer.cs">
+      <DependentUpon>AssignSubjectToClass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AssignTeacherToSubject.aspx.cs">
+      <DependentUpon>AssignTeacherToSubject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AssignTeacherToSubject.aspx.designer.cs">
+      <DependentUpon>AssignTeacherToSubject.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -368,6 +385,13 @@
     </Compile>
     <Compile Include="Admin\StudentList.aspx.designer.cs">
       <DependentUpon>StudentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SubjectMaster.aspx.cs">
+      <DependentUpon>SubjectMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SubjectMaster.aspx.designer.cs">
+      <DependentUpon>SubjectMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmailService.cs" />
     <Compile Include="ForgetPassword.aspx.cs">

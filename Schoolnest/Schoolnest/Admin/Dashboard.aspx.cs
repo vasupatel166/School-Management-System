@@ -10,6 +10,7 @@ namespace Schoolnest.Admin
     public partial class Dashboard : System.Web.UI.Page
     {
         private static string connectionString = Global.ConnectionString;
+        public static string SchoolID = "";
 
         // Properties to hold the data to pass to the front-end
         public string Labels { get; set; }
@@ -22,8 +23,8 @@ namespace Schoolnest.Admin
         {
             if (!IsPostBack)
             {
-                string schoolId = "Guru0012024";
-                GetAdminDashboardData(schoolId);
+                SchoolID = Session["SchoolID"].ToString();
+                GetAdminDashboardData(SchoolID);
             }
         }
 

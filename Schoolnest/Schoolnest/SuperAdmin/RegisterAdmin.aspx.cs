@@ -146,7 +146,7 @@ namespace Schoolnest.SuperAdmin
                 }
 
                 // Insert or update Admin data using InsertUpdateAdminMaster procedure
-                ExecuteInsertUpdateAdminMaster(adminID, firstName, lastName, email, mobileNumber, gender, profileImagePath, userID, schoolID,isActive);
+                ExecuteInsertUpdateAdminMaster(adminID, firstName, lastName, email, mobileNumber, gender, profileImagePath, userID, schoolID, isActive);
                 ClientScript.RegisterStartupScript(this.GetType(), "Success", "alert('Admin details saved successfully!');", true);
                 ResetForm();
             }
