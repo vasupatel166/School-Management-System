@@ -263,7 +263,14 @@
   <ItemGroup>
     <Content Include="Admin\AssignSubjectToClass.aspx" />
     <Content Include="Admin\AssignTeacherToSubject.aspx" />
+    <Content Include="Admin\AttendanceReports.aspx" />
+    <Content Include="Admin\BudgetMaster.aspx" />
+    <Content Include="Admin\ClassWiseFees.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
+    <Content Include="Admin\EventMaster.aspx" />
+    <Content Include="Admin\FeeMaster.aspx" />
+    <Content Include="Admin\MarkAttendance.aspx" />
+    <Content Include="Admin\PaymentReport.aspx" />
     <Content Include="Admin\StudentList.aspx" />
     <Content Include="Admin\SubjectMaster.aspx" />
     <Content Include="assets\css\bootstrap.min.css" />
@@ -372,12 +379,61 @@
     <Compile Include="Admin\AssignTeacherToSubject.aspx.designer.cs">
       <DependentUpon>AssignTeacherToSubject.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AttendanceReports.aspx.cs">
+      <DependentUpon>AttendanceReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AttendanceReports.aspx.designer.cs">
+      <DependentUpon>AttendanceReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\BudgetMaster.aspx.cs">
+      <DependentUpon>BudgetMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\BudgetMaster.aspx.designer.cs">
+      <DependentUpon>BudgetMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ClassWiseFees.aspx.cs">
+      <DependentUpon>ClassWiseFees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ClassWiseFees.aspx.designer.cs">
+      <DependentUpon>ClassWiseFees.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EventMaster.aspx.cs">
+      <DependentUpon>EventMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EventMaster.aspx.designer.cs">
+      <DependentUpon>EventMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FeeMaster.aspx.cs">
+      <DependentUpon>FeeMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\FeeMaster.aspx.designer.cs">
+      <DependentUpon>FeeMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MarkAttendance.aspx.cs">
+      <DependentUpon>MarkAttendance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MarkAttendance.aspx.designer.cs">
+      <DependentUpon>MarkAttendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PaymentReport.aspx.cs">
+      <DependentUpon>PaymentReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PaymentReport.aspx.designer.cs">
+      <DependentUpon>PaymentReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\StudentList.aspx.cs">
       <DependentUpon>StudentList.aspx</DependentUpon>

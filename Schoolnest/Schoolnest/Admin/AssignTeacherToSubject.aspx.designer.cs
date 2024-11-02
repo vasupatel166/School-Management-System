@@ -24,49 +24,85 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// ddlSearchAssignedTeacher control.
+        /// ddlSearchAssignedStandard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearchAssignedTeacher;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchAssignedStandard;
 
         /// <summary>
-        /// ddlTeacher control.
+        /// ddlSearchAssignedDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTeacher;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchAssignedDivision;
 
         /// <summary>
-        /// rfvTeacher control.
+        /// ddlStandard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTeacher;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStandard;
 
         /// <summary>
-        /// ddlSubject control.
+        /// rfvStandard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSubject;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStandard;
 
         /// <summary>
-        /// rfvSubject control.
+        /// ddlDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSubject;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDivision;
+
+        /// <summary>
+        /// rfvDivision control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDivision;
+
+        /// <summary>
+        /// teacherRowsContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel teacherRowsContainer;
+
+        /// <summary>
+        /// rptSubjectsTeacher control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptSubjectsTeacher;
+
+        /// <summary>
+        /// btnAddRow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddRow;
 
         /// <summary>
         /// btnSubmit control.

@@ -11,98 +11,89 @@ namespace Schoolnest.Admin
 {
 
 
-    public partial class AssignSubjectToClass
+    public partial class EventMaster
     {
 
         /// <summary>
-        /// form1 control.
+        /// eventForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm eventForm;
 
         /// <summary>
-        /// ddlSearchAssignedStandard control.
+        /// txtEventTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearchAssignedStandard;
+        protected global::System.Web.UI.WebControls.TextBox txtEventTitle;
 
         /// <summary>
-        /// ddlSearchAssignedDivision control.
+        /// rfvEventTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearchAssignedDivision;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEventTitle;
 
         /// <summary>
-        /// ddlStandard control.
+        /// txtEventDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStandard;
+        protected global::System.Web.UI.WebControls.TextBox txtEventDescription;
 
         /// <summary>
-        /// rfvStandard control.
+        /// txtEventDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStandard;
+        protected global::System.Web.UI.WebControls.TextBox txtEventDate;
 
         /// <summary>
-        /// ddlDivision control.
+        /// rfvEventDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDivision;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEventDate;
 
         /// <summary>
-        /// rfvDivision control.
+        /// txtEventTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDivision;
+        protected global::System.Web.UI.WebControls.TextBox txtEventTime;
 
         /// <summary>
-        /// subjectRowsContainer control.
+        /// rfvEventTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel subjectRowsContainer;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEventTime;
 
         /// <summary>
-        /// rptSubjects control.
+        /// txtAcademicYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptSubjects;
-
-        /// <summary>
-        /// btnAddRow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddRow;
+        protected global::System.Web.UI.WebControls.TextBox txtAcademicYear;
 
         /// <summary>
         /// btnSubmit control.
