@@ -208,7 +208,8 @@ namespace Schoolnest
 
                     menuItems.Add(new MenuItem("Miscellaneous", "fas fa-dollar-sign", "", new List<MenuItem> {
                         new MenuItem("Event Master", "fas fa-money-check-alt", ResolveUrl("Admin/EventMaster.aspx")),
-                        new MenuItem("Budget Master", "fas fa-money-check-alt", ResolveUrl("Admin/BudgetMaster.aspx"))
+                        new MenuItem("Budget Master", "fas fa-money-check-alt", ResolveUrl("Admin/BudgetMaster.aspx")),
+                        new MenuItem("Budget Categories", "fas fa-money-check-alt", ResolveUrl("Admin/BudgetCategories.aspx"))
                     }));
 
                     menuItems.Add(new MenuItem("Notifications", "fas fa-bullhorn", "", new List<MenuItem> {

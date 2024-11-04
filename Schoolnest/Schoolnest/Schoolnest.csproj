@@ -264,6 +264,7 @@
     <Content Include="Admin\AssignSubjectToClass.aspx" />
     <Content Include="Admin\AssignTeacherToSubject.aspx" />
     <Content Include="Admin\AttendanceReports.aspx" />
+    <Content Include="Admin\BudgetCategories.aspx" />
     <Content Include="Admin\BudgetMaster.aspx" />
     <Content Include="Admin\ClassWiseFees.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
@@ -385,6 +386,13 @@
     </Compile>
     <Compile Include="Admin\AttendanceReports.aspx.designer.cs">
       <DependentUpon>AttendanceReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\BudgetCategories.aspx.cs">
+      <DependentUpon>BudgetCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\BudgetCategories.aspx.designer.cs">
+      <DependentUpon>BudgetCategories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\BudgetMaster.aspx.cs">
       <DependentUpon>BudgetMaster.aspx</DependentUpon>

@@ -83,7 +83,7 @@
                                     <asp:FileUpload ID="fileProfileImage" runat="server" CssClass="form-control" />
                                 </div>
                             </div>
-                             <div class="col-md-4">
+                            <div class="col-md-4">
                                  <div class="form-check mt-2">
                                      <asp:CheckBox
                                              ID="chkIsActive"

@@ -27,14 +27,14 @@
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlStandard" Text="Standard"></asp:Label>
                                     <asp:DropDownList ID="ddlStandard" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="rfvStandard" runat="server" ControlToValidate="ddlStandard" InitialValue="" Display="Dynamic" ErrorMessage="Standard is required" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rfvStandard" runat="server" ControlToValidate="ddlStandard" ValidationGroup="ValidateSubject" Display="Dynamic" ErrorMessage="Standard is required" CssClass="text-danger"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlDivision" Text="Division"></asp:Label>
                                     <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="rfvDivision" runat="server" ControlToValidate="ddlDivision" InitialValue="" Display="Dynamic" ErrorMessage="Division is required" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rfvDivision" runat="server" ControlToValidate="ddlDivision" ValidationGroup="ValidateSubject" Display="Dynamic" ErrorMessage="Division is required" CssClass="text-danger"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +46,8 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <asp:DropDownList ID="ddlSubject" runat="server" CssClass="form-control" />
+                                                <asp:DropDownList ID="ddlSubject" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                                                <asp:RequiredFieldValidator ID="rfvSubject" runat="server" ValidationGroup="ValidateSubject" ControlToValidate="ddlSubject" Display="Dynamic" ErrorMessage="Subject is required" CssClass="text-danger"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
@@ -60,17 +61,18 @@
                         </asp:Panel>
 
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="text-left mt-3">
-                                        <asp:Button ID="btnAddRow" runat="server" Text="Add Subject" CssClass="btn btn-primary" OnClick="btnAddRow_Click" CausesValidation="false" />
+                                        <asp:Button ID="btnAddRow" runat="server" Text="Add Subject" CssClass="btn btn-primary" ValidationGroup="ValidateSubject" OnClick="btnAddRow_Click" CausesValidation="true" />
+                                        <asp:CustomValidator ID="cvSubject" runat="server" Display="Dynamic" ErrorMessage="" CssClass="text-danger" ValidationGroup="ValidateSubject"></asp:CustomValidator>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="card-footer text-center mt-4 pt-4">
-                            <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-success" OnClick="btnSubmit_Click" />
+                            <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-success" ValidationGroup="ValidateSubject" OnClick="btnSubmit_Click" />
                             <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-danger" CausesValidation="false" OnClick="btnCancel_Click" />
                         </div>
                     </div>

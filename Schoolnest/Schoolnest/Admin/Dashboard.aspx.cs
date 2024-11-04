@@ -59,7 +59,20 @@ namespace Schoolnest.Admin
                         {
                             string eventTitle = reader["EventTitle"].ToString();
                             DateTime eventDate = (DateTime)reader["EventDate"];
-                            AddUpcomingEvent(eventTitle, eventDate);
+
+                            // Retrieve EventTime as TimeSpan if it's of TIME type in the database
+                            TimeSpan? eventTime = reader["EventTime"] != DBNull.Value ? (TimeSpan?)reader["EventTime"] : null;
+
+                            if (eventTime.HasValue)
+                            {
+                                // Convert TimeSpan to DateTime for display purposes
+                                DateTime eventDateTime = DateTime.Today.Add(eventTime.Value);
+                                AddUpcomingEvent(eventTitle, eventDate, eventDateTime);
+                            }
+                            else
+                            {
+                                System.Diagnostics.Debug.WriteLine("Warning: EventTime is null for event " + eventTitle);
+                            }
                         }
                     }
 
@@ -111,23 +124,23 @@ namespace Schoolnest.Admin
             }
         }
 
-        private void AddUpcomingEvent(string title, DateTime date)
+        private void AddUpcomingEvent(string title, DateTime date, DateTime time)
         {
+
+            string formattedTime = time.ToString("hh:mm tt");
+
             // Create a div for each event
             string eventHtml = $@"
                 <div class='item-list'>
                     <div class='info-user ms-3'>
                         <div class='username'>{title}</div>
-                        <div class='status'>{date.ToString("dd MMM, yyyy")}</div>
+                        <div class='status'>{formattedTime}</div>
                     </div>
-                    <button type='button' class='btn btn-icon btn-link op-8 me-1'>
-                        <a href='~/Admin/EventMaster.aspx'><i class='fas fa-edit'></i></a>
-                    </button>
+                    <p>{date.ToString("dd MMM, yyyy")}</p>
                 </div>";
 
             // Registering the event list as a control on the server-side
             UpcomingEvents.InnerHtml += eventHtml;
         }
-
     }
 }
