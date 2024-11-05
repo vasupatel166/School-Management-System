@@ -38,13 +38,16 @@
                                 ErrorMessage="Academic Year must be in the format yyyy-yyyy" CssClass="text-danger" 
                                 ValidationExpression="^\d{4}-\d{4}$" Display="Dynamic" />
                             <asp:Label ID="lblErrorMessage" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
-
                         </div>
                     </div>
                 </div>
-                <div class="form-check mt-2">
-                    <asp:CheckBox ID="chkIsActive" runat="server" CssClass="form-check-input" Checked="true" />
-                    <label class="form-check-label">Active</label>
+                <div class="row">
+                    <div class="col-md-4">
+                    <div class="form-check mt-2">
+                        <asp:CheckBox ID="chkIsActive" runat="server" CssClass="form-check-input" Checked="true" />
+                        <label class="form-check-label">Active</label>
+                    </div>
+                    <//div>
                 </div>
                 <div class="card-footer text-center mt-4 pt-4">
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-success" OnClick="btnSubmit_Click" />
@@ -82,7 +85,6 @@
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
-
                 </div>
             </div>
         </div>

@@ -221,16 +221,16 @@ namespace Schoolnest
 
                 case "teacher": // teacher
                     menuItems.Add(new MenuItem("Dashboard", "fas fa-home", ResolveUrl("Teacher/Dashboard.aspx")));
-                    menuItems.Add(new MenuItem("Attendance", "fas fa-calendar-check", "", new List<MenuItem> {
+                    menuItems.Add(new MenuItem("Attendance Management", "fas fa-calendar-check", "", new List<MenuItem> {
                         new MenuItem("Mark Attendance", "fas fa-check", ResolveUrl("Teacher/MarkAttendance.aspx")),
                         new MenuItem("View Attendance Reports", "fas fa-chart-line", ResolveUrl("Teacher/AttendanceReports.aspx")),
                     }));
-                            menuItems.Add(new MenuItem("Exams & Grades", "fas fa-file-alt", "", new List<MenuItem> {
+                            menuItems.Add(new MenuItem("Exams & Grades Management", "fas fa-file-alt", "", new List<MenuItem> {
                         new MenuItem("View Exam Schedule", "fas fa-calendar-alt", ResolveUrl("Teacher/ViewExamSchedule.aspx")),
                         new MenuItem("Enter Grades", "fas fa-graduation-cap", ResolveUrl("Teacher/EnterGrades.aspx")),
                         new MenuItem("View Grade Reports", "fas fa-chart-line", ResolveUrl("Teacher/ViewGradeReports.aspx")),
                     }));
-                            menuItems.Add(new MenuItem("Timetable", "fas fa-calendar-alt", "", new List<MenuItem> {
+                            menuItems.Add(new MenuItem("Timetable Management", "fas fa-calendar-alt", "", new List<MenuItem> {
                         new MenuItem("View Class Timetable", "fas fa-table", ResolveUrl("Teacher/ViewClassTimetable.aspx")),
                         new MenuItem("View Personal Schedule", "fas fa-calendar-day", ResolveUrl("Teacher/ViewPersonalSchedule.aspx")),
                     }));
