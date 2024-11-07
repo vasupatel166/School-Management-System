@@ -70,7 +70,6 @@ namespace Schoolnest.Admin
 
         private void LoadBudgetCategories()
         {
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();

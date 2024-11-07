@@ -24,24 +24,6 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// ddlSearchAssignedStandard control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearchAssignedStandard;
-
-        /// <summary>
-        /// ddlSearchAssignedDivision control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearchAssignedDivision;
-
-        /// <summary>
         /// ddlStandard control.
         /// </summary>
         /// <remarks>
@@ -78,31 +60,13 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDivision;
 
         /// <summary>
-        /// teacherRowsContainer control.
+        /// gvSubjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel teacherRowsContainer;
-
-        /// <summary>
-        /// rptSubjectsTeacher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptSubjectsTeacher;
-
-        /// <summary>
-        /// btnAddRow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddRow;
+        protected global::System.Web.UI.WebControls.GridView gvSubjects;
 
         /// <summary>
         /// btnSubmit control.

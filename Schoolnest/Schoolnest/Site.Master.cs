@@ -45,7 +45,7 @@ namespace Schoolnest
                             break;
 
                         case "A":
-                            userName = $"{userDetails["Firstname"]} {userDetails["Lastname"]}"; // Admin table has "First_Name" and "Last_Name"
+                            userName = $"{userDetails["Firstname"]} {userDetails["Lastname"]}";
                             userEmail = userDetails["Email"].ToString();
                             profileImage = userDetails["ProfileImage"].ToString();
                             roleName = "admin";

@@ -133,6 +133,7 @@ namespace Schoolnest.Admin
             if (ddlSearchAssignedDivision.SelectedValue != "0")
             {
                 LoadExistingSubjects();
+                btnAddRow.Enabled = false;
             }
         }
 
@@ -164,6 +165,10 @@ namespace Schoolnest.Admin
                     ViewState["Subjects"] = subjects;
                     rptSubjects.DataSource = subjects;
                     rptSubjects.DataBind();
+
+                    ddlStandard.SelectedValue = ddlSearchAssignedStandard.SelectedValue;
+                    ddlDivision.SelectedValue = ddlSearchAssignedDivision.SelectedValue;
+
                     LoadSubjectsForDropdowns();
                 }
             }
@@ -198,7 +203,7 @@ namespace Schoolnest.Admin
             LoadSubjectsForDropdowns();
 
             // Restore previous selections
-            for (int i = 0; i < subjects.Count - 1; i++) // Exclude the newly added row
+            for (int i = 0; i < subjects.Count - 1; i++)
             {
                 DropDownList ddl = (DropDownList)rptSubjects.Items[i].FindControl("ddlSubject");
                 if (!string.IsNullOrEmpty(subjects[i].SelectedSubjectId))
@@ -213,12 +218,13 @@ namespace Schoolnest.Admin
             List<string> selectedSubjects = new List<string>();
             List<SubjectSelection> subjects = (List<SubjectSelection>)ViewState["Subjects"];
 
+            // First, collect all currently selected subjects
             foreach (RepeaterItem item in rptSubjects.Items)
             {
                 DropDownList ddl = (DropDownList)item.FindControl("ddlSubject");
-                if (ddl.SelectedValue != "" && item.ItemIndex < subjects.Count)
+                if (ddl.SelectedValue != "")
                 {
-                    selectedSubjects.Add(subjects[item.ItemIndex].SelectedSubjectId);
+                    selectedSubjects.Add(ddl.SelectedValue);
                 }
             }
 
@@ -226,9 +232,8 @@ namespace Schoolnest.Admin
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(@"
-                    SELECT SubjectID, SubjectName 
-                    FROM SubjectMaster 
-                    WHERE SchoolMaster_SchoolID = @SchoolID", conn))
+                SELECT sm.SubjectID, sm.SubjectName, CASE WHEN sd.SubjectMaster_SubjectID IS NOT NULL THEN 1 ELSE 0 END AS IsInUse FROM SubjectMaster sm 
+                LEFT JOIN SubjectDetail sd ON sm.SubjectID = sd.SubjectMaster_SubjectID WHERE sm.SchoolMaster_SchoolID = @SchoolID", conn))
                 {
                     cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
                     DataTable dt = new DataTable();
@@ -240,17 +245,43 @@ namespace Schoolnest.Admin
                         DropDownList ddl = (DropDownList)item.FindControl("ddlSubject");
                         string currentValue = item.ItemIndex < subjects.Count ?
                             subjects[item.ItemIndex].SelectedSubjectId : "";
-
                         ddl.Items.Clear();
                         ddl.Items.Add(new ListItem("Select Subject", ""));
+
+                        // Get list of subjects selected in above rows
+                        List<string> previouslySelectedSubjects = new List<string>();
+                        for (int i = 0; i < item.ItemIndex; i++)
+                        {
+                            DropDownList previousDdl = (DropDownList)rptSubjects.Items[i].FindControl("ddlSubject");
+                            if (!string.IsNullOrEmpty(previousDdl.SelectedValue))
+                            {
+                                previouslySelectedSubjects.Add(previousDdl.SelectedValue);
+                            }
+                        }
 
                         foreach (DataRow row in dt.Rows)
                         {
                             string subjectId = row["SubjectID"].ToString();
-                            if (!selectedSubjects.Contains(subjectId) || subjectId == currentValue)
+                            bool isInUse = Convert.ToBoolean(row["IsInUse"]);
+                            string subjectName = row["SubjectName"].ToString();
+
+                            // Skip if subject is already selected in above rows
+                            if (previouslySelectedSubjects.Contains(subjectId) && subjectId != currentValue)
+                            {
+                                continue;
+                            }
+
+                            // Add subject based on whether it's in use
+                            if (isInUse && subjectId != currentValue)
                             {
                                 ddl.Items.Add(new ListItem(
-                                    row["SubjectName"].ToString(),
+                                    subjectName + " (Assigned)",
+                                    ""));
+                            }
+                            else
+                            {
+                                ddl.Items.Add(new ListItem(
+                                    subjectName,
                                     subjectId));
                             }
                         }
@@ -304,10 +335,10 @@ namespace Schoolnest.Admin
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            List<string> selectedSubjects = new List<string>();
+            Dictionary<string, int> existingSubjectDetails = new Dictionary<string, int>();
 
             // Get all subject dropdowns from repeater
-            List<string> selectedSubjects = new List<string>();
-
             foreach (RepeaterItem item in rptSubjects.Items)
             {
                 DropDownList ddlSubject = (DropDownList)item.FindControl("ddlSubject");
@@ -318,103 +349,117 @@ namespace Schoolnest.Admin
                 selectedSubjects.Add(ddlSubject.SelectedValue);
             }
 
-            // Check if no subjects are added or if any subject is not selected
+            // Validation checks
             if (rptSubjects.Items.Count == 0)
             {
                 cvSubject.IsValid = false;
-                cvSubject.ErrorMessage = "Please add at least one subject";
+                cvSubject.ErrorMessage = "Minimum 1 subject required";
                 return;
             }
 
             if (Page.IsValid)
             {
-                // Debug logging for all form inputs
-                System.Diagnostics.Debug.WriteLine("=== Form Input Values ===");
-                System.Diagnostics.Debug.WriteLine($"SchoolID: {SchoolID}");
-                System.Diagnostics.Debug.WriteLine($"Selected Standard: {ddlStandard.SelectedItem?.Text} (ID: {ddlStandard.SelectedValue})");
-                System.Diagnostics.Debug.WriteLine($"Selected Division: {ddlDivision.SelectedItem?.Text} (ID: {ddlDivision.SelectedValue})");
-
-                System.Diagnostics.Debug.WriteLine("\nSelected Subjects:");
-                foreach (RepeaterItem item in rptSubjects.Items)
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    DropDownList ddlSubject = (DropDownList)item.FindControl("ddlSubject");
-                    if (!string.IsNullOrEmpty(ddlSubject.SelectedValue))
+                    conn.Open();
+
+                    try
                     {
-                        System.Diagnostics.Debug.WriteLine($"Subject {item.ItemIndex + 1}: {ddlSubject.SelectedItem?.Text} (ID: {ddlSubject.SelectedValue})");
+                        // First, get existing SubjectDetailIDs if we're updating
+                        if (ddlSearchAssignedStandard.SelectedValue != "0" && ddlSearchAssignedDivision.SelectedValue != "0")
+                        {
+                            using (SqlCommand cmdGet = new SqlCommand(@"
+                            SELECT SubjectDetailID, SubjectMaster_SubjectID FROM SubjectDetail WHERE Standards_StandardID = @StandardID AND 
+                            Divisions_DivisionID = @DivisionID AND SchoolMaster_SchoolID = @SchoolID", conn))
+                            {
+                                cmdGet.Parameters.AddWithValue("@StandardID", ddlSearchAssignedStandard.SelectedValue);
+                                cmdGet.Parameters.AddWithValue("@DivisionID", ddlSearchAssignedDivision.SelectedValue);
+                                cmdGet.Parameters.AddWithValue("@SchoolID", SchoolID);
+
+                                using (SqlDataReader reader = cmdGet.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        existingSubjectDetails.Add(
+                                            reader["SubjectMaster_SubjectID"].ToString(),
+                                            Convert.ToInt32(reader["SubjectDetailID"])
+                                        );
+                                    }
+                                }
+                            }
+                        }
+
+                        // Process each selected subject
+                        foreach (string subjectId in selectedSubjects)
+                        {
+                            using (SqlCommand cmd = new SqlCommand("InsertUpdateSubjectDetail", conn))
+                            {
+                                cmd.CommandType = CommandType.StoredProcedure;
+
+                                // Add parameters
+                                cmd.Parameters.AddWithValue("@SubjectMaster_SubjectID", Convert.ToInt32(subjectId));
+                                cmd.Parameters.AddWithValue("@Standards_StandardID", Convert.ToInt32(ddlStandard.SelectedValue));
+                                cmd.Parameters.AddWithValue("@Divisions_DivisionID", Convert.ToInt32(ddlDivision.SelectedValue));
+                                cmd.Parameters.AddWithValue("@SchoolMaster_SchoolID", SchoolID);
+                                cmd.Parameters.AddWithValue("@Teachers_TeacherID", DBNull.Value); // Set to NULL as per your requirement
+
+                                // If updating, add SubjectDetailID
+                                if (existingSubjectDetails.ContainsKey(subjectId))
+                                {
+                                    cmd.Parameters.AddWithValue("@SubjectDetailID", existingSubjectDetails[subjectId]);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("@SubjectDetailID", DBNull.Value);
+                                }
+
+                                // Execute the stored procedure and get the result
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        string status = reader["Status"].ToString();
+                                        int subjectDetailId = Convert.ToInt32(reader["SubjectDetailID"]);
+                                        System.Diagnostics.Debug.WriteLine($"Subject {subjectId}: {status} with ID {subjectDetailId}");
+                                    }
+                                }
+                            }
+                        }
+
+                        // Delete records that are no longer selected (if updating)
+                        if (existingSubjectDetails.Count > 0)
+                        {
+                            using (SqlCommand cmdDelete = new SqlCommand(@"
+                            DELETE FROM SubjectDetail WHERE Standards_StandardID = @StandardID AND Divisions_DivisionID = @DivisionID AND SchoolMaster_SchoolID = @SchoolID 
+                            AND SubjectMaster_SubjectID NOT IN (SELECT value FROM STRING_SPLIT(@SelectedSubjects, ','))", conn))
+                            {
+                                cmdDelete.Parameters.AddWithValue("@StandardID", ddlSearchAssignedStandard.SelectedValue);
+                                cmdDelete.Parameters.AddWithValue("@DivisionID", ddlSearchAssignedDivision.SelectedValue);
+                                cmdDelete.Parameters.AddWithValue("@SchoolID", SchoolID);
+                                cmdDelete.Parameters.AddWithValue("@SelectedSubjects", string.Join(",", selectedSubjects));
+                                cmdDelete.ExecuteNonQuery();
+                            }
+                        }
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "Success", "alert('Subjects assigned successfully!');", true);
+                        ResetForm();
+                    }
+                    catch (Exception ex)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "Error",
+                            $"alert('An error occurred while saving the subjects: {ex.Message}');", true);
+                        System.Diagnostics.Debug.WriteLine($"Error in btnSubmit_Click: {ex}");
                     }
                 }
-
-                System.Diagnostics.Debug.WriteLine("\nSearch Dropdown Values:");
-                System.Diagnostics.Debug.WriteLine($"Search Assigned Standard: {ddlSearchAssignedStandard.SelectedItem?.Text} (ID: {ddlSearchAssignedStandard.SelectedValue})");
-                System.Diagnostics.Debug.WriteLine($"Search Assigned Division: {ddlSearchAssignedDivision.SelectedItem?.Text} (ID: {ddlSearchAssignedDivision.SelectedValue})");
-                System.Diagnostics.Debug.WriteLine("========================");
-
-                //using (SqlConnection conn = new SqlConnection(connectionString))
-                //{
-                //    conn.Open();
-                //    SqlTransaction transaction = conn.BeginTransaction();
-
-                //    try
-                //    {
-                //        // First, delete existing assignments for this standard and division
-                //        using (SqlCommand deleteCmd = new SqlCommand(@"
-                //                DELETE FROM SubjectDetail 
-                //                WHERE Standards_StandardID = @StandardID 
-                //                AND Divisions_DivisionID = @DivisionID 
-                //                AND SchoolMaster_SchoolID = @SchoolID", conn, transaction))
-                //        {
-                //            deleteCmd.Parameters.AddWithValue("@StandardID", ddlStandard.SelectedValue);
-                //            deleteCmd.Parameters.AddWithValue("@DivisionID", ddlDivision.SelectedValue);
-                //            deleteCmd.Parameters.AddWithValue("@SchoolID", SchoolID);
-                //            deleteCmd.ExecuteNonQuery();
-                //        }
-
-                //        // Then insert new assignments
-                //        using (SqlCommand insertCmd = new SqlCommand(@"
-                //                INSERT INTO SubjectDetail (
-                //                    Standards_StandardID, 
-                //                    Divisions_DivisionID, 
-                //                    SubjectMaster_SubjectID, 
-                //                    SchoolMaster_SchoolID,
-                //                    Teachers_TeacherID
-                //                ) VALUES (
-                //                    @StandardID,
-                //                    @DivisionID,
-                //                    @SubjectID,
-                //                    @SchoolID,
-                //                    NULL
-                //                )", conn, transaction))
-                //        {
-                //            foreach (RepeaterItem item in rptSubjects.Items)
-                //            {
-                //                DropDownList ddl = (DropDownList)item.FindControl("ddlSubject");
-                //                if (!string.IsNullOrEmpty(ddl.SelectedValue))
-                //                {
-                //                    insertCmd.Parameters.Clear();
-                //                    insertCmd.Parameters.AddWithValue("@StandardID", ddlStandard.SelectedValue);
-                //                    insertCmd.Parameters.AddWithValue("@DivisionID", ddlDivision.SelectedValue);
-                //                    insertCmd.Parameters.AddWithValue("@SubjectID", ddl.SelectedValue);
-                //                    insertCmd.Parameters.AddWithValue("@SchoolID", SchoolID);
-                //                    insertCmd.ExecuteNonQuery();
-                //                }
-                //            }
-                //        }
-
-                //        transaction.Commit();
-                ScriptManager.RegisterStartupScript(this, GetType(), "Success",
-                    "alert('Subjects assigned successfully!'); window.location='AssignSubjectToClass.aspx';", true);
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        transaction.Rollback();
-                //        ScriptManager.RegisterStartupScript(this, GetType(), "Error",
-                //            $"alert('Error: {ex.Message}');", true);
-                //    }
-                //}
             }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            ResetForm();
+        }
+
+        protected void ResetForm()
         {
             Response.Redirect("~/Admin/AssignSubjectToClass.aspx");
         }

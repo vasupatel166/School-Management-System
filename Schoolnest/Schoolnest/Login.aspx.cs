@@ -70,7 +70,6 @@ namespace Schoolnest
 
         private bool ValidateLogin(string schoolId, string userType, string username, string password)
         {
-            // SQL Server connection string
             string connectionString = Global.ConnectionString;
 
             // Set the stored procedure name based on the user type
