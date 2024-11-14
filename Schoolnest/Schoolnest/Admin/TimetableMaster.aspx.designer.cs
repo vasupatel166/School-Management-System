@@ -11,7 +11,7 @@ namespace Schoolnest.Admin
 {
 
 
-    public partial class AssignSubjectToClass
+    public partial class TimetableMaster
     {
 
         /// <summary>
@@ -24,22 +24,22 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// ddlSearchAssignedStandard control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearchAssignedStandard;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// ddlSearchAssignedDivision control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearchAssignedDivision;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
         /// ddlStandard control.
@@ -78,66 +78,102 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDivision;
 
         /// <summary>
-        /// lblNote control.
+        /// gvSubjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNote;
+        protected global::System.Web.UI.WebControls.GridView gvSubjects;
 
         /// <summary>
-        /// subjectRowsContainer control.
+        /// ClassTimetable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel subjectRowsContainer;
+        protected global::System.Web.UI.WebControls.Table ClassTimetable;
 
         /// <summary>
-        /// rptSubjects control.
+        /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptSubjects;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
 
         /// <summary>
-        /// btnAddRow control.
+        /// HiddenField1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddRow;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
 
         /// <summary>
-        /// cvSubject control.
+        /// ddlMonday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvSubject;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMonday;
 
         /// <summary>
-        /// btnSubmit control.
+        /// ddlTuesday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTuesday;
 
         /// <summary>
-        /// btnCancel control.
+        /// ddlWednesday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.DropDownList ddlWednesday;
+
+        /// <summary>
+        /// ddlThursday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlThursday;
+
+        /// <summary>
+        /// ddlFriday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFriday;
+
+        /// <summary>
+        /// ddlSaturday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSaturday;
+
+        /// <summary>
+        /// btnSaveTimetable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveTimetable;
     }
 }

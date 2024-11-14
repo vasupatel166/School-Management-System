@@ -24,13 +24,22 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.HtmlControls.HtmlForm formFeeMaster;
 
         /// <summary>
-        /// ddlAcademicYear control.
+        /// txtAcademicYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAcademicYear;
+        protected global::System.Web.UI.WebControls.TextBox txtAcademicYear;
+
+        /// <summary>
+        /// rfvAcademicYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAcademicYear;
 
         /// <summary>
         /// ddlStandard control.
@@ -40,6 +49,15 @@ namespace Schoolnest.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlStandard;
+
+        /// <summary>
+        /// rfvStandard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStandard;
 
         /// <summary>
         /// ddlSchool control.
@@ -195,6 +213,33 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.WebControls.TextBox txtMiscFee;
 
         /// <summary>
+        /// txtLateFee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLateFee;
+
+        /// <summary>
+        /// txtTotalFee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTotalFee;
+
+        /// <summary>
+        /// ddlPaymentScheduleType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPaymentScheduleType;
+
+        /// <summary>
         /// txtFirstQuarter control.
         /// </summary>
         /// <remarks>
@@ -229,6 +274,33 @@ namespace Schoolnest.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFourthQuarter;
+
+        /// <summary>
+        /// txtFirstHalf control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFirstHalf;
+
+        /// <summary>
+        /// txtSecondHalf control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSecondHalf;
+
+        /// <summary>
+        /// txtAnnualDueDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAnnualDueDate;
 
         /// <summary>
         /// btnSubmit control.

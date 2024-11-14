@@ -261,19 +261,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Announcements.aspx" />
     <Content Include="Admin\AssignSubjectToClass.aspx" />
     <Content Include="Admin\AssignTeacherToSubject.aspx" />
     <Content Include="Admin\AttendanceReports.aspx" />
     <Content Include="Admin\BudgetCategories.aspx" />
     <Content Include="Admin\BudgetMaster.aspx" />
-    <Content Include="Admin\ClassWiseFees.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Admin\EventMaster.aspx" />
     <Content Include="Admin\FeeMaster.aspx" />
     <Content Include="Admin\MarkAttendance.aspx" />
     <Content Include="Admin\PaymentReport.aspx" />
+    <Content Include="Admin\SendNotifications.aspx" />
     <Content Include="Admin\StudentList.aspx" />
     <Content Include="Admin\SubjectMaster.aspx" />
+    <Content Include="Admin\TimetableMaster.aspx" />
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\demo.css" />
     <Content Include="assets\css\fonts.css" />
@@ -363,9 +365,17 @@
     <Content Include="SuperAdmin\RegisterAdmin.aspx" />
     <Content Include="SuperAdmin\RegisterSchool.aspx" />
     <Content Include="Teacher\Dashboard.aspx" />
+    <Content Include="Teacher\ViewTimetable.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Announcements.aspx.cs">
+      <DependentUpon>Announcements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Announcements.aspx.designer.cs">
+      <DependentUpon>Announcements.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AssignSubjectToClass.aspx.cs">
       <DependentUpon>AssignSubjectToClass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -400,13 +410,6 @@
     </Compile>
     <Compile Include="Admin\BudgetMaster.aspx.designer.cs">
       <DependentUpon>BudgetMaster.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ClassWiseFees.aspx.cs">
-      <DependentUpon>ClassWiseFees.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ClassWiseFees.aspx.designer.cs">
-      <DependentUpon>ClassWiseFees.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
@@ -443,6 +446,13 @@
     <Compile Include="Admin\PaymentReport.aspx.designer.cs">
       <DependentUpon>PaymentReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\SendNotifications.aspx.cs">
+      <DependentUpon>SendNotifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SendNotifications.aspx.designer.cs">
+      <DependentUpon>SendNotifications.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\StudentList.aspx.cs">
       <DependentUpon>StudentList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -456,6 +466,13 @@
     </Compile>
     <Compile Include="Admin\SubjectMaster.aspx.designer.cs">
       <DependentUpon>SubjectMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TimetableMaster.aspx.cs">
+      <DependentUpon>TimetableMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TimetableMaster.aspx.designer.cs">
+      <DependentUpon>TimetableMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmailService.cs" />
     <Compile Include="ForgetPassword.aspx.cs">
@@ -538,6 +555,13 @@
     </Compile>
     <Compile Include="Teacher\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\ViewTimetable.aspx.cs">
+      <DependentUpon>ViewTimetable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\ViewTimetable.aspx.designer.cs">
+      <DependentUpon>ViewTimetable.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

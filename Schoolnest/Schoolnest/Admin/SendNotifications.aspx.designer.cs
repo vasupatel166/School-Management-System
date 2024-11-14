@@ -11,7 +11,7 @@ namespace Schoolnest.Admin
 {
 
 
-    public partial class AssignSubjectToClass
+    public partial class SendEmailNotifications
     {
 
         /// <summary>
@@ -24,120 +24,84 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// ddlSearchAssignedStandard control.
+        /// txtSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearchAssignedStandard;
+        protected global::System.Web.UI.WebControls.TextBox txtSubject;
 
         /// <summary>
-        /// ddlSearchAssignedDivision control.
+        /// rfvSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearchAssignedDivision;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSubject;
 
         /// <summary>
-        /// ddlStandard control.
+        /// txtMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStandard;
+        protected global::System.Web.UI.WebControls.TextBox txtMessage;
 
         /// <summary>
-        /// rfvStandard control.
+        /// rfvMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStandard;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMessage;
 
         /// <summary>
-        /// ddlDivision control.
+        /// ddlRecipientGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDivision;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRecipientGroup;
 
         /// <summary>
-        /// rfvDivision control.
+        /// rfvRecipientGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDivision;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRecipientGroup;
 
         /// <summary>
-        /// lblNote control.
+        /// btnSendNotification control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNote;
+        protected global::System.Web.UI.WebControls.Button btnSendNotification;
 
         /// <summary>
-        /// subjectRowsContainer control.
+        /// rptNotificationsHistory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel subjectRowsContainer;
+        protected global::System.Web.UI.WebControls.Repeater rptNotificationsHistory;
 
         /// <summary>
-        /// rptSubjects control.
+        /// pnlNoNotifications control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptSubjects;
-
-        /// <summary>
-        /// btnAddRow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddRow;
-
-        /// <summary>
-        /// cvSubject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvSubject;
-
-        /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
-
-        /// <summary>
-        /// btnCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.Panel pnlNoNotifications;
     }
 }

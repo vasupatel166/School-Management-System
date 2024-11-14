@@ -88,7 +88,7 @@
                                         <ul class="nav nav-collapse">
                                             <asp:Repeater ID="SubMenuRepeater" runat="server" DataSource='<%# Eval("SubMenus") %>'>
                                                 <ItemTemplate>
-                                                    <li class="sidebar_submenu_li">
+                                                    <li class="nav-item sidebar_submenu_li">
                                                         <a href="<%# Eval("Url") %>"  class="px-4">
                                                             <i class="mx-0 <%# Eval("Icon") %> lh-base"></i>
                                                             <span class="sub-item ms-2"><%# Eval("Title") %></span>

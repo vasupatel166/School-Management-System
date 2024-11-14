@@ -18,43 +18,32 @@ namespace Schoolnest.Admin
 
             if (!IsPostBack)
             {
-                LoadStandardsWithDivisions();
+                LoadAssignedStandard();
             }
         }
 
-        private void LoadStandardsWithDivisions()
+        private void LoadAssignedStandard()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(@"
-                    SELECT s.StandardID AS ID, s.StandardName AS Name, s.SchoolMaster_SchoolID, 'Standard' AS Type 
-                    FROM Standards s 
-                    WHERE s.SchoolMaster_SchoolID = @SchoolID 
-                    UNION ALL
-                    SELECT d.DivisionID AS ID, d.DivisionName AS Name, d.SchoolMaster_SchoolID, 'Division' AS Type 
-                    FROM Divisions d 
-                    WHERE d.SchoolMaster_SchoolID = @SchoolID", conn))
+                    SELECT DISTINCT sd.Standards_StandardID, s.StandardName FROM SubjectDetail AS sd 
+                    INNER JOIN Standards AS s ON sd.Standards_StandardID = s.StandardID
+                    WHERE sd.SchoolMaster_SchoolID = @SchoolID", conn))
                 {
                     cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     ddlStandard.Items.Clear();
-                    ddlDivision.Items.Clear();
-
-                    ddlStandard.Items.Add(new ListItem("Select Standard", ""));
-                    ddlDivision.Items.Add(new ListItem("Select Division", ""));
+                    ddlStandard.Items.Add(new ListItem("Select Standard", "0"));
 
                     while (reader.Read())
                     {
-                        string id = reader["ID"].ToString();
-                        string name = reader["Name"].ToString();
-                        string type = reader["Type"].ToString();
+                        ddlStandard.Items.Add(new ListItem(
+                            reader["StandardName"].ToString(),
+                            reader["Standards_StandardID"].ToString()));
 
-                        if (type == "Standard")
-                            ddlStandard.Items.Add(new ListItem(name, id));
-                        else if (type == "Division")
-                            ddlDivision.Items.Add(new ListItem(name, id));
                     }
                 }
             }
@@ -62,19 +51,57 @@ namespace Schoolnest.Admin
 
         protected void ddlStandard_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(ddlStandard.SelectedValue) &&
-                !string.IsNullOrEmpty(ddlDivision.SelectedValue))
+            if (ddlStandard.SelectedValue != "0")
             {
-                LoadSubjectsGrid();
+                LoadAssignedDivisions();
+                ddlDivision.Enabled = true;
+            }
+            else
+            {
+                ddlDivision.SelectedIndex = 0;
+                ddlDivision.Enabled = false;
+            }
+            
+            ClearSubjectsGrid();
+        }
+
+        private void LoadAssignedDivisions()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(@"
+                    SELECT DISTINCT sd.Divisions_DivisionID, d.DivisionName FROM SubjectDetail AS sd 
+                    INNER JOIN Divisions AS d ON sd.Divisions_DivisionID = d.DivisionID
+                    WHERE sd.Standards_StandardID = @StandardID AND sd.SchoolMaster_SchoolID = @SchoolID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@StandardID", ddlStandard.SelectedValue);
+                    cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    ddlDivision.Items.Clear();
+                    ddlDivision.Items.Add(new ListItem("Select Division", "0"));
+
+                    while (reader.Read())
+                    {
+                        ddlDivision.Items.Add(new ListItem(
+                            reader["DivisionName"].ToString(),
+                            reader["Divisions_DivisionID"].ToString()));
+
+                    }
+                }
             }
         }
 
         protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(ddlStandard.SelectedValue) &&
-                !string.IsNullOrEmpty(ddlDivision.SelectedValue))
+            if (ddlDivision.SelectedValue != "0")
             {
                 LoadSubjectsGrid();
+            }
+            else
+            {
+                ClearSubjectsGrid();
             }
         }
 
@@ -103,23 +130,12 @@ namespace Schoolnest.Admin
                         gvSubjects.DataSource = dt;
                         gvSubjects.DataBind();
 
-                        // Get list of already assigned teachers
-                        List<string> assignedTeachers = new List<string>();
-                        foreach (DataRow row in dt.Rows)
-                        {
-                            string teacherId = row["Teachers_TeacherID"].ToString();
-                            if (!string.IsNullOrEmpty(teacherId))
-                            {
-                                assignedTeachers.Add(teacherId);
-                            }
-                        }
-
                         // Load teachers for each row
                         foreach (GridViewRow row in gvSubjects.Rows)
                         {
                             DropDownList ddlTeacher = (DropDownList)row.FindControl("ddlTeacher");
                             string currentTeacherId = dt.Rows[row.RowIndex]["Teachers_TeacherID"].ToString();
-                            LoadTeacherDropdown(ddlTeacher, assignedTeachers, currentTeacherId);
+                            LoadTeacherDropdown(ddlTeacher, currentTeacherId);
 
                             // Set selected teacher if exists
                             if (!string.IsNullOrEmpty(currentTeacherId))
@@ -150,32 +166,32 @@ namespace Schoolnest.Admin
             }
         }
 
-        protected void ddlTeacher_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateTeacherDropdowns();
-        }
+        //protected void ddlTeacher_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    UpdateTeacherDropdowns();
+        //}
 
-        private void UpdateTeacherDropdowns()
-        {
-            List<string> selectedTeachers = new List<string>();
-            foreach (GridViewRow gvRow in gvSubjects.Rows)
-            {
-                DropDownList ddl = (DropDownList)gvRow.FindControl("ddlTeacher");
-                if (ddl.SelectedValue != "0" && !selectedTeachers.Contains(ddl.SelectedValue))
-                {
-                    selectedTeachers.Add(ddl.SelectedValue);
-                }
-            }
+        //private void UpdateTeacherDropdowns()
+        //{
+        //    List<string> selectedTeachers = new List<string>();
+        //    foreach (GridViewRow gvRow in gvSubjects.Rows)
+        //    {
+        //        DropDownList ddl = (DropDownList)gvRow.FindControl("ddlTeacher");
+        //        if (ddl.SelectedValue != "0" && !selectedTeachers.Contains(ddl.SelectedValue))
+        //        {
+        //            selectedTeachers.Add(ddl.SelectedValue);
+        //        }
+        //    }
 
-            foreach (GridViewRow gvRow in gvSubjects.Rows)
-            {
-                DropDownList ddl = (DropDownList)gvRow.FindControl("ddlTeacher");
-                string currentTeacherId = ddl.SelectedValue;
-                LoadTeacherDropdown(ddl, selectedTeachers, currentTeacherId);
-            }
-        }
+        //    foreach (GridViewRow gvRow in gvSubjects.Rows)
+        //    {
+        //        DropDownList ddl = (DropDownList)gvRow.FindControl("ddlTeacher");
+        //        string currentTeacherId = ddl.SelectedValue;
+        //        LoadTeacherDropdown(ddl, selectedTeachers, currentTeacherId);
+        //    }
+        //}
 
-        private void LoadTeacherDropdown(DropDownList ddlTeacher, List<string> selectedTeachers, string currentTeacherId)
+        private void LoadTeacherDropdown(DropDownList ddlTeacher, string currentTeacherId)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -192,19 +208,7 @@ namespace Schoolnest.Admin
                     {
                         string teacherId = reader["TeacherID"].ToString();
                         string teacherName = reader["TeacherName"].ToString();
-
-                        ListItem item = new ListItem(teacherName, teacherId);
-
-                        if (selectedTeachers.Contains(teacherId) && teacherId != currentTeacherId)
-                        {
-                            // Option 1: Disable the item (visible but non-selectable)
-                            item.Enabled = false;
-
-                            // Option 2: Exclude the item (comment this line if you prefer to disable instead of hide)
-                            // continue;
-                        }
-
-                        ddlTeacher.Items.Add(item);
+                        ddlTeacher.Items.Add(new ListItem(teacherName, teacherId));
                     }
                 }
             }
@@ -235,7 +239,7 @@ namespace Schoolnest.Admin
                             // Check if the selected value is the first option (no value) and set @TeacherID accordingly
                             if (ddlTeacher.SelectedValue == "0" || string.IsNullOrEmpty(ddlTeacher.SelectedValue))
                             {
-                                cmd.Parameters.AddWithValue("@TeacherID", DBNull.Value); 
+                                cmd.Parameters.AddWithValue("@TeacherID", DBNull.Value);
                             }
                             else
                             {
@@ -255,6 +259,12 @@ namespace Schoolnest.Admin
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Admin/AssignTeacherToSubject.aspx");
+        }
+
+        private void ClearSubjectsGrid()
+        {
+            gvSubjects.DataSource = null;
+            gvSubjects.DataBind();
         }
     }
 }

@@ -10,6 +10,9 @@ namespace Schoolnest
 {
     public partial class Login : System.Web.UI.Page
     {
+
+        private string connectionString = Global.ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -70,7 +73,6 @@ namespace Schoolnest
 
         private bool ValidateLogin(string schoolId, string userType, string username, string password)
         {
-            string connectionString = Global.ConnectionString;
 
             // Set the stored procedure name based on the user type
             string databaseProcedure = userType == "SA" ? "GetSuperAdminByUsername" : "GetUserDataForLogin";
@@ -103,6 +105,8 @@ namespace Schoolnest
                         {
                             if (reader.Read())
                             {
+                                System.Diagnostics.Debug.WriteLine($"{password}, {reader["DecryptedPassword"]}");
+
                                 if (password == reader["DecryptedPassword"].ToString())
                                 {
                                     return true;

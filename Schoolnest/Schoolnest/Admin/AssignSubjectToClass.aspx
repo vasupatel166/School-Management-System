@@ -26,15 +26,22 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlStandard" Text="Standard"></asp:Label>
-                                    <asp:DropDownList ID="ddlStandard" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlStandard" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlStandard_SelectedIndexChanged"></asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="rfvStandard" runat="server" ControlToValidate="ddlStandard" ValidationGroup="ValidateSubject" Display="Dynamic" ErrorMessage="Standard is required" CssClass="text-danger"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlDivision" Text="Division"></asp:Label>
-                                    <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged"></asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="rfvDivision" runat="server" ControlToValidate="ddlDivision" ValidationGroup="ValidateSubject" Display="Dynamic" ErrorMessage="Division is required" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <asp:Label ID="lblNote" CssClass="fw-bold" runat="server"></asp:Label>
                                 </div>
                             </div>
                         </div>
