@@ -9,8 +9,6 @@
 
 namespace Schoolnest.Teacher
 {
-
-
     public partial class ViewTimetable
     {
 

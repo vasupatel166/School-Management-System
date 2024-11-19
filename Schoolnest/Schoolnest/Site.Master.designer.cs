@@ -60,6 +60,51 @@ namespace Schoolnest
         protected global::System.Web.UI.WebControls.Repeater SidebarMenuRepeater;
 
         /// <summary>
+        /// AnnouncementsLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AnnouncementsLink;
+
+        /// <summary>
+        /// lblNotificationCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNotificationCount;
+
+        /// <summary>
+        /// lblAnnouncementTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAnnouncementTitle;
+
+        /// <summary>
+        /// rptMasterAnnouncements control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptMasterAnnouncements;
+
+        /// <summary>
+        /// ViewAllAnnouncements control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink ViewAllAnnouncements;
+
+        /// <summary>
         /// NavUserImage control.
         /// </summary>
         /// <remarks>

@@ -40,7 +40,6 @@
                             <h3>Login</h3>
                         </div>
                         <div class="card-body">
-
                             <div class="form-group">
                                 <label for="userType">User Type</label>
                                 <asp:DropDownList ID="ddlUserType" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlUserType_SelectedIndexChanged">
@@ -48,7 +47,6 @@
                                     <asp:ListItem Text="Super admin" Value="SA"></asp:ListItem>
                                     <asp:ListItem Text="Admin" Value="A"></asp:ListItem>
                                     <asp:ListItem Text="Teacher" Value="T"></asp:ListItem>
-                                    <asp:ListItem Text="Student" Value="S"></asp:ListItem>
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="rfvUserType" runat="server" ControlToValidate="ddlUserType" InitialValue="" ErrorMessage="User Type is required" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
@@ -74,9 +72,6 @@
                             <div class="form-group text-center" id="forget_password_link">
                                 <asp:HyperLink ID="HyperLink1" NavigateUrl="~/ForgetPassword.aspx" runat="server" CssClass="btn-link">Forget Password</asp:HyperLink>
                             </div>
-                            <div class="form-group text-center" id="register_link">
-                                <asp:HyperLink ID="btn_register_link" NavigateUrl="~/Register.aspx" runat="server" CssClass="btn-link">Registere here</asp:HyperLink>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,18 +87,14 @@
 
     <script>
         $(document).ready(function () {
-            // Initially hide the school ID field and register link
             $("#school_id_field").hide();
-            $("#register_link").hide();
 
             // Function to check user role and show/hide elements accordingly
             function checkUserRole(role) {
                 if (role == "A" || role == "T") {
                     $("#school_id_field").show();
-                    $("#register_link").show();
                 } else {
                     $("#school_id_field").hide();
-                    $("#register_link").hide();
                 }
             }
 

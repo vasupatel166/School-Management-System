@@ -76,7 +76,6 @@ namespace Schoolnest.Admin
                         }
                     }
 
-                    // Move to the next result set (attendance records)
                     //if (reader.NextResult())
                     //{
                     //    List<string> labels = new List<string>(); // This will store Mon, Tue, etc.
@@ -113,7 +112,7 @@ namespace Schoolnest.Admin
                     //    TeacherTooltips = "'" + string.Join("','", teacherTooltips) + "'";
                     //}
 
-                    reader.Close(); // Close the reader to access output parameters.
+                    reader.Close();
 
                     // Now access the OUTPUT parameters after closing the reader
                     TotalStudentsCard.Text = totalStudentsParam.Value != DBNull.Value ? totalStudentsParam.Value.ToString() : "0";

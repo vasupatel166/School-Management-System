@@ -106,7 +106,6 @@ namespace Schoolnest.Teacher
             }
         }
 
-
         private string FormatPeriodTime(string periodTime)
         {
             try

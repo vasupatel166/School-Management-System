@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -8,212 +10,357 @@ namespace Schoolnest.Admin
 {
     public partial class FeeMaster : System.Web.UI.Page
     {
-
         private string connectionString = Global.ConnectionString;
         private string SchoolID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             SchoolID = Session["SchoolID"]?.ToString();
 
             if (!IsPostBack)
             {
-                LoadDropDowns();
+                LoadStandards();
+                InitializeFeeRepeater();
+                btnAddRow.Enabled = false;
             }
         }
 
-        private void LoadDropDowns()
+        protected void ValidateStandard(object source, ServerValidateEventArgs args)
         {
-            // Load Schools
+            args.IsValid = !string.IsNullOrEmpty(ddlStandard.SelectedValue) && ddlStandard.SelectedValue != "0";
+            if (!args.IsValid)
+            {
+                ((CustomValidator)source).ErrorMessage = "Please select a valid standard";
+            }
+        }
+
+        protected void ValidateFeeName(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = !string.IsNullOrWhiteSpace(args.Value);
+            if (!args.IsValid)
+            {
+                ((CustomValidator)source).ErrorMessage = "Fee name cannot be empty";
+            }
+        }
+
+        protected void ValidateFeeAmount(object source, ServerValidateEventArgs args)
+        {
+            if (!decimal.TryParse(args.Value, out decimal amount))
+            {
+                args.IsValid = false;
+                ((CustomValidator)source).ErrorMessage = "Please enter a valid amount";
+                return;
+            }
+
+            args.IsValid = amount > 0;
+            if (!args.IsValid)
+            {
+                ((CustomValidator)source).ErrorMessage = "Amount must be greater than 0";
+            }
+        }
+
+        private void LoadStandards()
+        {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(@"SELECT SchoolID, SchoolName FROM SchoolMaster WHERE SchoolID = @SchoolID", conn))
-                {
-                    conn.Open();
-                    cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
-                    ddlSchool.DataSource = cmd.ExecuteReader();
-                    ddlSchool.DataTextField = "SchoolName";
-                    ddlSchool.DataValueField = "SchoolID";
-                    ddlSchool.DataBind();
-                    conn.Close();
-                }
-
-                // Load Standards
-                using (SqlCommand cmd = new SqlCommand(@"SELECT StandardID, StandardName FROM Standards WHERE SchoolMaster_SchoolID = @SchoolID", conn))
-                {
-                    conn.Open();
-                    cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
-                    ddlStandard.DataSource = cmd.ExecuteReader();
-                    ddlStandard.DataTextField = "StandardName";
-                    ddlStandard.DataValueField = "StandardID";
-                    ddlStandard.DataBind();
-                    conn.Close();
-                }
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT StandardID, StandardName FROM Standards WHERE SchoolMaster_SchoolID = @SchoolID", conn);
+                cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
+                ddlStandard.DataSource = cmd.ExecuteReader();
+                ddlStandard.DataTextField = "StandardName";
+                ddlStandard.DataValueField = "StandardID";
+                ddlStandard.DataBind();
+                ddlStandard.Items.Insert(0, new ListItem("Select Standard", "0"));
             }
         }
 
-        protected void ddlStandard_SelectedIndexChanged(object sender, EventArgs e)
+        private void InitializeFeeRepeater()
         {
-            LoadFeeData();
+            List<FeeDetail> fees = new List<FeeDetail>();
+            ViewState["Fees"] = fees;
+            BindRepeater();
         }
 
-        private void LoadFeeData()
+        private void BindRepeater()
         {
-            if (string.IsNullOrEmpty(txtAcademicYear.Text) || ddlStandard.SelectedValue == "")
-                return;
+            List<FeeDetail> fees = ViewState["Fees"] as List<FeeDetail> ?? new List<FeeDetail>();
+            rptFee.DataSource = fees;
+            rptFee.DataBind();
 
-            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            // Set the values for each row after binding
+            foreach (RepeaterItem item in rptFee.Items)
             {
-                using (SqlCommand cmd = new SqlCommand("sp_GetFeeMasterByAcademicYearAndStandard", conn))
+                FeeDetail fee = fees[item.ItemIndex];
+                TextBox txtFeeName = (TextBox)item.FindControl("txtFeeName");
+                TextBox txtFeeAmount = (TextBox)item.FindControl("txtFeeAmount");
+                DropDownList ddlTermType = (DropDownList)item.FindControl("ddlTermType");
+
+                txtFeeName.Text = fee.FeeName;
+                txtFeeAmount.Text = fee.Amount.ToString();
+                ddlTermType.SelectedValue = fee.TermType;
+            }
+        }
+
+        private void LoadFeesForStandard(string standardId)
+        {
+            List<FeeDetail> fees = new List<FeeDetail>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT FeeMasterID, FeeName, FeeAmount, FeeTermType FROM FeeMaster WHERE Standards_StandardID = @StandardID AND SchoolMaster_SchoolID = @SchoolID", conn);
+                cmd.Parameters.AddWithValue("@StandardID", standardId);
+                cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@AcademicYear", txtAcademicYear.Text);
-                    cmd.Parameters.AddWithValue("@StandardID", Convert.ToInt32(ddlStandard.SelectedValue));
-
-                    conn.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    fees.Add(new FeeDetail
                     {
-                        if (reader.Read())
-                        {
-                            // Populate form fields
-                            ddlSchool.SelectedValue = reader["SchoolMaster_SchoolID"].ToString();
-                            txtFeeCode.Text = reader["FeeCode"].ToString();
-                            chkIsActive.Checked = Convert.ToBoolean(reader["IsActive"]);
+                        FeeMasterID = Convert.ToInt32(reader["FeeMasterID"]),
+                        FeeName = reader["FeeName"].ToString(),
+                        Amount = Convert.ToDecimal(reader["FeeAmount"]),
+                        TermType = reader["FeeTermType"].ToString()
+                    });
+                }
+            }
 
-                            // Core Fees
-                            txtAdmissionFee.Text = Convert.ToDecimal(reader["AdmissionFee"]).ToString("F2");
-                            txtRegistrationFee.Text = Convert.ToDecimal(reader["RegistrationFee"]).ToString("F2");
-                            txtSecurityDeposit.Text = Convert.ToDecimal(reader["SecurityDeposit"]).ToString("F2");
-                            txtAnnualCharges.Text = Convert.ToDecimal(reader["AnnualCharges"]).ToString("F2");
+            ViewState["Fees"] = fees;
+            BindRepeater();
+        }
 
-                            // Regular Fees
-                            txtTuitionFee.Text = Convert.ToDecimal(reader["TuitionFee"]).ToString("F2");
-                            txtDevelopmentFee.Text = Convert.ToDecimal(reader["DevelopmentFee"]).ToString("F2");
-                            txtLibraryFee.Text = Convert.ToDecimal(reader["LibraryFee"]).ToString("F2");
-                            txtComputerFee.Text = Convert.ToDecimal(reader["ComputerFee"]).ToString("F2");
-                            txtSportsFee.Text = Convert.ToDecimal(reader["SportsFee"]).ToString("F2");
-                            txtTransportFee.Text = Convert.ToDecimal(reader["TransportFee"]).ToString("F2");
-                            txtLabFee.Text = Convert.ToDecimal(reader["LabFee"]).ToString("F2");
-                            txtMiscFee.Text = Convert.ToDecimal(reader["MiscFee"]).ToString("F2");
+        protected void btnAddRow_Click(object sender, EventArgs e)
+        {
+            CustomValidator standardValidator = new CustomValidator();
+            standardValidator.ServerValidate += new ServerValidateEventHandler(ValidateStandard);
+            standardValidator.Validate();
 
-                            // Additional Charges
-                            txtLateFee.Text = Convert.ToDecimal(reader["LateFee"]).ToString("F2");
-                            txtTotalFee.Text = Convert.ToDecimal(reader["TotalFee"]).ToString("F2");
+            if (!standardValidator.IsValid)
+            {
+                ShowErrorMessage(standardValidator.ErrorMessage);
+                return;
+            }
 
-                            // Payment Schedule
-                            ddlPaymentScheduleType.SelectedValue = reader["PaymentScheduleType"].ToString();
+            SaveCurrentState();
 
-                            // Due Dates based on schedule type
-                            switch (ddlPaymentScheduleType.SelectedValue)
-                            {
-                                case "Quarterly":
-                                    txtFirstQuarter.Text = Convert.ToDateTime(reader["FirstQuarterDueDate"]).ToString("yyyy-MM-dd");
-                                    txtSecondQuarter.Text = Convert.ToDateTime(reader["SecondQuarterDueDate"]).ToString("yyyy-MM-dd");
-                                    txtThirdQuarter.Text = Convert.ToDateTime(reader["ThirdQuarterDueDate"]).ToString("yyyy-MM-dd");
-                                    txtFourthQuarter.Text = Convert.ToDateTime(reader["FourthQuarterDueDate"]).ToString("yyyy-MM-dd");
-                                    break;
-                                case "HalfYearly":
-                                    txtFirstHalf.Text = Convert.ToDateTime(reader["FirstHalfDueDate"]).ToString("yyyy-MM-dd");
-                                    txtSecondHalf.Text = Convert.ToDateTime(reader["SecondHalfDueDate"]).ToString("yyyy-MM-dd");
-                                    break;
-                                case "Annual":
-                                    txtAnnualDueDate.Text = Convert.ToDateTime(reader["AnnualDueDate"]).ToString("yyyy-MM-dd");
-                                    break;
-                            }
+            List<FeeDetail> fees = ViewState["Fees"] as List<FeeDetail> ?? new List<FeeDetail>();
+            fees.Add(new FeeDetail());
+            ViewState["Fees"] = fees;
+            BindRepeater();
+        }
 
-                            // Show appropriate schedule div
-                            ScriptManager.RegisterStartupScript(this, GetType(), "ShowSchedule",
-                                "togglePaymentSchedule();", true);
-                        }
+        private void SaveCurrentState()
+        {
+            List<FeeDetail> fees = ViewState["Fees"] as List<FeeDetail> ?? new List<FeeDetail>();
+
+            for (int i = 0; i < rptFee.Items.Count; i++)
+            {
+                RepeaterItem item = rptFee.Items[i];
+                TextBox txtFeeName = (TextBox)item.FindControl("txtFeeName");
+                TextBox txtFeeAmount = (TextBox)item.FindControl("txtFeeAmount");
+                DropDownList ddlTermType = (DropDownList)item.FindControl("ddlTermType");
+
+                if (i < fees.Count)
+                {
+                    fees[i].FeeName = txtFeeName.Text;
+                    fees[i].Amount = !string.IsNullOrEmpty(txtFeeAmount.Text) ? Convert.ToDecimal(txtFeeAmount.Text) : 0;
+                    fees[i].TermType = ddlTermType.SelectedValue;
+                }
+            }
+
+            ViewState["Fees"] = fees;
+        }
+
+        protected void rptFee_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Remove")
+            {
+                SaveCurrentState(); // Save current state before removing
+                List<FeeDetail> fees = ViewState["Fees"] as List<FeeDetail>;
+                int index = e.Item.ItemIndex;
+
+                if (index < fees.Count)
+                {
+                    int feeMasterIdToRemove = fees[index].FeeMasterID;
+                    if (feeMasterIdToRemove != 0)
+                    {
+                        List<int> removedFeeIds = ViewState["RemovedFees"] as List<int> ?? new List<int>();
+                        removedFeeIds.Add(feeMasterIdToRemove);
+                        ViewState["RemovedFees"] = removedFeeIds;
                     }
+
+                    fees.RemoveAt(index);
+                    ViewState["Fees"] = fees;
+                    BindRepeater();
                 }
             }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            if (!ValidateAllFees())
+                return;
+
+            SaveCurrentState();
+            List<FeeDetail> fees = ViewState["Fees"] as List<FeeDetail>;
+            List<int> removedFeeIds = ViewState["RemovedFees"] as List<int> ?? new List<int>();
+
+            CustomValidator standardValidator = new CustomValidator();
+            standardValidator.ServerValidate += new ServerValidateEventHandler(ValidateStandard);
+            standardValidator.Validate();
+
+            if (!standardValidator.IsValid)
             {
-                using (SqlCommand cmd = new SqlCommand("sp_InsertUpdateFeeMaster", conn))
+                ShowErrorMessage(standardValidator.ErrorMessage);
+                return;
+            }
+
+            if (!fees.Any())
+            {
+                ShowErrorMessage("Please add at least one fee");
+                return;
+            }
+
+            CustomValidator feeNameValidator = new CustomValidator();
+            feeNameValidator.ServerValidate += new ServerValidateEventHandler(ValidateFeeName);
+            feeNameValidator.Validate();
+
+            if (!feeNameValidator.IsValid)
+            {
+                ShowErrorMessage(feeNameValidator.ErrorMessage);
+                return;
+            }
+
+            CustomValidator feeAmountValidator = new CustomValidator();
+            feeAmountValidator.ServerValidate += new ServerValidateEventHandler(ValidateFeeAmount);
+            feeAmountValidator.Validate();
+
+            if (!feeAmountValidator.IsValid)
+            {
+                ShowErrorMessage(feeAmountValidator.ErrorMessage);
+                return;
+            }
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    try
+                    {
+                        // Delete removed fees
+                        foreach (int feeMasterId in removedFeeIds)
+                        {
+                            using (SqlCommand cmd = new SqlCommand("DELETE FROM FeeMaster WHERE FeeMasterID = @FeeMasterID", conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@FeeMasterID", feeMasterId);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
 
-                    // Add parameters
-                    cmd.Parameters.AddWithValue("@AcademicYear", txtAcademicYear.Text);
-                    cmd.Parameters.AddWithValue("@Standards_StandardID", Convert.ToInt32(ddlStandard.SelectedValue));
-                    cmd.Parameters.AddWithValue("@SchoolMaster_SchoolID", ddlSchool.SelectedValue);
-                    cmd.Parameters.AddWithValue("@FeeCode", txtFeeCode.Text);
-                    cmd.Parameters.AddWithValue("@IsActive", chkIsActive.Checked);
+                        // Insert or update fees
+                        foreach (FeeDetail fee in fees)
+                        {
+                            using (SqlCommand cmd = new SqlCommand("InsertUpdateFeeMaster", conn, transaction))
+                            {
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@FeeMasterID", fee.FeeMasterID == 0 ? (object)DBNull.Value : fee.FeeMasterID);
+                                cmd.Parameters.AddWithValue("@StandardID", ddlStandard.SelectedValue);
+                                cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
+                                cmd.Parameters.AddWithValue("@FeeName", fee.FeeName);
+                                cmd.Parameters.AddWithValue("@Amount", fee.Amount);
+                                cmd.Parameters.AddWithValue("@TermType", fee.TermType);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
 
-                    // Core Fees
-                    cmd.Parameters.AddWithValue("@AdmissionFee", Convert.ToDecimal(txtAdmissionFee.Text));
-                    cmd.Parameters.AddWithValue("@RegistrationFee", Convert.ToDecimal(txtRegistrationFee.Text));
-                    cmd.Parameters.AddWithValue("@SecurityDeposit", Convert.ToDecimal(txtSecurityDeposit.Text));
-                    cmd.Parameters.AddWithValue("@AnnualCharges", Convert.ToDecimal(txtAnnualCharges.Text));
+                        transaction.Commit();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "SuccessMessage", "alert('Fee saved successfully');", true);
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ErrorMessage", $"alert('Error saving fees: {ex.Message}');", true);
+                    }
+                }
+            }
+        }
 
-                    // Regular Fees
-                    cmd.Parameters.AddWithValue("@TuitionFee", Convert.ToDecimal(txtTuitionFee.Text));
-                    cmd.Parameters.AddWithValue("@DevelopmentFee", Convert.ToDecimal(txtDevelopmentFee.Text));
-                    cmd.Parameters.AddWithValue("@LibraryFee", Convert.ToDecimal(txtLibraryFee.Text));
-                    cmd.Parameters.AddWithValue("@ComputerFee", Convert.ToDecimal(txtComputerFee.Text));
-                    cmd.Parameters.AddWithValue("@SportsFee", Convert.ToDecimal(txtSportsFee.Text));
-                    cmd.Parameters.AddWithValue("@TransportFee", Convert.ToDecimal(txtTransportFee.Text));
-                    cmd.Parameters.AddWithValue("@LabFee", Convert.ToDecimal(txtLabFee.Text));
-                    cmd.Parameters.AddWithValue("@MiscFee", Convert.ToDecimal(txtMiscFee.Text));
+        private bool ValidateAllFees()
+        {
+            bool isValid = true;
+            string errorMessage = string.Empty;
 
-                    // Additional Charges
-                    cmd.Parameters.AddWithValue("@LateFee", Convert.ToDecimal(txtLateFee.Text));
+            foreach (RepeaterItem item in rptFee.Items)
+            {
+                TextBox txtFeeName = (TextBox)item.FindControl("txtFeeName");
+                TextBox txtFeeAmount = (TextBox)item.FindControl("txtFeeAmount");
+                CustomValidator cvFeeName = (CustomValidator)item.FindControl("cvFeeName");
+                CustomValidator cvFeeAmount = (CustomValidator)item.FindControl("cvFeeAmount");
 
-                    // Payment Schedule
-                    cmd.Parameters.AddWithValue("@PaymentScheduleType", ddlPaymentScheduleType.SelectedValue);
+                // Validate Fee Name
+                cvFeeName.Validate();
+                if (!cvFeeName.IsValid)
+                {
+                    errorMessage = cvFeeName.ErrorMessage;
+                    isValid = false;
+                    break;
+                }
 
-                    // Due Dates based on schedule type
-                    if (!string.IsNullOrEmpty(txtFirstQuarter.Text))
-                        cmd.Parameters.AddWithValue("@FirstQuarterDueDate", Convert.ToDateTime(txtFirstQuarter.Text));
-                    if (!string.IsNullOrEmpty(txtSecondQuarter.Text))
-                        cmd.Parameters.AddWithValue("@SecondQuarterDueDate", Convert.ToDateTime(txtSecondQuarter.Text));
-                    if (!string.IsNullOrEmpty(txtThirdQuarter.Text))
-                        cmd.Parameters.AddWithValue("@ThirdQuarterDueDate", Convert.ToDateTime(txtThirdQuarter.Text));
-                    if (!string.IsNullOrEmpty(txtFourthQuarter.Text))
-                        cmd.Parameters.AddWithValue("@FourthQuarterDueDate", Convert.ToDateTime(txtFourthQuarter.Text));
-                    if (!string.IsNullOrEmpty(txtFirstHalf.Text))
-                        cmd.Parameters.AddWithValue("@FirstHalfDueDate", Convert.ToDateTime(txtFirstHalf.Text));
-                    if (!string.IsNullOrEmpty(txtSecondHalf.Text))
-                        cmd.Parameters.AddWithValue("@SecondHalfDueDate", Convert.ToDateTime(txtSecondHalf.Text));
-                    if (!string.IsNullOrEmpty(txtAnnualDueDate.Text))
-                        cmd.Parameters.AddWithValue("@AnnualDueDate", Convert.ToDateTime(txtAnnualDueDate.Text));
-
-                    //// Check if this is an insert or update based on the FeeID
-                    //if (string.IsNullOrEmpty(hdnFeeID.Value))
-                    //{
-                    //    // Insert operation
-                    //    cmd.Parameters.AddWithValue("@FeeID", DBNull.Value);
-                    //}
-                    //else
-                    //{
-                    //    // Update operation
-                    //    cmd.Parameters.AddWithValue("@FeeID", Convert.ToInt32(hdnFeeID.Value));
-                    //}
-
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                // Validate Fee Amount
+                cvFeeAmount.Validate();
+                if (!cvFeeAmount.IsValid)
+                {
+                    errorMessage = cvFeeAmount.ErrorMessage;
+                    isValid = false;
+                    break;
                 }
             }
 
-            // After saving, reload the form to reflect changes
-            LoadFeeData();
-            ScriptManager.RegisterStartupScript(this, GetType(), "SuccessMessage", "alert('Fee structure saved successfully');", true);
+            if (!isValid)
+            {
+                ShowErrorMessage(errorMessage);
+            }
+
+            return isValid;
+        }
+
+        private void ShowErrorMessage(string message)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "ErrorMessage",$"alert('{message}');", true);
+        }
+
+        protected void ddlStandard_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedStandardId = ddlStandard.SelectedValue;
+            CustomValidator standardValidator = new CustomValidator();
+            standardValidator.ServerValidate += new ServerValidateEventHandler(ValidateStandard);
+            standardValidator.Validate();
+
+            btnAddRow.Enabled = standardValidator.IsValid;
+
+            if (btnAddRow.Enabled)
+            {
+                LoadFeesForStandard(selectedStandardId);
+            }
+            else
+            {
+                InitializeFeeRepeater();
+                ShowErrorMessage("Please select a valid standard");
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            ResetForm();
+            Response.Redirect(Request.RawUrl);
         }
+    }
 
-        protected void ResetForm()
-        {
-            Response.Redirect("~/Admin/FeeMaster.aspx");
-        }
+    [Serializable]
+    public class FeeDetail
+    {
+        public int FeeMasterID { get; set; }
+        public string FeeName { get; set; }
+        public decimal Amount { get; set; }
+        public string TermType { get; set; }
     }
 }

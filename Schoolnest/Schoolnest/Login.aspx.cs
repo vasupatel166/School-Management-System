@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Data;
-using System.Web.UI;
-using System.Security.Cryptography;
-using System.Text;
 using System.Data.SqlClient;
-using System.IO;
 
 namespace Schoolnest
 {
     public partial class Login : System.Web.UI.Page
     {
-
         private string connectionString = Global.ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -55,7 +50,7 @@ namespace Schoolnest
                             Response.Redirect("~/Teacher/Dashboard.aspx");
                             break;
                         default:
-                            Response.Redirect("~/Student/Dashboard.aspx");
+                            //Response.Redirect("~/Student/Dashboard.aspx");
                             break;
                     }
                 }

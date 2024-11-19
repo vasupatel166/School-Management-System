@@ -10,11 +10,9 @@ namespace Schoolnest.Utilities
 {
     public class EmailService
     {
-        // Fixed SMTP server details for Gmail
         private readonly string _smtpServer = "smtp.gmail.com";
         private readonly int _smtpPort = 587;
 
-        // Fixed sender credentials
         private readonly string _senderEmail = "schoolnestcapstone@gmail.com";
         private readonly string _senderPassword = "nxij uksy myur bmny";
 
@@ -23,7 +21,6 @@ namespace Schoolnest.Utilities
         {
             try
             {
-                // Create the MailMessage object
                 MailMessage mailMessage = new MailMessage
                 {
                     From = new MailAddress(_senderEmail),
@@ -32,7 +29,6 @@ namespace Schoolnest.Utilities
                     IsBodyHtml = true
                 };
 
-                // Add the recipient
                 mailMessage.To.Add(recipientEmail);
 
                 // Check if there is an attachment
@@ -45,19 +41,19 @@ namespace Schoolnest.Utilities
                 // Configure the SMTP client and send the email
                 using (SmtpClient smtpClient = new SmtpClient(_smtpServer, _smtpPort))
                 {
-                    smtpClient.EnableSsl = true; // Enable SSL
+                    smtpClient.EnableSsl = true;
                     smtpClient.Credentials = new NetworkCredential(_senderEmail, _senderPassword);
                     smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
 
                     smtpClient.Send(mailMessage);
                 }
 
-                return true; // Email sent successfully
+                return true;
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Failed to send email: " + ex.Message);
-                return false; // Email sending failed
+                return false;
             }
         }
     }

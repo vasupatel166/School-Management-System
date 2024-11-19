@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\admin\\timetablemaster.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\timetablemaster.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\admin\\teacherlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\teacherlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\admin\\timetablemaster.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\timetablemaster.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\admin\\teacherlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\teacherlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\teacher\\viewtimetable.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\teacher\\viewtimetable.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\admin\\studentlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\studentlist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\teacher\\viewtimetable.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\teacher\\viewtimetable.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\conestoga college - sem 4\\capstone project\\school-management-system\\schoolnest\\schoolnest\\admin\\studentlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\studentlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ViewTimetable.aspx.cs",
-              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Teacher\\ViewTimetable.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Teacher\\ViewTimetable.aspx.cs",
-              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Teacher\\ViewTimetable.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\Teacher\\ViewTimetable.aspx.cs",
-              "ViewState": "AgIAANAAAAAAAAAAAAAQwNoAAABAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "TeacherList.aspx.cs",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\TeacherList.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\Admin\\TeacherList.aspx.cs",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\TeacherList.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\Admin\\TeacherList.aspx.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAkwHgAAACPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T22:32:37.47Z",
+              "WhenOpened": "2024-11-18T23:56:41.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StudentList.aspx.cs",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\Admin\\StudentList.aspx.cs",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\Admin\\StudentList.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T00:10:21.08Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ViewTimetable.aspx",
-              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Teacher\\ViewTimetable.aspx",
-              "RelativeDocumentMoniker": "Schoolnest\\Teacher\\ViewTimetable.aspx",
-              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Teacher\\ViewTimetable.aspx",
-              "RelativeToolTip": "Schoolnest\\Teacher\\ViewTimetable.aspx",
+              "Title": "StudentList.aspx",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx",
+              "RelativeDocumentMoniker": "Schoolnest\\Admin\\StudentList.aspx",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\StudentList.aspx",
+              "RelativeToolTip": "Schoolnest\\Admin\\StudentList.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-11-13T22:32:36.577Z",
+              "WhenOpened": "2024-11-19T00:10:22.477Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TimetableMaster.aspx",
-              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\TimetableMaster.aspx",
-              "RelativeDocumentMoniker": "Schoolnest\\Admin\\TimetableMaster.aspx",
-              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\TimetableMaster.aspx",
-              "RelativeToolTip": "Schoolnest\\Admin\\TimetableMaster.aspx",
+              "Title": "TeacherList.aspx",
+              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\TeacherList.aspx",
+              "RelativeDocumentMoniker": "Schoolnest\\Admin\\TeacherList.aspx",
+              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\TeacherList.aspx",
+              "RelativeToolTip": "Schoolnest\\Admin\\TeacherList.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-11-12T20:28:29.328Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TimetableMaster.aspx.cs",
-              "DocumentMoniker": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\TimetableMaster.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Admin\\TimetableMaster.aspx.cs",
-              "ToolTip": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\Schoolnest\\Admin\\TimetableMaster.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\Admin\\TimetableMaster.aspx.cs",
-              "ViewState": "AgIAAAIBAAAAAAAAAAAswBABAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T19:35:07.803Z",
+              "WhenOpened": "2024-11-18T23:56:40.921Z",
               "EditorCaption": ""
             }
           ]

@@ -43,11 +43,11 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                    <div class="form-check mt-2">
-                        <asp:CheckBox ID="chkIsActive" runat="server" CssClass="form-check-input" Checked="true" />
-                        <label class="form-check-label">Active</label>
+                        <div class="form-check mt-2">
+                            <asp:CheckBox ID="chkIsActive" runat="server" CssClass="form-check-input" Checked="true" />
+                            <label class="form-check-label">Active</label>
+                        </div>
                     </div>
-                    <//div>
                 </div>
                 <div class="card-footer text-center mt-4 pt-4">
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-success" OnClick="btnSubmit_Click" />

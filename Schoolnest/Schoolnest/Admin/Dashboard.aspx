@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server" class="w-100">
         <div>
-            <h3 class="fw-bold mb-3" id="SchoolNameHeading" runat="server">St. Thomas English Medium Higher Secondary School</h3>
+            <h3 class="fw-bold mb-3" id="SchoolNameHeading" runat="server"></h3> <%--School Name--%>
         </div>
         <%--4 Cards (Students,Teachers,Active Classes,Pending Fees)--%>
         <div class="row">
@@ -139,53 +139,9 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
 
-            // Log the values being injected from C#
-            console.log("Labels: ", [<%= Labels %>]);
-            console.log("Student Data: ", [<%= StudentData %>]);
-            console.log("Teacher Data: ", [<%= TeacherData %>]);
+            
 
-            var ctx = document.getElementById('attendanceChart').getContext('2d');
-            var attendanceChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [<%= Labels %>], // Injected from C#
-                datasets: [{
-                    label: 'Student Attendance',
-                    data: [<%= StudentData %>], // Injected from C#
-                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }, {
-                    label: 'Teacher Attendance',
-                    data: [<%= TeacherData %>], // Injected from C#
-                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100, // Set max value to 100% for percentage representation
-                        ticks: {
-                            callback: function (value) {
-                                return value + "%"; // Add '%' to Y-axis values
-                            }
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            maxRotation: 0, // Prevent rotation of X-axis labels
-                            minRotation: 0,
-                        }
-                    }
-                }
-            }
-            });
-
-    });
+        });
     </script>
 
 </asp:Content>

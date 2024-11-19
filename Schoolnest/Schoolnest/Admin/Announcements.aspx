@@ -5,7 +5,7 @@
  <form id="form1" runat="server" class="w-100">
      <div class="row">
          <!-- Recent Announcements Section -->
-         <div class="col-md-6">
+         <%--<div class="col-md-6">
              <div class="card">
                  <div class="card-header">
                      <h4 class="card-title">Recent Announcements</h4>
@@ -28,7 +28,7 @@
                      </ul>
                  </div>
              </div>
-         </div>
+         </div>--%>
 
          <!-- Main Announcement Section -->
          <div class="col-md-6">
@@ -38,7 +38,7 @@
                  </div>
                  <div class="card-body">
                      <div class="form-group">
-                         <asp:Label runat="server" AssociatedControlID="txtAnnouncement" Text="Announcement Text"></asp:Label>
+                         <asp:Label runat="server" AssociatedControlID="txtAnnouncement" Text="Announcement Title"></asp:Label>
                          <asp:TextBox ID="txtAnnouncement" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
                          <asp:RequiredFieldValidator ID="rfvAnnouncement" runat="server" ControlToValidate="txtAnnouncement" Display="Dynamic" ErrorMessage="Announcement text is required" CssClass="text-danger"></asp:RequiredFieldValidator>
                      </div>

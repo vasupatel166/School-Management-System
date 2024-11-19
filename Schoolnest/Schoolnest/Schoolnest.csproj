@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetEnv, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetEnv.3.1.1\lib\netstandard1.3\DotNetEnv.dll</HintPath>
     </Reference>
@@ -53,30 +56,33 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.6.0.0\lib\net462\Microsoft.Bcl.HashCode.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Extensions.Configuration, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Configuration.8.0.0\lib\net462\Microsoft.Extensions.Configuration.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.9.0.0\lib\net462\Microsoft.Extensions.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.9.0.0\lib\net462\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.9.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.9.0.0\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Primitives.8.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.9.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
@@ -94,11 +100,11 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.0\lib\net462\System.Buffers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Collections.Immutable, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Collections.Immutable.8.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    <Reference Include="System.Collections.Immutable, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.9.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Console, Version=4.0.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -107,8 +113,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.9.0.0\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
@@ -156,8 +162,8 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.0\lib\net462\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
@@ -170,8 +176,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.0\lib\net462\System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
@@ -183,8 +189,8 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.0\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Extensions, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.Extensions.4.3.1\lib\net462\System.Runtime.Extensions.dll</HintPath>
@@ -223,19 +229,19 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    <Reference Include="System.Text.Encodings.Web, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.9.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.RegularExpressions.4.3.1\lib\net463\System.Text.RegularExpressions.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Threading.Channels, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
+    <Reference Include="System.Threading.Channels, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Channels.9.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
     </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.6.0\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
@@ -263,18 +269,29 @@
   <ItemGroup>
     <Content Include="Admin\Announcements.aspx" />
     <Content Include="Admin\AssignSubjectToClass.aspx" />
+    <Content Include="Admin\AssignTeacher.aspx" />
     <Content Include="Admin\AssignTeacherToSubject.aspx" />
     <Content Include="Admin\AttendanceReports.aspx" />
     <Content Include="Admin\BudgetCategories.aspx" />
     <Content Include="Admin\BudgetMaster.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
+    <Content Include="Admin\DivisonMaster.aspx" />
     <Content Include="Admin\EventMaster.aspx" />
+    <Content Include="Admin\ExamMaster.aspx" />
+    <Content Include="Admin\ExamSchedule.aspx" />
     <Content Include="Admin\FeeMaster.aspx" />
+    <Content Include="Admin\GradeManagement.aspx" />
+    <Content Include="Admin\HolidayMaster.aspx" />
     <Content Include="Admin\MarkAttendance.aspx" />
     <Content Include="Admin\PaymentReport.aspx" />
+    <Content Include="Admin\PeriodTimeMaster.aspx" />
+    <Content Include="Admin\SchoolSettings.aspx" />
+    <Content Include="Admin\SectionMaster.aspx" />
     <Content Include="Admin\SendNotifications.aspx" />
+    <Content Include="Admin\StandardMaster.aspx" />
     <Content Include="Admin\StudentList.aspx" />
     <Content Include="Admin\SubjectMaster.aspx" />
+    <Content Include="Admin\TeacherList.aspx" />
     <Content Include="Admin\TimetableMaster.aspx" />
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\demo.css" />
@@ -330,10 +347,10 @@
     <Content Include="assets\js\setting-demo2.js" />
     <Content Include="ForgetPassword.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="Profile.aspx" />
-    <Content Include="Register.aspx" />
     <None Include=".env">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -361,10 +378,17 @@
     <Content Include="assets\fonts\summernote\summernote.woff" />
     <Content Include="assets\fonts\summernote\summernote.woff2" />
     <Content Include="Student\Dashboard.aspx" />
+    <Content Include="Student\StudentLogin.aspx" />
     <Content Include="SuperAdmin\Dashboard.aspx" />
     <Content Include="SuperAdmin\RegisterAdmin.aspx" />
     <Content Include="SuperAdmin\RegisterSchool.aspx" />
+    <Content Include="Teacher\AttendanceReports.aspx" />
     <Content Include="Teacher\Dashboard.aspx" />
+    <Content Include="Teacher\EnterGrades.aspx" />
+    <Content Include="Teacher\MarkAttendance.aspx" />
+    <Content Include="Teacher\SendNotifications.aspx" />
+    <Content Include="Teacher\ViewAnnouncements.aspx" />
+    <Content Include="Teacher\ViewExamSchedule.aspx" />
     <Content Include="Teacher\ViewTimetable.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -382,6 +406,13 @@
     </Compile>
     <Compile Include="Admin\AssignSubjectToClass.aspx.designer.cs">
       <DependentUpon>AssignSubjectToClass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AssignTeacher.aspx.cs">
+      <DependentUpon>AssignTeacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AssignTeacher.aspx.designer.cs">
+      <DependentUpon>AssignTeacher.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AssignTeacherToSubject.aspx.cs">
       <DependentUpon>AssignTeacherToSubject.aspx</DependentUpon>
@@ -418,6 +449,13 @@
     <Compile Include="Admin\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\DivisonMaster.aspx.cs">
+      <DependentUpon>DivisonMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DivisonMaster.aspx.designer.cs">
+      <DependentUpon>DivisonMaster.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\EventMaster.aspx.cs">
       <DependentUpon>EventMaster.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -425,12 +463,40 @@
     <Compile Include="Admin\EventMaster.aspx.designer.cs">
       <DependentUpon>EventMaster.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ExamMaster.aspx.cs">
+      <DependentUpon>ExamMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ExamMaster.aspx.designer.cs">
+      <DependentUpon>ExamMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ExamSchedule.aspx.cs">
+      <DependentUpon>ExamSchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ExamSchedule.aspx.designer.cs">
+      <DependentUpon>ExamSchedule.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\FeeMaster.aspx.cs">
       <DependentUpon>FeeMaster.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\FeeMaster.aspx.designer.cs">
       <DependentUpon>FeeMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\GradeManagement.aspx.cs">
+      <DependentUpon>GradeManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\GradeManagement.aspx.designer.cs">
+      <DependentUpon>GradeManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\HolidayMaster.aspx.cs">
+      <DependentUpon>HolidayMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\HolidayMaster.aspx.designer.cs">
+      <DependentUpon>HolidayMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\MarkAttendance.aspx.cs">
       <DependentUpon>MarkAttendance.aspx</DependentUpon>
@@ -446,12 +512,40 @@
     <Compile Include="Admin\PaymentReport.aspx.designer.cs">
       <DependentUpon>PaymentReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\PeriodTimeMaster.aspx.cs">
+      <DependentUpon>PeriodTimeMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PeriodTimeMaster.aspx.designer.cs">
+      <DependentUpon>PeriodTimeMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SchoolSettings.aspx.cs">
+      <DependentUpon>SchoolSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SchoolSettings.aspx.designer.cs">
+      <DependentUpon>SchoolSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SectionMaster.aspx.cs">
+      <DependentUpon>SectionMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SectionMaster.aspx.designer.cs">
+      <DependentUpon>SectionMaster.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\SendNotifications.aspx.cs">
       <DependentUpon>SendNotifications.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\SendNotifications.aspx.designer.cs">
       <DependentUpon>SendNotifications.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\StandardMaster.aspx.cs">
+      <DependentUpon>StandardMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\StandardMaster.aspx.designer.cs">
+      <DependentUpon>StandardMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\StudentList.aspx.cs">
       <DependentUpon>StudentList.aspx</DependentUpon>
@@ -466,6 +560,13 @@
     </Compile>
     <Compile Include="Admin\SubjectMaster.aspx.designer.cs">
       <DependentUpon>SubjectMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TeacherList.aspx.cs">
+      <DependentUpon>TeacherList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TeacherList.aspx.designer.cs">
+      <DependentUpon>TeacherList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\TimetableMaster.aspx.cs">
       <DependentUpon>TimetableMaster.aspx</DependentUpon>
@@ -507,13 +608,6 @@
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Register.aspx.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Register.aspx.designer.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -527,6 +621,13 @@
     </Compile>
     <Compile Include="Student\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\StudentLogin.aspx.cs">
+      <DependentUpon>StudentLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\StudentLogin.aspx.designer.cs">
+      <DependentUpon>StudentLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="SuperAdmin\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
@@ -549,12 +650,54 @@
     <Compile Include="SuperAdmin\RegisterSchool.aspx.designer.cs">
       <DependentUpon>RegisterSchool.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Teacher\AttendanceReports.aspx.cs">
+      <DependentUpon>AttendanceReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\AttendanceReports.aspx.designer.cs">
+      <DependentUpon>AttendanceReports.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Teacher\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Teacher\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\EnterGrades.aspx.cs">
+      <DependentUpon>EnterGrades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\EnterGrades.aspx.designer.cs">
+      <DependentUpon>EnterGrades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\MarkAttendance.aspx.cs">
+      <DependentUpon>MarkAttendance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\MarkAttendance.aspx.designer.cs">
+      <DependentUpon>MarkAttendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\SendNotifications.aspx.cs">
+      <DependentUpon>SendNotifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\SendNotifications.aspx.designer.cs">
+      <DependentUpon>SendNotifications.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\ViewAnnouncements.aspx.cs">
+      <DependentUpon>ViewAnnouncements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\ViewAnnouncements.aspx.designer.cs">
+      <DependentUpon>ViewAnnouncements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\ViewExamSchedule.aspx.cs">
+      <DependentUpon>ViewExamSchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\ViewExamSchedule.aspx.designer.cs">
+      <DependentUpon>ViewExamSchedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="Teacher\ViewTimetable.aspx.cs">
       <DependentUpon>ViewTimetable.aspx</DependentUpon>

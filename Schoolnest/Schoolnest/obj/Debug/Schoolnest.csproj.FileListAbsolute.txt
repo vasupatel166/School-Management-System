@@ -33,9 +33,11 @@ D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnes
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\roslyn\vbc.rsp
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\roslyn\VBCSCompiler.exe
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\roslyn\VBCSCompiler.exe.config
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\BouncyCastle.Cryptography.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\DotNetEnv.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\EntityFramework.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\EntityFramework.SqlServer.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\itextsharp.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Bcl.HashCode.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
@@ -56,8 +58,10 @@ D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnes
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Threading.Channels.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Threading.Tasks.Extensions.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.ValueTuple.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\BouncyCastle.Cryptography.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\EntityFramework.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\EntityFramework.SqlServer.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\itextsharp.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Bcl.AsyncInterfaces.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Bcl.HashCode.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml

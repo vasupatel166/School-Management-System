@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 
+
 namespace Schoolnest
 {
     public partial class Site : System.Web.UI.MasterPage
@@ -10,12 +11,15 @@ namespace Schoolnest
         protected string userName;
         protected string userEmail;
         protected string profileImage;
+        private string connectionString = Global.ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Assuming the logged-in user's role and username are stored in Session
+
+                LoadAnnouncements();
+
                 string role = Session["UserRole"]?.ToString();
                 string roleName = "";
                 string username = Session["Username"]?.ToString();
@@ -25,7 +29,6 @@ namespace Schoolnest
                     Response.Redirect("~/Login.aspx");
                 }
 
-                // Retrieve user details from the database using the stored procedure
                 var userDetails = GetUserDetailsByRole(username, role);
 
                 if (userDetails != null)
@@ -34,9 +37,10 @@ namespace Schoolnest
                     switch (role.ToUpper())
                     {
                         case "SA":
-                            userName = userDetails["Name"].ToString(); // SuperAdmin table has "Name"
+                            userName = userDetails["Name"].ToString();
                             userEmail = userDetails["Email"].ToString();
                             profileImage = userDetails["ProfileImage"].ToString();
+                            AnnouncementsLink.Visible = false;
                             roleName = "superadmin";
                             break;
 
@@ -44,6 +48,7 @@ namespace Schoolnest
                             userName = $"{userDetails["Firstname"]} {userDetails["Lastname"]}";
                             userEmail = userDetails["Email"].ToString();
                             profileImage = userDetails["ProfileImage"].ToString();
+                            ViewAllAnnouncements.NavigateUrl = "~/Admin/Announcements.aspx";
                             roleName = "admin";
                             break;
 
@@ -52,6 +57,7 @@ namespace Schoolnest
                             userEmail = userDetails["Teacher_Email"].ToString();
                             profileImage = ""; // If there's no ProfileImage column in TeacherMaster, leave it empty or provide a default
                             roleName = "teacher";
+                            ViewAllAnnouncements.NavigateUrl = "~/Teacher/ViewAnnouncements.aspx";
                             break;
 
                         case "S":
@@ -59,6 +65,7 @@ namespace Schoolnest
                             userEmail = userDetails["Student_EmailID"].ToString();
                             profileImage = userDetails["Student_ProfileImage"].ToString();
                             roleName = "student";
+                            ViewAllAnnouncements.NavigateUrl = "~/Student/Announcements.aspx";
                             break;
 
                         default:
@@ -67,7 +74,6 @@ namespace Schoolnest
 
                     if (string.IsNullOrEmpty(profileImage))
                     {
-                        // If profile image is empty, set a default image
                         profileImage = "default_user_logo.png";
                     }
 
@@ -90,6 +96,103 @@ namespace Schoolnest
             }
         }
 
+        private void LoadAnnouncements()
+        {
+            string schoolId = Session["SchoolID"]?.ToString();
+            string roleId = Session["UserRole"]?.ToString();
+            string TargetAudience;
+
+            if(roleId == "T")
+            {
+                TargetAudience = "Teacher";
+            }
+            else
+            {
+                TargetAudience = "Student";
+            }
+
+            if (string.IsNullOrEmpty(schoolId)) return;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(@"
+                SELECT TOP 5 AnnouncementID, AnnouncementTitle,
+                CASE 
+                    WHEN UpdatedDateTime IS NULL THEN CreatedDateTime 
+                    ELSE UpdatedDateTime 
+                END AS DisplayDateTime
+                FROM AnnouncementMaster 
+                WHERE (TargetAudience = @TargetAudience OR TargetAudience = 'Both')
+                AND SchoolMaster_SchoolID = @SchoolID AND IsActive = 1 
+                ORDER BY DisplayDateTime DESC", conn))
+                {
+                    cmd.Parameters.AddWithValue("@TargetAudience", TargetAudience);
+                    cmd.Parameters.AddWithValue("@SchoolID", schoolId);
+                    try
+                    {
+                        // Create a DataTable to store the results
+                        DataTable dt = new DataTable();
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+
+                        int count = dt.Rows.Count;
+
+                        lblNotificationCount.Text = count.ToString();
+                        lblAnnouncementTitle.Text = $"You have {count} new announcement{(count != 1 ? "s" : "")}";
+
+                        rptMasterAnnouncements.DataSource = dt;
+                        rptMasterAnnouncements.DataBind();
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write("An error occurred: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        protected string GetTimeAgo(DateTime dateTime)
+        {
+            TimeSpan timeSince = DateTime.Now.Subtract(dateTime);
+
+            if (timeSince.TotalMinutes < 1)
+                return "just now";
+            if (timeSince.TotalMinutes < 60)
+                return $"{(int)timeSince.TotalMinutes} minutes ago";
+            if (timeSince.TotalHours < 24)
+                return $"{(int)timeSince.TotalHours} hours ago";
+            if (timeSince.TotalDays < 7)
+                return $"{(int)timeSince.TotalDays} days ago";
+
+            return dateTime.ToString("MMM dd, yyyy");
+        }
+
+        protected string GetAnnouncementUrl(string announcementId)
+        {
+            string role = Session["UserRole"]?.ToString();
+            string baseUrl = "";
+
+            switch (role)
+            {
+                case "A":
+                    baseUrl = "~/Admin/Announcements.aspx";
+                    break;
+                case "T":
+                    baseUrl = "~/Teacher/ViewAnnouncements.aspx";
+                    break;
+                case "S":
+                    baseUrl = "~/Student/Announcements.aspx";
+                    break;
+                default:
+                    return "#";
+            }
+
+            return ResolveUrl($"{baseUrl}?aid={announcementId}");
+        }
+
         // Method to call the stored procedure and retrieve user details based on username and role
         private DataRow GetUserDetailsByRole(string username, string role)
         {
@@ -98,7 +201,7 @@ namespace Schoolnest
 
             try
             {
-                using (SqlConnection con = new SqlConnection(Global.ConnectionString))
+                using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand("GetUserDetailsByRole", con))
                     {
@@ -186,6 +289,7 @@ namespace Schoolnest
                     }));
 
                     menuItems.Add(new MenuItem("Timetable Management", "fas fa-book", "", new List<MenuItem> {
+                        new MenuItem("Period Time Master", "fas fa-list", ResolveUrl("Admin/PeriodTimeMaster.aspx")),
                         new MenuItem("Timetable Master", "fas fa-list", ResolveUrl("Admin/TimetableMaster.aspx"))
                     }));
 
@@ -208,7 +312,9 @@ namespace Schoolnest
                     menuItems.Add(new MenuItem("Miscellaneous", "fas fa-dollar-sign", "", new List<MenuItem> {
                         new MenuItem("Event Master", "fas fa-money-check-alt", ResolveUrl("Admin/EventMaster.aspx")),
                         new MenuItem("Budget Master", "fas fa-money-check-alt", ResolveUrl("Admin/BudgetMaster.aspx")),
-                        new MenuItem("Budget Categories", "fas fa-money-check-alt", ResolveUrl("Admin/BudgetCategories.aspx"))
+                        new MenuItem("Budget Categories", "fas fa-money-check-alt", ResolveUrl("Admin/BudgetCategories.aspx")),
+                        new MenuItem("Holiday Master", "fas fa-money-check-alt", ResolveUrl("Admin/HolidayMaster.aspx")),
+                        new MenuItem("School Settings", "fas fa-money-check-alt", ResolveUrl("Admin/SchoolSettings.aspx"))
                     }));
 
                     menuItems.Add(new MenuItem("Notifications", "fas fa-bullhorn", "", new List<MenuItem> {
@@ -242,27 +348,18 @@ namespace Schoolnest
 
                     break;
 
-                case "student": // student
+                case "student":
                     menuItems.Add(new MenuItem("Dashboard", "fas fa-home", ResolveUrl("Student/Dashboard.aspx")));
+                    menuItems.Add(new MenuItem("Timetable", "fas fa-calendar-alt", ResolveUrl("Student/Timetable.aspx")));
+                    menuItems.Add(new MenuItem("Attendance Report", "fas fa-calendar-check", ResolveUrl("Student/AttendanceReport.aspx")));
+                    menuItems.Add(new MenuItem("Exam Schedule", "fas fa-calendar-alt", ResolveUrl("Student/ExamSchedule.aspx")));
+                    menuItems.Add(new MenuItem("Report Card", "fas fa-graduation-cap", ResolveUrl("Student/ReportCard.aspx")));
+                    menuItems.Add(new MenuItem("Fee Payment", "fas fa-dollar-sign", ResolveUrl("Student/FeePayment.aspx")));
+                    menuItems.Add(new MenuItem("Fee Payment History", "fas fa-dollar-sign", ResolveUrl("Student/FeePaymentHistory.aspx")));
+                    menuItems.Add(new MenuItem("Announcements", "fas fa-bullhorn", ResolveUrl("Student/Announcements.aspx")));
+                    menuItems.Add(new MenuItem("Upcoming Events", "fas fa-bullhorn", ResolveUrl("Student/UpcomingEvents.aspx")));
 
-                    menuItems.Add(new MenuItem("Attendance", "fas fa-calendar-check", "", new List<MenuItem> {
-                        new MenuItem("View Attendance Report", "fas fa-chart-line", ResolveUrl("Student/ViewAttendanceReport.aspx")),
-                    }));
-
-                    menuItems.Add(new MenuItem("Exams & Results", "fas fa-file-alt", "", new List<MenuItem> {
-                        new MenuItem("View Exam Schedule", "fas fa-calendar-alt", ResolveUrl("Student/ViewExamSchedule.aspx")),
-                        new MenuItem("View Grades/Report Cards", "fas fa-graduation-cap", ResolveUrl("Student/ViewGrades.aspx"))
-                    }));
-                           
-                    menuItems.Add(new MenuItem("Fee Management", "fas fa-dollar-sign", "", new List<MenuItem> {
-                        new MenuItem("Pay Fees", "fas fa-credit-card", ResolveUrl("Student/PayFees.aspx")),
-                        new MenuItem("View Payment History", "fas fa-file-invoice-dollar", ResolveUrl("Student/ViewPaymentHistory.aspx")),
-                    }));
-                           
-                            menuItems.Add(new MenuItem("Notifications", "fas fa-bullhorn", "", new List<MenuItem> {
-                        new MenuItem("View Announcements", "fas fa-bullhorn", ResolveUrl("Student/ViewAnnouncements.aspx")),
-                    }));
-                            break;
+                    break;
 
                 default:
                     break;

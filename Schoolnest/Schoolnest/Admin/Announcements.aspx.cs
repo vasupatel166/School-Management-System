@@ -39,9 +39,9 @@ namespace Schoolnest.Admin
 
         private void LoadRecentAnnouncements()
         {
-            pnlNoAnnouncements.Visible = announcements.Count == 0;
-            rptRecentAnnouncements.DataSource = announcements;
-            rptRecentAnnouncements.DataBind();
+            //pnlNoAnnouncements.Visible = announcements.Count == 0;
+            //rptRecentAnnouncements.DataSource = announcements;
+            //rptRecentAnnouncements.DataBind();
         }
 
         public class Announcement

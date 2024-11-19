@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Schoolnest
 {
@@ -13,15 +8,22 @@ namespace Schoolnest
         {
             if (!IsPostBack)
             {
-                // Check if the session exists before abandoning it
                 if (Session["UserRole"] != null)
                 {
-                    Session.Abandon();
 
+                    string roleId = Session["UserRole"]?.ToString();
+
+                    Session.Abandon();
                     Session.Clear();
 
-                    // Redirect to the login page
-                    Response.Redirect("~/Login.aspx");
+                    if (roleId == "S")
+                    {
+                        Response.Redirect("~/Student/StudentLogin.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("~/Login.aspx");
+                    }
                 }
             }
         }

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -22,7 +19,6 @@ namespace Schoolnest.Admin
             schoolId = Session["SchoolID"]?.ToString();
             SelectedStudentID = ddlStudents.SelectedValue;
 
-            // Only reset the session image path when resetting the form or successfully saving the student.
             if (!IsPostBack)
             {
                 LoadStates();
@@ -162,10 +158,6 @@ namespace Schoolnest.Admin
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "Error", "alert('Only image files (jpg, jpeg, png, gif) are allowed.');", true);
                 }
-            }
-            else
-            {
-
             }
         }
 
