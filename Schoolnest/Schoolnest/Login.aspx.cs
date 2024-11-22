@@ -36,7 +36,6 @@ namespace Schoolnest
                 {
                     Session["SchoolID"] = schoolId;
                     Session["UserRole"] = userType;
-                    Session["Username"] = username;
 
                     switch (userType)
                     {
@@ -68,7 +67,6 @@ namespace Schoolnest
 
         private bool ValidateLogin(string schoolId, string userType, string username, string password)
         {
-
             // Set the stored procedure name based on the user type
             string databaseProcedure = userType == "SA" ? "GetSuperAdminByUsername" : "GetUserDataForLogin";
 
@@ -104,6 +102,8 @@ namespace Schoolnest
 
                                 if (password == reader["DecryptedPassword"].ToString())
                                 {
+                                    Session["Username"] = reader["Username"].ToString();
+                                    Session["UserID"] = Convert.ToInt32(reader["UserID"]);
                                     return true;
                                 }
 

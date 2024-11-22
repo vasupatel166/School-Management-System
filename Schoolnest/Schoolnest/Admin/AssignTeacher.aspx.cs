@@ -12,14 +12,16 @@ namespace Schoolnest.Admin
     public partial class AssignTeacher : System.Web.UI.Page
     {
         string connectionString = Global.ConnectionString;
+        private string SchoolID;
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            SchoolID = Session["SchoolID"]?.ToString();
+
             if (!IsPostBack)
             {
-                var context = HttpContext.Current;
-                string schoolID = context.Session["SchoolID"]?.ToString();
-                BindDropdowns(schoolID);
-                BindTeachersGrid(schoolID);
+                BindDropdowns(SchoolID);
+                BindTeachersGrid(SchoolID);
             }
         }
 
@@ -33,9 +35,9 @@ namespace Schoolnest.Admin
                                                         "LEFT JOIN Standards SD ON SD.StandardID = AT.StandardID " +
                                                         "LEFT JOIN Divisions DV ON DV.DivisionID = AT.DivisionID " +
                                                         "LEFT JOIN Sections SC ON SC.SectionID = AT.SectionID " +
-                                                        "WHERE AT.SchoolID = @SchoolID", conn))
+                                                        "WHERE AT.SchoolMaster_SchoolID = @SchoolID", conn))
                 {
-                    cmd.Parameters.AddWithValue("@SchoolID", schoolid);
+                    cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
                     conn.Open();
                     gvAssignments.DataSource = cmd.ExecuteReader();
                     gvAssignments.DataBind();
@@ -50,7 +52,7 @@ namespace Schoolnest.Admin
                 using (SqlCommand cmd = new SqlCommand("sp_GetDropdownDataAssignTeacher", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@SchoolID", schoolID));
+                    cmd.Parameters.Add(new SqlParameter("@SchoolID", SchoolID));
                     conn.Open();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -101,11 +103,9 @@ namespace Schoolnest.Admin
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            var context = HttpContext.Current;
-            string schoolID = context.Session["SchoolID"]?.ToString();
             AssignTeacherToClass();
             gvAssignments.EditIndex = -1;
-            BindTeachersGrid(schoolID);
+            BindTeachersGrid(SchoolID);
         }
 
         private void AssignTeacherToClass()
@@ -123,7 +123,7 @@ namespace Schoolnest.Admin
                     cmd.Parameters.Add(new SqlParameter("@StandardID", ddlStandard.SelectedValue));
                     cmd.Parameters.Add(new SqlParameter("@DivisionID", ddlDivision.SelectedValue));
                     cmd.Parameters.Add(new SqlParameter("@SectionID", ddlSection.SelectedValue));
-                    cmd.Parameters.Add(new SqlParameter("@SchoolID", schoolID));
+                    cmd.Parameters.Add(new SqlParameter("@SchoolID", SchoolID));
 
                     try
                     {
@@ -133,12 +133,10 @@ namespace Schoolnest.Admin
                         if (string.IsNullOrEmpty(txtAssignmentID.Text))
                         {
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Teacher Assigned Successfully');", true);
-                            ClearForm();
                         }
                         else
                         {
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Assignment Updated Successfully');", true);
-                            ClearForm();
                         }
                     }
                     catch (Exception ex)
@@ -155,8 +153,7 @@ namespace Schoolnest.Admin
             string assignmentID = row.Cells[0].Text;
 
             // Ensure the dropdowns are populated
-            var schoolID = HttpContext.Current.Session["SchoolID"]?.ToString();
-            BindDropdowns(schoolID);
+            BindDropdowns(SchoolID);
 
             // Assign values to the form fields
             txtAssignmentID.Text = assignmentID;
@@ -183,9 +180,6 @@ namespace Schoolnest.Admin
 
         protected void gvAssignments_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            var context = HttpContext.Current;
-            string schoolID = context.Session["SchoolID"]?.ToString();
-
             // Get the AssignmentID of the row being deleted
             int assignmentID = Convert.ToInt32(gvAssignments.DataKeys[e.RowIndex].Value);
 
@@ -200,7 +194,7 @@ namespace Schoolnest.Admin
             }
 
             // Rebind the GridView to refresh the data
-            BindTeachersGrid(schoolID);
+            BindTeachersGrid(SchoolID);
         }
 
 
@@ -219,23 +213,9 @@ namespace Schoolnest.Admin
             }
         }
 
-        private void ClearForm()
-        {
-            txtAssignmentID.Text = string.Empty;
-            ddlTeacher.SelectedIndex = 0;
-            ddlStandard.SelectedIndex = 0;
-            ddlSection.SelectedIndex = 0;
-            ddlDivision.SelectedIndex = 0;
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Admin/Dashboard.aspx");
-        }
-
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            ClearForm();
+            Response.Redirect("~/Admin/AssignTeacher.aspx");
         }
     }
 }

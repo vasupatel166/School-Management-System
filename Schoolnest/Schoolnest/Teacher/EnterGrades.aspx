@@ -10,61 +10,63 @@
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <div class="card-title">Enter Grades</div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="ddlStandard" Text="Standard"></asp:Label>
-                    <asp:DropDownList ID="ddlStandard" runat="server" CssClass="form-control"></asp:DropDownList>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="ddlDivision" Text="Division"></asp:Label>
-                    <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="ddlSubject" Text="Subject"></asp:Label>
-                    <asp:DropDownList ID="ddlSubject" runat="server" CssClass="form-control"></asp:DropDownList>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="ddlExam" Text="Exam"></asp:Label>
-                    <asp:DropDownList ID="ddlExam" runat="server" CssClass="form-control"></asp:DropDownList>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <asp:Button ID="btnFilter" runat="server" Text="Filter" CssClass="btn btn-primary" CausesValidation="False" OnClick="btnFilter_Click" />
-            </div>
-        </div>
-        <!-- GridView for displaying students and entering grades -->
-        <asp:GridView ID="gvStudents" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered" OnRowDataBound="gvStudents_RowDataBound" EmptyDataText="No data found for the selected criteria.">
-            <columns>
-                <asp:BoundField DataField="Student_FullName" HeaderText="Student Name" />
-                <asp:BoundField DataField="TotalMarks" HeaderText="Total Marks" />
-                <asp:TemplateField HeaderText="Enter Grade">
-                    <itemtemplate>
-                        <asp:TextBox ID="txtGrade" runat="server" CssClass="form-control" />
-                    </itemtemplate>
-                </asp:TemplateField>
-            </columns>
-        </asp:GridView>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="ddlStandard" Text="Standard"></asp:Label>
+                                    <asp:DropDownList ID="ddlStandard" runat="server" CssClass="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="ddlDivision" Text="Division"></asp:Label>
+                                    <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="ddlSubject" Text="Subject"></asp:Label>
+                                    <asp:DropDownList ID="ddlSubject" runat="server" CssClass="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="ddlExam" Text="Exam"></asp:Label>
+                                    <asp:DropDownList ID="ddlExam" runat="server" CssClass="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <asp:Button ID="btnFilter" runat="server" Text="Filter" CssClass="btn btn-primary" CausesValidation="True" OnClick="btnFilter_Click" />
+                            </div>
+                        </div>
 
+                        <!-- GridView for displaying students and entering grades -->
+                        <asp:GridView ID="gvStudents" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered" OnRowDataBound="gvStudents_RowDataBound" EmptyDataText="No data found for the selected criteria.">
+                            <Columns>
+                                <asp:BoundField DataField="Student_FullName" HeaderText="Student Name" />
+                                <asp:BoundField DataField="TotalMarks" HeaderText="Total Marks" />
+                                <asp:TemplateField HeaderText="Enter Grade">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtGrade" runat="server" CssClass="form-control" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
 
-        <div class="card-footer">
-            <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click" />
-            <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-primary" CausesValidation="False" OnClick="btnReset_Click" />
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-primary" CausesValidation="False" OnClick="btnCancel_Click" />
+                        <div class="card-footer">
+                            <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+                            <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-primary" CausesValidation="False" OnClick="btnReset_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </form>
 
     <script type="text/javascript">
@@ -85,5 +87,5 @@
                 textbox.focus();
             }
         }
-</script>
+    </script>
 </asp:Content>

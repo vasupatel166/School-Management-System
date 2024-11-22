@@ -117,7 +117,7 @@
                         </div>
                     </div>
                 </div>
-                </div>   
+            </div>   
             <div class="col-md-8">
                 <div class="card card-round">
                   <div class="card-header">
@@ -133,15 +133,7 @@
         </div>       
     </form>
 
-<!-- Chart JS -->
-<script src="<%= ResolveUrl("~/assets/js/plugin/chart.js/chart.min.js") %>"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-
-            
-
-        });
-    </script>
+    <!-- Chart JS -->
+    <script src="<%= ResolveUrl("~/assets/js/plugin/chart.js/chart.min.js") %>"></script>
 
 </asp:Content>

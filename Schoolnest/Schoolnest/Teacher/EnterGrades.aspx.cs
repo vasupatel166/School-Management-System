@@ -151,11 +151,6 @@ namespace Schoolnest.Teacher
             ClearForm();
         }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Teacher/Dashboard.aspx");
-        }
-
         protected void gvStudents_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -239,6 +234,7 @@ namespace Schoolnest.Teacher
                     }
                 }
             }
+
             Response.Write("<script>alert('Grades saved or updated successfully');</script>");
         }
 

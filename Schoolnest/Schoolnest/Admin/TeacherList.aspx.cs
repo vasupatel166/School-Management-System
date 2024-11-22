@@ -148,8 +148,7 @@ namespace Schoolnest.Teacher
                 }
                 catch (Exception ex)
                 {
-                    // Handle the error (e.g., show a message)
-                    // You can log the error or display a message to the user
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"alert('An error occurred: {ex.Message}');", true);
                 }
             }
         }
@@ -173,7 +172,7 @@ namespace Schoolnest.Teacher
             }
             catch (Exception ex)
             {
-                
+                ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"alert('An error occurred: {ex.Message}');", true);
             }
         }
 

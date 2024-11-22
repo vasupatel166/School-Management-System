@@ -41,7 +41,6 @@ namespace Schoolnest
                     RoleDropdown.DataValueField = "RoleID";
                     RoleDropdown.DataBind();
 
-                    // Optionally, add a default "Select Role" option at the top
                     RoleDropdown.Items.Insert(0, new ListItem("Select Role", ""));
                 }
             }
@@ -358,7 +357,6 @@ namespace Schoolnest
                                     // Show the success panel
                                     ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowOTPPanel", $"setTimeout(function() {{ showOTPPanel('{pnlPasscode.ClientID}', '{pnlSuccess.ClientID}'); }}, 100);", true);
 
-                                    // Optionally, redirect to login after a short delay
                                     Timer1.Enabled = true;
                                 }
                                 else

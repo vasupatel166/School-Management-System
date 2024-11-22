@@ -1,15 +1,11 @@
 ﻿using iTextSharp.text.pdf;
 using iTextSharp.text;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.IO.Compression;
 
 namespace Schoolnest.Teacher
@@ -18,19 +14,43 @@ namespace Schoolnest.Teacher
     {
         string connectionString = Global.ConnectionString;
         string schoolId = string.Empty;
-        string Username = string.Empty;
-        int standard, division;
+        private int UserID;
+        private string TeacherID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            schoolId = Session["SchoolID"].ToString();
+            UserID = Convert.ToInt32(Session["UserID"]);
+
             if (!IsPostBack)
             {
-                schoolId = Session["SchoolId"].ToString();
-                Username = Session["Username"].ToString();
-                LoadTeacherInfo(schoolId, Username);
+                GetTeacherID();
+                LoadTeacherInfo();
             }
         }
 
-        private void LoadTeacherInfo(string schoolId, string Username)
+        private void GetTeacherID()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT TeacherID FROM TeacherMaster WHERE UserMaster_UserID = @UserID AND SchoolMaster_SchoolID = @SchoolID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@SchoolID", schoolId);
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            TeacherID = reader["TeacherID"]?.ToString();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void LoadTeacherInfo()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -43,13 +63,13 @@ namespace Schoolnest.Teacher
                          LEFT JOIN TeacherMaster TM ON TM.TeacherID = AT.TeacherID
                          LEFT JOIN Standards SD ON SD.StandardID = AT.StandardID
                          LEFT JOIN Divisions DV ON DV.DivisionID = AT.DivisionID
-                         WHERE AT.TeacherID = @TeacherID AND AT.SchoolID = @SchoolID";
+                         WHERE AT.TeacherID = @TeacherID AND AT.SchoolMaster_SchoolID = @SchoolID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@TeacherID", Username);
+                cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
                 cmd.Parameters.AddWithValue("@SchoolID", schoolId);
-                
+
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -60,7 +80,7 @@ namespace Schoolnest.Teacher
                         lblTeacher.Text = reader["TeacherName"].ToString();
                         lblStd.Text = reader["Standard"].ToString();
                         lblDivision.Text = reader["Division"].ToString();
-                       
+
                     }
                 }
                 reader.Close();
@@ -116,32 +136,48 @@ namespace Schoolnest.Teacher
         {
             string schoolName = "";
             string schoolAddress = "";
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"SELECT SchoolName, 
-                                    COALESCE(SchoolAddress1, '') + ' ' + COALESCE(SchoolAddress2, '') AS SchoolAddress
-                             FROM SchoolMaster
-                             WHERE SchoolID = @SchoolID";
+                string query = @"
+        SELECT SM.SchoolName, 
+               COALESCE(SM.SchoolAddress1, '') + 
+               CASE WHEN SM.SchoolAddress2 IS NOT NULL AND SM.SchoolAddress2 <> '' 
+                    THEN ' ' + SM.SchoolAddress2 
+                    ELSE '' 
+               END +
+               CASE WHEN LM.City IS NOT NULL AND LM.City <> '' 
+                    THEN ', ' + LM.City 
+                    ELSE '' 
+               END +
+               CASE WHEN LM.State IS NOT NULL AND LM.State <> '' 
+                    THEN ', ' + LM.State 
+                    ELSE '' 
+               END +
+               CASE WHEN LM.Pincode IS NOT NULL 
+                    THEN ' - ' + CAST(LM.Pincode AS NVARCHAR(10))
+                    ELSE ''
+               END AS SchoolAddress
+        FROM SchoolMaster SM
+        LEFT JOIN LocationMaster LM ON SM.School_LocationID = LM.LocationID
+        WHERE SM.SchoolID = @SchoolID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@SchoolID", schoolID);
                     conn.Open();
-
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            schoolName = reader["SchoolName"].ToString();
-                            schoolAddress = reader["SchoolAddress"].ToString();
+                            schoolName = reader["SchoolName"]?.ToString() ?? "";
+                            schoolAddress = reader["SchoolAddress"]?.ToString() ?? "";
                         }
                     }
                 }
             }
-
             return (schoolName, schoolAddress);
         }
+
 
         private DataTable GetAttendanceData(string date)
         {
@@ -149,11 +185,15 @@ namespace Schoolnest.Teacher
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"SELECT ROW_NUMBER() OVER(ORDER BY StudentName) AS SrNo,
-                                    StudentName,
-                                    Status
-                             FROM StudentAttendance
-                             WHERE Date = @Date";
+                string query = @"
+                    SELECT ROW_NUMBER() OVER (ORDER BY SM.Student_FullName) AS SrNo,
+                    SM.Student_FullName AS StudentName,
+                    SA.Status
+                    FROM StudentAttendance SA
+                    INNER JOIN StudentMaster SM ON SA.StudentID = SM.StudentID
+                    WHERE SA.Date = @Date
+                    ORDER BY SM.Student_FullName";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Date", date);
@@ -161,8 +201,10 @@ namespace Schoolnest.Teacher
                     adapter.Fill(dt);
                 }
             }
-            return dt;
+
+            return dt; 
         }
+
 
         private MemoryStream GeneratePdf(DataTable dt, string reportDate, string schoolName, string schoolAddress, string teacherName, string standard, string division)
         {
@@ -226,9 +268,5 @@ namespace Schoolnest.Teacher
             memoryStream.Position = 0; // Reset the stream position to the beginning for reading
             return memoryStream;
         }
-
-
-
-
     }
 }
