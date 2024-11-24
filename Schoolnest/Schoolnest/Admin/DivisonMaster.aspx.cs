@@ -13,16 +13,18 @@ namespace Schoolnest.Admin
     {
         string connectionString = Global.ConnectionString;
         string schoolId = string.Empty;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            schoolId = Session["SchoolID"].ToString();
+            
             if (!IsPostBack)
             {
-                schoolId = Session["SchoolID"].ToString();
                 ddlSearchDivision.Visible = false;
             }
         }
 
-        private void PopulateDivisionDropdown(string schoolId)
+        private void PopulateDivisionDropdown()
         {
             string query = "SELECT DivisionID, DivisionName FROM Divisions WHERE SchoolMaster_SchoolID = @SchoolID";
 
@@ -52,9 +54,6 @@ namespace Schoolnest.Admin
 
         private void SaveDivision()
         {
-            //var context = HttpContext.Current;
-            //string schoolID = context.Session["SchoolID"]?.ToString();
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("sp_InsertUpdateDivisionMaster", conn))
@@ -102,15 +101,8 @@ namespace Schoolnest.Admin
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            //var context = HttpContext.Current;
-            //string schoolID = context.Session["SchoolID"]?.ToString();
             ddlSearchDivision.Visible = true;
-            PopulateDivisionDropdown(schoolId);
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Admin/Dashboard.aspx");
+            PopulateDivisionDropdown();
         }
 
         protected void ddlSearchDivision_SelectedIndexChanged(object sender, EventArgs e)
@@ -123,8 +115,6 @@ namespace Schoolnest.Admin
 
         private void LoadDivisionDetails(string divisionID)
         {
-            //string schoolID = Session["SchoolID"]?.ToString();
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("sp_GetDivisionDetails", conn))

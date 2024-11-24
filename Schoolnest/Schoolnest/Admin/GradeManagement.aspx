@@ -39,26 +39,25 @@
                         </div>
 
                         <!-- Buttons -->
-                        <div class="card-footer">
-                            <asp:Button ID="btnAdd" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+                        <div class="card-footer text-center mt-4 py-4">
+                            <asp:Button ID="btnAdd" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btnSave_Click" />
                             <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-primary" CausesValidation="False" OnClick="btnReset_Click" />
                             <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-primary" CausesValidation="False" OnClick="btnCancel_Click" />
                         </div>
+
+                        <asp:GridView ID="gvGrades" runat="server" AutoGenerateColumns="False"
+                            DataKeyNames="GradesID" CssClass="table table-bordered"
+                            OnRowEditing="gvGrades_RowEditing" OnRowDeleting="gvGrades_RowDeleting">
+                            <columns>
+                                <asp:BoundField DataField="GradesID" HeaderText="ID" ReadOnly="True" />
+                                <asp:BoundField DataField="Grade" HeaderText="Grade" />
+                                <asp:BoundField DataField="MinMarks" HeaderText="Minimum Marks" />
+                                <asp:BoundField DataField="MaxMarks" HeaderText="Maximum Marks" />
+                                <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
+                            </columns>
+                        </asp:GridView>
                     </div>
                 </div>
-            </div>
-
-            <asp:GridView ID="gvGrades" runat="server" AutoGenerateColumns="False"
-                DataKeyNames="GradesID" CssClass="table table-bordered"
-                OnRowEditing="gvGrades_RowEditing" OnRowDeleting="gvGrades_RowDeleting">
-                <columns>
-                    <asp:BoundField DataField="GradesID" HeaderText="ID" ReadOnly="True" />
-                    <asp:BoundField DataField="Grade" HeaderText="Grade" />
-                    <asp:BoundField DataField="MinMarks" HeaderText="Minimum Marks" />
-                    <asp:BoundField DataField="MaxMarks" HeaderText="Maximum Marks" />
-                    <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
-                </columns>
-            </asp:GridView>
-                     
+            </div>          
     </form>
 </asp:Content>

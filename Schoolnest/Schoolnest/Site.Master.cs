@@ -180,7 +180,7 @@ namespace Schoolnest
             {
                 case "A":
                     baseUrl = "~/Admin/Announcements.aspx";
-                    break;
+                    return ResolveUrl($"{baseUrl}");
                 case "T":
                     baseUrl = "~/Teacher/ViewAnnouncements.aspx";
                     break;
@@ -309,6 +309,7 @@ namespace Schoolnest
                     }));
 
                     menuItems.Add(new MenuItem("Exam Management", "fas fa-file-alt", "", new List<MenuItem> {
+                        new MenuItem("Exam Master", "fas fa-calendar-alt", GetResolvedUrl("Admin/ExamMaster.aspx")),
                         new MenuItem("Exam Schedule", "fas fa-calendar-alt", GetResolvedUrl("Admin/ExamSchedule.aspx")),
                         new MenuItem("Grade Management", "fas fa-graduation-cap", GetResolvedUrl("Admin/GradeManagement.aspx")),
                         new MenuItem("Generate Report Cards", "fas fa-file-signature", GetResolvedUrl("Admin/GenerateReportCards.aspx"))

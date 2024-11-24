@@ -1,9 +1,15 @@
-﻿using System;
+﻿using iTextSharp.text.pdf;
+using iTextSharp.text;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web;
+using ListItem = System.Web.UI.WebControls.ListItem;
+using System.Threading;
 
 namespace Schoolnest.Admin
 {
@@ -15,10 +21,12 @@ namespace Schoolnest.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             SchoolID = Session["SchoolID"]?.ToString();
+
             if (!IsPostBack)
             {
                 LoadAssignedStandard();
             }
+
         }
 
         private void LoadAssignedStandard()
@@ -110,7 +118,6 @@ namespace Schoolnest.Admin
                 return periodTime;
             }
         }
-
 
         private void LoadSubjectsGrid()
         {

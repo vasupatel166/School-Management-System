@@ -12,32 +12,34 @@ namespace Schoolnest.Admin
     public partial class ExamSchedule : System.Web.UI.Page
     {
         string connectionString = Global.ConnectionString;
+        string SchoolID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            SchoolID = Session["SchoolID"]?.ToString();
+            
             if(!IsPostBack)
             {
-                var context = HttpContext.Current;
-                string schoolID = context.Session["SchoolID"]?.ToString();
-                BindDropdowns(schoolID);
-                BindExamScheduleGrid(schoolID);
+                BindDropdowns();
+                BindExamScheduleGrid();
             }
         }
 
-        private void BindExamScheduleGrid(string schoolID)
+        private void BindExamScheduleGrid()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("select ES.ExamScheduleID AS ExamScheduleID,E.ExamName AS ExamName,ES.ExamDate AS ExamDate,SM.SubjectName AS [Subject],SD.StandardName AS [Standard]," +
-       " DV.DivisionName AS [Division],SC.SectionName AS [Section] " +
-       " from examschedule ES " +
-       " Left Join Exam E ON E.ExamID=ES.ExamID " +
-       " Left Join Standards SD ON SD.StandardID=ES.StandardID " +
-       " Left Join Divisions DV ON DV.DivisionID=ES.DivisionID " +
-       " Left Join SubjectMaster SM ON SM.SubjectID=ES.SubjectID " +
-       " Left Join Sections SC ON SC.SectionID=ES.SectionID " +
-       " Where ES.SchoolID=@SchoolID ", conn))
+                using (SqlCommand cmd = new SqlCommand("SELECT ES.ExamScheduleID AS ExamScheduleID,E.ExamName AS ExamName,ES.ExamDate AS ExamDate,SM.SubjectName AS [Subject],SD.StandardName AS [Standard]," +
+                " DV.DivisionName AS [Division],SC.SectionName AS [Section] " +
+                " from examschedule ES " +
+                " Left Join Exam E ON E.ExamID=ES.ExamID " +
+                " Left Join Standards SD ON SD.StandardID=ES.StandardID " +
+                " Left Join Divisions DV ON DV.DivisionID=ES.DivisionID " +
+                " Left Join SubjectMaster SM ON SM.SubjectID=ES.SubjectID " +
+                " Left Join Sections SC ON SC.SectionID=ES.SectionID " +
+                " Where ES.SchoolID=@SchoolID ", conn))
                 {
-                    cmd.Parameters.AddWithValue("@SchoolID", schoolID);
+                    cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
                     conn.Open();
                     gvExamSchedule.DataSource = cmd.ExecuteReader();
                     gvExamSchedule.DataBind();
@@ -45,14 +47,14 @@ namespace Schoolnest.Admin
             }
         }
 
-        private void BindDropdowns(string schoolID)
+        private void BindDropdowns()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("sp_GetDropdownDataExamSchedule", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@SchoolID", schoolID));
+                    cmd.Parameters.Add(new SqlParameter("@SchoolID", SchoolID));
                     conn.Open();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -110,11 +112,6 @@ namespace Schoolnest.Admin
             }
         }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Admin/Dashboard.aspx");
-        }
-
         protected void btnReset_Click(object sender, EventArgs e)
         {
             ClearForm();
@@ -122,6 +119,7 @@ namespace Schoolnest.Admin
 
         private void ClearForm()
         {
+            txtExamScheduleID.Text = string.Empty;
             ddlSubject.SelectedIndex = 0;
             ddlStandard.SelectedIndex = 0;
             ddlDivision.SelectedIndex = 0;
@@ -132,17 +130,13 @@ namespace Schoolnest.Admin
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            var context = HttpContext.Current;
-            string schoolID = context.Session["SchoolID"]?.ToString();
             saveSchedule();
             gvExamSchedule.EditIndex = -1;
-            BindExamScheduleGrid(schoolID);
+            BindExamScheduleGrid();
         }
 
         private void saveSchedule()
         {
-            var context = HttpContext.Current;
-            string schoolID = context.Session["SchoolID"]?.ToString();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -156,7 +150,7 @@ namespace Schoolnest.Admin
                     cmd.Parameters.Add(new SqlParameter("@SectionID", ddlSection.SelectedValue));
                     cmd.Parameters.Add(new SqlParameter("@ExamID", ddlExam.SelectedValue));
                     cmd.Parameters.Add(new SqlParameter("@ExamDate", txtDateOfExam.Text));
-                    cmd.Parameters.Add(new SqlParameter("@SchoolID", schoolID));
+                    cmd.Parameters.Add(new SqlParameter("@SchoolID", SchoolID));
 
                     try
                     {
@@ -182,25 +176,62 @@ namespace Schoolnest.Admin
             }
         }
 
-        protected void gvExamSchedule_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void gvExamSchedule_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            // Get the ExamScheduleID from the GridView and populate the form with this record's data
-            GridViewRow row = gvExamSchedule.Rows[e.NewEditIndex];
-            string ExamScheduleID = gvExamSchedule.DataKeys[e.NewEditIndex].Value.ToString();
+            int examScheduleID = Convert.ToInt32(e.CommandArgument);
 
-            // Ensure the dropdowns are populated
-            var schoolID = HttpContext.Current.Session["SchoolID"]?.ToString();
-            BindDropdowns(schoolID);
+            if (e.CommandName == "EditExamSchedule")
+            {
+                // Populate the form for editing
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("SELECT * FROM ExamSchedule WHERE ExamScheduleID = @ExamScheduleID AND SchoolID = @SchoolID", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ExamScheduleID", examScheduleID);
+                        cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            txtExamScheduleID.Text = reader["ExamScheduleID"].ToString();
+                            ddlExam.SelectedValue = reader["ExamID"].ToString();
+                            ddlSubject.SelectedValue = reader["SubjectID"].ToString();
+                            ddlStandard.SelectedValue = reader["StandardID"].ToString();
+                            ddlDivision.SelectedValue = reader["DivisionID"].ToString();
+                            ddlSection.SelectedValue = reader["SectionID"].ToString();
+                            txtDateOfExam.Text = Convert.ToDateTime(reader["ExamDate"]).ToString("yyyy-MM-dd");
+                        }
+                    }
+                }
+            }
+            else if (e.CommandName == "DeleteExamSchedule")
+            {
+                // Delete the record
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM ExamSchedule WHERE ExamScheduleID = @ExamScheduleID", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ExamScheduleID", examScheduleID);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
 
-            // Assign values to the form fields
-            txtExamScheduleID.Text = ExamScheduleID;
+                // Refresh the grid
+                BindExamScheduleGrid();
+            }
+        }
 
-            // Set the selected values if they exist in the dropdown list
-            SetDropdownSelectedValue(ddlExam, row.Cells[1].Text);       // Exam Name
-            SetDropdownSelectedValue(ddlSubject, row.Cells[3].Text);    // Subject
-            SetDropdownSelectedValue(ddlStandard, row.Cells[4].Text);   // Standard
-            SetDropdownSelectedValue(ddlDivision, row.Cells[5].Text);   // Division
-            SetDropdownSelectedValue(ddlSection, row.Cells[6].Text);    // Section
+        protected void gvExamSchedule_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton deleteButton = e.Row.FindControl("lnkDelete") as LinkButton;
+                if (deleteButton != null)
+                {
+                    deleteButton.OnClientClick = "return confirm('Are you sure you want to delete this exam schedule?');";
+                }
+            }
         }
 
         private void SetDropdownSelectedValue(DropDownList ddl, string value)
@@ -212,46 +243,9 @@ namespace Schoolnest.Admin
             }
             else
             {
-                ddl.SelectedIndex = 0; // Optionally, set to a default if the value is missing
+                ddl.SelectedIndex = 0;
             }
-        }
+        }        
 
-        protected void gvExamSchedule_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            var context = HttpContext.Current;
-            string schoolID = context.Session["SchoolID"]?.ToString();
-
-            // Get the AssignmentID of the row being deleted
-            int ExamScheduleID = Convert.ToInt32(gvExamSchedule.DataKeys[e.RowIndex].Value);
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM examschedule WHERE ExamScheduleID = @ExamScheduleID", conn))
-                {
-                    cmd.Parameters.AddWithValue("@ExamScheduleID", ExamScheduleID);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-            // Rebind the GridView to refresh the data
-            BindExamScheduleGrid(schoolID);
-        }
-
-
-        protected void gvExamSchedule_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                // Find the delete button in the row
-                Button deleteButton = e.Row.Cells[5].Controls.OfType<Button>().FirstOrDefault(btn => btn.CommandName == "Delete");
-
-                if (deleteButton != null)
-                {
-                    // Add a JavaScript confirmation dialog to the delete button
-                    deleteButton.OnClientClick = "return confirm('Are you sure you want to delete this assignment?');";
-                }
-            }
-        }
     }
 }

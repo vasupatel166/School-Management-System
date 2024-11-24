@@ -64,41 +64,53 @@
                         <div class="col-md-4 form-group">
                             <asp:Label runat="server" AssociatedControlID="txtDateOfExam" Text="Date of Exam"></asp:Label>
                             <asp:TextBox ID="txtDateOfExam" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
-
                         </div>
 
                     </div>
 
                     <!-- Buttons -->
-                    <div class="card-footer">
-                        <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click" />
-                        <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-primary" CausesValidation="False" OnClick="btnReset_Click" />
-                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-primary" CausesValidation="False" OnClick="btnCancel_Click" />
+                    <div class="card-footer text-center my-4 pt-4">
+                        <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btnSave_Click" />
+                        <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-danger" CausesValidation="False" OnClick="btnReset_Click" />
                     </div>
                 </div>
             </div>
         </div>
 
-        <asp:GridView ID="gvExamSchedule" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-            DataKeyNames="ExamScheduleID"
-            OnRowEditing="gvExamSchedule_RowEditing"
-            OnRowDeleting="gvExamSchedule_RowDeleting"
-            OnRowDataBound="gvExamSchedule_RowDataBound">
-            <Columns>
-                <asp:BoundField DataField="ExamScheduleID" HeaderText="SR No" />
-                <asp:BoundField DataField="ExamName" HeaderText="ExamName" />
-                <asp:BoundField DataField="ExamDate" HeaderText="ExamDate" />
-                <asp:BoundField DataField="Subject" HeaderText="Subject" />
-                <asp:BoundField DataField="Standard" HeaderText="Standard" />
-                <asp:BoundField DataField="Division" HeaderText="Division" />
-                <asp:BoundField DataField="Section" HeaderText="Division" />
-                <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
-            </Columns>
-            <EmptyDataTemplate>
-                <div style="text-align: center; padding: 10px;">
-                    No records found.
-                </div>
-            </EmptyDataTemplate>
-        </asp:GridView>
+        <div class="row mt-4">
+            <asp:GridView ID="gvExamSchedule" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+                DataKeyNames="ExamScheduleID"
+                OnRowCommand="gvExamSchedule_RowCommand"
+                OnRowDataBound="gvExamSchedule_RowDataBound">
+                <Columns>
+                    <asp:BoundField DataField="ExamScheduleID" HeaderText="SR No" />
+                    <asp:BoundField DataField="ExamName" HeaderText="Exam Name" />
+                    <asp:BoundField DataField="ExamDate" HeaderText="Exam Date" DataFormatString="{0:yyyy-MM-dd}" />
+                    <asp:BoundField DataField="Subject" HeaderText="Subject" />
+                    <asp:BoundField DataField="Standard" HeaderText="Standard" />
+                    <asp:BoundField DataField="Division" HeaderText="Division" />
+                    <asp:BoundField DataField="Section" HeaderText="Section" />
+                    <asp:TemplateField HeaderText="Actions">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lnkEdit" runat="server" CssClass="btn btn-primary btn-sm"
+                                CommandName="EditExamSchedule" CommandArgument='<%# Eval("ExamScheduleID") %>' CausesValidation="false">
+                                <i class="fas fa-edit"></i> Edit
+                            </asp:LinkButton>
+                            <asp:LinkButton ID="lnkDelete" runat="server" CssClass="btn btn-danger btn-sm"
+                                CommandName="DeleteExamSchedule" CommandArgument='<%# Eval("ExamScheduleID") %>'
+                                OnClientClick="return confirm('Are you sure you want to delete this exam schedule?');" CausesValidation="false">
+                                <i class="fas fa-trash"></i> Delete
+                            </asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+                <EmptyDataTemplate>
+                    <div style="text-align: center; padding: 10px;">
+                        No records found.
+                    </div>
+                </EmptyDataTemplate>
+            </asp:GridView>
+        </div>
+
     </form>
 </asp:Content>

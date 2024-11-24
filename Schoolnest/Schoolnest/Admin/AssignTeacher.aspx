@@ -30,23 +30,21 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlStandard" Text="Standard"></asp:Label>
                                     <asp:DropDownList ID="ddlStandard" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
+
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlDivision" Text="Division"></asp:Label>
                                     <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
+
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlSection" Text="Section"></asp:Label>
                                     <asp:DropDownList ID="ddlSection" runat="server" CssClass="form-control"></asp:DropDownList>
@@ -56,9 +54,9 @@
                     </div>
 
                     <!-- Buttons -->
-                    <div class="card-footer">
-                        <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click" />
-                        <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-primary" CausesValidation="False" OnClick="btnReset_Click" />
+                    <div class="card-footer text-center mt-4 pt-4">
+                        <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btnSave_Click" />
+                        <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-danger" CausesValidation="False" OnClick="btnReset_Click" />
                     </div>
                 </div>
             </div>

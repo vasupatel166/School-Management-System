@@ -71,7 +71,10 @@
         }
     </style>
 
-     <script type="text/javascript">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script type="text/javascript">
          function openTimetableModal() {
              $('#timetableModal').modal('show');
              return false;
@@ -101,6 +104,7 @@
              });
          });
      </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server" class="w-100">
@@ -166,7 +170,6 @@
                                     <asp:Table ID="ClassTimetable" CssClass="timetable table-bordered" runat="server">
                                     </asp:Table>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>

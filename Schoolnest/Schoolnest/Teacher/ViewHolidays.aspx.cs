@@ -46,6 +46,7 @@ namespace Schoolnest.Teacher
             }
         }
 
+
         protected void ddlAcademicYear_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadHolidays(ddlAcademicYear.SelectedValue);

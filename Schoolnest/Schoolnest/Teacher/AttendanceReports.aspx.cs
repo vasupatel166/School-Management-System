@@ -178,7 +178,6 @@ namespace Schoolnest.Teacher
             return (schoolName, schoolAddress);
         }
 
-
         private DataTable GetAttendanceData(string date)
         {
             DataTable dt = new DataTable();
@@ -204,7 +203,6 @@ namespace Schoolnest.Teacher
 
             return dt; 
         }
-
 
         private MemoryStream GeneratePdf(DataTable dt, string reportDate, string schoolName, string schoolAddress, string teacherName, string standard, string division)
         {

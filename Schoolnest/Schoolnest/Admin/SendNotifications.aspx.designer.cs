@@ -24,58 +24,76 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// txtSubject control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSubject;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// rfvSubject control.
+        /// ddlUserType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSubject;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUserType;
 
         /// <summary>
-        /// txtMessage control.
+        /// pnlStudentFilters control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMessage;
+        protected global::System.Web.UI.WebControls.Panel pnlStudentFilters;
 
         /// <summary>
-        /// rfvMessage control.
+        /// ddlStandard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMessage;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStandard;
 
         /// <summary>
-        /// ddlRecipientGroup control.
+        /// rfvStandard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRecipientGroup;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStandard;
 
         /// <summary>
-        /// rfvRecipientGroup control.
+        /// ddlDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRecipientGroup;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDivision;
+
+        /// <summary>
+        /// rfvDivision control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDivision;
+
+        /// <summary>
+        /// gvUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvUsers;
 
         /// <summary>
         /// btnSendNotification control.
@@ -87,21 +105,12 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.WebControls.Button btnSendNotification;
 
         /// <summary>
-        /// rptNotificationsHistory control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptNotificationsHistory;
-
-        /// <summary>
-        /// pnlNoNotifications control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlNoNotifications;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

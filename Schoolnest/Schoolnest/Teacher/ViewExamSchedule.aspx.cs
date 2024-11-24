@@ -8,32 +8,47 @@ namespace Schoolnest.Teacher
     {
         string connectionString = Global.ConnectionString;
         string schoolId = string.Empty;
-        string Username = string.Empty;
+        string TeacherID = string.Empty;
+        private int UserID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            schoolId = Session["SchoolId"].ToString();
+            UserID = Convert.ToInt32(Session["UserID"]);
+            GetTeacherID();
+
             if (!IsPostBack)
             {
-                schoolId = Session["SchoolId"]?.ToString();
-                Username = Session["Username"]?.ToString();
+                LoadExamSchedule();
+            }
+        }
 
-                if (!string.IsNullOrEmpty(schoolId) && !string.IsNullOrEmpty(Username))
+        private void GetTeacherID()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT TeacherID FROM TeacherMaster WHERE UserMaster_UserID = @UserID AND SchoolMaster_SchoolID = @SchoolID", conn))
                 {
-                    LoadExamSchedule(schoolId, Username);
-                }
-                else
-                {
-                    // Handle session expiration
-                    Response.Redirect("~/Login.aspx");
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
+                    cmd.Parameters.AddWithValue("@SchoolID", schoolId);
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            TeacherID = reader["TeacherID"]?.ToString();
+                        }
+                    }
                 }
             }
         }
 
-        private void LoadExamSchedule(string schoolId, string username)
+        private void LoadExamSchedule()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"SELECT es.ExamDate, e.ExamName, std.StandardName, div.DivisionName, subj.SubjectName 
+                string query = @"SELECT es.ExamDate, e.ExamName, e.TotalMarks, std.StandardName, div.DivisionName, subj.SubjectName 
                                  FROM ExamSchedule es 
                                  JOIN Exam e ON es.ExamID = e.ExamID 
                                  JOIN SubjectMaster subj ON es.SubjectID = subj.SubjectID 
@@ -42,14 +57,14 @@ namespace Schoolnest.Teacher
                                  JOIN SubjectDetail tcs ON es.SubjectID = tcs.SubjectMaster_SubjectID 
                                  AND es.StandardID = tcs.Standards_StandardID 
                                  AND es.DivisionID = tcs.Divisions_DivisionID 
-                                 WHERE tcs.Teachers_TeacherID = @Username 
+                                 WHERE tcs.Teachers_TeacherID = @TeacherID 
                                  AND es.SchoolID = @SchoolID 
                                  ORDER BY es.ExamDate";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@SchoolID", schoolId);
-                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
 
                     conn.Open();
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
@@ -65,7 +80,7 @@ namespace Schoolnest.Teacher
                         else
                         {
                             gvExamSchedule.DataSource = null;
-                            gvExamSchedule.DataBind(); // This will trigger EmptyDataTemplate
+                            gvExamSchedule.DataBind();
                         }
                     }
                 }

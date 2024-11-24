@@ -15,13 +15,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlStandard" Text="Standard"></asp:Label>
-                                    <asp:DropDownList ID="ddlStandard" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlStandard" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlStandard_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlDivision" Text="Division"></asp:Label>
-                                    <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlDivision" runat="server" AutoPostBack="true" CssClass="form-control" Enabled="false" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>
@@ -29,38 +29,41 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlSubject" Text="Subject"></asp:Label>
-                                    <asp:DropDownList ID="ddlSubject" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlSubject" runat="server" AutoPostBack="true" CssClass="form-control" Enabled="false" OnSelectedIndexChanged="ddlSubject_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlExam" Text="Exam"></asp:Label>
-                                    <asp:DropDownList ID="ddlExam" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlExam" runat="server" AutoPostBack="true" CssClass="form-control" Enabled="false" OnSelectedIndexChanged="ddlExam_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <asp:Button ID="btnFilter" runat="server" Text="Filter" CssClass="btn btn-primary" CausesValidation="True" OnClick="btnFilter_Click" />
-                            </div>
-                        </div>
-
+                       
                         <!-- GridView for displaying students and entering grades -->
-                        <asp:GridView ID="gvStudents" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered" OnRowDataBound="gvStudents_RowDataBound" EmptyDataText="No data found for the selected criteria.">
-                            <Columns>
-                                <asp:BoundField DataField="Student_FullName" HeaderText="Student Name" />
-                                <asp:BoundField DataField="TotalMarks" HeaderText="Total Marks" />
-                                <asp:TemplateField HeaderText="Enter Grade">
-                                    <ItemTemplate>
-                                        <asp:TextBox ID="txtGrade" runat="server" CssClass="form-control" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
+                           <asp:GridView ID="gvStudents" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+                                OnRowDataBound="gvStudents_RowDataBound" EmptyDataText="No data found for the selected criteria.">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Student ID">
+                                        <ItemTemplate>
+                                            <asp:HiddenField ID="hfStudentID" runat="server" Value='<%# Eval("StudentID") %>' />
+                                            <asp:Label ID="lblStudentName" runat="server" Text='<%# Eval("Student_FullName") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="TotalMarks" HeaderText="Total Marks" />
+                                    <asp:TemplateField HeaderText="Enter Grade">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtGrade" runat="server" CssClass="form-control" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
 
-                        <div class="card-footer">
-                            <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click" />
-                            <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-primary" CausesValidation="False" OnClick="btnReset_Click" />
+
+
+                        <div class="card-footer text-center mt-4 pt-4">
+                            <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btnSave_Click" />
+                            <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-danger" CausesValidation="False" OnClick="btnReset_Click" />
                         </div>
                     </div>
                 </div>
