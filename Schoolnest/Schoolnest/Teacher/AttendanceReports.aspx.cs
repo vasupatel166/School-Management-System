@@ -19,7 +19,7 @@ namespace Schoolnest.Teacher
         string connectionString = Global.ConnectionString;
         string schoolId = string.Empty;
         string Username = string.Empty;
-        int standard, division;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
