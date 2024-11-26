@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Schoolnest.Teacher
+namespace Schoolnest.Student
 {
-    public partial class ViewAnnouncements : System.Web.UI.Page
+    public partial class Announcements : System.Web.UI.Page
     {
         private string connectionString = Global.ConnectionString;
         private string SchoolID;
@@ -56,7 +60,7 @@ namespace Schoolnest.Teacher
                         ELSE UpdatedDateTime 
                     END AS DisplayDateTime
                     FROM AnnouncementMaster 
-                    WHERE (TargetAudience = 'Teacher' OR TargetAudience = 'Both') 
+                    WHERE (TargetAudience = 'Student' OR TargetAudience = 'Both') 
                     AND SchoolMaster_SchoolID = @SchoolID AND IsActive = 1 
                     ORDER BY DisplayDateTime DESC", conn))
                 {

@@ -377,6 +377,7 @@
     <Content Include="assets\fonts\summernote\summernote.ttf" />
     <Content Include="assets\fonts\summernote\summernote.woff" />
     <Content Include="assets\fonts\summernote\summernote.woff2" />
+    <Content Include="Student\Announcements.aspx" />
     <Content Include="Student\Dashboard.aspx" />
     <Content Include="Student\StudentLogin.aspx" />
     <Content Include="SuperAdmin\Dashboard.aspx" />
@@ -610,6 +611,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Announcements.aspx.cs">
+      <DependentUpon>Announcements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Announcements.aspx.designer.cs">
+      <DependentUpon>Announcements.aspx</DependentUpon>
     </Compile>
     <Compile Include="Student\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
