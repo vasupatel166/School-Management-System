@@ -1,9 +1,15 @@
-﻿using System;
+﻿using iTextSharp.text.pdf;
+using iTextSharp.text;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web;
+using ListItem = System.Web.UI.WebControls.ListItem;
+using System.Threading;
 
 namespace Schoolnest.Admin
 {
@@ -15,10 +21,12 @@ namespace Schoolnest.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             SchoolID = Session["SchoolID"]?.ToString();
+
             if (!IsPostBack)
             {
                 LoadAssignedStandard();
             }
+
         }
 
         private void LoadAssignedStandard()
@@ -37,7 +45,7 @@ namespace Schoolnest.Admin
                     ddlStandard.Items.Add(new ListItem("Select Standard", "0"));
                     while (reader.Read())
                     {
-                        ddlStandard.Items.Add(new ListItem(reader["StandardName"].ToString(),reader["Standards_StandardID"].ToString()));
+                        ddlStandard.Items.Add(new ListItem(reader["StandardName"].ToString(), reader["Standards_StandardID"].ToString()));
                     }
                 }
             }
@@ -67,18 +75,18 @@ namespace Schoolnest.Admin
                 using (SqlCommand cmd = new SqlCommand(@"
                     SELECT DISTINCT sd.Divisions_DivisionID, d.DivisionName FROM SubjectDetail AS sd INNER JOIN Divisions AS d ON sd.Divisions_DivisionID = d.DivisionID
                     WHERE sd.Standards_StandardID = @StandardID AND sd.SchoolMaster_SchoolID = @SchoolID", conn))
-                    {
-                        cmd.Parameters.AddWithValue("@StandardID", ddlStandard.SelectedValue);
-                        cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
-                        SqlDataReader reader = cmd.ExecuteReader();
+                {
+                    cmd.Parameters.AddWithValue("@StandardID", ddlStandard.SelectedValue);
+                    cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
+                    SqlDataReader reader = cmd.ExecuteReader();
 
-                        ddlDivision.Items.Clear();
-                        ddlDivision.Items.Add(new ListItem("Select Division", "0"));
-                        while (reader.Read())
-                        {
-                            ddlDivision.Items.Add(new ListItem(reader["DivisionName"].ToString(),reader["Divisions_DivisionID"].ToString()));
-                        }
+                    ddlDivision.Items.Clear();
+                    ddlDivision.Items.Add(new ListItem("Select Division", "0"));
+                    while (reader.Read())
+                    {
+                        ddlDivision.Items.Add(new ListItem(reader["DivisionName"].ToString(), reader["Divisions_DivisionID"].ToString()));
                     }
+                }
             }
         }
 
@@ -110,7 +118,6 @@ namespace Schoolnest.Admin
                 return periodTime;
             }
         }
-
 
         private void LoadSubjectsGrid()
         {
@@ -153,7 +160,7 @@ namespace Schoolnest.Admin
                 ViewState["SubjectDetailID"] = e.CommandArgument.ToString();
 
                 LoadTimetableModal();
-                ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal","$(document).ready(function() { $('#timetableModal').modal('show'); });", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$(document).ready(function() { $('#timetableModal').modal('show'); });", true);
             }
         }
 

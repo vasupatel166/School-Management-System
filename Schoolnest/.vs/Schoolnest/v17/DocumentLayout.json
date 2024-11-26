@@ -1,37 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Ashish Chauhan\\Desktop\\School manage\\School-Management-System\\Schoolnest\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|c:\\users\\ashish chauhan\\desktop\\school manage\\school-management-system\\schoolnest\\schoolnest\\teacher\\attendancereports.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\teacher\\attendancereports.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "D:\\Conestoga College - SEM 4\\Capstone Project\\School-Management-System\\Schoolnest\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AttendanceReports.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Ashish Chauhan\\Desktop\\School manage\\School-Management-System\\Schoolnest\\Schoolnest\\Teacher\\AttendanceReports.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Teacher\\AttendanceReports.aspx.cs",
-              "ToolTip": "C:\\Users\\Ashish Chauhan\\Desktop\\School manage\\School-Management-System\\Schoolnest\\Schoolnest\\Teacher\\AttendanceReports.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\Teacher\\AttendanceReports.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T01:47:21.356Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

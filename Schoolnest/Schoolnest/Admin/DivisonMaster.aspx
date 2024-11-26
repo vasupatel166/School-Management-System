@@ -17,7 +17,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="txtDivisionID" Text="Division ID"></asp:Label>
                                     <asp:TextBox ID="txtDivisionID" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
@@ -35,10 +35,9 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <div class="card-footer">
-                        <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click" />
-                        <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-primary" CausesValidation="False" OnClick="btnReset_Click"/>
-                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-primary" CausesValidation="False" OnClick="btnCancel_Click" />
+                    <div class="card-footer text-center my-4 pt-4">
+                        <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btnSave_Click" />
+                        <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-danger" CausesValidation="False" OnClick="btnReset_Click"/>
                         <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" CausesValidation="False" OnClick="btnSearch_Click"/>
                     </div>
                 </div>

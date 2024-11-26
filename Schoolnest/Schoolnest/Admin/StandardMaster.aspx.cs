@@ -15,9 +15,10 @@ namespace Schoolnest.Admin
         string schoolId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
+            schoolId = Session["SchoolId"].ToString();
+
             if (!IsPostBack)
             {
-                schoolId = Session["SchoolId"].ToString();
                 ddlSearchStandard.Visible = false;
                 
             }
@@ -109,11 +110,6 @@ namespace Schoolnest.Admin
             string schoolID = context.Session["SchoolID"]?.ToString();
             ddlSearchStandard.Visible = true;
             populatestandardDropdown(schoolID);
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Admin/Dashboard.aspx");
         }
 
         protected void ddlSearchStandard_SelectedIndexChanged(object sender, EventArgs e)

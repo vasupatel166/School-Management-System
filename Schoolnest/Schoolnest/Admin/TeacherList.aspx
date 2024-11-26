@@ -70,7 +70,6 @@
                             <div class="col-md-4 form-group">
                                 <asp:Label runat="server" AssociatedControlID="txtDateOfBirth" Text="Date of Birth"></asp:Label>
                                 <asp:TextBox ID="txtDateOfBirth" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
-
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Data;
 
 namespace Schoolnest.Teacher
 {
@@ -12,40 +8,83 @@ namespace Schoolnest.Teacher
     {
         string connectionString = Global.ConnectionString;
         string schoolId = string.Empty;
-        string Username = string.Empty;
+        string TeacherID = string.Empty;
+        private int UserID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            schoolId = Session["SchoolId"].ToString();
+            UserID = Convert.ToInt32(Session["UserID"]);
+            GetTeacherID();
+
             if (!IsPostBack)
             {
-                schoolId = Session["SchoolId"].ToString();
-                Username = Session["Username"].ToString();
-                LoadExamSchedule(schoolId,Username);
+                LoadExamSchedule();
             }
-
         }
 
-        private void LoadExamSchedule(string schoolId, string username)
+        private void GetTeacherID()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT es.ExamDate, e.ExamName, std.StandardName, div.DivisionName, subj.SubjectName " +
-                                                       "FROM ExamSchedule es JOIN Exam e ON es.ExamID = e.ExamID " +
-                                                       "JOIN SubjectMaster subj ON es.SubjectID = subj.SubjectID JOIN Standards std ON es.StandardID = std.StandardID JOIN Divisions div ON es.DivisionID = div.DivisionID JOIN SubjectDetail tcs ON es.SubjectID = tcs.SubjectMaster_SubjectID " + 
-                                                       "AND es.StandardID = tcs.Standards_StandardID AND es.DivisionID = tcs.Divisions_DivisionID " +
-                                                       " WHERE tcs.Teachers_TeacherID = @Username and es.SchoolID=@SchoolID; ", conn))
+                using (SqlCommand cmd = new SqlCommand("SELECT TeacherID FROM TeacherMaster WHERE UserMaster_UserID = @UserID AND SchoolMaster_SchoolID = @SchoolID", conn))
                 {
+                    cmd.Parameters.AddWithValue("@UserID", UserID);
                     cmd.Parameters.AddWithValue("@SchoolID", schoolId);
-                    cmd.Parameters.AddWithValue("@Username", username);
                     conn.Open();
-                    gvExamSchedule.DataSource = cmd.ExecuteReader();
-                    gvExamSchedule.DataBind();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            TeacherID = reader["TeacherID"]?.ToString();
+                        }
+                    }
                 }
             }
         }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
+        private void LoadExamSchedule()
         {
-            Response.Redirect("~/Teacher/Dashboard.aspx");
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT es.ExamDate, e.ExamName, e.TotalMarks, std.StandardName, div.DivisionName, subj.SubjectName 
+                                 FROM ExamSchedule es 
+                                 JOIN Exam e ON es.ExamID = e.ExamID 
+                                 JOIN SubjectMaster subj ON es.SubjectID = subj.SubjectID 
+                                 JOIN Standards std ON es.StandardID = std.StandardID 
+                                 JOIN Divisions div ON es.DivisionID = div.DivisionID 
+                                 JOIN SubjectDetail tcs ON es.SubjectID = tcs.SubjectMaster_SubjectID 
+                                 AND es.StandardID = tcs.Standards_StandardID 
+                                 AND es.DivisionID = tcs.Divisions_DivisionID 
+                                 WHERE tcs.Teachers_TeacherID = @TeacherID 
+                                 AND es.SchoolID = @SchoolID 
+                                 ORDER BY es.ExamDate";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SchoolID", schoolId);
+                    cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
+
+                    conn.Open();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            gvExamSchedule.DataSource = dt;
+                            gvExamSchedule.DataBind();
+                        }
+                        else
+                        {
+                            gvExamSchedule.DataSource = null;
+                            gvExamSchedule.DataBind();
+                        }
+                    }
+                }
+            }
         }
     }
 }

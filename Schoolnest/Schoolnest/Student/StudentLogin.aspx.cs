@@ -12,7 +12,6 @@ namespace Schoolnest.Student
     public partial class StudentLogin : System.Web.UI.Page
     {
         private string connectionString = Global.ConnectionString;
-        private string SchoolID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,7 +31,6 @@ namespace Schoolnest.Student
                 if (ValidateLogin(username, password))
                 {
                     Session["UserRole"] = "S";
-                    Session["Username"] = username;
                     Response.Redirect("~/Student/Dashboard.aspx");
                 }
                 else
@@ -49,17 +47,13 @@ namespace Schoolnest.Student
 
         private bool ValidateLogin(string username, string password)
         {
-            string databaseProcedure = "GetUserDataForLogin";
-
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 try
                 {
                     con.Open();
 
-                    System.Diagnostics.Debug.WriteLine("Database connection opened successfully.");
-
-                    using (SqlCommand cmd = new SqlCommand(databaseProcedure, con))
+                    using (SqlCommand cmd = new SqlCommand("GetUserDataForLogin", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
@@ -73,6 +67,7 @@ namespace Schoolnest.Student
                                 if (password == reader["DecryptedPassword"].ToString())
                                 {
                                     Session["SchoolID"] = reader["SchoolMaster_SchoolID"].ToString();
+                                    Session["Username"] = reader["Username"].ToString();
                                     return true;
                                 }
 

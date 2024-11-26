@@ -76,42 +76,6 @@ namespace Schoolnest.Admin
                         }
                     }
 
-                    //if (reader.NextResult())
-                    //{
-                    //    List<string> labels = new List<string>(); // This will store Mon, Tue, etc.
-                    //    List<double> studentAttendance = new List<double>();
-                    //    List<double> teacherAttendance = new List<double>();
-                    //    List<string> studentTooltips = new List<string>(); // To store actual values for tooltips
-                    //    List<string> teacherTooltips = new List<string>();
-
-                    //    while (reader.Read())
-                    //    {
-                    //        DateTime attendanceDate = (DateTime)reader["AttendanceDate"];
-                    //        labels.Add(attendanceDate.ToString("ddd"));  // Example: "Mon", "Tue"
-
-                    //        // Calculate student and teacher attendance percentages
-                    //        int totalStudentsPresent = Convert.ToInt32(reader["TotalStudentsPresent"]);
-                    //        int totalTeachersPresent = Convert.ToInt32(reader["TotalTeachersPresent"]);
-
-                    //        double studentPercentage = (int)totalStudentsParam.Value > 0 ? ((double)totalStudentsPresent / (int)totalStudentsParam.Value) * 100 : 0;
-                    //        double teacherPercentage = (int)totalTeachersParam.Value > 0 ? ((double)totalTeachersPresent / (int)totalTeachersParam.Value) * 100 : 0;
-
-                    //        studentAttendance.Add(studentPercentage);
-                    //        teacherAttendance.Add(teacherPercentage);
-
-                    //        // Tooltips to show the actual values
-                    //        studentTooltips.Add($"{totalStudentsPresent} / {(int)totalStudentsParam.Value}");
-                    //        teacherTooltips.Add($"{totalTeachersPresent} / {(int)totalTeachersParam.Value}");
-                    //    }
-
-                    //    // Convert data into JSON format for use in the front-end
-                    //    Labels = "'" + string.Join("','", labels) + "'";
-                    //    StudentData = string.Join(",", studentAttendance);
-                    //    TeacherData = string.Join(",", teacherAttendance);
-                    //    StudentTooltips = "'" + string.Join("','", studentTooltips) + "'";
-                    //    TeacherTooltips = "'" + string.Join("','", teacherTooltips) + "'";
-                    //}
-
                     reader.Close();
 
                     // Now access the OUTPUT parameters after closing the reader

@@ -7,65 +7,83 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Schoolnest.Admin
+namespace Schoolnest.Student
 {
 
 
-    public partial class MarkAttendance
+    public partial class StudentLogin
     {
 
         /// <summary>
-        /// form1 control.
+        /// StudentLoginForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm StudentLoginForm;
 
         /// <summary>
-        /// ddlTeacher control.
+        /// StudentScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTeacher;
+        protected global::System.Web.UI.ScriptManager StudentScriptManager1;
 
         /// <summary>
-        /// txtDate control.
+        /// StudentTxtUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDate;
+        protected global::System.Web.UI.WebControls.TextBox StudentTxtUsername;
 
         /// <summary>
-        /// btnPresent control.
+        /// StudentRfvUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPresent;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator StudentRfvUsername;
 
         /// <summary>
-        /// btnAbsent control.
+        /// StudentTxtPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAbsent;
+        protected global::System.Web.UI.WebControls.TextBox StudentTxtPassword;
 
         /// <summary>
-        /// gvAttendanceReport control.
+        /// StudentRfvPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAttendanceReport;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator StudentRfvPassword;
+
+        /// <summary>
+        /// StudentBtnLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button StudentBtnLogin;
+
+        /// <summary>
+        /// StudentLnkForgetPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink StudentLnkForgetPassword;
     }
 }

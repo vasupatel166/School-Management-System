@@ -56,8 +56,8 @@
                                 <asp:RequiredFieldValidator ID="rfvSchoolId" runat="server" ControlToValidate="txtSchoolId" ErrorMessage="School ID is required" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                             <div class="form-group">
-                                <label for="username">Username</label>
-                                <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Enter Username"></asp:TextBox>
+                                <label for="username">Username/Email</label>
+                                <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Enter Username or email"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvUsername" runat="server" ControlToValidate="txtUsername" ErrorMessage="Username is required" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                             <div class="form-group">

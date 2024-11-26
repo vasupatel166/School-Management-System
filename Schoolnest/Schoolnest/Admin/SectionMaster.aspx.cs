@@ -15,14 +15,15 @@ namespace Schoolnest.Admin
         string schoolId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
+            schoolId = Session["SchoolID"].ToString();
+            
             if (!IsPostBack)
             {
-                schoolId = Session["SchoolID"].ToString();
                 ddlSearchSection.Visible = false;
             }
         }
 
-        private void PopulateSectionDropdown(string schoolId)
+        private void PopulateSectionDropdown()
         {
             string query = "SELECT SectionID, SectionName FROM Sections WHERE SchoolMaster_SchoolID = @SchoolID";
 
@@ -52,9 +53,6 @@ namespace Schoolnest.Admin
 
         private void SaveSection()
         {
-            var context = HttpContext.Current;
-            string schoolID = context.Session["SchoolID"]?.ToString();
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("sp_InsertUpdateSectionMaster", conn))
@@ -63,7 +61,7 @@ namespace Schoolnest.Admin
                     cmd.Parameters.Add(new SqlParameter("@SectionID", txtSectionCode.Text));
                     cmd.Parameters.Add(new SqlParameter("@SectionName", txtSectionName.Text));
                     cmd.Parameters.Add(new SqlParameter("@SectionDesc", txtSectionDesc.Text));
-                    cmd.Parameters.Add(new SqlParameter("@SchoolMaster_SchoolID", schoolID));
+                    cmd.Parameters.Add(new SqlParameter("@SchoolMaster_SchoolID", schoolId));
 
                     try
                     {
@@ -91,7 +89,7 @@ namespace Schoolnest.Admin
 
         private void ClearForm()
         {
-            txtSectionCode.Text=string.Empty;
+            txtSectionCode.Text = string.Empty;
             txtSectionName.Text = string.Empty;
             txtSectionDesc.Text = string.Empty;
             ddlSearchSection.Visible = false;
@@ -103,15 +101,8 @@ namespace Schoolnest.Admin
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            var context = HttpContext.Current;
-            string schoolID = context.Session["SchoolID"]?.ToString();
             ddlSearchSection.Visible = true;
-            PopulateSectionDropdown(schoolID);
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Admin/Dashboard.aspx");
+            PopulateSectionDropdown();
         }
 
         protected void ddlSearchSection_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,15 +115,13 @@ namespace Schoolnest.Admin
 
         private void LoadSectionDetails(string SectionID)
         {
-            string schoolID = Session["SchoolID"]?.ToString();
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("sp_GetSectionDetails", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@SectionID", SectionID);
-                    cmd.Parameters.AddWithValue("@SchoolID", schoolID);
+                    cmd.Parameters.AddWithValue("@SchoolID", schoolId);
 
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();

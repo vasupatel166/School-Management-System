@@ -11,7 +11,7 @@ namespace Schoolnest.Teacher
 {
 
 
-    public partial class ViewExamSchedule
+    public partial class ViewEvents
     {
 
         /// <summary>
@@ -24,12 +24,12 @@ namespace Schoolnest.Teacher
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// gvExamSchedule control.
+        /// EventsTableBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvExamSchedule;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl EventsTableBody;
     }
 }

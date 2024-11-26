@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MarkAttendance.aspx.cs" Inherits="Schoolnest.Admin.MarkAttendance" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MarkAttendance.aspx.cs" Inherits="Schoolnest.Teacher.MarkAttendance" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -14,8 +15,10 @@
             minDate.setDate(minDate.getDate() - 7);
             dateInput.min = minDate.toISOString().split('T')[0];
 
-            // Set default date to today
-            dateInput.value = maxDate;
+            // Only set default date if no date is selected
+            if (!dateInput.value) {
+                dateInput.value = maxDate;
+            }
         });
     </script>
 </asp:Content>
@@ -50,9 +53,15 @@
                         </div>
                         <asp:HiddenField ID="hfStandardID" runat="server" />
                         <asp:HiddenField ID="hfDivisionID" runat="server" />
-                        <asp:GridView ID="gvStudents" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered" EnableViewState="false">
+                        <asp:GridView ID="gvStudents" runat="server" AutoGenerateColumns="false"
+                            CssClass="table table-bordered" OnRowDataBound="gvStudents_RowDataBound">
                             <Columns>
-                                <asp:BoundField DataField="Student_FullName" HeaderText="Student Name" />
+                                <asp:TemplateField HeaderText="Student Name">
+                                    <ItemTemplate>
+                                        <asp:HiddenField ID="hfStudentID" runat="server" Value='<%# Eval("StudentID") %>' />
+                                        <%# Eval("Student_FullName") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Attendance">
                                     <ItemTemplate>
                                         <asp:DropDownList ID="ddlAttendance" runat="server" CssClass="form-control">
@@ -65,7 +74,7 @@
                         </asp:GridView>
                         <div class="card-footer text-center mt-4 pt-4">
                             <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="btnSave_Click" />
-                            <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-primary" OnClick="btnCancel_Click"/>
+                            <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-primary" OnClick="btnCancel_Click" />
                         </div>
                     </div>
                 </div>

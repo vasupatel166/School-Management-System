@@ -29,18 +29,6 @@
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlMonth" Text="Select Month"></asp:Label>
                                     <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control">
-                                        <asp:ListItem Text="January" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="February" Value="2"></asp:ListItem>
-                                        <asp:ListItem Text="March" Value="3"></asp:ListItem>
-                                        <asp:ListItem Text="April" Value="4"></asp:ListItem>
-                                        <asp:ListItem Text="May" Value="5"></asp:ListItem>
-                                        <asp:ListItem Text="June" Value="6"></asp:ListItem>
-                                        <asp:ListItem Text="July" Value="7"></asp:ListItem>
-                                        <asp:ListItem Text="August" Value="8"></asp:ListItem>
-                                        <asp:ListItem Text="September" Value="9"></asp:ListItem>
-                                        <asp:ListItem Text="October" Value="10"></asp:ListItem>
-                                        <asp:ListItem Text="November" Value="11"></asp:ListItem>
-                                        <asp:ListItem Text="December" Value="12"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
