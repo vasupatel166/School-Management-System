@@ -1,5 +1,3 @@
-D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.AssemblyReference.cache
-D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.CoreCompileInputs.cache
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\.env
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Schoolnest.dll.config
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Schoolnest.dll
@@ -84,6 +82,8 @@ D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnes
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Threading.Channels.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Threading.Tasks.Extensions.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.ValueTuple.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.AssemblyReference.cache
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.CoreCompileInputs.cache
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.Up2Date
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.pdb

@@ -68,6 +68,7 @@ namespace Schoolnest.Student
                                 {
                                     Session["SchoolID"] = reader["SchoolMaster_SchoolID"].ToString();
                                     Session["Username"] = reader["Username"].ToString();
+                                    Session["UserID"] = Convert.ToInt32(reader["UserID"]);
                                     return true;
                                 }
 

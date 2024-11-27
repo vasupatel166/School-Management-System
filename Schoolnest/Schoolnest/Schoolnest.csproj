@@ -377,8 +377,11 @@
     <Content Include="assets\fonts\summernote\summernote.ttf" />
     <Content Include="assets\fonts\summernote\summernote.woff" />
     <Content Include="assets\fonts\summernote\summernote.woff2" />
+    <Content Include="Student\Announcements.aspx" />
     <Content Include="Student\Dashboard.aspx" />
     <Content Include="Student\StudentLogin.aspx" />
+    <Content Include="Student\Timetable.aspx" />
+    <Content Include="Student\UpcomingEvents.aspx" />
     <Content Include="SuperAdmin\Dashboard.aspx" />
     <Content Include="SuperAdmin\RegisterAdmin.aspx" />
     <Content Include="SuperAdmin\RegisterSchool.aspx" />
@@ -611,6 +614,13 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="Student\Announcements.aspx.cs">
+      <DependentUpon>Announcements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Announcements.aspx.designer.cs">
+      <DependentUpon>Announcements.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Student\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -624,6 +634,20 @@
     </Compile>
     <Compile Include="Student\StudentLogin.aspx.designer.cs">
       <DependentUpon>StudentLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Timetable.aspx.cs">
+      <DependentUpon>Timetable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Timetable.aspx.designer.cs">
+      <DependentUpon>Timetable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\UpcomingEvents.aspx.cs">
+      <DependentUpon>UpcomingEvents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\UpcomingEvents.aspx.designer.cs">
+      <DependentUpon>UpcomingEvents.aspx</DependentUpon>
     </Compile>
     <Compile Include="SuperAdmin\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
