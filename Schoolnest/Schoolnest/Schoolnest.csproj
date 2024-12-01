@@ -381,6 +381,7 @@
     <Content Include="Student\AttendanceReport.aspx" />
     <Content Include="Student\Dashboard.aspx" />
     <Content Include="Student\ExamSchedule.aspx" />
+    <Content Include="Student\FeePaymentHistory.aspx" />
     <Content Include="Student\StudentLogin.aspx" />
     <Content Include="Student\Timetable.aspx" />
     <Content Include="Student\UpcomingEvents.aspx" />
@@ -643,6 +644,13 @@
     </Compile>
     <Compile Include="Student\ExamSchedule.aspx.designer.cs">
       <DependentUpon>ExamSchedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\FeePaymentHistory.aspx.cs">
+      <DependentUpon>FeePaymentHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\FeePaymentHistory.aspx.designer.cs">
+      <DependentUpon>FeePaymentHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Student\StudentLogin.aspx.cs">
       <DependentUpon>StudentLogin.aspx</DependentUpon>

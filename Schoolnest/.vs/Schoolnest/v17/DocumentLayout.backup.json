@@ -3,68 +3,20 @@
   "WorkspaceRootPath": "D:\\Capstone\\Schoolnest\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\capstone\\schoolnest\\schoolnest\\student\\examschedule.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\student\\examschedule.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\capstone\\schoolnest\\schoolnest\\student\\feepaymenthistory.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\student\\feepaymenthistory.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\capstone\\schoolnest\\schoolnest\\student\\feepaymenthistory.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\student\\feepaymenthistory.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\capstone\\schoolnest\\schoolnest\\student\\examschedule.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\student\\examschedule.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\capstone\\schoolnest\\schoolnest\\teacher\\viewexamschedule.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\teacher\\viewexamschedule.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\capstone\\schoolnest\\schoolnest\\teacher\\viewexamschedule.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\teacher\\viewexamschedule.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Capstone\\Schoolnest\\schoolnest\\student\\attendancereport.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\student\\attendancereport.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\capstone\\schoolnest\\schoolnest\\student\\studentlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\student\\studentlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Capstone\\Schoolnest\\schoolnest\\site.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\site.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Capstone\\Schoolnest\\schoolnest\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\capstone\\schoolnest\\schoolnest\\teacher\\viewmyattendance.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\teacher\\viewmyattendance.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Capstone\\Schoolnest\\schoolnest\\student\\attendancereport.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\student\\attendancereport.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Capstone\\Schoolnest\\schoolnest\\teacher\\viewmyattendance.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\teacher\\viewmyattendance.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Capstone\\Schoolnest\\schoolnest\\teacher\\markattendance.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\teacher\\markattendance.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Capstone\\Schoolnest\\schoolnest\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Capstone\\Schoolnest\\schoolnest\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Capstone\\Schoolnest\\schoolnest\\admin\\feemaster.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\feemaster.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|D:\\Capstone\\Schoolnest\\schoolnest\\admin\\feemaster.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\admin\\feemaster.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|d:\\capstone\\schoolnest\\schoolnest\\student\\examschedule.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{42AC06BE-14B7-442F-A022-4654F97750BF}|Schoolnest\\Schoolnest.csproj|solutionrelative:schoolnest\\student\\examschedule.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,63 +26,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ExamSchedule.aspx.cs",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\ExamSchedule.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Student\\ExamSchedule.aspx.cs",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\ExamSchedule.aspx.cs*",
-              "RelativeToolTip": "Schoolnest\\Student\\ExamSchedule.aspx.cs*",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAYwFYAAAAhAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "FeePaymentHistory.aspx.cs",
+              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\FeePaymentHistory.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\Student\\FeePaymentHistory.aspx.cs",
+              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\FeePaymentHistory.aspx.cs*",
+              "RelativeToolTip": "Schoolnest\\Student\\FeePaymentHistory.aspx.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T21:20:50.85Z",
+              "WhenOpened": "2024-12-01T16:37:29.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FeePaymentHistory.aspx",
+              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\FeePaymentHistory.aspx",
+              "RelativeDocumentMoniker": "Schoolnest\\Student\\FeePaymentHistory.aspx",
+              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\FeePaymentHistory.aspx*",
+              "RelativeToolTip": "Schoolnest\\Student\\FeePaymentHistory.aspx*",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-12-01T16:23:17.59Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ViewExamSchedule.aspx.cs",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Teacher\\ViewExamSchedule.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Teacher\\ViewExamSchedule.aspx.cs",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Teacher\\ViewExamSchedule.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\Teacher\\ViewExamSchedule.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T21:19:46.799Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "StudentLogin.aspx",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\StudentLogin.aspx",
-              "RelativeDocumentMoniker": "Schoolnest\\Student\\StudentLogin.aspx",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\StudentLogin.aspx",
-              "RelativeToolTip": "Schoolnest\\Student\\StudentLogin.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-11-29T21:05:57.534Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ViewExamSchedule.aspx",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Teacher\\ViewExamSchedule.aspx",
-              "RelativeDocumentMoniker": "Schoolnest\\Teacher\\ViewExamSchedule.aspx",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Teacher\\ViewExamSchedule.aspx",
-              "RelativeToolTip": "Schoolnest\\Teacher\\ViewExamSchedule.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-11-29T21:06:57.148Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "ExamSchedule.aspx",
               "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\ExamSchedule.aspx",
               "RelativeDocumentMoniker": "Schoolnest\\Student\\ExamSchedule.aspx",
@@ -138,146 +64,21 @@
               "RelativeToolTip": "Schoolnest\\Student\\ExamSchedule.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-11-29T21:06:48.503Z",
+              "WhenOpened": "2024-12-01T16:26:49.851Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AttendanceReport.aspx.cs",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\AttendanceReport.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Student\\AttendanceReport.aspx.cs",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\AttendanceReport.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\Student\\AttendanceReport.aspx.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAawKkAAAAdAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "ExamSchedule.aspx.cs",
+              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\ExamSchedule.aspx.cs",
+              "RelativeDocumentMoniker": "Schoolnest\\Student\\ExamSchedule.aspx.cs",
+              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\ExamSchedule.aspx.cs",
+              "RelativeToolTip": "Schoolnest\\Student\\ExamSchedule.aspx.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAAAFgAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T19:25:59.65Z",
+              "WhenOpened": "2024-12-01T16:36:40.819Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "AttendanceReport.aspx",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\AttendanceReport.aspx",
-              "RelativeDocumentMoniker": "Schoolnest\\Student\\AttendanceReport.aspx",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Student\\AttendanceReport.aspx",
-              "RelativeToolTip": "Schoolnest\\Student\\AttendanceReport.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-11-28T19:20:36.351Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ViewMyAttendance.aspx",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Teacher\\ViewMyAttendance.aspx",
-              "RelativeDocumentMoniker": "Schoolnest\\Teacher\\ViewMyAttendance.aspx",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Teacher\\ViewMyAttendance.aspx",
-              "RelativeToolTip": "Schoolnest\\Teacher\\ViewMyAttendance.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-11-28T18:49:15.716Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ViewMyAttendance.aspx.cs",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Teacher\\ViewMyAttendance.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Teacher\\ViewMyAttendance.aspx.cs",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Teacher\\ViewMyAttendance.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\Teacher\\ViewMyAttendance.aspx.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAAwIsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T18:49:55.685Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Site.Master",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Site.Master",
-              "RelativeDocumentMoniker": "Schoolnest\\Site.Master",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Site.Master",
-              "RelativeToolTip": "Schoolnest\\Site.Master",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-11-27T17:22:16.407Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Site.Master.cs",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Site.Master.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Site.Master.cs",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Site.Master.cs",
-              "RelativeToolTip": "Schoolnest\\Site.Master.cs",
-              "ViewState": "AgIAAF8BAAAAAAAAAAAiwHABAAB7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-27T17:22:10.324Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "MarkAttendance.aspx.cs",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Teacher\\MarkAttendance.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Teacher\\MarkAttendance.aspx.cs",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Teacher\\MarkAttendance.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\Teacher\\MarkAttendance.aspx.cs",
-              "ViewState": "AgIAAMcAAAAAAAAAAAAQwBABAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-27T16:50:50.688Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": ".env",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\.env",
-              "RelativeDocumentMoniker": "Schoolnest\\.env",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\.env",
-              "RelativeToolTip": "Schoolnest\\.env",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-11-27T16:50:24.905Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Web.config",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Web.config",
-              "RelativeDocumentMoniker": "Schoolnest\\Web.config",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Web.config",
-              "RelativeToolTip": "Schoolnest\\Web.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-11-27T16:50:20.996Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "FeeMaster.aspx.cs",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Admin\\FeeMaster.aspx.cs",
-              "RelativeDocumentMoniker": "Schoolnest\\Admin\\FeeMaster.aspx.cs",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Admin\\FeeMaster.aspx.cs",
-              "RelativeToolTip": "Schoolnest\\Admin\\FeeMaster.aspx.cs",
-              "ViewState": "AgIAAPMAAAAAAAAAAAAAAAgBAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-27T04:47:35.575Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "FeeMaster.aspx",
-              "DocumentMoniker": "D:\\Capstone\\Schoolnest\\Schoolnest\\Admin\\FeeMaster.aspx",
-              "RelativeDocumentMoniker": "Schoolnest\\Admin\\FeeMaster.aspx",
-              "ToolTip": "D:\\Capstone\\Schoolnest\\Schoolnest\\Admin\\FeeMaster.aspx",
-              "RelativeToolTip": "Schoolnest\\Admin\\FeeMaster.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-11-27T04:47:34.533Z"
             }
           ]
         }
