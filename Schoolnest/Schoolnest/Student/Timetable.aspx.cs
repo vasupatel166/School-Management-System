@@ -8,7 +8,6 @@ namespace Schoolnest.Student
     {
         private string connectionString = Global.ConnectionString;
         private string SchoolID;
-        private string Username;
         private int UserID;
         private string StudentID;
         private int standardID;

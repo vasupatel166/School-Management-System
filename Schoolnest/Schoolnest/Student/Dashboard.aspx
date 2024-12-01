@@ -1,16 +1,6 @@
 ﻿<%@ Page Title="Student Dashboard" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="Schoolnest.Student.Dashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <!-- FullCalendar Stylesheet -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/main.min.css" rel="stylesheet" />
-    <style>
-        .fc-prev-button, .fc-next-button {
-            background: #1a2035 !important;
-        }
-        .fc-today-button {
-            background-color: #1a2035 !important;
-        }
-    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -29,38 +19,20 @@
 
             <!-- Cards for Summary -->
             <div class="row">
-                <div class="col-sm-6 col-md-3"> 
-                    <div class="card card-stats card-round">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="icon-big text-center">
-                                        <i class="fas fa-calendar-day text-warning"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Today's Classes</p>
-                                        <h4 class="card-title" id="ToadyClasses" runat="server">0</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-sm-6 col-md-3">
                     <div class="card card-stats card-round">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-5">
                                     <div class="icon-big text-center">
-                                        <i class="fas fa-calendar-alt text-success"></i>
+                                        <i class="fas fa-chalkboard-teacher text-warning"></i>
                                     </div>
                                 </div>
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
-                                        <p class="card-category">Total Weekly Classes</p>
-                                        <h4 class="card-title" id="TotalClasses" runat="server">0</h4>
+                                        <p class="card-category">Class</p>
+                                        <h4 class="card-title" id="StudentStandardName" runat="server"></h4>
+                                        <h6 class="card-title" id="StudentDivisionName" runat="server"></h6>
                                     </div>
                                 </div>
                             </div>
@@ -105,9 +77,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-round">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="icon-big text-center">
+                                        <i class="fas fa-wallet text-success"></i>
+                                    </div>
+                                </div>
+                                <div class="col-7 col-stats">
+                                    <div class="numbers">
+                                        <p class="card-category">Total Remaining Fees</p>
+                                        <h4 class="card-title" id="H1" runat="server">0</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            
 
             <!-- Row for Timetable and Events -->
             <div class="row">
@@ -161,7 +150,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div id="attendanceCalendar" runat="server"></div>
+                            <div id="attendancePieChart" runat="server"></div>
                             <asp:HiddenField ID="HiddenField1" runat="server" />
                         </div>
                     </div>
@@ -191,20 +180,6 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-group" id="UpcomingHolidays" runat="server"></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Calendar View -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Calendar</h4>
-                        </div>
-                        <div class="card-body">
-                            <div id="calendar"></div>
                         </div>
                     </div>
                 </div>

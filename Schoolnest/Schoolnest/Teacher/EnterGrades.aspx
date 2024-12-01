@@ -59,8 +59,6 @@
                                 </Columns>
                             </asp:GridView>
 
-
-
                         <div class="card-footer text-center mt-4 pt-4">
                             <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btnSave_Click" />
                             <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-danger" CausesValidation="False" OnClick="btnReset_Click" />

@@ -33,22 +33,22 @@ namespace Schoolnest.Student
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SchoolNameHeader;
 
         /// <summary>
-        /// ToadyClasses control.
+        /// StudentStandardName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ToadyClasses;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl StudentStandardName;
 
         /// <summary>
-        /// TotalClasses control.
+        /// StudentDivisionName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TotalClasses;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl StudentDivisionName;
 
         /// <summary>
         /// DaysPresent control.
@@ -67,6 +67,15 @@ namespace Schoolnest.Student
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DaysAbsent;
+
+        /// <summary>
+        /// H1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H1;
 
         /// <summary>
         /// TodaysTimetableRepeater control.
@@ -96,13 +105,13 @@ namespace Schoolnest.Student
         protected global::System.Web.UI.WebControls.HiddenField AttendanceDataHiddenField;
 
         /// <summary>
-        /// attendanceCalendar control.
+        /// attendancePieChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl attendanceCalendar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl attendancePieChart;
 
         /// <summary>
         /// HiddenField1 control.
