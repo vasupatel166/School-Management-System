@@ -131,11 +131,7 @@ namespace Schoolnest.Student
                             gvFeePaymentHistory.DataSource = dt;
                             gvFeePaymentHistory.DataBind();
                         }
-                        else
-                        {
-                            // If no rows are returned, you can optionally show a message
-                            // Example: lblNoDataMessage.Visible = true;
-                        }
+                        
                     }
                 }
             }

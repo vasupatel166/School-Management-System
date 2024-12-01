@@ -39,6 +39,12 @@
                                         <asp:BoundField DataField="PaidAmount" HeaderText="Paid Amount" SortExpression="PaidAmount" />
                                         <asp:BoundField DataField="AmountInWords" HeaderText="Amount In Words" SortExpression="AmountInWords" />
                                         <asp:BoundField DataField="PaymentDate" HeaderText="Payment Date" DataFormatString="{0:dd/MM/yyyy}" SortExpression="PaymentDate" />
+
+                                         <asp:TemplateField HeaderText="Action">
+                                            <ItemTemplate>
+                                                <a href='<%# "Invoice.aspx?FeeRecordID=" + Eval("FeeRecordID") %>' class="btn btn-primary btn-sm">View Invoice</a>
+                                            </ItemTemplate>
+                                         </asp:TemplateField>
                                     </Columns>
                                  </asp:GridView>
 
