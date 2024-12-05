@@ -11,7 +11,7 @@ namespace Schoolnest.Student
 {
 
 
-    public partial class UpcomingEvents
+    public partial class UpcomingHolidays
     {
 
         /// <summary>
@@ -24,12 +24,21 @@ namespace Schoolnest.Student
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// eventContainer control.
+        /// ddlAcademicYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl eventContainer;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAcademicYear;
+
+        /// <summary>
+        /// HolidaysTableBody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HolidaysTableBody;
     }
 }

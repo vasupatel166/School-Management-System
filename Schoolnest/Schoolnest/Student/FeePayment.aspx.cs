@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
@@ -17,6 +19,7 @@ namespace Schoolnest.Student
         string connectionString = Global.ConnectionString;
         private string SchoolID;
         private string StudentID;
+        private string StudentName;
         private int StandardID;
         private int DivisionID;
         private string AcademicYear;
@@ -34,48 +37,128 @@ namespace Schoolnest.Student
             GetSchoolName();
             GetSchoolSettings();
 
+
             if (!IsPostBack)
             {
                 BindTermOptions();
-
                 string paymentStatus = Request.QueryString["status"];
+                string sessionId = Request.QueryString["session_id"];
 
                 if (!string.IsNullOrEmpty(paymentStatus))
                 {
                     if (paymentStatus == "success")
                     {
-                        string paymentReference = Request.QueryString["payment_intent"];
-                        string paymentMethod = Request.QueryString["payment_method_type"];
+
+                        string paymentReference = ""; ;
+                        string paymentMethod = "";
+
+
+                        if (!string.IsNullOrEmpty(sessionId))
+                        {
+                            (string paymentIntentId, string paymentMethodType) = RetrieveSessionDetails(sessionId);
+
+                            paymentReference = paymentIntentId;
+                            paymentMethod = paymentMethodType;
+                        }
+
                         string paymentDataJson = Session["PaymentDataJson"] as string;
 
                         if (!string.IsNullOrEmpty(paymentDataJson))
                         {
-                            var paymentData = JsonConvert.DeserializeObject<dynamic>(paymentDataJson);
+                            var paymentData = JsonConvert.DeserializeObject<PaymentDetailModel>(paymentDataJson);
 
-                            // Insert into FeeDetail table
                             InsertIntoFeeDetail(paymentReference, paymentMethod, paymentData);
 
                             string paymentAmount = Request.QueryString["amount"];
-                            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert",
-                                $"Swal.fire('Success!', 'Payment of ₹{paymentAmount} processed successfully.', 'success');", true);
+
+                            decimal amount = 0;
+                            if (decimal.TryParse(paymentAmount, out amount))
+                            {
+                                paymentAmount = string.Format("₹ {0:N0}", amount);
+                            }
+
+                            string redirectUrl = "/Student/FeePayment.aspx";
+
+                            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", $"Swal.fire('Success!', 'Payment of {paymentAmount} processed successfully.', 'success').then(function() {{ window.location.href = '{redirectUrl}'; }});", true);
                         }
                     }
                     else if (paymentStatus == "cancel")
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert",
-                            "Swal.fire('Payment Cancelled', 'Your payment was cancelled.', 'warning');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "Swal.fire('Payment Cancelled', 'Your payment was cancelled.', 'warning');", true);
                     }
                 }
-
             }
+        }
+
+        public (string paymentIntentId, string paymentMethodType) RetrieveSessionDetails(string sessionId)
+        {
+            try
+            {
+                // Set your Stripe API key
+                StripeConfiguration.ApiKey = ConfigurationManager.AppSettings["StripeSecretKey"];
+
+                // Retrieve the session details from Stripe
+                var sessionService = new SessionService();
+                Session session = sessionService.Get(sessionId);
+
+                // Extract the payment_intent and payment_method_type from the session
+                string paymentIntentId = session.PaymentIntentId;
+                string paymentMethodType = session.PaymentMethodTypes != null && session.PaymentMethodTypes.Count > 0
+                    ? session.PaymentMethodTypes[0]
+                    : string.Empty;
+
+                // Serialize the entire session object to JSON for debugging purposes
+                string sessionDetailsJson = JsonConvert.SerializeObject(session, Formatting.Indented);
+
+                // Log the session details (you can log this to a file, console, or debug output)
+                Debug.WriteLine("Full Session Details:\n" + sessionDetailsJson);
+
+                // Return a tuple containing both values
+                return (paymentIntentId, paymentMethodType);
+            }
+            catch (StripeException stripeEx)
+            {
+                lblError.Text = $"Error retrieving session details: {stripeEx.Message}";
+                return (null, null); // or handle error differently
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = $"An unexpected error occurred: {ex.Message}";
+                return (null, null); // or handle error differently
+            }
+        }
+
+        public class PaymentDetailModel
+        {
+            public string FeeDetailID { get; set; }
+            public string StudentID { get; set; }
+            public string StandardID { get; set; }
+            public string DivisionID { get; set; }
+            public string SchoolID { get; set; }
+            public string AcademicYear { get; set; }
+            public string TermType { get; set; }
+            public List<FeeItemModel> Fees { get; set; }
+        }
+
+        public class FeeItemModel
+        {
+            public int? FeeMasterID { get; set; }
+            public string FeeName { get; set; }
+            public decimal FeeAmount { get; set; }
+            public decimal TotalFeeAmount { get; set; }
+            public decimal PayAmount { get; set; }
+            public decimal BalanceAmount { get; set; }
+            public bool LateFee { get; set; }
         }
 
         private string GetPaymentDataJson()
         {
-            // Prepare data for FeeDetail
+            Random random = new Random();
+            int randomNumber = random.Next(10000, 99999); // Generates a 5-digit random number
+
             var feeDetailData = new
             {
-                FeeDetailID = $"FEE-{StudentID.Substring(0, 6)}-{StandardID}-{DivisionID}",
+                FeeDetailID = $"FEE{StudentID.Substring(0, 6).ToUpper()}{StandardID}{DivisionID}{randomNumber}",
                 StudentID,
                 StandardID,
                 DivisionID,
@@ -87,22 +170,61 @@ namespace Schoolnest.Student
 
             foreach (GridViewRow row in gvFeeMaster.Rows)
             {
-                int feeMasterID = Convert.ToInt32(row.Cells[3].Text);
-                string feeName = row.Cells[1].Text;
-                decimal feeAmount = Convert.ToDecimal(row.Cells[2].Text.Replace("₹ ", ""));
-                int totalFeeAmount = (feeName == "Late Fee") ? Convert.ToInt32(feeAmount) : GetFeeAmount(feeMasterID);
-                int PaidAmount = 0;
-                PaidAmount += Convert.ToInt32(feeAmount);
+                // Skip the last row (Total row)
+                if (row.Cells[1].Text == "Total")
+                    continue;
 
+                HiddenField hfFeeMasterID = (HiddenField)row.FindControl("hfFeeMasterID");
+                int feeMasterID = 0;
+                if (hfFeeMasterID != null && !string.IsNullOrEmpty(hfFeeMasterID.Value) && !int.TryParse(hfFeeMasterID.Value, out feeMasterID))
+                {
+                    Debug.WriteLine($"Invalid FeeMasterID: {hfFeeMasterID.Value}"); 
+                }
+
+                string feeName = row.Cells[1].Text;
+                decimal feeAmount = 0;
+                if (!decimal.TryParse(row.Cells[2].Text.Replace("₹", "").Replace(",", "").Trim(), out feeAmount))
+                {
+                    Debug.WriteLine($"Invalid FeeAmount: {row.Cells[2].Text}"); 
+                }
+
+                // Skip the Late Fee row when creating fee entries
+                if (feeName == "Late Fee")
+                    continue;
+
+                int totalFeeAmount = GetFeeAmount(feeMasterID);
                 feeDetailData.Fees.Add(new
                 {
-                    FeeMasterID = feeMasterID,
+                    FeeMasterID = feeMasterID == 0 ? (object)DBNull.Value : (object)feeMasterID, 
                     FeeName = feeName,
                     FeeAmount = feeAmount,
                     TotalFeeAmount = totalFeeAmount,
                     PayAmount = feeAmount,
                     BalanceAmount = totalFeeAmount - feeAmount,
-                    LateFee = feeName == "Late Fee" ? 1 : 0,
+                    LateFee = 0,
+                    PaymentMethod = "",
+                    PaymentReference = "",
+                    PaymentStatus = 1
+                });
+            }
+
+            GridViewRow lateFeeRow = gvFeeMaster.Rows.Cast<GridViewRow>()
+                .FirstOrDefault(r => r.Cells[1].Text == "Late Fee");
+
+            if (lateFeeRow != null)
+            {
+                decimal lateFeeAmount = 0;
+                decimal.TryParse(lateFeeRow.Cells[2].Text.Replace("₹", "").Replace(",", "").Trim(), out lateFeeAmount);
+
+                feeDetailData.Fees.Add(new
+                {
+                    FeeMasterID = (object)DBNull.Value,
+                    FeeName = "Late Fee",
+                    FeeAmount = lateFeeAmount,
+                    TotalFeeAmount = (int)lateFeeAmount,
+                    PayAmount = lateFeeAmount,
+                    BalanceAmount = 0,
+                    LateFee = 1,
                     PaymentMethod = "",
                     PaymentReference = "",
                     PaymentStatus = 1
@@ -117,7 +239,7 @@ namespace Schoolnest.Student
         private int GetFeeAmount(int FeeMasterID)
         {
             try
-            {
+            { 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
@@ -126,7 +248,6 @@ namespace Schoolnest.Student
                     {
                         cmd.Parameters.AddWithValue("@FeeMasterID", FeeMasterID);
                         cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
-                        conn.Open();
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -138,6 +259,7 @@ namespace Schoolnest.Student
                             {
                                 return 0;
                             }
+
                         }
                     }
                 }
@@ -149,7 +271,7 @@ namespace Schoolnest.Student
             }
         }
 
-        private void InsertIntoFeeDetail(string paymentReference, string paymentMethod, dynamic paymentData)
+        private void InsertIntoFeeDetail(string paymentReference, string paymentMethod, PaymentDetailModel paymentData)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -159,21 +281,32 @@ namespace Schoolnest.Student
                 {
                     try
                     {
+                        // Validate payment data
+                        if (paymentData == null)
+                        {
+                            throw new ArgumentNullException(nameof(paymentData), "Payment data is null");
+                        }
+
+                        if (paymentData.Fees == null || paymentData.Fees.Count == 0)
+                        {
+                            throw new InvalidOperationException("No fee items found in payment data");
+                        }
+
+                        int TotalPaidAmount = 0;
                         foreach (var fee in paymentData.Fees)
                         {
                             SqlCommand cmd = new SqlCommand(@"
-                        INSERT INTO FeeDetail (
-                            FeeDetailID, FeeMasterID, StudentMaster_StudentID, Standards_StandardID, Divisions_DivisionID,
-                            TotalFeeAmount, PayAmount, BalanceAmount, LateFee, PaymentDate, ChqDate, PaymentMethod, PaymentReference,
-                            PaymentStatus, AcademicYear, SchoolMaster_SchoolID
-                        ) VALUES (
-                            @FeeDetailID, @FeeMasterID, @StudentID, @StandardID, @DivisionID,
-                            @TotalFeeAmount, @PayAmount, @BalanceAmount, @LateFee, @PaymentDate, @ChqDate, @PaymentMethod, @PaymentReference,
-                            @PaymentStatus, @AcademicYear, @SchoolID
-                        )", conn, transaction);
+                            INSERT INTO FeeDetail (
+                                FeeDetailID, FeeMasterID, StudentMaster_StudentID, Standards_StandardID, Divisions_DivisionID,
+                                TotalFeeAmount, PayAmount, BalanceAmount, LateFee, PaymentDate, ChqDate, PaymentMethod, PaymentReference,
+                                PaymentStatus, AcademicYear, SchoolMaster_SchoolID
+                            ) VALUES (
+                                @FeeDetailID, @FeeMasterID, @StudentID, @StandardID, @DivisionID,
+                                @TotalFeeAmount, @PayAmount, @BalanceAmount, @LateFee, @PaymentDate, @ChqDate, @PaymentMethod, @PaymentReference,
+                                @PaymentStatus, @AcademicYear, @SchoolID
+                            )", conn, transaction);
 
                             cmd.Parameters.AddWithValue("@FeeDetailID", paymentData.FeeDetailID);
-                            cmd.Parameters.AddWithValue("@FeeMasterID", fee.FeeMasterID);
                             cmd.Parameters.AddWithValue("@StudentID", paymentData.StudentID);
                             cmd.Parameters.AddWithValue("@StandardID", paymentData.StandardID);
                             cmd.Parameters.AddWithValue("@DivisionID", paymentData.DivisionID);
@@ -189,10 +322,21 @@ namespace Schoolnest.Student
                             cmd.Parameters.AddWithValue("@AcademicYear", paymentData.AcademicYear);
                             cmd.Parameters.AddWithValue("@SchoolID", paymentData.SchoolID);
 
+                            if (fee.FeeMasterID == 0 || fee.FeeMasterID == null)
+                            {
+                                cmd.Parameters.AddWithValue("@FeeMasterID", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@FeeMasterID", fee.FeeMasterID);
+                            }
+
                             cmd.ExecuteNonQuery();
+
+                            TotalPaidAmount += Convert.ToInt32(fee.PayAmount);
                         }
 
-                        InsertIntoFeeRecords(paymentData.FeeDetailID,paymentData.TermType, paymentData.PaidAmount);
+                        InsertIntoFeeRecords(paymentData.FeeDetailID, paymentData.TermType, TotalPaidAmount);
 
                         transaction.Commit();
                     }
@@ -264,19 +408,32 @@ namespace Schoolnest.Student
             {
                 conn.Open();
 
-                string receiptNumber = $"REC-{StudentID.Substring(0, 6)}-{StandardID}-{DivisionID}";
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        string receiptNumber = $"REC{StudentID.Substring(0, 6).ToUpper()}{StandardID}{DivisionID}";
 
-                SqlCommand cmd = new SqlCommand(@"INSERT INTO FeeRecords VALUES (@FeeDetailID, @ReceiptNumber, @TermType, @PaidAmount, @AmountInWords, @PaymentDate, @SchoolMaster_SchoolID)", conn);
+                        SqlCommand cmd = new SqlCommand(@"INSERT INTO FeeRecords VALUES (@FeeDetailID, @ReceiptNumber, @TermType, @PaidAmount, @AmountInWords, @PaymentDate, @SchoolMaster_SchoolID)", conn,transaction);
 
-                cmd.Parameters.AddWithValue("@FeeDetailID", feeDetailID);
-                cmd.Parameters.AddWithValue("@ReceiptNumber", receiptNumber);
-                cmd.Parameters.AddWithValue("@TermType", termType);
-                cmd.Parameters.AddWithValue("@PaidAmount", paidAmount);
-                cmd.Parameters.AddWithValue("@AmountInWords", NumberToWordsConverter.ToWords(paidAmount));
-                cmd.Parameters.AddWithValue("@PaymentDate", DateTime.Now);
-                cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
+                        cmd.Parameters.AddWithValue("@FeeDetailID", feeDetailID);
+                        cmd.Parameters.AddWithValue("@ReceiptNumber", receiptNumber);
+                        cmd.Parameters.AddWithValue("@TermType", termType);
+                        cmd.Parameters.AddWithValue("@PaidAmount", paidAmount);
+                        cmd.Parameters.AddWithValue("@AmountInWords", NumberToWordsConverter.ToWords(paidAmount));
+                        cmd.Parameters.AddWithValue("@PaymentDate", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@SchoolMaster_SchoolID", SchoolID);
 
-                cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        System.Diagnostics.Debug.WriteLine(ex.Message);
+                        throw;
+                    }
+                }
             }
         }
 
@@ -284,7 +441,7 @@ namespace Schoolnest.Student
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT StudentID, Student_Standard, Student_Division FROM StudentMaster WHERE UserMaster_UserID = @UserID AND SchoolMaster_SchoolID = @SchoolID", conn))
+                using (SqlCommand cmd = new SqlCommand("SELECT StudentID, Student_FullName, Student_Standard, Student_Division FROM StudentMaster WHERE UserMaster_UserID = @UserID AND SchoolMaster_SchoolID = @SchoolID", conn))
                 {
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     cmd.Parameters.AddWithValue("@SchoolID", SchoolID);
@@ -297,6 +454,7 @@ namespace Schoolnest.Student
                             StudentID = reader["StudentID"]?.ToString();
                             StandardID = int.Parse(reader["Student_Standard"].ToString());
                             DivisionID = int.Parse(reader["Student_Division"].ToString());
+                            StudentName = reader["Student_FullName"].ToString();
                         }
                     }
                 }
@@ -378,7 +536,6 @@ namespace Schoolnest.Student
 
                             string TotalDue = reader["TotalFeesDue"].ToString();
                             decimal totalDueAmount;
-                            System.Diagnostics.Debug.WriteLine(reader["IsLateFee"].ToString());
 
                             if (decimal.TryParse(TotalDue, out totalDueAmount))
                             {
@@ -404,6 +561,24 @@ namespace Schoolnest.Student
 
                             string firstTermStatus = reader["FirstTermStatus"].ToString();
                             string secondTermStatus = reader["SecondTermStatus"].ToString();
+
+                            if (firstTermStatus == "Pending")
+                            {
+                                FirstTermFeeStatus.Attributes["class"] = "bg-danger text-white";
+                            }
+                            else
+                            {
+                                FirstTermFeeStatus.Attributes["class"] = "bg-success text-white";
+                            }
+
+                            if (secondTermStatus == "Pending")
+                            {
+                                SecondTermFeeStatus.Attributes["class"] = "bg-danger text-white";
+                            }
+                            else
+                            {
+                                SecondTermFeeStatus.Attributes["class"] = "bg-success text-white";
+                            }
 
                             // Set payment status for each term
                             FirstTermFeeStatus.InnerHtml = firstTermStatus;
@@ -643,7 +818,7 @@ namespace Schoolnest.Student
                     if (DateTime.TryParse(SecondTermFeeDueDate, out dueDate))
                     {
                         int daysLate = (DateTime.Now - dueDate).Days;
-                        if (daysLate > 0) totalLateFee = daysLate * lateFeePerDay; // Calculate late fee if late
+                        if (daysLate > 0) totalLateFee = daysLate * lateFeePerDay;
                     }
                 }
                 else
@@ -718,20 +893,16 @@ namespace Schoolnest.Student
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                // Ensure there are enough cells before accessing specific indices
-                if (e.Row.Cells.Count > 2)
-                {
-                    decimal feeAmount = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "FeeAmount"));
-                    e.Row.Cells[2].Text = string.Format("₹ {0:N0}", feeAmount);
-                }
+                decimal feeAmount = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "FeeAmount"));
+                e.Row.Cells[2].Text = string.Format("₹ {0:N0}", feeAmount);
 
-                object feeMasterIDObj = DataBinder.Eval(e.Row.DataItem, "FeeMasterID");
-                if (feeMasterIDObj != null && e.Row.Cells.Count > 3)
-                {
-                    e.Row.Cells[3].Text = feeMasterIDObj.ToString();
-                }
+                //HiddenField hfFeeMasterID = (HiddenField)e.Row.FindControl("hfFeeMasterID");
+                //if (hfFeeMasterID != null)
+                //{
+                //    string feeMasterID = hfFeeMasterID.Value;
+                //}
 
-                // Ensure there are enough cells to access Cells[1] and Cells[2]
+                // If the row is the total row, format it to appear bold and styled
                 if (e.Row.Cells.Count > 1 && e.Row.Cells[1].Text == "Total")
                 {
                     e.Row.Cells[1].Font.Bold = true;
@@ -745,6 +916,13 @@ namespace Schoolnest.Student
 
         protected void PayButton_Click(object sender, EventArgs e)
         {
+            string TermName = ddlTerm.SelectedItem.Text;
+
+            if(TermName == "Both Term")
+            {
+                TermName = "Term 1 & Term 2";
+            }
+
             string cleanedAmount = amountTextBox.Text.Replace("₹", "").Replace(",", "").Trim();
 
             if (!decimal.TryParse(cleanedAmount, out decimal amount) || amount <= 0)
@@ -775,30 +953,37 @@ namespace Schoolnest.Student
                                 UnitAmount = (long)(amount * 100),
                                 ProductData = new SessionLineItemPriceDataProductDataOptions
                                 {
-                                    Name = "School Fee Payment"
+                                    Name = SchoolName,
+                                    Description = $"{StudentName}'s Fee Payment - {TermName} ({AcademicYear})"
                                 }
                             },
                             Quantity = 1
                         }
                     },
                     Mode = "payment",
-                    SuccessUrl = $"{Request.Url.Scheme}://{Request.Url.Authority}/Student/FeePayment.aspx?status=success&amount={amount}",
+                    SuccessUrl = $"{Request.Url.Scheme}://{Request.Url.Authority}/Student/FeePayment.aspx?status=success&amount={amount}&session_id={{CHECKOUT_SESSION_ID}}",
                     CancelUrl = $"{Request.Url.Scheme}://{Request.Url.Authority}/Student/FeePayment.aspx?status=cancel"
                 };
 
                 var service = new SessionService();
                 Session session = service.Create(options);
 
-                // Redirect to Stripe Checkout
                 Response.Redirect(session.Url, false);
             }
             catch (StripeException stripeEx)
             {
+                string stripeErrorMessage = $"Stripe Error: {stripeEx.Message}\n{stripeEx.StackTrace}";
                 lblError.Text = $"Payment Error: {stripeEx.Message}";
+
+                Debug.WriteLine(stripeErrorMessage);
+
             }
             catch (Exception ex)
             {
+                string errorMessage = $"General Error: {ex.Message}\n{ex.StackTrace}";
                 lblError.Text = $"An unexpected error occurred: {ex.Message}";
+
+                Debug.WriteLine(errorMessage);
             }
         }
 

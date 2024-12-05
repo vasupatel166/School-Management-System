@@ -31,11 +31,10 @@ namespace Schoolnest.Student
                 {
                     conn.Open();
                     string query = @"
-                SELECT EventTitle, EventDescription, EventDate, EventTime 
-                FROM EventMaster 
-                WHERE SchoolMaster_SchoolID = @SchoolID AND IsActive = 1 
-                      AND EventDate >= GETDATE()
-                ORDER BY EventDate ASC";
+                    SELECT EventTitle, EventDescription, EventDate, EventTime 
+                    FROM EventMaster 
+                    WHERE SchoolMaster_SchoolID = @SchoolID AND IsActive = 1 AND EventDate >= GETDATE()
+                    ORDER BY EventDate ASC";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -86,16 +85,16 @@ namespace Schoolnest.Student
 
                                     // Build Event Card HTML with HTML encoding and Bootstrap grid
                                     html.Append($@"
-                                <div class='col-md-4 mb-3'>
-                                    <div class='event-card h-100'>
-                                        <h4>{HttpUtility.HtmlEncode(eventTitle)}</h4>
-                                        <p>{HttpUtility.HtmlEncode(eventDescription)}</p>
-                                        <div class='event-date-time'>
-                                            <span>{eventDate}</span><br />
-                                            <span>{eventTime}</span>
-                                        </div>
-                                    </div>
-                                </div>");
+                                        <div class='col-md-4 mb-3'>
+                                            <div class='event-card h-100'>
+                                                <h4>{HttpUtility.HtmlEncode(eventTitle)}</h4>
+                                                <p>{HttpUtility.HtmlEncode(eventDescription)}</p>
+                                                <div class='event-date-time'>
+                                                    <span>{eventDate}</span><br />
+                                                    <span>{eventTime}</span>
+                                                </div>
+                                            </div>
+                                        </div>");
 
                                     cardCount++;
                                 }

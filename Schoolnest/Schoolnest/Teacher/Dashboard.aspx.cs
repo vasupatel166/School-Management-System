@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Reflection.Emit;
 using System.Windows.Controls;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace Schoolnest.Teacher
 {
@@ -33,7 +34,7 @@ namespace Schoolnest.Teacher
                 GetClassTeacher();
                 GetAcademicYear();
                 LoadTeacherDashboardData();
-                LoadAttendanceData(DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek), DateTime.Now);
+                LoadAttendanceData(DateTime.Now.AddDays(-7), DateTime.Now);
 
                 if (ClassTeacher == 1)
                 {
@@ -233,16 +234,16 @@ namespace Schoolnest.Teacher
             switch (attendanceType)
             {
                 case "Weekly":
-                    startDate = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek); // Start of the week
-                    endDate = startDate.AddDays(6); // End of the week
+                    startDate = DateTime.Now.AddDays(-7);
+                    endDate = DateTime.Now;
                     break;
                 case "Monthly":
-                    startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1); // Start of the month
-                    endDate = startDate.AddMonths(1).AddDays(-1); // End of the month
+                    startDate = DateTime.Now.AddDays(-30);
+                    endDate = DateTime.Now; // Today
                     break;
                 case "Yearly":
-                    startDate = new DateTime(DateTime.Now.Year, 1, 1); // Start of the year
-                    endDate = new DateTime(DateTime.Now.Year, 12, 31); // End of the year
+                    startDate = DateTime.Now.AddDays(-365);
+                    endDate = DateTime.Now;
                     break;
             }
 

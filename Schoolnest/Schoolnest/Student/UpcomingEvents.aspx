@@ -55,15 +55,17 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <form class="w-100" id="form1" runat="server">
+
     <div class="row">
         <div class="col-md-12">
             <h2 class="mb-4 text-center">Upcoming Events</h2>
             
-            <!-- Responsive Event Cards -->
             <div class="row" id="eventContainer" runat="server">
                 <!-- Dynamic Event Cards will be added here by the backend -->
             </div>
         </div>
     </div>
+    </form>
 </asp:Content>
 

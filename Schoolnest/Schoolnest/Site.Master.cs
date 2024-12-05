@@ -103,7 +103,7 @@ namespace Schoolnest
             string roleId = Session["UserRole"]?.ToString();
             string TargetAudience;
 
-            if(roleId == "T")
+            if (roleId == "T")
             {
                 TargetAudience = "Teacher";
             }
@@ -269,109 +269,109 @@ namespace Schoolnest
             switch (role.ToLower())
             {
                 case "superadmin": // super admin
-                    menuItems.Add(new MenuItem("Dashboard", "fas fa-home", GetResolvedUrl("SuperAdmin/Dashboard.aspx")));
-                    menuItems.Add(new MenuItem("Registeration", "fas fa-users", "", new List<MenuItem> {
-                        new MenuItem("School", "fas fa-school", GetResolvedUrl("SuperAdmin/RegisterSchool.aspx")),
+                    menuItems.Add(new MenuItem("Dashboard", "fas fa-tachometer-alt", GetResolvedUrl("SuperAdmin/Dashboard.aspx")));
+                    menuItems.Add(new MenuItem("Registeration", "fas fa-user-shield", "", new List<MenuItem> {
+                        new MenuItem("School", "fas fa-university", GetResolvedUrl("SuperAdmin/RegisterSchool.aspx")),
                         new MenuItem("Admin", "fas fa-user-plus", GetResolvedUrl("SuperAdmin/RegisterAdmin.aspx"))
                     }));
-                    menuItems.Add(new MenuItem("Reports", "fas fa-file-invoice", GetResolvedUrl("SuperAdmin/Reports.aspx")));
+                    menuItems.Add(new MenuItem("Reports", "fas fa-chart-pie", GetResolvedUrl("SuperAdmin/Reports.aspx")));
                     break;
 
                 case "admin": // Admin
-                    menuItems.Add(new MenuItem("Dashboard", "fas fa-home", GetResolvedUrl("Admin/Dashboard.aspx")));
+                    menuItems.Add(new MenuItem("Dashboard", "fas fa-tachometer-alt", GetResolvedUrl("Admin/Dashboard.aspx")));
 
-                    menuItems.Add(new MenuItem("User Management", "fas fa-users", "", new List<MenuItem> {
+                    menuItems.Add(new MenuItem("User Management", "fas fa-user-cog", "", new List<MenuItem> {
                         new MenuItem("Teacher List", "fas fa-chalkboard-teacher", GetResolvedUrl("Admin/TeacherList.aspx")),
                         new MenuItem("Student List", "fas fa-user-graduate", GetResolvedUrl("Admin/StudentList.aspx"))
                     }));
 
                     menuItems.Add(new MenuItem("Class Management", "fas fa-school", "", new List<MenuItem> {
-                        new MenuItem("Standard Master", "fas fa-list", GetResolvedUrl("Admin/StandardMaster.aspx")),
-                        new MenuItem("Divison Master", "fas fa-chalkboard", GetResolvedUrl("Admin/DivisonMaster.aspx")),
-                        new MenuItem("Section Master", "fas fa-calendar-alt", GetResolvedUrl("Admin/SectionMaster.aspx")),
-                        new MenuItem("Assign Teacher", "fas fa-calendar-alt", GetResolvedUrl("Admin/AssignTeacher.aspx")),
+                        new MenuItem("Standard Master", "fas fa-layer-group", GetResolvedUrl("Admin/StandardMaster.aspx")),
+                        new MenuItem("Divison Master", "fas fa-object-group", GetResolvedUrl("Admin/DivisonMaster.aspx")),
+                        new MenuItem("Section Master", "fas fa-th-list", GetResolvedUrl("Admin/SectionMaster.aspx")),
+                        new MenuItem("Assign Teacher", "fas fa-user-tie", GetResolvedUrl("Admin/AssignTeacher.aspx")),
                     }));
 
-                    menuItems.Add(new MenuItem("Subject Management", "fas fa-book", "", new List<MenuItem> {
-                        new MenuItem("Subject Master", "fas fa-list", GetResolvedUrl("Admin/SubjectMaster.aspx")),
-                        new MenuItem("Assign Subject to Class", "fas fa-chalkboard", GetResolvedUrl("Admin/AssignSubjectToClass.aspx")),
+                    menuItems.Add(new MenuItem("Subject Management", "fas fa-book-open", "", new List<MenuItem> {
+                        new MenuItem("Subject Master", "fas fa-list-alt", GetResolvedUrl("Admin/SubjectMaster.aspx")),
+                        new MenuItem("Assign Subject to Class", "fas fa-clipboard-list", GetResolvedUrl("Admin/AssignSubjectToClass.aspx")),
                         new MenuItem("Assign Teacher to Subject", "fas fa-chalkboard-teacher", GetResolvedUrl("Admin/AssignTeacherToSubject.aspx"))
                     }));
 
-                    menuItems.Add(new MenuItem("Timetable Management", "fas fa-book", "", new List<MenuItem> {
-                        new MenuItem("Period Time Master", "fas fa-list", GetResolvedUrl("Admin/PeriodTimeMaster.aspx")),
-                        new MenuItem("Timetable Master", "fas fa-list", GetResolvedUrl("Admin/TimetableMaster.aspx"))
+                    menuItems.Add(new MenuItem("Timetable Management", "fas fa-clock", "", new List<MenuItem> {
+                        new MenuItem("Period Time Master", "fas fa-hourglass-half", GetResolvedUrl("Admin/PeriodTimeMaster.aspx")),
+                        new MenuItem("Timetable Master", "fas fa-table", GetResolvedUrl("Admin/TimetableMaster.aspx"))
                     }));
 
-                    menuItems.Add(new MenuItem("Attendance Management", "fas fa-calendar-check", "", new List<MenuItem> {
-                        new MenuItem("Mark Teacher Attendance", "fas fa-check", GetResolvedUrl("Admin/MarkTeacherAttendance.aspx")),
-                        new MenuItem("View Attendance Reports", "fas fa-chart-line", GetResolvedUrl("Admin/AttendanceReports.aspx"))
+                    menuItems.Add(new MenuItem("Attendance Management", "fas fa-user-check", "", new List<MenuItem> {
+                        new MenuItem("Mark Teacher Attendance", "fas fa-check-square", GetResolvedUrl("Admin/MarkTeacherAttendance.aspx")),
+                        new MenuItem("View Attendance Reports", "fas fa-chart-bar", GetResolvedUrl("Admin/AttendanceReports.aspx"))
                     }));
 
                     menuItems.Add(new MenuItem("Exam Management", "fas fa-file-alt", "", new List<MenuItem> {
-                        new MenuItem("Exam Master", "fas fa-calendar-alt", GetResolvedUrl("Admin/ExamMaster.aspx")),
+                        new MenuItem("Exam Master", "fas fa-calendar-check", GetResolvedUrl("Admin/ExamMaster.aspx")),
                         new MenuItem("Exam Schedule", "fas fa-calendar-alt", GetResolvedUrl("Admin/ExamSchedule.aspx")),
-                        new MenuItem("Grade Management", "fas fa-graduation-cap", GetResolvedUrl("Admin/GradeManagement.aspx")),
+                        new MenuItem("Grade Management", "fas fa-award", GetResolvedUrl("Admin/GradeManagement.aspx")),
                         new MenuItem("Generate Report Cards", "fas fa-file-signature", GetResolvedUrl("Admin/GenerateReportCards.aspx"))
                     }));
 
-                    menuItems.Add(new MenuItem("Fee Management", "fas fa-dollar-sign", "", new List<MenuItem> {
-                        new MenuItem("Fee Master", "fas fa-money-check-alt", GetResolvedUrl("Admin/FeeMaster.aspx")),
-                        new MenuItem("Payment Report", "fas fa-file-invoice", GetResolvedUrl("Admin/PaymentReport.aspx"))
+                    menuItems.Add(new MenuItem("Fee Management", "fas fa-hand-holding-usd", "", new List<MenuItem> {
+                        new MenuItem("Fee Master", "fas fa-cash-register", GetResolvedUrl("Admin/FeeMaster.aspx")),
+                        new MenuItem("Payment Report", "fas fa-file-invoice-dollar", GetResolvedUrl("Admin/PaymentReport.aspx"))
                     }));
 
-                    menuItems.Add(new MenuItem("Miscellaneous", "fas fa-dollar-sign", "", new List<MenuItem> {
-                        new MenuItem("Event Master", "fas fa-money-check-alt", GetResolvedUrl("Admin/EventMaster.aspx")),
-                        new MenuItem("Budget Master", "fas fa-money-check-alt", GetResolvedUrl("Admin/BudgetMaster.aspx")),
-                        new MenuItem("Budget Categories", "fas fa-money-check-alt", GetResolvedUrl("Admin/BudgetCategories.aspx")),
-                        new MenuItem("Holiday Master", "fas fa-money-check-alt", GetResolvedUrl("Admin/HolidayMaster.aspx")),
-                        new MenuItem("School Settings", "fas fa-money-check-alt", GetResolvedUrl("Admin/SchoolSettings.aspx"))
+                    menuItems.Add(new MenuItem("Miscellaneous", "fas fa-ellipsis-h", "", new List<MenuItem> {
+                        new MenuItem("Event Master", "fas fa-calendar-day", GetResolvedUrl("Admin/EventMaster.aspx")),
+                        new MenuItem("Budget Master", "fas fa-calculator", GetResolvedUrl("Admin/BudgetMaster.aspx")),
+                        new MenuItem("Budget Categories", "fas fa-tags", GetResolvedUrl("Admin/BudgetCategories.aspx")),
+                        new MenuItem("Holiday Master", "fas fa-umbrella-beach", GetResolvedUrl("Admin/HolidayMaster.aspx")),
+                        new MenuItem("School Settings", "fas fa-cogs", GetResolvedUrl("Admin/SchoolSettings.aspx"))
                     }));
 
-                    menuItems.Add(new MenuItem("Notifications", "fas fa-bullhorn", "", new List<MenuItem> {
+                    menuItems.Add(new MenuItem("Notifications", "fas fa-bell", "", new List<MenuItem> {
                         new MenuItem("Announcements Board", "fas fa-bullhorn", GetResolvedUrl("Admin/Announcements.aspx")),
-                        new MenuItem("Send Email Notifications", "fas fa-envelope", GetResolvedUrl("Admin/SendNotifications.aspx"))
+                        new MenuItem("Send Email Notifications", "fas fa-envelope-open-text", GetResolvedUrl("Admin/SendNotifications.aspx"))
                     }));
 
                     break;
 
                 case "teacher":
-                    menuItems.Add(new MenuItem("Dashboard", "fas fa-home", GetResolvedUrl("Teacher/Dashboard.aspx")));
+                    menuItems.Add(new MenuItem("Dashboard", "fas fa-tachometer-alt", GetResolvedUrl("Teacher/Dashboard.aspx")));
 
-                    menuItems.Add(new MenuItem("Attendance Management", "fas fa-calendar-check", "", attendanceSubMenu));
+                    menuItems.Add(new MenuItem("Attendance Management", "fas fa-user-check", "", attendanceSubMenu));
 
-                    menuItems.Add(new MenuItem("Exams & Grades Management", "fas fa-file-alt", "", new List<MenuItem> {
+                    menuItems.Add(new MenuItem("Exams & Grades Management", "fas fa-graduation-cap", "", new List<MenuItem> {
                         new MenuItem("View Exam Schedule", "fas fa-calendar-alt", GetResolvedUrl("Teacher/ViewExamSchedule.aspx")),
-                        new MenuItem("Enter Grades", "fas fa-graduation-cap", GetResolvedUrl("Teacher/EnterGrades.aspx")),
-                        new MenuItem("View Grade Reports", "fas fa-chart-line", GetResolvedUrl("Teacher/ViewGradeReports.aspx")),
+                        new MenuItem("Enter Grades", "fas fa-pencil-alt", GetResolvedUrl("Teacher/EnterGrades.aspx"))
                     }));
 
                     menuItems.Add(new MenuItem("Timetable Management", "fas fa-calendar-alt", "", new List<MenuItem> {
                         new MenuItem("View Timetable", "fas fa-table", GetResolvedUrl("Teacher/ViewTimetable.aspx")),
                     }));
 
-                    menuItems.Add(new MenuItem("Miscellaneous", "fas fa-dollar-sign", "", new List<MenuItem> {
-                        new MenuItem("All Events", "fas fa-money-check-alt", GetResolvedUrl("Teacher/ViewEvents.aspx")),
-                        new MenuItem("All Holidays", "fas fa-money-check-alt", GetResolvedUrl("Teacher/ViewHolidays.aspx")),
+                    menuItems.Add(new MenuItem("Miscellaneous", "fas fa-paperclip", "", new List<MenuItem> {
+                        new MenuItem("All Events", "fas fa-calendar-day", GetResolvedUrl("Teacher/ViewEvents.aspx")),
+                        new MenuItem("All Holidays", "fas fa-umbrella-beach", GetResolvedUrl("Teacher/ViewHolidays.aspx")),
                     }));
 
-                    menuItems.Add(new MenuItem("Notifications", "fas fa-bullhorn", "", new List<MenuItem> {
+                    menuItems.Add(new MenuItem("Notifications", "fas fa-bell", "", new List<MenuItem> {
                         new MenuItem("View Announcements", "fas fa-bullhorn", GetResolvedUrl("Teacher/ViewAnnouncements.aspx")),
-                        new MenuItem("Send Notifications", "fas fa-envelope", GetResolvedUrl("Teacher/SendNotifications.aspx")),
+                        new MenuItem("Send Notifications", "fas fa-envelope-open-text", GetResolvedUrl("Teacher/SendNotifications.aspx")),
                     }));
 
                     break;
 
                 case "student":
-                    menuItems.Add(new MenuItem("Dashboard", "fas fa-home", GetResolvedUrl("Student/Dashboard.aspx")));
+                    menuItems.Add(new MenuItem("Dashboard", "fas fa-tachometer-alt", GetResolvedUrl("Student/Dashboard.aspx")));
                     menuItems.Add(new MenuItem("Timetable", "fas fa-calendar-alt", GetResolvedUrl("Student/Timetable.aspx")));
-                    menuItems.Add(new MenuItem("Attendance Report", "fas fa-calendar-check", GetResolvedUrl("Student/AttendanceReport.aspx")));
-                    menuItems.Add(new MenuItem("Exam Schedule", "fas fa-calendar-alt", GetResolvedUrl("Student/ExamSchedule.aspx")));
-                    menuItems.Add(new MenuItem("Report Card", "fas fa-graduation-cap", GetResolvedUrl("Student/ReportCard.aspx")));
-                    menuItems.Add(new MenuItem("Fee Payment", "fas fa-dollar-sign", GetResolvedUrl("Student/FeePayment.aspx")));
-                    menuItems.Add(new MenuItem("Fee Payment History", "fas fa-dollar-sign", GetResolvedUrl("Student/FeePaymentHistory.aspx")));
+                    menuItems.Add(new MenuItem("Attendance Report", "fas fa-user-check", GetResolvedUrl("Student/AttendanceReport.aspx")));
+                    menuItems.Add(new MenuItem("Exam Schedule", "fas fa-calendar-check", GetResolvedUrl("Student/ExamSchedule.aspx")));
+                    menuItems.Add(new MenuItem("Report Card", "fas fa-file-signature", GetResolvedUrl("Student/ReportCard.aspx")));
+                    menuItems.Add(new MenuItem("Fee Payment", "fas fa-credit-card", GetResolvedUrl("Student/FeePayment.aspx")));
+                    menuItems.Add(new MenuItem("Fee Payment History", "fas fa-receipt", GetResolvedUrl("Student/FeePaymentHistory.aspx")));
                     menuItems.Add(new MenuItem("Announcements", "fas fa-bullhorn", GetResolvedUrl("Student/Announcements.aspx")));
-                    menuItems.Add(new MenuItem("Upcoming Events", "fas fa-bullhorn", GetResolvedUrl("Student/UpcomingEvents.aspx")));
+                    menuItems.Add(new MenuItem("Upcoming Events", "fas fa-calendar-day", GetResolvedUrl("Student/UpcomingEvents.aspx")));
+                    menuItems.Add(new MenuItem("Upcoming Holidays", "fas fa-umbrella-beach", GetResolvedUrl("Student/UpcomingHolidays.aspx")));
 
                     break;
 

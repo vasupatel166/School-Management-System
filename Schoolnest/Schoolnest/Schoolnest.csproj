@@ -320,6 +320,7 @@
     <Content Include="assets\img\favicon.ico" />
     <Content Include="assets\img\Forgot-Password.svg" />
     <Content Include="assets\img\Logo.png" />
+    <Content Include="assets\img\SchoolLogo\GuruNanakLogo.png" />
     <Content Include="assets\img\user-profile-img\default_user_logo.png" />
     <Content Include="assets\img\user-profile-img\superadmin\Varshil.jpg" />
     <Content Include="assets\js\core\bootstrap.min.js" />
@@ -394,11 +395,12 @@
     <Content Include="Student\Dashboard.aspx" />
     <Content Include="Student\ExamSchedule.aspx" />
     <Content Include="Student\FeePayment.aspx" />
-    <Content Include="Student\PaymentCancel.aspx" />
-    <Content Include="Student\PaymentSuccess.aspx" />
+    <Content Include="Student\FeePaymentHistory.aspx" />
+    <Content Include="Student\StudentFeeInvoice.aspx" />
     <Content Include="Student\StudentLogin.aspx" />
     <Content Include="Student\Timetable.aspx" />
     <Content Include="Student\UpcomingEvents.aspx" />
+    <Content Include="Student\UpcomingHolidays.aspx" />
     <Content Include="SuperAdmin\Dashboard.aspx" />
     <Content Include="SuperAdmin\RegisterAdmin.aspx" />
     <Content Include="SuperAdmin\RegisterSchool.aspx" />
@@ -666,19 +668,19 @@
     <Compile Include="Student\FeePayment.aspx.designer.cs">
       <DependentUpon>FeePayment.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Student\PaymentCancel.aspx.cs">
-      <DependentUpon>PaymentCancel.aspx</DependentUpon>
+    <Compile Include="Student\FeePaymentHistory.aspx.cs">
+      <DependentUpon>FeePaymentHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Student\PaymentCancel.aspx.designer.cs">
-      <DependentUpon>PaymentCancel.aspx</DependentUpon>
+    <Compile Include="Student\FeePaymentHistory.aspx.designer.cs">
+      <DependentUpon>FeePaymentHistory.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Student\PaymentSuccess.aspx.cs">
-      <DependentUpon>PaymentSuccess.aspx</DependentUpon>
+    <Compile Include="Student\StudentFeeInvoice.aspx.cs">
+      <DependentUpon>StudentFeeInvoice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Student\PaymentSuccess.aspx.designer.cs">
-      <DependentUpon>PaymentSuccess.aspx</DependentUpon>
+    <Compile Include="Student\StudentFeeInvoice.aspx.designer.cs">
+      <DependentUpon>StudentFeeInvoice.aspx</DependentUpon>
     </Compile>
     <Compile Include="Student\StudentLogin.aspx.cs">
       <DependentUpon>StudentLogin.aspx</DependentUpon>
@@ -700,6 +702,13 @@
     </Compile>
     <Compile Include="Student\UpcomingEvents.aspx.designer.cs">
       <DependentUpon>UpcomingEvents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\UpcomingHolidays.aspx.cs">
+      <DependentUpon>UpcomingHolidays.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\UpcomingHolidays.aspx.designer.cs">
+      <DependentUpon>UpcomingHolidays.aspx</DependentUpon>
     </Compile>
     <Compile Include="SuperAdmin\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>

@@ -5,7 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         table#MainContent_gvFeeMaster > tr > td {
-            padding : 0 !important;
+            padding: 0 !important;
         }
     </style>
 </asp:Content>
@@ -91,9 +91,14 @@
                                         <asp:BoundField DataField="SRNo" HeaderText="SR. NO" SortExpression="SRNo" />
                                         <asp:BoundField DataField="FeeName" HeaderText="Fee Name" SortExpression="FeeName" />
                                         <asp:BoundField DataField="FeeAmount" HeaderText="Amount" SortExpression="FeeAmount" />
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:HiddenField runat="server" ID="hfFeeMasterID" Value='<%# Eval("FeeMasterID") %>' />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
-                            </div>      
+                            </div>
                         </div>
                     </div>
                 </div>

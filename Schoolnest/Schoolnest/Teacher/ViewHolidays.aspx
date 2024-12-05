@@ -26,7 +26,6 @@
                                         </tr>
                                     </thead>
                                     <tbody id="HolidaysTableBody" runat="server">
-                                        <!-- Holidays will be dynamically populated -->
                                     </tbody>
                                 </table>
                             </div>

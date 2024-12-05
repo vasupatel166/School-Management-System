@@ -11,7 +11,7 @@ namespace Schoolnest.Student
 {
 
 
-    public partial class UpcomingEvents
+    public partial class FeePaymentHistory
     {
 
         /// <summary>
@@ -24,12 +24,30 @@ namespace Schoolnest.Student
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// eventContainer control.
+        /// lblStandard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl eventContainer;
+        protected global::System.Web.UI.WebControls.Label lblStandard;
+
+        /// <summary>
+        /// lblDivision control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDivision;
+
+        /// <summary>
+        /// gvFeePaymentHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvFeePaymentHistory;
     }
 }

@@ -180,7 +180,6 @@
                         </div>
                         <div class="card-body">
                             <div id="attendanceCalendar" runat="server"></div>
-                            <asp:HiddenField ID="HiddenField1" runat="server" />
                         </div>
                     </div>
                 </div>

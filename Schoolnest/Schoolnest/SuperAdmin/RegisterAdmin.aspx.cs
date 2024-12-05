@@ -12,7 +12,7 @@ namespace Schoolnest.SuperAdmin
 {
     public partial class RegisterAdmin : System.Web.UI.Page
     {
-        private string connectionString = Global.ConnectionString; // Connection string
+        private string connectionString = Global.ConnectionString;
         private string SelectedAdminID = "";
         public string profileImagePath = null;
 
@@ -166,7 +166,7 @@ namespace Schoolnest.SuperAdmin
                     cmd.Parameters.AddWithValue("@AdminID", adminID);
                     conn.Open();
 
-                    return cmd.ExecuteScalar()?.ToString(); // Return the existing image path
+                    return cmd.ExecuteScalar()?.ToString();
                 }
             }
         }

@@ -12,7 +12,7 @@ namespace Schoolnest
 {
     public partial class ForgetPassword : System.Web.UI.Page
     {
-        private string connectionString = Global.ConnectionString; // Connection string
+        private string connectionString = Global.ConnectionString; 
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -391,7 +391,6 @@ namespace Schoolnest
             }
         }
 
-
         private (string Username, string SchoolID) GetUsernameWithSchoolId(string email, string roleId)
         {
             string username = null;
@@ -495,7 +494,6 @@ namespace Schoolnest
             return new string(password.OrderBy(x => random.Next()).ToArray());
         }
 
-        // Event triggered when the timer ticks (after 3 seconds)
         protected void Timer1_Tick(object sender, EventArgs e)
         {
             // Stop the timer and redirect to login page

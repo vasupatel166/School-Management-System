@@ -49,7 +49,6 @@ namespace Schoolnest
                             Response.Redirect("~/Teacher/Dashboard.aspx");
                             break;
                         default:
-                            //Response.Redirect("~/Student/Dashboard.aspx");
                             break;
                     }
                 }
@@ -103,7 +102,12 @@ namespace Schoolnest
                                 if (password == reader["DecryptedPassword"].ToString())
                                 {
                                     Session["Username"] = reader["Username"].ToString();
-                                    Session["UserID"] = Convert.ToInt32(reader["UserID"]);
+
+                                    if(userType != "SA")
+                                    {
+                                        Session["UserID"] = Convert.ToInt32(reader["UserID"]);
+                                    }
+
                                     return true;
                                 }
 

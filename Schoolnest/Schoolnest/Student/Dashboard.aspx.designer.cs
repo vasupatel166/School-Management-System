@@ -42,15 +42,6 @@ namespace Schoolnest.Student
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl StudentStandardName;
 
         /// <summary>
-        /// StudentDivisionName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl StudentDivisionName;
-
-        /// <summary>
         /// DaysPresent control.
         /// </summary>
         /// <remarks>
@@ -69,13 +60,13 @@ namespace Schoolnest.Student
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DaysAbsent;
 
         /// <summary>
-        /// H1 control.
+        /// FeesRemaining control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FeesRemaining;
 
         /// <summary>
         /// TodaysTimetableRepeater control.
@@ -105,24 +96,6 @@ namespace Schoolnest.Student
         protected global::System.Web.UI.WebControls.HiddenField AttendanceDataHiddenField;
 
         /// <summary>
-        /// attendancePieChart control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl attendancePieChart;
-
-        /// <summary>
-        /// HiddenField1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
-
-        /// <summary>
         /// EventsLink control.
         /// </summary>
         /// <remarks>
@@ -141,15 +114,6 @@ namespace Schoolnest.Student
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpcomingEvents;
 
         /// <summary>
-        /// HolidaysLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HolidaysLink;
-
-        /// <summary>
         /// UpcomingHolidays control.
         /// </summary>
         /// <remarks>
@@ -157,5 +121,23 @@ namespace Schoolnest.Student
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpcomingHolidays;
+
+        /// <summary>
+        /// UpcomingExams control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpcomingExams;
+
+        /// <summary>
+        /// LastExamGrades control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LastExamGrades;
     }
 }

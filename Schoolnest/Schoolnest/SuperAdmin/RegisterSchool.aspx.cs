@@ -19,8 +19,8 @@ namespace Schoolnest.SuperAdmin
         {
             if (!IsPostBack)
             {
-                LoadStates(); // Load states when the page loads for the first time
-                LoadSchoolSearchDropdown(); // Load the school search dropdown
+                LoadStates();
+                LoadSchoolSearchDropdown();
             }
         }
 
@@ -85,7 +85,6 @@ namespace Schoolnest.SuperAdmin
                             txtSchoolEstablishedYear.Text = reader["SchoolEstablishedYear"].ToString();
                             ddlSchoolCategory.SelectedValue = reader["SchoolCategory"].ToString();
                             chkIsActive.Checked = Convert.ToBoolean(reader["IsActive"]);
-
                             // Load location details (State, City, Pincode)
                             if (!reader.IsDBNull(reader.GetOrdinal("School_LocationID")))
                             {
@@ -111,7 +110,6 @@ namespace Schoolnest.SuperAdmin
                     {
                         if (reader.Read())
                         {
-                            // Populate location dropdowns
                             ddlCity.Enabled = true;
                             ddlPincode.Enabled = true;
                             ddlState.SelectedValue = reader["State"].ToString();
@@ -119,11 +117,9 @@ namespace Schoolnest.SuperAdmin
                             ddlCity.SelectedValue = reader["City"].ToString();
                             LoadPincodes(reader["State"].ToString(), reader["City"].ToString());
 
-                            // Check if the pincode exists in the ddlPincode dropdown list before setting the SelectedValue
                             string pincode = reader["Pincode"].ToString();
                             string location_id = reader["LocationID"].ToString();
 
-                            // Ensure that the pincode is available in the dropdown
                             if (ddlPincode.Items.FindByValue(location_id) != null)
                             {
                                 ddlPincode.SelectedValue = location_id;

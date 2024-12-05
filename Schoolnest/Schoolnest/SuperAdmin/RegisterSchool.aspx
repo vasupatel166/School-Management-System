@@ -19,7 +19,6 @@
 
 
                     <div class="card-body">
-
                         <!-- School Name and Principal Name -->
                         <div class="row">
                             <div class="col-md-6">

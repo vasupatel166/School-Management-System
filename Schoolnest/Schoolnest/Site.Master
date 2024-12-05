@@ -83,21 +83,21 @@
                                         <%# ((List<MenuItem>)Eval("SubMenus")).Count > 0 ? "<span class='caret'></span>" : "" %>
                                     </a>
 
-                                    <!-- Render sub-menus if they exist -->
-                                    <div class="collapse" id="submenu<%# Container.ItemIndex %>">
-                                        <ul class="nav nav-collapse">
-                                            <asp:Repeater ID="SubMenuRepeater" runat="server" DataSource='<%# Eval("SubMenus") %>'>
-                                                <ItemTemplate>
-                                                    <li class="nav-item sidebar_submenu_li">
-                                                        <a href="<%# Eval("Url") %>"  class="px-4">
-                                                            <i class="mx-0 <%# Eval("Icon") %> lh-base"></i>
-                                                            <span class="sub-item ms-2"><%# Eval("Title") %></span>
-                                                        </a>
-                                                    </li>
-                                                </ItemTemplate>
-                                            </asp:Repeater>
-                                        </ul>
-                                    </div>
+                                    <!-- Render sub-menus only if they exist -->
+                                    <%# ((List<MenuItem>)Eval("SubMenus")).Count > 0 ? "<div class='collapse' id='submenu" + Container.ItemIndex + "'><ul class='nav nav-collapse'>" : "" %>
+    
+                                    <asp:Repeater ID="SubMenuRepeater" runat="server" DataSource='<%# Eval("SubMenus") %>'>
+                                        <ItemTemplate>
+                                            <li class="nav-item sidebar_submenu_li">
+                                                <a href="<%# Eval("Url") %>" class="px-4">
+                                                    <i class="mx-0 <%# Eval("Icon") %> lh-base"></i>
+                                                    <span class="sub-item ms-2"><%# Eval("Title") %></span>
+                                                </a>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+
+                                    <%# ((List<MenuItem>)Eval("SubMenus")).Count > 0 ? "</ul></div>" : "" %>
                                 </li>
                             </ItemTemplate>
                         </asp:Repeater>
@@ -313,12 +313,47 @@
     $(document).ready(function () {
         /****************************************SIDEBAR****************************************/
 
-        $('.sidebar-content > ul > li.nav-item').on('click', function () {
-            // Remove the 'active' class from all nav-items
-            $('.sidebar-content > ul > li.nav-item').removeClass('active submenu');
-            // Add 'active' class to the clicked nav-item
-            $(this).parent('.sidebar-content > ul > li.nav-item').addClass('active submenu');
-        });
+        function setActiveMenuItem() {
+            var currentPath = window.location.pathname;
+
+            $('.sidebar-content > ul > li.nav-item').each(function () {
+                var $menuItem = $(this);
+                var $link = $menuItem.find('> a');
+                var menuUrl = $link.attr('href');
+
+                if (currentPath.includes(menuUrl)) {
+                    $menuItem.addClass('active');
+
+                    var $subMenu = $menuItem.find('.collapse');
+                    if ($subMenu.length) {
+                        $subMenu.addClass('show');
+                        $link.attr('aria-expanded', 'true');
+                    }
+                }
+            });
+
+            $('.sidebar-content .nav-collapse > li').each(function () {
+                var $submenuItem = $(this);
+                var $submenuLink = $submenuItem.find('> a');
+                var submenuUrl = $submenuLink.attr('href');
+
+                if (currentPath.includes(submenuUrl)) {
+                    // Add active class to submenu item
+                    $submenuItem.addClass('active');
+
+                    var $parentCollapse = $submenuItem.closest('.collapse');
+                    if ($parentCollapse.length) {
+                        $parentCollapse.addClass('show');
+                        $parentCollapse.prev('a').attr('aria-expanded', 'true');
+
+                        // Add active class to parent menu item
+                        $parentCollapse.closest('li.nav-item').addClass('active');
+                    }
+                }
+            });
+        }
+
+        setActiveMenuItem();
 
         /****************************************SIDEBAR****************************************/
 

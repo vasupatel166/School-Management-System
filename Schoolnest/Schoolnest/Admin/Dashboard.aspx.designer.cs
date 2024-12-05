@@ -24,58 +24,112 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// SchoolNameHeading control.
+        /// SchoolNameHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SchoolNameHeading;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SchoolNameHeader;
 
         /// <summary>
-        /// TotalStudentsCard control.
+        /// TotalSubjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TotalStudentsCard;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TotalSubjects;
 
         /// <summary>
-        /// TotalTeachersCard control.
+        /// TotalClasses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TotalTeachersCard;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TotalClasses;
 
         /// <summary>
-        /// TotalActiveClassesCard control.
+        /// TotalStudents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TotalActiveClassesCard;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TotalStudents;
 
         /// <summary>
-        /// TotalPendingFeesCard control.
+        /// TotalTeachers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TotalPendingFeesCard;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TotalTeachers;
 
         /// <summary>
-        /// AllEventsLink control.
+        /// TotalBuses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink AllEventsLink;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TotalBuses;
+
+        /// <summary>
+        /// FeesRemaining control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FeesRemaining;
+
+        /// <summary>
+        /// TotalBudgetRemaining control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TotalBudgetRemaining;
+
+        /// <summary>
+        /// ddlAttendanceType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAttendanceType;
+
+        /// <summary>
+        /// StudentAttendanceDataHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField StudentAttendanceDataHiddenField;
+
+        /// <summary>
+        /// TeacherAttendanceDataHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField TeacherAttendanceDataHiddenField;
+
+        /// <summary>
+        /// EventsLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink EventsLink;
 
         /// <summary>
         /// UpcomingEvents control.
@@ -85,5 +139,23 @@ namespace Schoolnest.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpcomingEvents;
+
+        /// <summary>
+        /// HolidaysLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HolidaysLink;
+
+        /// <summary>
+        /// UpcomingHolidays control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpcomingHolidays;
     }
 }
