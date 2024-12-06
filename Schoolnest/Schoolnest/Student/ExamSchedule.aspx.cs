@@ -19,11 +19,8 @@ namespace Schoolnest.Student
         private int UserID;
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Retrieve SchoolID and UserID from session
             SchoolID = Session["SchoolID"]?.ToString();
             UserID = Convert.ToInt32(Session["UserID"]);
-
-            // Retrieve StudentID based on UserID and SchoolID
             StudentID = GetStudentIDFromSession(UserID, SchoolID);
 
             if (!IsPostBack)
@@ -63,62 +60,109 @@ namespace Schoolnest.Student
                             lblDivisionID.Text = reader["DivisionID"].ToString();
                             lblStandard.Text = reader["StandardName"].ToString();
                             lblDivision.Text = reader["DivisionName"].ToString();
+
                             string standardID = lblstandardID.Text.ToString();
                             string DivisionID = lblDivisionID.Text.ToString();
+
+                            // Load Subjects for filtering
+                            LoadSubjectsForFilter(standardID, DivisionID);
                             GetExamSchedule(standardID, DivisionID, schoolID);
-                            
                         }
 
                     }
-
                 }
             }
 
         }
 
-        private void GetExamSchedule(string standardID, string divisionID, string schoolID)
+        private void LoadSubjectsForFilter(string standardID, string divisionID)
         {
-            string examScheduleQuery = @"select ES.ExamDate AS ExamDate,
-       EX.ExamName AS ExamName,
-	   EX.TotalMarks AS Marks,
-	   SM.SubjectName AS SubjectName
-from ExamSchedule ES 
-LEFT JOIN Standards SD ON SD.StandardID=ES.StandardID
-LEFT JOIN Divisions DV ON DV.DivisionID=ES.DivisionID
-LEFT JOIN SubjectMaster SM ON SM.SubjectID=ES.SubjectID
-LEFT JOIN Exam EX ON Ex.ExamID=ES.ExamID
-WHERE ES.StandardID = @standardID and ES.DivisionID= @divisionID and ES.SchoolID=@schoolID ORDER By ExamDate
+            string subjectQuery = @"
+        SELECT SM.SubjectName, SM.SubjectID
+        FROM SubjectMaster SM
+        INNER JOIN ExamSchedule ES ON ES.SubjectID = SM.SubjectID
+        WHERE ES.StandardID = @StandardID AND ES.DivisionID = @DivisionID
+        GROUP BY SM.SubjectName, SM.SubjectID";
 
-";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
+                using (SqlCommand cmd = new SqlCommand(subjectQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@StandardID", standardID);
+                    cmd.Parameters.AddWithValue("@DivisionID", divisionID);
 
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        ddlSubjectFilter.Items.Clear();
+                        ddlSubjectFilter.Items.Add(new ListItem("-- Select Subject --", ""));
+
+                        while (reader.Read())
+                        {
+                            ddlSubjectFilter.Items.Add(new ListItem(reader["SubjectName"].ToString(), reader["SubjectID"].ToString()));
+                        }
+                    }
+                }
+            }
+        }
+
+        private void GetExamSchedule(string standardID, string divisionID, string schoolID)
+        {
+            string subjectFilter = ddlSubjectFilter.SelectedValue;
+
+            string examScheduleQuery = @"
+        SELECT ES.ExamDate AS ExamDate,
+               EX.ExamName AS ExamName,
+               EX.TotalMarks AS Marks,
+               SM.SubjectName AS SubjectName
+        FROM ExamSchedule ES
+        LEFT JOIN Standards SD ON SD.StandardID=ES.StandardID
+        LEFT JOIN Divisions DV ON DV.DivisionID=ES.DivisionID
+        LEFT JOIN SubjectMaster SM ON SM.SubjectID=ES.SubjectID
+        LEFT JOIN Exam EX ON EX.ExamID=ES.ExamID
+        WHERE ES.StandardID = @StandardID 
+          AND ES.DivisionID = @DivisionID 
+          AND ES.SchoolID = @SchoolID";
+
+            if (!string.IsNullOrEmpty(subjectFilter))
+            {
+                examScheduleQuery += " AND SM.SubjectID = @SubjectID";
+            }
+
+            examScheduleQuery += " ORDER BY ExamDate";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
                 using (SqlCommand cmd = new SqlCommand(examScheduleQuery, conn))
-
                 {
                     cmd.Parameters.AddWithValue("@SchoolID", schoolID);
-                    cmd.Parameters.AddWithValue("@standardID", standardID);
-                    cmd.Parameters.AddWithValue("@divisionID", divisionID);
+                    cmd.Parameters.AddWithValue("@StandardID", standardID);
+                    cmd.Parameters.AddWithValue("@DivisionID", divisionID);
+
+                    if (!string.IsNullOrEmpty(subjectFilter))
+                    {
+                        cmd.Parameters.AddWithValue("@SubjectID", subjectFilter);
+                    }
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
-                            // Load the data into a DataTable
                             DataTable dt = new DataTable();
                             dt.Load(reader);
-
-                            // Bind data to GridView
                             gvExamSchedule.DataSource = dt;
                             gvExamSchedule.DataBind();
-
                         }
-
+                        else
+                        {
+                            gvExamSchedule.DataSource = null;
+                            gvExamSchedule.DataBind();
+                        }
                     }
                 }
-                    }
-                }
+            }
+        }
 
         private string GetStudentIDFromSession(int userID, string schoolID)
         {
@@ -141,6 +185,15 @@ WHERE ES.StandardID = @standardID and ES.DivisionID= @divisionID and ES.SchoolID
             }
 
             return studentId;
+        }
+
+        protected void ddlSubjectFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string standardID = lblstandardID.Text;
+            string divisionID = lblDivisionID.Text;
+            string schoolID = Session["SchoolID"].ToString();
+
+            GetExamSchedule(standardID, divisionID, schoolID);  // Rebind the GridView with the selected subject filter
         }
     }
 }

@@ -33,15 +33,6 @@ namespace Schoolnest.Admin
         protected global::System.Web.UI.WebControls.TextBox txtExamScheduleID;
 
         /// <summary>
-        /// ddlSubject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSubject;
-
-        /// <summary>
         /// ddlStandard control.
         /// </summary>
         /// <remarks>
@@ -67,6 +58,15 @@ namespace Schoolnest.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSection;
+
+        /// <summary>
+        /// ddlSubject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubject;
 
         /// <summary>
         /// ddlExam control.

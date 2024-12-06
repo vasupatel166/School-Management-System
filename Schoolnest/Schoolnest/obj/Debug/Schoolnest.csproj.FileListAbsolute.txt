@@ -37,6 +37,7 @@ D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnes
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\DotNetEnv.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\EntityFramework.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\EntityFramework.SqlServer.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Humanizer.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\itextsharp.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Bcl.HashCode.dll
@@ -46,7 +47,9 @@ D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnes
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Logging.Abstractions.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Extensions.Primitives.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Web.Infrastructure.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Newtonsoft.Json.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\NumberToWords.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Sprache.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Stripe.net.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Buffers.dll
@@ -62,6 +65,7 @@ D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnes
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\BouncyCastle.Cryptography.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\EntityFramework.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\EntityFramework.SqlServer.xml
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Humanizer.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\itextsharp.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Bcl.AsyncInterfaces.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Bcl.HashCode.xml
@@ -84,15 +88,6 @@ D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnes
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Threading.Channels.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.Threading.Tasks.Extensions.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\System.ValueTuple.xml
-D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.AssemblyReference.cache
-D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.CoreCompileInputs.cache
-D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.Up2Date
-D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.dll
-D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.pdb
-D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Microsoft.Web.Infrastructure.dll
-D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Humanizer.dll
-D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\NumberToWords.dll
-D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\Humanizer.xml
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\af\Humanizer.resources.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\ar\Humanizer.resources.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\az\Humanizer.resources.dll
@@ -140,3 +135,8 @@ D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnes
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\zh-CN\Humanizer.resources.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\zh-Hans\Humanizer.resources.dll
 D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\bin\zh-Hant\Humanizer.resources.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.AssemblyReference.cache
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.CoreCompileInputs.cache
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.csproj.Up2Date
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.dll
+D:\Conestoga College - SEM 4\Capstone Project\School-Management-System\Schoolnest\Schoolnest\obj\Debug\Schoolnest.pdb

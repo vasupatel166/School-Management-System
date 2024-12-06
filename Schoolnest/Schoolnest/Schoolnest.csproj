@@ -293,8 +293,10 @@
     <Content Include="Admin\ExamMaster.aspx" />
     <Content Include="Admin\ExamSchedule.aspx" />
     <Content Include="Admin\FeeMaster.aspx" />
+    <Content Include="Admin\FeePayment.aspx" />
     <Content Include="Admin\GradeManagement.aspx" />
     <Content Include="Admin\HolidayMaster.aspx" />
+    <Content Include="Admin\MarkTeacherAttendance.aspx" />
     <Content Include="Admin\PaymentReport.aspx" />
     <Content Include="Admin\PeriodTimeMaster.aspx" />
     <Content Include="Admin\SchoolSettings.aspx" />
@@ -396,6 +398,7 @@
     <Content Include="Student\ExamSchedule.aspx" />
     <Content Include="Student\FeePayment.aspx" />
     <Content Include="Student\FeePaymentHistory.aspx" />
+    <Content Include="Student\ReportCard.aspx" />
     <Content Include="Student\StudentFeeInvoice.aspx" />
     <Content Include="Student\StudentLogin.aspx" />
     <Content Include="Student\Timetable.aspx" />
@@ -509,6 +512,13 @@
     <Compile Include="Admin\FeeMaster.aspx.designer.cs">
       <DependentUpon>FeeMaster.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\FeePayment.aspx.cs">
+      <DependentUpon>FeePayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\FeePayment.aspx.designer.cs">
+      <DependentUpon>FeePayment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\GradeManagement.aspx.cs">
       <DependentUpon>GradeManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -522,6 +532,13 @@
     </Compile>
     <Compile Include="Admin\HolidayMaster.aspx.designer.cs">
       <DependentUpon>HolidayMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MarkTeacherAttendance.aspx.cs">
+      <DependentUpon>MarkTeacherAttendance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MarkTeacherAttendance.aspx.designer.cs">
+      <DependentUpon>MarkTeacherAttendance.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\PaymentReport.aspx.cs">
       <DependentUpon>PaymentReport.aspx</DependentUpon>
@@ -674,6 +691,13 @@
     </Compile>
     <Compile Include="Student\FeePaymentHistory.aspx.designer.cs">
       <DependentUpon>FeePaymentHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\ReportCard.aspx.cs">
+      <DependentUpon>ReportCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\ReportCard.aspx.designer.cs">
+      <DependentUpon>ReportCard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Student\StudentFeeInvoice.aspx.cs">
       <DependentUpon>StudentFeeInvoice.aspx</DependentUpon>

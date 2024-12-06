@@ -59,18 +59,8 @@ namespace Schoolnest.Admin
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        // Bind Subject dropdown
-                        if (reader.HasRows)
-                        {
-                            ddlSubject.DataSource = reader;
-                            ddlSubject.DataTextField = "SubjectName";
-                            ddlSubject.DataValueField = "SubjectID";
-                            ddlSubject.DataBind();
-                            ddlSubject.Items.Insert(0, new ListItem("--Select Subject--", "0"));
-                        }
-
                         // Move to next result set (Sections)
-                        if (reader.NextResult() && reader.HasRows)
+                        if (reader.HasRows)
                         {
                             ddlSection.DataSource = reader;
                             ddlSection.DataTextField = "SectionName";
@@ -112,22 +102,6 @@ namespace Schoolnest.Admin
             }
         }
 
-        protected void btnReset_Click(object sender, EventArgs e)
-        {
-            ClearForm();
-        }
-
-        private void ClearForm()
-        {
-            txtExamScheduleID.Text = string.Empty;
-            ddlSubject.SelectedIndex = 0;
-            ddlStandard.SelectedIndex = 0;
-            ddlDivision.SelectedIndex = 0;
-            ddlSection.SelectedIndex = 0;
-            ddlExam.SelectedIndex = 0;
-            txtDateOfExam.Text = string.Empty;
-        }
-
         protected void btnSave_Click(object sender, EventArgs e)
         {
             saveSchedule();
@@ -137,7 +111,6 @@ namespace Schoolnest.Admin
 
         private void saveSchedule()
         {
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("sp_InsertUpdateExamSchedule", conn))
@@ -182,7 +155,6 @@ namespace Schoolnest.Admin
 
             if (e.CommandName == "EditExamSchedule")
             {
-                // Populate the form for editing
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand("SELECT * FROM ExamSchedule WHERE ExamScheduleID = @ExamScheduleID AND SchoolID = @SchoolID", conn))
@@ -217,7 +189,6 @@ namespace Schoolnest.Admin
                     }
                 }
 
-                // Refresh the grid
                 BindExamScheduleGrid();
             }
         }
@@ -245,7 +216,54 @@ namespace Schoolnest.Admin
             {
                 ddl.SelectedIndex = 0;
             }
-        }        
+        }
 
+        protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int standard = int.Parse(ddlStandard.SelectedValue);
+            int division = int.Parse(ddlDivision.SelectedValue);
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(@"Select SM.SubjectID, SM.SubjectName from SubjectDetail as SD 
+                LEFT JOIN SubjectMaster as SM ON SM.SubjectID = SD.SubjectMaster_SubjectID 
+                Where SD.Standards_StandardID = @StandardID AND SD.Divisions_DivisionID = @DivisionID AND SD.SchoolMaster_SchoolID = @SchoolID", conn))
+                {
+                    conn.Open();
+                    cmd.Parameters.Add(new SqlParameter("@StandardID", standard));
+                    cmd.Parameters.Add(new SqlParameter("@DivisionID", division));
+                    cmd.Parameters.Add(new SqlParameter("@SchoolID", SchoolID));
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            ddlSubject.Items.Insert(0, new ListItem("--Select Subject--", "0"));
+                            ddlSubject.DataSource = reader;
+                            ddlSubject.DataTextField = "SubjectName";
+                            ddlSubject.DataValueField = "SubjectID";
+                            ddlSubject.DataBind();
+                        }
+
+                    }
+                }
+            }
+        }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+        }
+
+        private void ClearForm()
+        {
+            txtExamScheduleID.Text = string.Empty;
+            ddlSubject.SelectedIndex = 0;
+            ddlStandard.SelectedIndex = 0;
+            ddlDivision.SelectedIndex = 0;
+            ddlSection.SelectedIndex = 0;
+            ddlExam.SelectedIndex = 0;
+            txtDateOfExam.Text = string.Empty;
+        }
     }
 }

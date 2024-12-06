@@ -23,14 +23,6 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="ddlSubject" Text="Subject Name"></asp:Label>
-                                    <asp:DropDownList ID="ddlSubject" runat="server" CssClass="form-control"></asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlStandard" Text="Standard"></asp:Label>
                                     <asp:DropDownList ID="ddlStandard" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
@@ -40,7 +32,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="ddlDivision" Text="Division"></asp:Label>
-                                    <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +44,14 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="ddlSubject" Text="Subject Name"></asp:Label>
+                                    <asp:DropDownList ID="ddlSubject" runat="server" CssClass="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -65,7 +64,6 @@
                             <asp:Label runat="server" AssociatedControlID="txtDateOfExam" Text="Date of Exam"></asp:Label>
                             <asp:TextBox ID="txtDateOfExam" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                         </div>
-
                     </div>
 
                     <!-- Buttons -->

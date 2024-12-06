@@ -29,12 +29,25 @@
                         </div>
                     </div>
 
+                    <!-- Subject Filter Section -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ddlSubjectFilter" class="control-label">Filter by Subject:</label>
+                                <asp:DropDownList ID="ddlSubjectFilter" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSubjectFilter_SelectedIndexChanged" AutoPostBack="True">
+                                    <asp:ListItem Text="-- Select Subject --" Value="" />
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GridView for Exam Schedule -->
                     <div class="row">
                         <asp:GridView ID="gvExamSchedule" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered">
                             <Columns>
                                 <asp:BoundField DataField="ExamDate" HeaderText="Exam Date" DataFormatString="{0:yyyy-MM-dd}" />
                                 <asp:BoundField DataField="ExamName" HeaderText="Exam Name" />
-                                <asp:BoundField DataField="Marks" HeaderText="Marks" />                       
+                                <asp:BoundField DataField="Marks" HeaderText="Marks" />
                                 <asp:BoundField DataField="SubjectName" HeaderText="Subject" />
                             </Columns>
                             <EmptyDataTemplate>

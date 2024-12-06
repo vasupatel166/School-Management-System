@@ -7,164 +7,182 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Schoolnest.Admin
+namespace Schoolnest.Student
 {
 
 
-    public partial class PaymentReport
+    public partial class ReportCard
     {
 
         /// <summary>
-        /// formPaymentReport control.
+        /// attendanceForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formPaymentReport;
+        protected global::System.Web.UI.HtmlControls.HtmlForm attendanceForm;
 
         /// <summary>
-        /// ddlStandard control.
+        /// ddlFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStandard;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFilter;
 
         /// <summary>
-        /// ddlDivision control.
+        /// lblExam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDivision;
+        protected global::System.Web.UI.WebControls.Label lblExam;
 
         /// <summary>
-        /// ddlPaymentStatus control.
+        /// ddlExam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPaymentStatus;
+        protected global::System.Web.UI.WebControls.DropDownList ddlExam;
 
         /// <summary>
-        /// DateRange control.
+        /// btnView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DateRange;
+        protected global::System.Web.UI.WebControls.Button btnView;
 
         /// <summary>
-        /// txtFromDate control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFromDate;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
 
         /// <summary>
-        /// txtToDate control.
+        /// btnGenerateReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtToDate;
+        protected global::System.Web.UI.WebControls.Button btnGenerateReport;
 
         /// <summary>
-        /// PaymentModeContainer control.
+        /// studentDetailsSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PaymentModeContainer;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl studentDetailsSection;
 
         /// <summary>
-        /// ddlPaymentMode control.
+        /// lblStudentName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPaymentMode;
+        protected global::System.Web.UI.WebControls.Label lblStudentName;
 
         /// <summary>
-        /// btnSearch control.
+        /// lblStudentNameValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.WebControls.Label lblStudentNameValue;
 
         /// <summary>
-        /// btnReset control.
+        /// lblStandard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReset;
+        protected global::System.Web.UI.WebControls.Label lblStandard;
 
         /// <summary>
-        /// lblTotalExpected control.
+        /// lblStandardValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalExpected;
+        protected global::System.Web.UI.WebControls.Label lblStandardValue;
 
         /// <summary>
-        /// lblTotalCollected control.
+        /// lblDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalCollected;
+        protected global::System.Web.UI.WebControls.Label lblDivision;
 
         /// <summary>
-        /// lblCollectionPercentage control.
+        /// lblDivisionValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCollectionPercentage;
+        protected global::System.Web.UI.WebControls.Label lblDivisionValue;
 
         /// <summary>
-        /// btnExportExcel control.
+        /// resultsSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportExcel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl resultsSection;
 
         /// <summary>
-        /// btnExportPDF control.
+        /// gvGrades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportPDF;
+        protected global::System.Web.UI.WebControls.GridView gvGrades;
 
         /// <summary>
-        /// gvPaymentReport control.
+        /// lblMarksObtainedSum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPaymentReport;
+        protected global::System.Web.UI.WebControls.Label lblMarksObtainedSum;
+
+        /// <summary>
+        /// lblTotalMarksSum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalMarksSum;
+
+        /// <summary>
+        /// lblPercentage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPercentage;
     }
 }

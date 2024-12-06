@@ -317,6 +317,7 @@ namespace Schoolnest
 
                     menuItems.Add(new MenuItem("Fee Management", "fas fa-hand-holding-usd", "", new List<MenuItem> {
                         new MenuItem("Fee Master", "fas fa-cash-register", GetResolvedUrl("Admin/FeeMaster.aspx")),
+                        new MenuItem("Fee Payment", "fas fa-credit-card", GetResolvedUrl("Admin/FeePayment.aspx")),
                         new MenuItem("Payment Report", "fas fa-file-invoice-dollar", GetResolvedUrl("Admin/PaymentReport.aspx"))
                     }));
 
